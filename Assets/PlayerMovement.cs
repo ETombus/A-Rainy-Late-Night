@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     float inputX;
     Rigidbody2D rbody;
 
+    public bool isGrounded;
+
     private void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
