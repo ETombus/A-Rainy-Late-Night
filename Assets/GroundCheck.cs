@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    PlayerMovement player;
+    Jumping player;
 
     private void Start()
     {
-        player = GetComponentInParent<PlayerMovement>();
+        player = GetComponentInParent<Jumping>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
-        {
             player.isGrounded = true;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

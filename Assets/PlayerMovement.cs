@@ -6,10 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float speed;
-    public float jumpForce;
-    public float jumpVel;
+    [SerializeField] float speed;
+    [SerializeField] float jumpForce;
+    [SerializeField] float jumpVel;
     public bool isGrounded;
+    [SerializeField] bool isSlowfalling;
     float inputX;
 
 
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         jump = playerControls.Player.Jump;
         jump.Enable();
         jump.performed += Jump;
+
     }
 
     private void OnDisable()
@@ -49,8 +51,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (rbody.velocity.y < 0) { rbody.gravityScale = 5; }
-        else { rbody.gravityScale = 1; }
-        if (isGrounded) { rbody.gravityScale = 1; }
+        else if (isGrounded) { rbody.gravityScale = 1; }
+
+        //else { rbody.gravityScale = 1; }
 
         Walking();
     }
