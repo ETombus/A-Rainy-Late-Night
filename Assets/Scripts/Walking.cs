@@ -9,7 +9,8 @@ public class Walking : MonoBehaviour
     [SerializeField] float speed;
     float inputX;
 
-    //Components
+    [Header("Components")]
+    [SerializeField] GameObject playerSprite;
     Rigidbody2D rbody;
 
     //Inputs
@@ -39,6 +40,9 @@ public class Walking : MonoBehaviour
     private void Update()
     {
         HorizontalMovement();
+
+        if (inputX < 0) { transform.localScale = new(-1, 1, 1); }
+        else if (inputX > 0) { transform.localScale = Vector3.one; }
     }
     public void HorizontalMovement()
     {
