@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
-public class test : MonoBehaviour
+public class HealthHandler : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
