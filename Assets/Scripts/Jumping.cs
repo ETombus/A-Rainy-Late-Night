@@ -84,8 +84,6 @@ public class Jumping : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-
-
         if (isGrounded)
         {
             //Debug.Log("We Jumped");
@@ -96,7 +94,7 @@ public class Jumping : MonoBehaviour
         }
     }
 
-    //public void ResetJump(InputAction.CallbackContext context) { isJumping = false; }
+    public void ResetJump(InputAction.CallbackContext context) { isJumping = false; }
 
     private void FixedUpdate()
     {
