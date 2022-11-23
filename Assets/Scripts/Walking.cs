@@ -64,5 +64,4 @@ public class Walking : MonoBehaviour
     {
         rbody.velocity = new(inputX * speed * Time.deltaTime, rbody.velocity.y); //Walking()
     }
-
 }

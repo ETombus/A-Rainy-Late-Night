@@ -17,10 +17,7 @@ public class Slice : MonoBehaviour
     private float attackCooldownTimer;
 
 
-    private void Awake()
-    {
-        playerControls = new PlayerInputs();
-    }
+    private void Awake() { playerControls = new PlayerInputs(); }
 
     private void OnEnable()
     {
@@ -38,7 +35,7 @@ public class Slice : MonoBehaviour
     {
         if (canAttack)
         {
-            Debug.Log("We Sliced");
+            //Debug.Log("We Sliced");
             sliceHitbox.SetActive(true);
             attackTimer = attackDuration;
             canAttack = false;
