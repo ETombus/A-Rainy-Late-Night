@@ -10,7 +10,9 @@ public class Walking : MonoBehaviour
     float inputX;
 
     [Header("Components")]
-    [SerializeField] GameObject playerSprite;
+    [SerializeField] SpriteRenderer playerSprite;
+    [SerializeField] Transform cameraTarget;
+    [SerializeField] float cameraTargetXPos;
     Rigidbody2D rbody;
 
     //Inputs
@@ -20,6 +22,7 @@ public class Walking : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerInputs();
+        playerSprite = GetComponentInChildren<SpriteRenderer>(false);
     }
 
     private void OnEnable()
@@ -41,8 +44,16 @@ public class Walking : MonoBehaviour
     {
         HorizontalMovement();
 
-        if (inputX < 0) { transform.localScale = new(-1, 1, 1); }
-        else if (inputX > 0) { transform.localScale = Vector3.one; }
+        if (inputX < 0)
+        {
+            playerSprite.flipX = true;
+            cameraTarget.localPosition = new(-cameraTargetXPos, 0);
+        }
+        else if (inputX > 0)
+        {
+            playerSprite.flipX = false;
+            cameraTarget.localPosition = new(cameraTargetXPos, 0);
+        }
     }
     public void HorizontalMovement()
     {

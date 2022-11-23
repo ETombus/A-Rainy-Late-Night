@@ -11,7 +11,11 @@ public class Slice : MonoBehaviour
 
     [SerializeField] GameObject sliceHitbox;
     [SerializeField] float attackDuration = 0.2f;
+    [SerializeField] float attackCooldown = 0.2f;
+    public bool canAttack;
     private float attackTimer;
+    private float attackCooldownTimer;
+
 
     private void Awake()
     {
@@ -32,14 +36,22 @@ public class Slice : MonoBehaviour
 
     private void StandardSlice(InputAction.CallbackContext context)
     {
-        Debug.Log("We Sliced");
-        sliceHitbox.SetActive(true);
-        attackTimer = attackDuration;
+        if (canAttack)
+        {
+            Debug.Log("We Sliced");
+            sliceHitbox.SetActive(true);
+            attackTimer = attackDuration;
+            canAttack = false;
+            attackCooldownTimer = attackCooldown;
+        }
     }
 
     private void Update()
     {
         if (attackTimer > 0) { attackTimer -= Time.deltaTime; }
         else if (attackTimer <= 0) { sliceHitbox.SetActive(false); }
+
+        if (attackCooldownTimer > 0) { attackCooldownTimer -= Time.deltaTime; }
+        else if (attackCooldownTimer <= 0) { canAttack = true; }
     }
 }
