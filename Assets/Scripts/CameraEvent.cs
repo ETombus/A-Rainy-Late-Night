@@ -14,6 +14,7 @@ public class CameraEvent : MonoBehaviour
     void Start()
     {
         cameraPos = this.gameObject.transform.GetChild(0);
+        vCam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -13,6 +13,8 @@ public class Walking : MonoBehaviour
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] Transform cameraTarget;
     [SerializeField] float cameraTargetXPos;
+    [SerializeField] Transform umbrellaTrans;
+    Vector2 umbrellaPos;
     Rigidbody2D rbody;
 
     //Inputs
@@ -23,6 +25,9 @@ public class Walking : MonoBehaviour
     {
         playerControls = new PlayerInputs();
         playerSprite = GetComponentInChildren<SpriteRenderer>(false);
+
+        cameraTargetXPos = cameraTarget.localPosition.x;
+        umbrellaPos = umbrellaTrans.localPosition;
     }
 
     private void OnEnable()
@@ -40,6 +45,7 @@ public class Walking : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
     }
+
     private void Update()
     {
         HorizontalMovement();
@@ -48,11 +54,15 @@ public class Walking : MonoBehaviour
         {
             playerSprite.flipX = true;
             cameraTarget.localPosition = new(-cameraTargetXPos, 0);
+            umbrellaTrans.localPosition = new(-umbrellaPos.x, umbrellaPos.y);
+            umbrellaTrans.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
         else if (inputX > 0)
         {
             playerSprite.flipX = false;
             cameraTarget.localPosition = new(cameraTargetXPos, 0);
+            umbrellaTrans.localPosition = new(umbrellaPos.x, umbrellaPos.y);
+            umbrellaTrans.gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
     public void HorizontalMovement()
