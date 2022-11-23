@@ -17,9 +17,17 @@ public class Jumping : MonoBehaviour
     [SerializeField] float slowfallGravity = 0.2f;
     [SerializeField] float fastfallGravity = 5f;
 
-    [Header("Duration")] //this might not do anything right now, idk how the new input system works :/
-    [SerializeField] float jumpDuration;
-    float jumpTimer = 0f;
+    //[Header("Duration")] //this might not do anything right now, idk how the new input system works :/
+    //[SerializeField] float jumpDuration;
+    //float jumpTimer = 0f;
+
+    //[Header("Coyote Time")]
+    //[SerializeField] float coyoteTime = 0.2f;
+    //[SerializeField] float coyoteTimer;
+
+    //[Header("Jump buffer")]
+    //[SerializeField] float jumpbufferTime = 0.2f;
+    //[SerializeField] float jumpbufferTimer;
 
     //Components
     Rigidbody2D rbody;
@@ -40,7 +48,7 @@ public class Jumping : MonoBehaviour
         jump.Enable();
         jump.performed += Jump;
         jump.performed += SlowFalling;
-        jump.canceled += ExitSlowfall;
+        jump.canceled += OnSpaceReleased;
     }
 
     private void OnDisable()
@@ -55,6 +63,7 @@ public class Jumping : MonoBehaviour
             if (isSlowfalling) { gravityOffset = slowfallGravity; }
             else if (!isSlowfalling) { gravityOffset = fastfallGravity; }
         }
+
         if (isGrounded)
         {
             gravityOffset = 1f;
@@ -65,19 +74,21 @@ public class Jumping : MonoBehaviour
 
         if (!isGrounded)
         {
-            jumpTimer += Time.deltaTime;
+            isJumping = false;
+
+            //if (coyoteTimer > 0) coyoteTimer -= Time.deltaTime;
         }
-        if (jumpTimer <= jumpDuration) { isJumping = false; }
+
+        //if (jumpbufferTimer > 0) {jumpbufferTimer -= Time.deltaTime;}
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
         if (isGrounded)
         {
-            Debug.Log("We Jumped");
+            //Debug.Log("We Jumped");
             rbody.velocity = new Vector2(rbody.velocity.x, 0);
             isJumping = true;
-            jumpTimer = 0;
 
             FixedUpdate();
         }
@@ -96,13 +107,13 @@ public class Jumping : MonoBehaviour
 
     private void SlowFalling(InputAction.CallbackContext context)
     {
-        Debug.Log("slowfalling");
+        //Debug.Log("slowfalling");
         isSlowfalling = true;
     }
 
-    private void ExitSlowfall(InputAction.CallbackContext context)
+    private void OnSpaceReleased(InputAction.CallbackContext context)
     {
-        Debug.Log("exited slowfalling");
         isSlowfalling = false;
+        rbody.velocity = new(rbody.velocity.x, rbody.velocity.y * 0.5f);
     }
 }
