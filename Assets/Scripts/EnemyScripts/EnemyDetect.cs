@@ -23,10 +23,10 @@ public class EnemyDetect : MonoBehaviour
     {
         if (playerInViewRange)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 14, detectableLayers);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 20, detectableLayers);
             Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
 
-            if (hit.collider.gameObject.layer == 3)
+            if (hit.collider.gameObject.layer == 3) // Terrain Layer
             {
                 playerVisable = false;
             }
