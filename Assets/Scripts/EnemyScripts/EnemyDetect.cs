@@ -7,13 +7,20 @@ public class EnemyDetect : MonoBehaviour
 {
 
 
-    [SerializeField]
-    private GameObject player;
-
     public LayerMask detectableLayers;
+
+    public float detectTime = 1;
+
+    [SerializeField]
+    private float timer = 0;
 
     [SerializeField]
     private bool playerVisable = false;
+
+    [SerializeField]
+    private GameObject player;
+
+
 
     private bool playerInViewRange = false;
 
@@ -23,19 +30,48 @@ public class EnemyDetect : MonoBehaviour
     {
         if (playerInViewRange)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 20, detectableLayers);
-            Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
+            CheckIfBlockedByTerrain();
+        }
 
-            if (hit.collider.gameObject.layer == 3) // Terrain Layer
+        if (playerVisable)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= detectTime)
             {
-                playerVisable = false;
+                Debug.Log("Fire at player!");
+                //Insert Agression mode here
             }
-            else
-                playerVisable = true;
+        }
 
-            Debug.Log(hit.collider.gameObject);
+        if (!playerVisable && timer > 0)
+        {
+            Debug.Log("Alert");
+            timer -= Time.deltaTime;
+            if (timer < 0)
+                timer = 0;
+
+            // Change to Alert mode then possibly search mode
         }
     }
+
+    void CheckIfBlockedByTerrain()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 20, detectableLayers);
+        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
+
+        if (hit.collider.gameObject.layer == 3) // Terrain Layer
+        {
+            playerVisable = false;
+        }
+        else
+        {
+            playerVisable = true;
+        }
+
+        Debug.Log("Currently looking at: " +hit.collider.gameObject.tag);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
