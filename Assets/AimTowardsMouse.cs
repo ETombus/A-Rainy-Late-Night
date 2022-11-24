@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class SliceRotation : MonoBehaviour
+public class AimTowardsMouse : MonoBehaviour
 {
+    FlipPlayer flipX;
+    bool flippedX;
     Vector3 mousePos;
     float angle;
 
@@ -13,6 +16,7 @@ public class SliceRotation : MonoBehaviour
     private void Start()
     {
         slice = GetComponentInParent<Slice>();
+        flipX = FindObjectOfType<FlipPlayer>();
     }
 
     private void Update()
@@ -23,6 +27,19 @@ public class SliceRotation : MonoBehaviour
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos.x -= objectPos.x;
         mousePos.y -= objectPos.y;
+
+        var zRotation = transform.localRotation.eulerAngles.z;
+
+        if (90 < zRotation && zRotation < 270 && !FlipPlayer.flippedX)
+        {
+            flipX.FlipPlayerX();
+            FlipPlayer.flippedX = true;
+        }
+        else if ((270 < zRotation || zRotation < 90) && FlipPlayer.flippedX)
+        {
+            flipX.FlipPlayerX();
+            FlipPlayer.flippedX = false;
+        }
 
         angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         if (slice.canAttack)

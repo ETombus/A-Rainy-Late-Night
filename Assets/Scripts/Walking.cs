@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Walking : MonoBehaviour
@@ -16,6 +17,8 @@ public class Walking : MonoBehaviour
     [SerializeField] Transform umbrellaTrans;
     Vector2 umbrellaPos;
     Rigidbody2D rbody;
+    FlipPlayer flipX;
+    bool playerFlipped;
 
     //Inputs
     PlayerInputs playerControls;
@@ -28,6 +31,7 @@ public class Walking : MonoBehaviour
 
         cameraTargetXPos = cameraTarget.localPosition.x;
         umbrellaPos = umbrellaTrans.localPosition;
+        flipX = GetComponent<FlipPlayer>();
     }
 
     private void OnEnable()
@@ -50,19 +54,15 @@ public class Walking : MonoBehaviour
     {
         HorizontalMovement();
 
-        if (inputX < 0)
+        if (inputX < 0 && !FlipPlayer.flippedX)
         {
-            playerSprite.flipX = true;
-            cameraTarget.localPosition = new(-cameraTargetXPos, 0);
-            umbrellaTrans.localPosition = new(-umbrellaPos.x, umbrellaPos.y);
-            umbrellaTrans.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            flipX.FlipPlayerX();
+            FlipPlayer.flippedX = true;
         }
-        else if (inputX > 0)
+        else if (inputX > 0 && FlipPlayer.flippedX)
         {
-            playerSprite.flipX = false;
-            cameraTarget.localPosition = new(cameraTargetXPos, 0);
-            umbrellaTrans.localPosition = new(umbrellaPos.x, umbrellaPos.y);
-            umbrellaTrans.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            flipX.FlipPlayerX();
+            FlipPlayer.flippedX = false;
         }
     }
     public void HorizontalMovement()
