@@ -10,6 +10,8 @@ public class CameraEvent : MonoBehaviour
 
     Transform cameraOrigin;
 
+    [SerializeField] GameObject[] imgsToShow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,27 @@ public class CameraEvent : MonoBehaviour
         {
             vCam.Follow = cameraPos;
             cameraOrigin = collision.transform.GetChild(0);
+
+            if(imgsToShow.Length > 0)
+            {
+                for (int i = 0; i < imgsToShow.Length; i++)
+                {
+                    imgsToShow[i].SetActive(true);
+                }
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         vCam.Follow = cameraOrigin;
+
+        if (imgsToShow.Length > 0)
+        {
+            for (int i = 0; i < imgsToShow.Length; i++)
+            {
+                imgsToShow[i].SetActive(false);
+            }
+        }
     }
 }
