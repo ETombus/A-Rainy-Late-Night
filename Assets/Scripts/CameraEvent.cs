@@ -26,7 +26,7 @@ public class CameraEvent : MonoBehaviour
             vCam.Follow = cameraPos;
             cameraOrigin = collision.transform.GetChild(0);
 
-            if(imgsToShow.Length > 0)
+            if (imgsToShow.Length > 0)
             {
                 for (int i = 0; i < imgsToShow.Length; i++)
                 {
@@ -38,13 +38,17 @@ public class CameraEvent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        vCam.Follow = cameraOrigin;
-
-        if (imgsToShow.Length > 0)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            for (int i = 0; i < imgsToShow.Length; i++)
+
+            vCam.Follow = cameraOrigin;
+
+            if (imgsToShow.Length > 0)
             {
-                imgsToShow[i].SetActive(false);
+                for (int i = 0; i < imgsToShow.Length; i++)
+                {
+                    imgsToShow[i].SetActive(false);
+                }
             }
         }
     }

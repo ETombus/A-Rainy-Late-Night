@@ -27,20 +27,18 @@ public class UmbrellaOpener : MonoBehaviour
         //search for ceiling above the player via raycast, if no ceiling is found it is presumed the player is being rained on
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, distToCheck, layersToCheck);
 
-        if (hit.collider == null && !umbrellaOverrideBool) { Debug.Log("Found No Ceiling"); OpenUmbrella(); }
-        else if(!umbrellaOverrideBool) { Debug.Log("Umbrella Found Ceiling" ); CloseUmbrella(); }
+        if (hit.collider == null && !umbrellaOverrideBool) { OpenUmbrella(); }
+        else if (!umbrellaOverrideBool) { CloseUmbrella(); }
     }
 
     public void OpenUmbrella()
     {
-        Debug.Log("Opening Umbrella");
         spriteRend.sprite = umbrellaSprites[0];
         umbrellaCollider.enabled = true;
     }
 
     public void CloseUmbrella()
     {
-        Debug.Log("Closing Umbrella");
         spriteRend.sprite = umbrellaSprites[1];
         umbrellaCollider.enabled = false;
     }
