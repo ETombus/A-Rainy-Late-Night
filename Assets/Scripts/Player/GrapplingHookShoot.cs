@@ -8,7 +8,7 @@ public class GrapplingHookShoot : MonoBehaviour
     [SerializeField] GameObject hook;
     PlayerInputs playerControls;
     InputAction grapple;
-    float grappleSpeed = 2.5f;
+    float grappleSpeed = 7.5f;
     public bool canGrapple = true;
 
     private void Awake() { playerControls = new PlayerInputs(); }
@@ -18,11 +18,6 @@ public class GrapplingHookShoot : MonoBehaviour
         grapple = playerControls.Player.Grapple;
         grapple.Enable();
         grapple.performed += ShootGrapple;
-    }
-
-    void Update()
-    {
-        Debug.Log(canGrapple);
     }
 
     void ShootGrapple(InputAction.CallbackContext context)

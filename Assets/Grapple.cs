@@ -34,7 +34,7 @@ public class Grapple : MonoBehaviour
         {
             if(Vector2.Distance(startPos, transform.position) >= maxDistance)
             {
-                rb2D.velocity = (player.transform.position-transform.position)*(grappleSpeed/2);
+                rb2D.velocity = (player.transform.position-transform.position)*(grappleSpeed/2.5f);
                 returnToPlayer=true;
 
                 yield return new WaitForSeconds(2f);
@@ -46,25 +46,38 @@ public class Grapple : MonoBehaviour
         }while(!stuck);
     }
 
-    void OnCollisionEnter2D(Collision2D hit)
-    {
-        if(!hit.gameObject.CompareTag("Player"))
-        {
-            stuck=true;
-            rb2D.constraints = RigidbodyConstraints2D.FreezePosition;
-        }
-        else if(hit.gameObject.CompareTag("Player") && returnToPlayer)
-        {
-            SetParent();
-        }
-    }
-
     void SetParent()
     {
         onPlayer=true;
+        rb2D.constraints = RigidbodyConstraints2D.None;
         playerGrappleCS.canGrapple=true;
         gameObject.SetActive(false);
         transform.parent = slice.transform;
         transform.localPosition = new Vector3(1f,0f,-1f);
     }
+
+    void OnCollisionEnter2D(Collision2D hit)
+    {
+        if(!hit.gameObject.CompareTag("Player"))
+        {
+            Debug.Log(hit.gameObject.name);
+            stuck=true;
+            rb2D.constraints = RigidbodyConstraints2D.FreezePosition;
+            StartCoroutine(MoveToHook());
+        }
+        else if(hit.gameObject.CompareTag("Player") && (returnToPlayer || stuck))
+        {
+            SetParent();
+        }
+    }
+
+    IEnumerator MoveToHook()
+    {
+        do
+        {
+            player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, grappleSpeed*Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }while(Vector2.Distance(player.transform.position, transform.position) > 0);
+    }
+
 }
