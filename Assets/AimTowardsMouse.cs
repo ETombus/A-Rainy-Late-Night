@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class AimTowardsMouse : MonoBehaviour
 {
     FlipPlayer flipX;
-    bool flippedX;
     Vector3 mousePos;
     float angle;
 

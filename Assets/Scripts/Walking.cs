@@ -13,7 +13,6 @@ public class Walking : MonoBehaviour
     [Header("Components")]
     Rigidbody2D rbody;
     FlipPlayer flipX;
-    bool playerFlipped;
 
     //Inputs
     PlayerInputs playerControls;
@@ -48,14 +47,14 @@ public class Walking : MonoBehaviour
         if (inputX < 0 && !FlipPlayer.flippedX)
         {
             flipX.FlipPlayerX();
-            FlipPlayer.flippedX = true;
             FlipPlayer.overrideFlip = true;
+            FlipPlayer.flippedX = true;
         }
         else if (inputX > 0 && FlipPlayer.flippedX)
         {
             flipX.FlipPlayerX();
-            FlipPlayer.flippedX = false;
             FlipPlayer.overrideFlip = true;
+            FlipPlayer.flippedX = false;
         }
         else if (inputX == 0)
             FlipPlayer.overrideFlip = false;
