@@ -28,6 +28,7 @@ public class FlipPlayer : MonoBehaviour
         playerSprite.flipX = !playerSprite.flipX;
         umbrellaSR.flipX = !umbrellaSR.flipX;
 
+        //TODO: add flip for slice
         cameraTargetXPos *= -1;
         umbrellaPos.x *= -1;
 
