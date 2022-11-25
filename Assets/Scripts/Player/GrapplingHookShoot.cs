@@ -9,7 +9,7 @@ public class GrapplingHookShoot : MonoBehaviour
     PlayerInputs playerControls;
     InputAction grapple;
     float grappleSpeed = 2.5f;
-    bool canGrapple = true;
+    public bool canGrapple = true;
 
     private void Awake() { playerControls = new PlayerInputs(); }
 
@@ -18,6 +18,11 @@ public class GrapplingHookShoot : MonoBehaviour
         grapple = playerControls.Player.Grapple;
         grapple.Enable();
         grapple.performed += ShootGrapple;
+    }
+
+    void Update()
+    {
+        Debug.Log(canGrapple);
     }
 
     void ShootGrapple(InputAction.CallbackContext context)

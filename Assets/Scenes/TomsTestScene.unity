@@ -3852,16 +3852,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hook: {fileID: 1531963615}
-  grapple:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  grappleSpeed: 2.5
   canGrapple: 1
 --- !u!1 &1123680460
 GameObject:
@@ -5605,6 +5595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09e23ebce8d00043b21232ecaa09b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1118271363}
+  slice: {fileID: 1985484980}
+  grappleSpeed: 0
 --- !u!1 &1542457316
 GameObject:
   m_ObjectHideFlags: 0
@@ -6941,6 +6934,11 @@ Transform:
   m_Father: {fileID: 94956677}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &1985484980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 24136076581838000, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
+  m_PrefabInstance: {fileID: 1450338445996698606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1988853669
 GameObject:
   m_ObjectHideFlags: 0

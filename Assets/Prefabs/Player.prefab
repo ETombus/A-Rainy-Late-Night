@@ -10,9 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 411332968}
   - component: {fileID: 411332969}
+  - component: {fileID: 1531963619}
+  - component: {fileID: 1531963620}
+  - component: {fileID: 1531963621}
   m_Layer: 0
   m_Name: Hook
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411332967}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 1, y: 0, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5836924862112396268}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &411332969
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84,6 +87,70 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1531963619
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411332967}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &1531963620
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411332967}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5773587}
+      - {x: -0.5, y: -0.28866667}
+      - {x: 0.5, y: -0.28866667}
+--- !u!114 &1531963621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411332967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09e23ebce8d00043b21232ecaa09b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1450338445620509171}
+  slice: {fileID: 24136076581838000}
+  grappleSpeed: 0
 --- !u!1 &502432350
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +163,7 @@ GameObject:
   - component: {fileID: 502432352}
   m_Layer: 0
   m_Name: PlayerSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +247,7 @@ GameObject:
   - component: {fileID: 1516679079}
   m_Layer: 0
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,7 +298,7 @@ GameObject:
   - component: {fileID: 2014393002}
   m_Layer: 0
   m_Name: Umbrella
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -348,6 +415,7 @@ MonoBehaviour:
   layersToCheck:
     serializedVersion: 2
     m_Bits: 256
+  umbrellaOverrideBool: 0
 --- !u!1 &2056493656
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +427,7 @@ GameObject:
   - component: {fileID: 2056493657}
   m_Layer: 0
   m_Name: CameraTarget
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +460,7 @@ GameObject:
   - component: {fileID: 2112362777}
   m_Layer: 0
   m_Name: SliceHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -502,7 +570,7 @@ GameObject:
   - component: {fileID: 9003691135169117869}
   m_Layer: 0
   m_Name: Slice
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,6 +622,7 @@ GameObject:
   - component: {fileID: 809392890}
   - component: {fileID: 1118271371}
   - component: {fileID: 6455039444033764990}
+  - component: {fileID: 1118271380}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -677,10 +746,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 445
-  playerSprite: {fileID: 502432352}
-  cameraTarget: {fileID: 2056493657}
-  cameraTargetXPos: 1.12
-  umbrellaTrans: {fileID: 2014392999}
 --- !u!114 &809392889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,3 +807,17 @@ MonoBehaviour:
   cameraTarget: {fileID: 2056493657}
   cameraTargetXPos: 1.12
   umbrellaTrans: {fileID: 2014392999}
+--- !u!114 &1118271380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e52c5d1056543409f9d7a4ebd3f51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hook: {fileID: 411332967}
+  canGrapple: 1
