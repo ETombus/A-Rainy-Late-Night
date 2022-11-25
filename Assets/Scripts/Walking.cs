@@ -11,11 +11,6 @@ public class Walking : MonoBehaviour
     float inputX;
 
     [Header("Components")]
-    [SerializeField] SpriteRenderer playerSprite;
-    [SerializeField] Transform cameraTarget;
-    [SerializeField] float cameraTargetXPos;
-    [SerializeField] Transform umbrellaTrans;
-    Vector2 umbrellaPos;
     Rigidbody2D rbody;
     FlipPlayer flipX;
     bool playerFlipped;
@@ -27,10 +22,6 @@ public class Walking : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerInputs();
-        playerSprite = GetComponentInChildren<SpriteRenderer>(false);
-
-        cameraTargetXPos = cameraTarget.localPosition.x;
-        umbrellaPos = umbrellaTrans.localPosition;
         flipX = GetComponent<FlipPlayer>();
     }
 
