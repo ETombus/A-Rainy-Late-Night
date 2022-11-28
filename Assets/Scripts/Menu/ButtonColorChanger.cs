@@ -7,18 +7,19 @@ using TMPro;
 
 public class ButtonColorChanger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] Color idleColor;
+    [SerializeField] Color selectColor;
     [SerializeField] bool invertColor;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.GetComponentInChildren<TextMeshProUGUI>().color = Color.gray;
+        this.GetComponentInChildren<TextMeshProUGUI>().color = selectColor;
         
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
 
-        this.GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
-        if(invertColor) { this.GetComponentInChildren<TextMeshProUGUI>().color = Color.white; }
+        this.GetComponentInChildren<TextMeshProUGUI>().color = idleColor;
     }
 }
