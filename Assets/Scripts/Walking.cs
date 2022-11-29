@@ -6,66 +6,73 @@ using UnityEngine.InputSystem;
 
 public class Walking : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] float speed;
-    float inputX;
+    [Header("Ground Movement")]
+    [SerializeField] float groundAcceleration = 40;
+    [SerializeField] float groundAecceleration = 40f;
+    [SerializeField] float groundTurnSpeed = 80;
+
+    [Header("Air Movement")]
+    [SerializeField] float airAcceleration = 40;
+    [SerializeField] float airDecceleration = 40f;
+    [SerializeField] float airTurnSpeed = 80;
+
+    private float acceleration;
+    private float decceleration;
+    private float turnSpeed;
+
+    [SerializeField] float maxMoveSpeed;
+
+    private Vector2 currentVelocity;
+    private float speedChange;
 
     [Header("Components")]
-    Rigidbody2D rbody;
-    FlipPlayer flipX;
-
-    //Inputs
-    PlayerInputs playerControls;
-    private InputAction move;
-
-    private void Awake()
-    {
-        playerControls = new PlayerInputs();
-        flipX = GetComponent<FlipPlayer>();
-    }
-
-    private void OnEnable()
-    {
-        move = playerControls.Player.Move;
-        move.Enable();
-    }
-
-    private void OnDisable()
-    {
-        move.Disable();
-    }
+    private Rigidbody2D rbody;
 
     private void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public void UpdateCurrentVelocity()
     {
-        HorizontalMovement();
-
-        if (inputX < 0 && !FlipPlayer.flippedX)
-        {
-            flipX.FlipPlayerX();
-            FlipPlayer.overrideFlip = true;
-            FlipPlayer.flippedX = true;
-        }
-        else if (inputX > 0 && FlipPlayer.flippedX)
-        {
-            flipX.FlipPlayerX();
-            FlipPlayer.overrideFlip = true;
-            FlipPlayer.flippedX = false;
-        }
-        else if (inputX == 0)
-            FlipPlayer.overrideFlip = false;
-    }
-    public void HorizontalMovement()
-    {
-        inputX = move.ReadValue<Vector2>().x;
+        currentVelocity = rbody.velocity;
     }
 
-    private void FixedUpdate()
+    public void Movement(float horizontalInput, bool onGround)
     {
-        rbody.velocity = new(inputX * speed * Time.deltaTime, rbody.velocity.y); //HorizontalMovement()
-    }   
+
+        if(onGround)
+        {
+            acceleration = groundAcceleration;
+            decceleration = groundAcceleration;
+            turnSpeed = groundTurnSpeed;
+        }
+        else
+        {
+            acceleration = airAcceleration;
+            decceleration = airAcceleration;
+            turnSpeed = airTurnSpeed;
+        }
+
+        if (horizontalInput != 0)
+        {
+            if(Mathf.Sign(horizontalInput) != Mathf.Sign(currentVelocity.x))
+            {
+                speedChange = turnSpeed * Time.deltaTime;
+            }
+            else
+            {
+                speedChange = acceleration * Time.deltaTime;
+            }
+        }
+        else
+        {
+            speedChange = decceleration * Time.deltaTime;
+        }
+
+        currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, horizontalInput * maxMoveSpeed, speedChange);
+        currentVelocity.y = rbody.velocity.y;
+        rbody.velocity = currentVelocity;
+    }
+
 }
