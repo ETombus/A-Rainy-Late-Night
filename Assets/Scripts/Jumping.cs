@@ -97,7 +97,7 @@ public class Jumping : MonoBehaviour
             rbody.velocity = new Vector2(rbody.velocity.x, 0);
             isJumping = true;
 
-            FixedUpdate();
+
         }
     }
 
@@ -107,7 +107,6 @@ public class Jumping : MonoBehaviour
     {
         if (isJumping)
         {
-            rbody.velocity = new(rbody.velocity.x, jumpVel * Time.deltaTime);
             rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
