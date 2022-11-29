@@ -67,5 +67,5 @@ public class Walking : MonoBehaviour
     private void FixedUpdate()
     {
         rbody.velocity = new(inputX * speed * Time.deltaTime, rbody.velocity.y); //HorizontalMovement()
-    }
+    }   
 }

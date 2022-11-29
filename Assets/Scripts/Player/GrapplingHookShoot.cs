@@ -5,23 +5,28 @@ using UnityEngine.InputSystem;
 
 public class GrapplingHookShoot : MonoBehaviour
 {
-    [SerializeField] GameObject hook;
-    PlayerInputs playerControls;
-    InputAction grapple;
-    float grappleSpeed = 7.5f;
+    [Header("Components")]
     public bool canGrapple = true;
+    [SerializeField] GameObject hook;
+    [Range(50, 100)][SerializeField] float grappleSpeed = 65f;
+    PlayerInputs playerControls;
+    InputAction grappleAction;
+    Grapple hookCS;
+
 
     private void Awake() { playerControls = new PlayerInputs(); }
 
     private void OnEnable()
     {
-        grapple = playerControls.Player.Grapple;
-        grapple.Enable();
-        grapple.performed += ShootGrapple;
+        grappleAction = playerControls.Player.Grapple;
+        grappleAction.Enable();
+        grappleAction.performed += ShootGrapple;
+        hookCS = hook.GetComponent<Grapple>();
     }
 
     void ShootGrapple(InputAction.CallbackContext context)
     {
+        Debug.Log(canGrapple);
         if(canGrapple)
         {
             canGrapple=false;
@@ -32,10 +37,13 @@ public class GrapplingHookShoot : MonoBehaviour
             mousePos.z=Camera.main.nearClipPlane;
             Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
 
-            var hookCS = hook.GetComponent<Grapple>();
             hookCS.grappleSpeed = grappleSpeed;
             hookCS.StartCoroutine(hookCS.GrappleHookStick());
-            hook.GetComponent<Rigidbody2D>().velocity = (Worldpos-hook.transform.position) * grappleSpeed;
+            hook.GetComponent<Rigidbody2D>().velocity = (Worldpos-hook.transform.position).normalized * grappleSpeed;
+        }
+        else
+        {
+            hookCS.SetParent();
         }
 
     }
