@@ -58,16 +58,12 @@ public class Walking : MonoBehaviour
         {
             flipX.FlipPlayerX();
             FlipPlayer.flippedX = true;
-            FlipPlayer.overrideFlip = true;
         }
         else if (inputX > 0 && FlipPlayer.flippedX)
         {
             flipX.FlipPlayerX();
             FlipPlayer.flippedX = false;
-            FlipPlayer.overrideFlip = true;
         }
-        else if (inputX == 0)
-            FlipPlayer.overrideFlip = false;
     }
     public void HorizontalMovement()
     {
