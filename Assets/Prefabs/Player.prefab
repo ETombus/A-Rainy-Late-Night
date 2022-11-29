@@ -185,7 +185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1088289737
 Transform:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1516679078
 Transform:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2014392999
 Transform:
   m_ObjectHideFlags: 0
@@ -425,6 +425,7 @@ MonoBehaviour:
   layersToCheck:
     serializedVersion: 2
     m_Bits: 256
+  umbrellaOverrideBool: 0
 --- !u!1 &2056493656
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +584,7 @@ GameObject:
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5836924862112396268
 Transform:
   m_ObjectHideFlags: 0
@@ -623,9 +624,12 @@ GameObject:
   - component: {fileID: 1450338445620509169}
   - component: {fileID: 1450338445620509134}
   - component: {fileID: 1450338445620509132}
+  - component: {fileID: 4902979660180940264}
   - component: {fileID: 5695062598432986664}
-  - component: {fileID: 1426632618}
+  - component: {fileID: 65219155523805052}
+  - component: {fileID: 2243483666387757400}
   - component: {fileID: 1426632619}
+  - component: {fileID: 1426632618}
   - component: {fileID: 809392889}
   - component: {fileID: 809392890}
   - component: {fileID: 1118271371}
@@ -669,11 +673,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 9
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 3b8d340b24867fe4b9f255571ee0b0a4, type: 2}
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -687,13 +691,29 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1450338445620509171}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3b8d340b24867fe4b9f255571ee0b0a4, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.23}
-  m_Size: {x: 0.46, y: 2.53}
+  m_Size: {x: 0.65, y: 2.5}
   m_Direction: 0
+--- !u!58 &4902979660180940264
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 30608eb5b1084b04986ca0a3b81ba7d2, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.2}
+  serializedVersion: 2
+  m_Radius: 0.3
 --- !u!61 &5695062598432986664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -707,7 +727,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.37}
+  m_Offset: {x: 0, y: -1.04}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -718,9 +738,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.65, y: 0.26}
+  m_Size: {x: 0.6, y: 0.26}
   m_EdgeRadius: 0
---- !u!114 &1426632618
+--- !u!114 &65219155523805052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -729,17 +749,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 1450338445620509171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4809361558bc7914eb4b1f18d17f2177, type: 3}
+  m_Script: {fileID: 11500000, guid: 59141d2101f005149adf7b33dc9982ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 40
-  jumpVel: 122
-  isJumping: 0
   isGrounded: 0
-  isSlowfalling: 0
-  gravityOffset: 1
-  slowfallGravity: 0.2
-  fastfallGravity: 7
+  immovableJumpDuration: 0
+  transitionTime: 0
+  maxJumpDuration: 0.5
+  jumpgravityTransitionSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  gravityUpwards: 4
+  downwardGravity: 6
+  inputX: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 384
+  extraLeangth: 0.35
+  currentMoveState: 0
+--- !u!114 &2243483666387757400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7ec4b52905cbc4faf3d93145fb2d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yJumpForce: 15
+  xJumpForce: 10
 --- !u!114 &1426632619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,11 +814,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763d522040ae1b04f82df5111a8795ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 445
-  playerSprite: {fileID: 502432352}
-  cameraTarget: {fileID: 2056493657}
-  cameraTargetXPos: 1.12
-  umbrellaTrans: {fileID: 2014392999}
+  groundAcceleration: 40
+  groundAecceleration: 40
+  groundTurnSpeed: 80
+  airAcceleration: 30
+  airDecceleration: 40
+  airTurnSpeed: 70
+  maxMoveSpeed: 12
+--- !u!114 &1426632618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4809361558bc7914eb4b1f18d17f2177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 40
+  jumpVel: 122
+  isJumping: 0
+  isGrounded: 0
+  isSlowfalling: 0
+  gravityOffset: 1
+  slowfallGravity: 0.2
+  fastfallGravity: 7
 --- !u!114 &809392889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,7 +848,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450338445620509171}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e4da56cb27d6a43bbca1caf39b5f79, type: 3}
   m_Name: 
@@ -780,7 +864,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450338445620509171}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44bc72f0df5d55a40affcc807417ec31, type: 3}
   m_Name: 
