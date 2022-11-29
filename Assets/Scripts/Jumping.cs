@@ -31,7 +31,7 @@ public class Jumping : MonoBehaviour
 
     //Components
     Rigidbody2D rbody;
-
+    UmbrellaOpener umbrella;
     //Inputs
     PlayerInputs playerControls;
     private InputAction jump;
@@ -40,6 +40,7 @@ public class Jumping : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         playerControls = new PlayerInputs();
+        umbrella = GetComponentInChildren<UmbrellaOpener>();
     }
 
     private void OnEnable()
@@ -58,9 +59,14 @@ public class Jumping : MonoBehaviour
 
     private void Update()
     {
-        if (rbody.velocity.y < 0)
+        if (rbody.velocity.y < 0) //checking if the player is falling, then applying slowfall if necessary
         {
-            if (isSlowfalling) { gravityOffset = slowfallGravity; }
+            if (isSlowfalling)
+            {
+                gravityOffset = slowfallGravity;
+                umbrella.umbrellaOverrideBool = true;
+                umbrella.OpenUmbrella();
+            }
             else if (!isSlowfalling) { gravityOffset = fastfallGravity; }
         }
 
@@ -113,6 +119,7 @@ public class Jumping : MonoBehaviour
 
     private void OnSpaceReleased(InputAction.CallbackContext context)
     {
+        umbrella.umbrellaOverrideBool = false;
         isSlowfalling = false;
         rbody.velocity = new(rbody.velocity.x, rbody.velocity.y * 0.5f);
     }

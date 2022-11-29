@@ -17,7 +17,7 @@ public class Shooting : MonoBehaviour
 
     private void OnEnable()
     {
-        aim = playerControls.Player.Aim;
+        //aim = playerControls.Player.Aim;
         fire = playerControls.Player.Fire;
         aim.Enable();
         fire.Enable();

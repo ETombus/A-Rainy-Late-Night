@@ -13,11 +13,14 @@ public class FlipPlayer : MonoBehaviour
     SpriteRenderer umbrellaSR;
     Vector2 umbrellaPos;
     public static bool flippedX;
+    public static bool overrideFlip;
+
 
     private void Awake()
     {
         playerSprite = GetComponentInChildren<SpriteRenderer>(false);
 
+        flippedX = false;
         cameraTargetXPos = cameraTarget.localPosition.x;
         umbrellaPos = umbrellaTrans.localPosition;
         umbrellaSR = umbrellaTrans.gameObject.GetComponent<SpriteRenderer>();
@@ -28,6 +31,7 @@ public class FlipPlayer : MonoBehaviour
         playerSprite.flipX = !playerSprite.flipX;
         umbrellaSR.flipX = !umbrellaSR.flipX;
 
+        //TODO: add flip for slice
         cameraTargetXPos *= -1;
         umbrellaPos.x *= -1;
 

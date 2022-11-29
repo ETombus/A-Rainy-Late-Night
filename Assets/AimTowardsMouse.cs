@@ -30,12 +30,12 @@ public class AimTowardsMouse : MonoBehaviour
 
         var zRotation = transform.localRotation.eulerAngles.z;
 
-        if (90 < zRotation && zRotation < 270 && !FlipPlayer.flippedX)
+        if (mousePos.x < transform.position.x && !FlipPlayer.flippedX && !FlipPlayer.overrideFlip)
         {
             flipX.FlipPlayerX();
             FlipPlayer.flippedX = true;
         }
-        else if ((270 < zRotation || zRotation < 90) && FlipPlayer.flippedX)
+        else if (mousePos.x > transform.position.x && FlipPlayer.flippedX && !FlipPlayer.overrideFlip)
         {
             flipX.FlipPlayerX();
             FlipPlayer.flippedX = false;
