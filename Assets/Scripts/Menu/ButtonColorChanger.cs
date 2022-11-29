@@ -14,12 +14,14 @@ public class ButtonColorChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
         this.GetComponentInChildren<TextMeshProUGUI>().color = selectColor;
-        
+        if (this.transform.childCount > 1)
+            this.transform.GetChild(1).gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
         this.GetComponentInChildren<TextMeshProUGUI>().color = idleColor;
+        if (this.transform.childCount > 1)
+            this.transform.GetChild(1).gameObject.SetActive(false);
     }
 }
