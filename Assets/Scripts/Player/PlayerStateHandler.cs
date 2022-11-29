@@ -6,10 +6,9 @@ using static System.TimeZoneInfo;
 
 public class PlayerStateHandler : MonoBehaviour
 {
+    [Header("Jump variables")]
     [SerializeField] private bool isGrounded;
-    public float immovableJumpDuration;
     private bool midJump = false;
-    [SerializeField]
     private float transitionTime = 0;
     public float maxJumpDuration = 0.5f;
     public AnimationCurve jumpgravityTransitionSpeed;
@@ -88,10 +87,19 @@ public class PlayerStateHandler : MonoBehaviour
     void Update()
     {
         ManageInputs();
-        ManageStates();
         isGrounded = IsGrounded();
-        ManageGravity();
 
+        if (currentMoveState != MovementStates.Grappling)
+        {
+            ManageGravity();
+            ManageMovingStates();
+        }
+        else if (currentMoveState == MovementStates.Grappling)
+        {
+            //
+            //Add update grappling here
+            //
+        }
     }
 
     void ManageGravity()
@@ -127,7 +135,7 @@ public class PlayerStateHandler : MonoBehaviour
     }
 
 
-    void ManageStates()
+    void ManageMovingStates()
     {
         if (!midJump)
         {
@@ -157,6 +165,10 @@ public class PlayerStateHandler : MonoBehaviour
             transitionTime = 0;
             currentMoveState = MovementStates.Jumping;
             Invoke(nameof(EndJump), maxJumpDuration);
+        }
+        if(currentMoveState == MovementStates.Grappling)
+        {
+            //Grapple Jump Here
         }
     }
 
@@ -196,6 +208,7 @@ public class PlayerStateHandler : MonoBehaviour
         {
             walkingScript.Movement(inputX, isGrounded);
         }
+
     }
 
     private bool IsGrounded()
