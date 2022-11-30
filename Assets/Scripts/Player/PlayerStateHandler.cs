@@ -140,14 +140,18 @@ public class PlayerStateHandler : MonoBehaviour
         rbody.gravityScale = currentGravity * gravityMultiplier;
     }
 
-
     void ManageMovingStates()
     {
         if (!midJump)
         {
             if (isGrounded)
             {
-                currentMoveState = MovementStates.GroundMoving;
+                if (inputX != 0)
+                {
+                    currentMoveState = MovementStates.GroundMoving;
+                }
+                else
+                    currentMoveState = MovementStates.Idle;
             }
             else
             {
