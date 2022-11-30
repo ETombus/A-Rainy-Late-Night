@@ -22,7 +22,7 @@ public class PlayerStateHandler : MonoBehaviour
     private float gravityMultiplier = 1;
 
     [Header("Input")]
-    [SerializeField] private float inputX;
+    public float inputX;
     PlayerInputs playerControls;
     private InputAction move;
     private InputAction jump;
@@ -48,7 +48,7 @@ public class PlayerStateHandler : MonoBehaviour
         Grappling
     }
 
-    [SerializeField] private MovementStates currentMoveState;
+    [SerializeField] public MovementStates currentMoveState;
 
     private void Awake()
     {
