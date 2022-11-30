@@ -205,11 +205,8 @@ public class PlayerStateHandler : MonoBehaviour
             walkingScript.UpdateCurrentVelocity();
             midJump = false;
         }
-        else if (currentMoveState == MovementStates.GroundMoving)
-        {
-            walkingScript.Movement(inputX, isGrounded);
-        }
-        else if (currentMoveState == MovementStates.AirMoving)
+        else if (currentMoveState == MovementStates.GroundMoving || 
+            currentMoveState == MovementStates.Idle || currentMoveState == MovementStates.AirMoving)
         {
             walkingScript.Movement(inputX, isGrounded);
         }
