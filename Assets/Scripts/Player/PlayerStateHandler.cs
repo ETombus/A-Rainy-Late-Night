@@ -40,6 +40,7 @@ public class PlayerStateHandler : MonoBehaviour
     public enum MovementStates
     {
         GroundMoving,
+        Idle,
         AirMoving,
         Gliding,
         Jumping,
