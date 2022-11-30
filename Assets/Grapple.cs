@@ -79,9 +79,9 @@ public class Grapple : MonoBehaviour
             stuck = true;
             Debug.Log(hit.gameObject.name);
 
-            ContactPoint2D[] allPoints = new ContactPoint2D[hit.contactCount];
-            hit.GetContacts(allPoints);
-            transform.localRotation = Quaternion.Euler(hit.transform.position-transform.position);
+            Vector2 hitPoint = hit.ClosestPoint(transform.position);
+            float angle = Mathf.Atan2(hitPoint.y, hitPoint.x) * Mathf.Rad2Deg;
+            transform.localRotation = Quaternion.Euler(0,0,angle);
             
             rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
             StartCoroutine(MoveToHook());
