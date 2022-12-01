@@ -27,10 +27,12 @@ public class Walking : MonoBehaviour
 
     [Header("Components")]
     private Rigidbody2D rbody;
+    FlipPlayer flipPlayerCS;
 
     private void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
+        flipPlayerCS = GetComponent<FlipPlayer>();
     }
 
     public void UpdateCurrentVelocity()
@@ -41,7 +43,7 @@ public class Walking : MonoBehaviour
     public void Movement(float horizontalInput, bool onGround)
     {
 
-        if(onGround)
+        if (onGround)
         {
             acceleration = groundAcceleration;
             decceleration = groundAcceleration;
@@ -56,7 +58,7 @@ public class Walking : MonoBehaviour
 
         if (horizontalInput != 0)
         {
-            if(Mathf.Sign(horizontalInput) != Mathf.Sign(currentVelocity.x))
+            if (Mathf.Sign(horizontalInput) != Mathf.Sign(currentVelocity.x))
             {
                 speedChange = turnSpeed * Time.deltaTime;
             }

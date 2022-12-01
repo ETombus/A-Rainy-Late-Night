@@ -13,6 +13,7 @@ public class PlayerStateHandler : MonoBehaviour
     public float maxJumpDuration = 0.5f;
     public AnimationCurve jumpgravityTransitionSpeed;
     private bool pressingJump = false;
+    private bool grappleJump = false;
 
     [Header("Gravity")]
     public float gravityUpwards = 1;
@@ -24,6 +25,7 @@ public class PlayerStateHandler : MonoBehaviour
     [Header("Input")]
     public float inputX;
     PlayerInputs playerControls;
+    InputAction grappleAction;
     private InputAction move;
     private InputAction jump;
 
@@ -90,16 +92,19 @@ public class PlayerStateHandler : MonoBehaviour
         ManageInputs();
         isGrounded = IsGrounded();
 
+        if (Grapple.stuck && currentMoveState != MovementStates.Jumping)
+        {
+            currentMoveState = MovementStates.Grappling;
+        }
+
         if (currentMoveState != MovementStates.Grappling)
         {
             ManageGravity();
             ManageMovingStates();
         }
-        else if (currentMoveState == MovementStates.Grappling)
+        else if (currentMoveState == MovementStates.Grappling && !Grapple.stuck)
         {
-            //
-            //Add update grappling here
-            //
+            currentMoveState = MovementStates.AirMoving;
         }
     }
 
@@ -171,10 +176,17 @@ public class PlayerStateHandler : MonoBehaviour
             currentMoveState = MovementStates.Jumping;
             Invoke(nameof(EndJump), maxJumpDuration);
         }
-        if(currentMoveState == MovementStates.Grappling)
+        if (currentMoveState == MovementStates.Grappling)
         {
-            //Grapple Jump Here
+            grappleJump = true;
+            pressingJump = true;
+            midJump = true;
+            transitionTime = 0;
+            currentMoveState = MovementStates.Jumping;
+            Invoke(nameof(EndJump), maxJumpDuration);
         }
+        else
+            grappleJump = false;
     }
 
     void EndJump()
@@ -201,7 +213,8 @@ public class PlayerStateHandler : MonoBehaviour
 
         if (currentMoveState == MovementStates.Jumping)
         {
-            jumpingScript.Jump(inputX);
+            jumpingScript.Jump(grappleJump ? Grapple.directionX * 2.5f : inputX);
+
             walkingScript.UpdateCurrentVelocity();
             midJump = false;
         }
