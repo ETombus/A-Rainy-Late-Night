@@ -109,5 +109,4 @@ public class Grapple : MonoBehaviour
         } while (Vector2.Distance(player.transform.position, transform.position) > 3f);
         SetParent();
     }
-
 }
