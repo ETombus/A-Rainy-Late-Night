@@ -481,7 +481,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.04}
@@ -536,7 +536,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   gravityUpwards: 4
-  downwardGravity: 6
+  downwardGravity: 10
   inputX: 0
   groundLayer:
     serializedVersion: 2
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yJumpForce: 20
-  xJumpForce: 10
+  xJumpForce: 1.01
 --- !u!114 &1426632619
 MonoBehaviour:
   m_ObjectHideFlags: 0
