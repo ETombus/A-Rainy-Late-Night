@@ -16,13 +16,19 @@ public class Slice : MonoBehaviour
     private float attackTimer;
     private float attackCooldownTimer;
 
+    public bool isSlicing = false;
+    public float sliceDirection;
+
     //UmbrellaOpener umbrella;
 
     private void Awake()
     {
         playerControls = new PlayerInputs();
+
         //umbrella = GetComponentInChildren<UmbrellaOpener>();
     }
+
+
 
     private void OnEnable()
     {
@@ -46,9 +52,25 @@ public class Slice : MonoBehaviour
             canAttack = false;
             attackCooldownTimer = attackCooldown;
 
+            isSlicing = true;
+            StopCoroutine(slashDuration());
+            StartCoroutine(slashDuration());
+
+
+            Vector2 mousePos =  Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
+            sliceDirection = Mathf.RoundToInt(mousePos.normalized.x);
+
+            Debug.Log(sliceDirection);
+
             //umbrella.umbrellaOverrideBool = true;
             //umbrella.CloseUmbrella();
         }
+    }
+
+    IEnumerator slashDuration()
+    {
+        yield return new WaitForSeconds(0.1f);
+        isSlicing = false;
     }
 
     private void Update()

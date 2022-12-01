@@ -29,6 +29,7 @@ public class PlayerStateHandler : MonoBehaviour
     private InputAction move;
     private InputAction jump;
 
+    
     [Header("Components")]
     private Walking walkingScript;
     private PlayerJump jumpingScript;
@@ -67,6 +68,7 @@ public class PlayerStateHandler : MonoBehaviour
         jump.performed += Jump;
         jump.performed += SlowFalling;
         jump.canceled += OnSpaceReleased;
+
     }
 
     private void OnDisable()

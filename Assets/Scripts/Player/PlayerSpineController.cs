@@ -8,8 +8,8 @@ public class PlayerSpineController : MonoBehaviour
 {
     public AnimationReferenceAsset run, idle, jump;
     private SkeletonAnimation skeletonAnimation;
-
-
+    private Slice sliceAction;
+    
     private PlayerStateHandler stateHandler;
     MovementStates previusState;
 
@@ -18,8 +18,8 @@ public class PlayerSpineController : MonoBehaviour
     {
         stateHandler = GetComponentInParent<PlayerStateHandler>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
+        sliceAction = GetComponentInParent<Slice>();
         if (stateHandler == null) Debug.LogError("Can't find playerStateHandler");
-
 
     }
 
@@ -27,8 +27,15 @@ public class PlayerSpineController : MonoBehaviour
     void Update()
     {
 
-        if ((skeletonAnimation.skeleton.ScaleX < 0) != stateHandler.inputX <= 0)
-        {  // Detect changes in model.facingLeft
+
+        if (sliceAction.isSlicing)
+        {
+            Debug.Log("This is played also");
+            Turn(sliceAction.sliceDirection < 0);
+            
+        }
+        else if ((skeletonAnimation.skeleton.ScaleX < 0) != stateHandler.inputX <= 0)
+        {  
             Turn(stateHandler.inputX < 0);
         }
 
