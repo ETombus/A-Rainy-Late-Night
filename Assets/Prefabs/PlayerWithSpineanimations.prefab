@@ -728,9 +728,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763d522040ae1b04f82df5111a8795ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundAcceleration: 40
+  groundAcceleration: 60
   groundAecceleration: 40
-  groundTurnSpeed: 80
+  groundTurnSpeed: 100
   airAcceleration: 30
   airDecceleration: 40
   airTurnSpeed: 70
@@ -847,6 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92f9e6051301ae4bbb0006d79051471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  run: {fileID: 11400000, guid: 70a804d0a22fc3d4db1c6dab5a597469, type: 2}
+  idle: {fileID: 11400000, guid: 237b7ae693ef613459df6d6e1b082b81, type: 2}
+  jump: {fileID: 11400000, guid: 5c373abdc2a4dc640a2130a5d94c7d1c, type: 2}
 --- !u!33 &4628076468659422860
 MeshFilter:
   m_ObjectHideFlags: 0

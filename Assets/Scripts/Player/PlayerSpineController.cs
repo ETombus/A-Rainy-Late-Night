@@ -1,3 +1,4 @@
+using Spine;
 using Spine.Unity;
 using System.Collections;
 using UnityEngine;
@@ -15,17 +16,18 @@ public class PlayerSpineController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         stateHandler = GetComponentInParent<PlayerStateHandler>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         if (stateHandler == null) Debug.LogError("Can't find playerStateHandler");
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if ((skeletonAnimation.skeleton.ScaleX < 0) != stateHandler.inputX < 0)
+        if ((skeletonAnimation.skeleton.ScaleX < 0) != stateHandler.inputX <= 0)
         {  // Detect changes in model.facingLeft
             Turn(stateHandler.inputX < 0);
         }
@@ -41,7 +43,7 @@ public class PlayerSpineController : MonoBehaviour
 
     }
 
-
+    float animSpeed;
     void PlayNewAnimationState()
     {
         var newAnimationState = stateHandler.currentMoveState;
@@ -52,6 +54,7 @@ public class PlayerSpineController : MonoBehaviour
         {
             nextAnimation = jump; // Jumping animation
             Debug.Log("Is jumping");
+            animSpeed = 1;
         }
         else
         {
@@ -59,20 +62,24 @@ public class PlayerSpineController : MonoBehaviour
             {
                 nextAnimation = idle;
                 Debug.Log("Is idle");
+                animSpeed = 1;
 
             }
             else if(newAnimationState == MovementStates.GroundMoving)
             {
                 nextAnimation = run;
                 Debug.Log("Is running");
+                animSpeed = 2;
             }
             else
             {
                 nextAnimation = jump; // Falling animation
                 Debug.Log("Is falling");
+                animSpeed = 1;
             }
         }
         skeletonAnimation.AnimationState.SetAnimation(0, nextAnimation, true);
+        skeletonAnimation.AnimationState.SetAnimation(0, nextAnimation, true).TimeScale = animSpeed;
     }
 
     void Turn(bool facingLeft)
