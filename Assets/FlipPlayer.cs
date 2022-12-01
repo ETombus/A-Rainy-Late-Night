@@ -6,7 +6,6 @@ using UnityEngine.Windows;
 public class FlipPlayer : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] Transform umbrellaTrans;
     [SerializeField] Transform aimTransform;
     [SerializeField] Transform cameraTarget;
@@ -20,18 +19,20 @@ public class FlipPlayer : MonoBehaviour
 
     private void Awake()
     {
-        playerSprite = GetComponentInChildren<SpriteRenderer>(false);
 
         flippedX = false;
         umbrellaSR = umbrellaTrans.gameObject.GetComponent<SpriteRenderer>();
     }
 
+    private void MoveCameraInbetween(Vector2 position)
+    {
+        cameraTarget.position = position;
+
+    }
     public void FlipPlayerX()
     {
-        playerSprite.flipX = !playerSprite.flipX;
         umbrellaSR.flipX = !umbrellaSR.flipX;
 
-        cameraTargetXPos = cameraTarget.localPosition.x;
         umbrellaPos = umbrellaTrans.localPosition;
         aimPos = aimTransform.localPosition;
 
@@ -39,7 +40,6 @@ public class FlipPlayer : MonoBehaviour
         umbrellaPos.x *= -1;
         aimPos.x *= -1;
 
-        cameraTarget.localPosition = new(cameraTargetXPos, 0);
         umbrellaTrans.localPosition = new(umbrellaPos.x, umbrellaPos.y);
         aimTransform.localPosition = new(aimPos.x, aimPos.y);
     }
