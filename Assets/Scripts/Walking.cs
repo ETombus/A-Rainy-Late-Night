@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Walking : MonoBehaviour
@@ -13,7 +14,11 @@ public class Walking : MonoBehaviour
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] Transform cameraTarget;
     [SerializeField] float cameraTargetXPos;
+    [SerializeField] Transform umbrellaTrans;
+    Vector2 umbrellaPos;
     Rigidbody2D rbody;
+    FlipPlayer flipX;
+    bool playerFlipped;
 
     //Inputs
     PlayerInputs playerControls;
@@ -23,6 +28,10 @@ public class Walking : MonoBehaviour
     {
         playerControls = new PlayerInputs();
         playerSprite = GetComponentInChildren<SpriteRenderer>(false);
+
+        cameraTargetXPos = cameraTarget.localPosition.x;
+        umbrellaPos = umbrellaTrans.localPosition;
+        flipX = GetComponent<FlipPlayer>();
     }
 
     private void OnEnable()
@@ -40,20 +49,25 @@ public class Walking : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
     }
+
     private void Update()
     {
         HorizontalMovement();
 
-        if (inputX < 0)
+        if (inputX < 0 && !FlipPlayer.flippedX)
         {
-            playerSprite.flipX = true;
-            cameraTarget.localPosition = new(-cameraTargetXPos, 0);
+            flipX.FlipPlayerX();
+            FlipPlayer.flippedX = true;
+            FlipPlayer.overrideFlip = true;
         }
-        else if (inputX > 0)
+        else if (inputX > 0 && FlipPlayer.flippedX)
         {
-            playerSprite.flipX = false;
-            cameraTarget.localPosition = new(cameraTargetXPos, 0);
+            flipX.FlipPlayerX();
+            FlipPlayer.flippedX = false;
+            FlipPlayer.overrideFlip = true;
         }
+        else if (inputX == 0)
+            FlipPlayer.overrideFlip = false;
     }
     public void HorizontalMovement()
     {
@@ -62,6 +76,6 @@ public class Walking : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rbody.velocity = new(inputX * speed * Time.deltaTime, rbody.velocity.y); //Walking()
+        rbody.velocity = new(inputX * speed * Time.deltaTime, rbody.velocity.y); //HorizontalMovement()
     }
 }
