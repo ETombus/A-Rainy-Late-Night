@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 228625770618274689}
   - component: {fileID: 7122912364449416525}
   - component: {fileID: 7142502106106866683}
+  - component: {fileID: -7356499884994106645}
   m_Layer: 8
   m_Name: TheUltimateBarrel
   m_TagString: Ground
@@ -133,3 +134,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4152817, y: 2.1616106}
   m_EdgeRadius: 0
+--- !u!114 &-7356499884994106645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747271748184530479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350c834a2b032334f8b6f3e6ad08fc90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100

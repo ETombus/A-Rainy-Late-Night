@@ -31,5 +31,6 @@ public class HealthHandler : MonoBehaviour
     {
         //Add code for death
         Debug.Log(gameObject.name + " Died");
+        Destroy(gameObject);
     }
 }

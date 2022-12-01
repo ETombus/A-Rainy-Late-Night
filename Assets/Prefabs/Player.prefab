@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 2112362775}
   - component: {fileID: 2112362776}
   - component: {fileID: 2112362777}
+  - component: {fileID: 1834842748031294926}
   m_Layer: 0
   m_Name: SliceHitbox
   m_TagString: Player
@@ -323,6 +324,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1834842748031294926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112362774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b9d46a536bc64badcb0e490698e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
 --- !u!1 &24136076581838000
 GameObject:
   m_ObjectHideFlags: 0
