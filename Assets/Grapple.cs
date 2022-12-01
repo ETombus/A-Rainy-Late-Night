@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Grapple : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class Grapple : MonoBehaviour
     [Range(50, 100)][SerializeField] float grappleRetractSpeed;
     [Range(0, 5)][SerializeField] float grappleDelay = 1;
     [HideInInspector] public float grappleSpeed;
-
 
     public static bool stuck = false;
     public static bool onPlayer = true;
@@ -101,14 +101,12 @@ public class Grapple : MonoBehaviour
             frames = Mathf.Clamp(frames, 0f, 5f);
             Vector2 hookDirection = (transform.position - player.transform.position).normalized;
             directionX = hookDirection.x > 0 ? 1 : -1;
-
-            player.GetComponent<Rigidbody2D>().velocity =
-                grappleRetractSpeed * grappleRetractSpeedOverTime.Evaluate(frames) * Time.deltaTime * hookDirection;
+            player.GetComponent<Rigidbody2D>().AddForce
+                (grappleRetractSpeed * grappleRetractSpeedOverTime.Evaluate(frames) * Time.deltaTime * hookDirection);
             //player.transform.position = Vector2.Lerp(player.transform.position, transform.position, (grappleRetractSpeed.Evaluate(frames))*Time.deltaTime);
             //player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, grappleSpeed*Time.deltaTime);
             yield return new WaitForEndOfFrame();
         } while (Vector2.Distance(player.transform.position, transform.position) > 3f);
         SetParent();
     }
-
 }

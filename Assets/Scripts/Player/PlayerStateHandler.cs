@@ -167,7 +167,6 @@ public class PlayerStateHandler : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-
         if (isGrounded)
         {
             pressingJump = true;
@@ -176,6 +175,7 @@ public class PlayerStateHandler : MonoBehaviour
             currentMoveState = MovementStates.Jumping;
             Invoke(nameof(EndJump), maxJumpDuration);
         }
+
         if (currentMoveState == MovementStates.Grappling)
         {
             grappleJump = true;

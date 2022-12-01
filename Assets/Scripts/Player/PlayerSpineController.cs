@@ -53,7 +53,7 @@ public class PlayerSpineController : MonoBehaviour
         if (newAnimationState == MovementStates.Jumping)
         {
             nextAnimation = jump; // Jumping animation
-            Debug.Log("Is jumping");
+            //Debug.Log("Is jumping");
             animSpeed = 1;
         }
         else
@@ -61,20 +61,20 @@ public class PlayerSpineController : MonoBehaviour
             if (newAnimationState == MovementStates.Idle)
             {
                 nextAnimation = idle;
-                Debug.Log("Is idle");
+                //Debug.Log("Is idle");
                 animSpeed = 1;
 
             }
             else if(newAnimationState == MovementStates.GroundMoving)
             {
                 nextAnimation = run;
-                Debug.Log("Is running");
+                //Debug.Log("Is running");
                 animSpeed = 2;
             }
             else
             {
                 nextAnimation = jump; // Falling animation
-                Debug.Log("Is falling");
+                //Debug.Log("Is falling");
                 animSpeed = 1;
             }
         }
