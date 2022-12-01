@@ -53,14 +53,11 @@ public class GrapplingHookInputs : MonoBehaviour
             hook.transform.parent = null;
             hook.SetActive(true);
 
-            mousePos = Mouse.current.position.ReadValue();
-            mousePos.z = Camera.main.transform.position.z;
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Vector2 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+            shootDirection = (Worldpos - (Vector2)hook.transform.position).normalized;
 
-            Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-            mousePos.x -= objectPos.x;
-            mousePos.y -= objectPos.y;
-
-            shootDirection = (mousePos - hook.transform.position).normalized;
+            shootDirection = (Worldpos - (Vector2)hook.transform.position).normalized;
 
             hookCS.grappleSpeed = grappleSpeed;
             hookCS.StartCoroutine(hookCS.GrappleHookStick());
