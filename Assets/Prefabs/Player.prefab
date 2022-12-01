@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 5836924862112396268}
   - component: {fileID: 9003691135169117869}
   m_Layer: 0
-  m_Name: Slice
+  m_Name: Aim
   m_TagString: Player
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -621,10 +621,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e52c5d1056543409f9d7a4ebd3f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grappleSpeed: 65
+  grappleSpeed: 50
   hook: {fileID: 7876659214645098991}
   canGrapple: 1
-  jumpForce: 50
+  jumpForce: 45
 --- !u!114 &3431001358513741838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,7 +1023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7227084021561764370}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1154,11 +1154,38 @@ MonoBehaviour:
   hookParent: {fileID: 5836924862112396268}
   grappleRetractSpeedOverTime:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 25
+      inSlope: 3.4909039
+      outSlope: 3.4909039
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.8
+    - serializedVersion: 3
+      time: 1.1875051
+      value: 62.276157
+      inSlope: 34.2909
+      outSlope: 34.2909
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06358247
+    - serializedVersion: 3
+      time: 5
+      value: 100
+      inSlope: 2.5447702
+      outSlope: 2.5447702
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.27322444
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  grappleRetractSpeed: 0
+  grappleRetractSpeed: 100
   grappleDelay: 1
   grappleSpeed: 0
 --- !u!58 &4293001228163792698

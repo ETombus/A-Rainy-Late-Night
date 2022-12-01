@@ -17,6 +17,7 @@ public class GrapplingHookInputs : MonoBehaviour
     PlayerInputs playerControls;
     InputAction grappleAction;
     InputAction jumpAction;
+    Vector3 mousePos;
     [Range(25, 75)][SerializeField] float jumpForce = 50;
 
 
@@ -52,10 +53,14 @@ public class GrapplingHookInputs : MonoBehaviour
             hook.transform.parent = null;
             hook.SetActive(true);
 
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Vector2 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+            mousePos = Mouse.current.position.ReadValue();
+            mousePos.z = Camera.main.transform.position.z;
 
-            shootDirection = (Worldpos - (Vector2)hook.transform.position).normalized;
+            Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+            mousePos.x -= objectPos.x;
+            mousePos.y -= objectPos.y;
+
+            shootDirection = (mousePos - hook.transform.position).normalized;
 
             hookCS.grappleSpeed = grappleSpeed;
             hookCS.StartCoroutine(hookCS.GrappleHookStick());
@@ -69,7 +74,7 @@ public class GrapplingHookInputs : MonoBehaviour
 
     void CancelGrapple(InputAction.CallbackContext context)
     {
-        if (!canGrapple)
+        if (!canGrapple || !)
         {
             rb2D.AddForce(new(0, jumpForce * 10)); //move speed fwd
             hookCS.SetParent();
