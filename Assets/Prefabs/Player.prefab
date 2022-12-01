@@ -67,7 +67,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2014392999
 Transform:
   m_ObjectHideFlags: 0
@@ -588,8 +588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97c7aebb68650e4a989ba8b7fe18392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSprite: {fileID: 0}
-  umbrellaTrans: {fileID: 2014392999}
   aimTransform: {fileID: 5836924862112396268}
   cameraTarget: {fileID: 2056493657}
   cameraTargetXPos: 1.12

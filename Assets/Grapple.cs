@@ -20,7 +20,7 @@ public class Grapple : MonoBehaviour
     public static bool stuck = false;
     public static bool onPlayer = true;
     public static bool extended = false;
-    public static float maxDistance = 25f;
+    public static float maxDistance = 15f;
     public static float directionX;
 
     void Awake()
@@ -45,7 +45,7 @@ public class Grapple : MonoBehaviour
 
                 rb2D.velocity = returnDirection.normalized * (grappleSpeed * 1.75f);
 
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.2f);
 
                 if (!onPlayer)
                     SetParent();

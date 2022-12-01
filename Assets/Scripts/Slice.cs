@@ -16,12 +16,12 @@ public class Slice : MonoBehaviour
     private float attackTimer;
     private float attackCooldownTimer;
 
-    UmbrellaOpener umbrella;
+    //UmbrellaOpener umbrella;
 
     private void Awake()
     {
         playerControls = new PlayerInputs();
-        umbrella = GetComponentInChildren<UmbrellaOpener>();
+        //umbrella = GetComponentInChildren<UmbrellaOpener>();
     }
 
     private void OnEnable()
@@ -46,8 +46,8 @@ public class Slice : MonoBehaviour
             canAttack = false;
             attackCooldownTimer = attackCooldown;
 
-            umbrella.umbrellaOverrideBool = true;
-            umbrella.CloseUmbrella();
+            //umbrella.umbrellaOverrideBool = true;
+            //umbrella.CloseUmbrella();
         }
     }
 
@@ -57,7 +57,7 @@ public class Slice : MonoBehaviour
         else if (attackTimer <= 0)
         {
             sliceHitbox.SetActive(false);
-            umbrella.umbrellaOverrideBool = false;
+            //umbrella.umbrellaOverrideBool = false;
         }
 
         if (attackCooldownTimer > 0) { attackCooldownTimer -= Time.deltaTime; }
