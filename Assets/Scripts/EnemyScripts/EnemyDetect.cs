@@ -69,7 +69,7 @@ public class EnemyDetect : MonoBehaviour
             playerVisable = true;
         }
 
-        Debug.Log("Currently looking at: " +hit.collider.gameObject.tag);
+        Debug.Log("Currently looking at: " + hit.collider.gameObject.tag);
     }
 
 
