@@ -74,7 +74,7 @@ public class GrapplingHookInputs : MonoBehaviour
 
     void CancelGrapple(InputAction.CallbackContext context)
     {
-        if (!canGrapple)
+        if (!canGrapple && !Grapple.onPlayer)
         {
             rb2D.AddForce(new(0, jumpForce * 10)); //move speed fwd
             hookCS.SetParent();
