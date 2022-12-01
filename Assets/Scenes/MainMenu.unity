@@ -4258,7 +4258,7 @@ GameObject:
   - component: {fileID: 732800349}
   - component: {fileID: 732800352}
   m_Layer: 5
-  m_Name: OverlayPanel
+  m_Name: FadeInPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8612,7 +8612,7 @@ GameObject:
   - component: {fileID: 1732633322}
   - component: {fileID: 1732633325}
   m_Layer: 5
-  m_Name: Image
+  m_Name: IntroMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9212,6 +9212,8 @@ MonoBehaviour:
   creditsPanel: {fileID: 2009643453}
   settingsPanel: {fileID: 1123891767}
   speed: 10
+  fadeIn: {fileID: 732800347}
+  introMarker: {fileID: 1732633320}
 --- !u!114 &1827731415
 MonoBehaviour:
   m_ObjectHideFlags: 0
