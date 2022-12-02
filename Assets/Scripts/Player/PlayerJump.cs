@@ -8,6 +8,7 @@ public class PlayerJump : MonoBehaviour
     public float yJumpForce = 10;
     public float xJumpForce = 10;
 
+    public float grapplexJumpForce = 8;
 
     private Rigidbody2D rbody;
 
@@ -26,4 +27,16 @@ public class PlayerJump : MonoBehaviour
     }
 
 
+    public void Jump(float horizontalInput, bool grappleJumping)
+    {
+        if (grappleJumping)
+        {
+            rbody.velocity = new(rbody.velocity.x, 0);
+            rbody.AddForce(new Vector3(xJumpForce * horizontalInput, grapplexJumpForce), ForceMode2D.Impulse);
+        }
+        else
+        {
+            Jump(horizontalInput);
+        }
+    }
 }

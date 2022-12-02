@@ -647,19 +647,19 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      value: 0.2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -688,6 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yJumpForce: 20
   xJumpForce: 1.01
+  grapplexJumpForce: 8
 --- !u!114 &1426632619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,7 +756,7 @@ MonoBehaviour:
   grappleSpeed: 50
   hook: {fileID: 7876659214645098991}
   canGrapple: 1
-  jumpForce: 45
+  jumpForce: 5
 --- !u!114 &3431001358513741838
 MonoBehaviour:
   m_ObjectHideFlags: 0
