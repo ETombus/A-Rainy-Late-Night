@@ -22,7 +22,6 @@ public class PauseManager : MonoBehaviour
     {
         escape = playerControls.UI.Escape;
         escape.Enable();
-        Debug.Log("Escape OnEnable" + escape);
         escape.performed += PauseGame;
     }
 

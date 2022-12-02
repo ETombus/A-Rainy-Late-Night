@@ -118,6 +118,7 @@ public class PlayerStateHandler : MonoBehaviour
         }
         else if (pressingJump)
         {
+
             currentGravity = gravityUpwards;
             gravityMultiplier = 1;
         }

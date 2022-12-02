@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
-
-
     public LayerMask detectableLayers;
 
     public float detectTime = 1;
@@ -19,8 +17,6 @@ public class EnemyDetect : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
-
-
 
     private bool playerInViewRange = false;
 
@@ -39,7 +35,7 @@ public class EnemyDetect : MonoBehaviour
 
             if (timer >= detectTime)
             {
-                Debug.Log("Fire at player!");
+                //Debug.Log("Fire at player!");
                 //Insert Agression mode here
             }
         }
@@ -69,7 +65,7 @@ public class EnemyDetect : MonoBehaviour
             playerVisable = true;
         }
 
-        Debug.Log("Currently looking at: " + hit.collider.gameObject.tag);
+        //Debug.Log("Currently looking at: " + hit.collider.gameObject.tag);
     }
 
 
