@@ -26,7 +26,6 @@ public class PlayerJump : MonoBehaviour
         rbody.AddForce(new Vector3(xJumpForce * horizontalInput, yJumpForce), ForceMode2D.Impulse);
     }
 
-
     public void Jump(float horizontalInput, bool grappleJumping)
     {
         if (grappleJumping)

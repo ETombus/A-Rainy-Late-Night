@@ -214,7 +214,6 @@ public class PlayerStateHandler : MonoBehaviour
 
         if (currentMoveState == MovementStates.Jumping)
         {
-            jumpingScript.Jump(grappleJump ? Grapple.directionX * 2.5f : inputX);
             jumpingScript.Jump(inputX,grappleJump ? true : false); // In case of grapple jump needing diffrent directional force
 
             walkingScript.UpdateCurrentVelocity();

@@ -18,7 +18,6 @@ public class GrapplingHookInputs : MonoBehaviour
     InputAction grappleAction;
     InputAction jumpAction;
     Vector3 mousePos;
-    [Range(25, 75)][SerializeField] float jumpForce = 50;
     [Range(0, 75)][SerializeField] float jumpForce = 50;
 
 
