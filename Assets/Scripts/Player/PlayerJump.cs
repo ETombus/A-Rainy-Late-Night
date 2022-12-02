@@ -18,7 +18,6 @@ public class PlayerJump : MonoBehaviour
 
     public void Jump(float horizontalInput)
     {
-        Debug.Log("IsJumping");
         rbody.velocity = new(rbody.velocity.x, 0);
         rbody.AddForce(new Vector3(xJumpForce * horizontalInput, yJumpForce), ForceMode2D.Impulse);
     }

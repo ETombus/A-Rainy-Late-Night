@@ -16,6 +16,7 @@ public class Grapple : MonoBehaviour
     [Range(50, 100)][SerializeField] float grappleRetractSpeed;
     [Range(0, 5)][SerializeField] float grappleDelay = 1;
     [HideInInspector] public float grappleSpeed;
+    public float returnMaxLifetime = 0.15f;
 
     public static bool stuck = false;
     public static bool onPlayer = true;
@@ -23,10 +24,25 @@ public class Grapple : MonoBehaviour
     public static float maxDistance = 15f;
     public static float directionX;
 
+
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
         playerGrappleCS = player.GetComponent<GrapplingHookInputs>();
+    }
+
+    private void FixedUpdate()
+    {
+        if(extended)
+        {
+            Vector2 returnDirection = player.transform.position - transform.position;
+
+            rb2D.velocity = returnDirection * (10);
+            if ((player.transform.position - transform.position).magnitude < 3f)
+            {
+                SetParent();
+            }
+        }
     }
 
     public IEnumerator GrappleHookStick()
@@ -41,11 +57,7 @@ public class Grapple : MonoBehaviour
             {
                 extended = true;
 
-                Vector2 returnDirection = player.transform.position - transform.position;
-
-                rb2D.velocity = returnDirection.normalized * (grappleSpeed * 1.75f);
-
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(returnMaxLifetime);
 
                 if (!onPlayer)
                     SetParent();
@@ -66,11 +78,14 @@ public class Grapple : MonoBehaviour
         transform.parent = hookParent;
         transform.localPosition = new Vector3(1f, 0f, -1f);
         transform.localRotation = Quaternion.Euler(0, 0, 90);
-
         Invoke("Cooldown", grappleDelay);
     }
 
-    void Cooldown(){ playerGrappleCS.canGrapple = true; }
+    void Cooldown()
+    {
+        playerGrappleCS.canGrapple = true;
+        CancelInvoke();
+    }
 
     void OnTriggerEnter2D(Collider2D hit)
     {
