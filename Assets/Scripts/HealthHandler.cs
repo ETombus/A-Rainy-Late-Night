@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class HealthHandler : MonoBehaviour
 {
+    [Header("Values")]
     public float health;
-
     public int maxHealth = 100;
+
+    [Header("Components")]
+    [SerializeField] GameObject bloodParticles;
 
     private void Start()
     {
@@ -31,5 +34,8 @@ public class HealthHandler : MonoBehaviour
     {
         //Add code for death
         Debug.Log(gameObject.name + " Died");
+
+        Instantiate(bloodParticles, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
