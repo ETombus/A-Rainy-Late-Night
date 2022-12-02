@@ -38,9 +38,7 @@ public class FlipPlayer : MonoBehaviour
 
         cameraTargetXPos *= -1;
         umbrellaPos.x *= -1;
-        aimPos.x *= -1;
 
         //umbrellaTrans.localPosition = new(umbrellaPos.x, umbrellaPos.y);
-        aimTransform.localPosition = new(aimPos.x, aimPos.y);
     }
 }
