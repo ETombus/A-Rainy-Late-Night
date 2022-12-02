@@ -114,12 +114,10 @@ public class PlayerStateHandler : MonoBehaviour
     {
         if (isGrounded)
         {
-            Debug.Log("Ground gravity");
             currentGravity = baseGravity;
         }
         else if (pressingJump)
         {
-            Debug.Log("Jump gravity");
             currentGravity = gravityUpwards;
             gravityMultiplier = 1;
         }

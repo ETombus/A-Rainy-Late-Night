@@ -60,7 +60,6 @@ public class Slice : MonoBehaviour
             Vector2 mousePos =  Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
             sliceDirection = Mathf.RoundToInt(mousePos.normalized.x);
 
-            Debug.Log(sliceDirection);
 
             //umbrella.umbrellaOverrideBool = true;
             //umbrella.CloseUmbrella();

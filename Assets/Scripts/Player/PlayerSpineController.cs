@@ -30,7 +30,6 @@ public class PlayerSpineController : MonoBehaviour
 
         if (sliceAction.isSlicing)
         {
-            Debug.Log("This is played also");
             Turn(sliceAction.sliceDirection < 0);
             
         }
