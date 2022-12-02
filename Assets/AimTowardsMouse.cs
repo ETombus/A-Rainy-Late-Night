@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 
 public class AimTowardsMouse : MonoBehaviour
 {
-    FlipPlayer flipX;
-    bool flippedX;
-    Vector3 mousePos;
+    Vector2 mousePos;
     float angle;
 
+
+
+    FlipPlayer flipX;
     Slice slice;
 
     private void Start()
@@ -22,23 +23,24 @@ public class AimTowardsMouse : MonoBehaviour
     private void Update()
     {
         mousePos = Mouse.current.position.ReadValue();
-        mousePos.z = Camera.main.transform.position.z;
+        Vector2 camMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        flipX.MoveCameraInbetween(camMousePos);
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos.x -= objectPos.x;
         mousePos.y -= objectPos.y;
 
-        var zRotation = transform.localRotation.eulerAngles.z;
-
-        if (mousePos.x < transform.position.x && !FlipPlayer.flippedX && !FlipPlayer.overrideFlip)
+        if (mousePos.x < transform.position.x - 100f && !FlipPlayer.flippedX)
         {
             flipX.FlipPlayerX();
             FlipPlayer.flippedX = true;
         }
-        else if (mousePos.x > transform.position.x && FlipPlayer.flippedX && !FlipPlayer.overrideFlip)
+        else if (mousePos.x > transform.position.x + 100f && FlipPlayer.flippedX)
         {
             flipX.FlipPlayerX();
             FlipPlayer.flippedX = false;
+            FlipPlayer.overrideFlip = true;
         }
 
         angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;

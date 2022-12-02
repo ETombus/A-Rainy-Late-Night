@@ -5,29 +5,40 @@ using UnityEngine.UI;
 
 public class HealthHandler : MonoBehaviour
 {
-    [SerializeField] private float health;
-    [SerializeField] private Slider healthBar;
-    [SerializeField] private AnimationCurve healthShown;
+    public float health;
+    public int maxHealth = 100;
 
-    private int maxHealth = 100;
+    [SerializeField] GameObject bloodParticles;
 
     private void Start()
     {
-        healthBar.maxValue = maxHealth;
         health = maxHealth;
     }
 
     public void ReduceHealth(float reducedHealth)
     {
-        health -= reducedHealth;
+        if (health - reducedHealth > 0)
+        {
+            health -= reducedHealth;
+            Instantiate(bloodParticles, transform.position, transform.rotation);
+        }
 
-        healthBar.value = healthShown.Evaluate(health / 100) * 100;
+        else
+            Death();
     }
 
     public void AddHealth(float addedHealth)
     {
         health += addedHealth;
+    }
 
-        healthBar.value = health;
+    void Death()
+    {
+        //Add code for death
+
+        //Debug.Log(gameObject.name + " Died");
+
+        Instantiate(bloodParticles, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

@@ -67,7 +67,8 @@ public class Jumping : MonoBehaviour
                 umbrella.umbrellaOverrideBool = true;
                 umbrella.OpenUmbrella();
             }
-            else if (!isSlowfalling) { gravityOffset = fastfallGravity; }
+            else if (!isSlowfalling && !Grapple.stuck) { gravityOffset = fastfallGravity; }
+            else if (Grapple.stuck) {gravityOffset = slowfallGravity;}
         }
 
         if (isGrounded)
@@ -96,7 +97,7 @@ public class Jumping : MonoBehaviour
             rbody.velocity = new Vector2(rbody.velocity.x, 0);
             isJumping = true;
 
-            FixedUpdate();
+
         }
     }
 
@@ -106,7 +107,6 @@ public class Jumping : MonoBehaviour
     {
         if (isJumping)
         {
-            rbody.velocity = new(rbody.velocity.x, jumpVel * Time.deltaTime);
             rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }

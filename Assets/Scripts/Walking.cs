@@ -6,76 +6,75 @@ using UnityEngine.InputSystem;
 
 public class Walking : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] float speed;
-    float inputX;
+    [Header("Ground Movement")]
+    [SerializeField] float groundAcceleration = 40;
+    [SerializeField] float groundAecceleration = 40f;
+    [SerializeField] float groundTurnSpeed = 80;
+
+    [Header("Air Movement")]
+    [SerializeField] float airAcceleration = 40;
+    [SerializeField] float airDecceleration = 40f;
+    [SerializeField] float airTurnSpeed = 80;
+
+    private float acceleration;
+    private float decceleration;
+    private float turnSpeed;
+
+    [SerializeField] float maxMoveSpeed;
+
+    private Vector2 currentVelocity;
+    private float speedChange;
 
     [Header("Components")]
-    [SerializeField] SpriteRenderer playerSprite;
-    [SerializeField] Transform cameraTarget;
-    [SerializeField] float cameraTargetXPos;
-    [SerializeField] Transform umbrellaTrans;
-    Vector2 umbrellaPos;
-    Rigidbody2D rbody;
-    FlipPlayer flipX;
-    bool playerFlipped;
-
-    //Inputs
-    PlayerInputs playerControls;
-    private InputAction move;
-
-    private void Awake()
-    {
-        playerControls = new PlayerInputs();
-        playerSprite = GetComponentInChildren<SpriteRenderer>(false);
-
-        cameraTargetXPos = cameraTarget.localPosition.x;
-        umbrellaPos = umbrellaTrans.localPosition;
-        flipX = GetComponent<FlipPlayer>();
-    }
-
-    private void OnEnable()
-    {
-        move = playerControls.Player.Move;
-        move.Enable();
-    }
-
-    private void OnDisable()
-    {
-        move.Disable();
-    }
+    private Rigidbody2D rbody;
+    FlipPlayer flipPlayerCS;
 
     private void Start()
     {
         rbody = GetComponent<Rigidbody2D>();
+        flipPlayerCS = GetComponent<FlipPlayer>();
     }
 
-    private void Update()
+    public void UpdateCurrentVelocity()
     {
-        HorizontalMovement();
+        currentVelocity = rbody.velocity;
+    }
 
-        if (inputX < 0 && !FlipPlayer.flippedX)
+    public void Movement(float horizontalInput, bool onGround)
+    {
+
+        if (onGround)
         {
-            flipX.FlipPlayerX();
-            FlipPlayer.flippedX = true;
-            FlipPlayer.overrideFlip = true;
+            acceleration = groundAcceleration;
+            decceleration = groundAcceleration;
+            turnSpeed = groundTurnSpeed;
         }
-        else if (inputX > 0 && FlipPlayer.flippedX)
+        else
         {
-            flipX.FlipPlayerX();
-            FlipPlayer.flippedX = false;
-            FlipPlayer.overrideFlip = true;
+            acceleration = airAcceleration;
+            decceleration = airAcceleration;
+            turnSpeed = airTurnSpeed;
         }
-        else if (inputX == 0)
-            FlipPlayer.overrideFlip = false;
-    }
-    public void HorizontalMovement()
-    {
-        inputX = move.ReadValue<Vector2>().x;
+
+        if (horizontalInput != 0)
+        {
+            if (Mathf.Sign(horizontalInput) != Mathf.Sign(currentVelocity.x))
+            {
+                speedChange = turnSpeed * Time.deltaTime;
+            }
+            else
+            {
+                speedChange = acceleration * Time.deltaTime;
+            }
+        }
+        else
+        {
+            speedChange = decceleration * Time.deltaTime;
+        }
+
+        currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, horizontalInput * maxMoveSpeed, speedChange);
+        currentVelocity.y = rbody.velocity.y;
+        rbody.velocity = currentVelocity;
     }
 
-    private void FixedUpdate()
-    {
-        rbody.velocity = new(inputX * speed * Time.deltaTime, rbody.velocity.y); //HorizontalMovement()
-    }
 }
