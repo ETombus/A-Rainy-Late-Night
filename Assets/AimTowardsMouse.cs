@@ -9,8 +9,6 @@ public class AimTowardsMouse : MonoBehaviour
     Vector2 mousePos;
     float angle;
 
-
-
     FlipPlayer flipX;
     Slice slice;
 
@@ -40,7 +38,6 @@ public class AimTowardsMouse : MonoBehaviour
         {
             flipX.FlipPlayerX();
             FlipPlayer.flippedX = false;
-            FlipPlayer.overrideFlip = true;
         }
 
         angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
