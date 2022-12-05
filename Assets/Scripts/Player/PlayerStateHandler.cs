@@ -29,6 +29,7 @@ public class PlayerStateHandler : MonoBehaviour
     private InputAction move;
     private InputAction jump;
 
+    
     [Header("Components")]
     private Walking walkingScript;
     private PlayerJump jumpingScript;
@@ -67,6 +68,7 @@ public class PlayerStateHandler : MonoBehaviour
         jump.performed += Jump;
         jump.performed += SlowFalling;
         jump.canceled += OnSpaceReleased;
+
     }
 
     private void OnDisable()
@@ -112,12 +114,11 @@ public class PlayerStateHandler : MonoBehaviour
     {
         if (isGrounded)
         {
-            Debug.Log("Ground gravity");
             currentGravity = baseGravity;
         }
         else if (pressingJump)
         {
-            Debug.Log("Jump gravity");
+
             currentGravity = gravityUpwards;
             gravityMultiplier = 1;
         }
@@ -213,7 +214,7 @@ public class PlayerStateHandler : MonoBehaviour
 
         if (currentMoveState == MovementStates.Jumping)
         {
-            jumpingScript.Jump(grappleJump ? Grapple.directionX * 2.5f : inputX);
+            jumpingScript.Jump(inputX,grappleJump ? true : false); // In case of grapple jump needing diffrent directional force
 
             walkingScript.UpdateCurrentVelocity();
             midJump = false;

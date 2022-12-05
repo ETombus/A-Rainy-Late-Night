@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -13,10 +14,24 @@ public class MenuHandler : MonoBehaviour
     [Header("Variables")]
     [SerializeField] float speed = 50;
 
+    [SerializeField] GameObject fadeIn;
+    [SerializeField] GameObject introMarker;
+
     bool moveCameraUp;
     bool showSettings;
 
     Vector3 offset = new(0, 0, -10);
+
+    bool playIntroAnimation = true;
+
+    private void Start()
+    {
+        if(PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
+        {
+            fadeIn.SetActive(false);
+            introMarker.SetActive(false);
+        }
+    }
 
     private void Update()
     {
@@ -42,6 +57,8 @@ public class MenuHandler : MonoBehaviour
     public void ButtonStart()
     {
         Debug.Log("Game Started");
+        SceneManager.LoadScene(1); 
+        PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
     }
 
     public void ButtonTutorial()
@@ -65,6 +82,7 @@ public class MenuHandler : MonoBehaviour
     {
         Debug.Log("Exited Game");
         Application.Quit();
+        PlayerPrefs.DeleteKey("PlayIntroAnimation"); //1 = false, 0 = true
     }
 
     public void BackTutorial()

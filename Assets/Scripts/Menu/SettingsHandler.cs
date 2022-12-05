@@ -28,7 +28,7 @@ public class SettingsHandler : MonoBehaviour
     {
         mixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
         PlayerPrefs.SetFloat("MusicVolume", sliderValue);
-        Debug.Log("sliderValue = " + sliderValue);
+        //Debug.Log("sliderValue = " + sliderValue);
     }
 
     public void SetSoundVolume(float sliderValue)
@@ -41,17 +41,17 @@ public class SettingsHandler : MonoBehaviour
     {
         if (isMuted)
         {
-            Debug.Log("Muted Music");
+            //Debug.Log("Muted Music");
             musicSlider.interactable = false;
             mixer.SetFloat("MusicVol", -80);
         }
         else
         {
-            Debug.Log("Unmuted Music");
+            //Debug.Log("Unmuted Music");
             musicSlider.interactable = true;
             mixer.SetFloat("MusicVol", ConvertLog(musicSlider.value));
             PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
-            Debug.Log("Music Slider value is: " + musicSlider.value);
+            //Debug.Log("Music Slider value is: " + musicSlider.value);
         }
     }
 

@@ -16,13 +16,19 @@ public class Slice : MonoBehaviour
     private float attackTimer;
     private float attackCooldownTimer;
 
-    UmbrellaOpener umbrella;
+    public bool isSlicing = false;
+    public float sliceDirection;
+
+    //UmbrellaOpener umbrella;
 
     private void Awake()
     {
         playerControls = new PlayerInputs();
-        umbrella = GetComponentInChildren<UmbrellaOpener>();
+
+        //umbrella = GetComponentInChildren<UmbrellaOpener>();
     }
+
+
 
     private void OnEnable()
     {
@@ -46,9 +52,24 @@ public class Slice : MonoBehaviour
             canAttack = false;
             attackCooldownTimer = attackCooldown;
 
-            umbrella.umbrellaOverrideBool = true;
-            umbrella.CloseUmbrella();
+            isSlicing = true;
+            StopCoroutine(slashDuration());
+            StartCoroutine(slashDuration());
+
+
+            Vector2 mousePos =  Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
+            sliceDirection = Mathf.RoundToInt(mousePos.normalized.x);
+
+
+            //umbrella.umbrellaOverrideBool = true;
+            //umbrella.CloseUmbrella();
         }
+    }
+
+    IEnumerator slashDuration()
+    {
+        yield return new WaitForSeconds(0.1f);
+        isSlicing = false;
     }
 
     private void Update()
@@ -57,7 +78,7 @@ public class Slice : MonoBehaviour
         else if (attackTimer <= 0)
         {
             sliceHitbox.SetActive(false);
-            umbrella.umbrellaOverrideBool = false;
+            //umbrella.umbrellaOverrideBool = false;
         }
 
         if (attackCooldownTimer > 0) { attackCooldownTimer -= Time.deltaTime; }

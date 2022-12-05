@@ -18,7 +18,7 @@ public class GrapplingHookInputs : MonoBehaviour
     InputAction grappleAction;
     InputAction jumpAction;
     Vector3 mousePos;
-    [Range(25, 75)][SerializeField] float jumpForce = 50;
+    [Range(0, 75)][SerializeField] float jumpForce = 50;
 
 
     private void Awake()
@@ -73,7 +73,6 @@ public class GrapplingHookInputs : MonoBehaviour
     {
         if (!canGrapple && !Grapple.onPlayer)
         {
-            rb2D.AddForce(new(0, jumpForce * 10)); //move speed fwd
             hookCS.SetParent();
         }
     }

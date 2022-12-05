@@ -1,0 +1,49 @@
+{ "skeleton": { "images": "C:/Users/Malte/OneDrive/Dokument/A-Rainy-Late-Night/Assets/Spine Skeletons/Spine Merging (programmers satay out!!!)/Umbrella openclose/" },
+"PhotoshopToSpine": { "scale": 1, "padding": 1, "trim": true },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Hook", "bone": "root", "attachment": "Hook" },
+	{ "name": "Gunbrella", "bone": "root", "attachment": "Gunbrella" },
+	{ "name": "Frame 7", "bone": "root", "attachment": "Frame 7" },
+	{ "name": "Frame 6", "bone": "root", "attachment": "Frame 6" },
+	{ "name": "Frame 5", "bone": "root", "attachment": "Frame 5" },
+	{ "name": "Frame 4", "bone": "root", "attachment": "Frame 4" },
+	{ "name": "Frame 3", "bone": "root", "attachment": "Frame 3" },
+	{ "name": "Frame 2", "bone": "root", "attachment": "Frame 2" },
+	{ "name": "Frame 1", "bone": "root", "attachment": "Frame 1" }
+],
+"skins": {
+	"default": {
+		"Hook": {
+			"Hook": { "x": 59, "y": 137, "width": 182, "height": 284 }
+		},
+		"Gunbrella": {
+			"Gunbrella": { "x": 18.5, "y": 716.5, "width": 219, "height": 895 }
+		},
+		"Frame 7": {
+			"Frame 7": { "x": 2, "y": 579.5, "width": 340, "height": 1169 }
+		},
+		"Frame 6": {
+			"Frame 6": { "x": 4, "y": 579.5, "width": 672, "height": 1169 }
+		},
+		"Frame 5": {
+			"Frame 5": { "x": 4.5, "y": 579.5, "width": 1093, "height": 1169 }
+		},
+		"Frame 4": {
+			"Frame 4": { "x": 3, "y": 579.5, "width": 1716, "height": 1169 }
+		},
+		"Frame 3": {
+			"Frame 3": { "x": 0, "y": 579.5, "width": 1858, "height": 1169 }
+		},
+		"Frame 2": {
+			"Frame 2": { "x": 0, "y": 579.5, "width": 1940, "height": 1169 }
+		},
+		"Frame 1": {
+			"Frame 1": { "x": 0, "y": 579.5, "width": 1858, "height": 1169 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}
