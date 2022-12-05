@@ -8,7 +8,7 @@ public class Walking : MonoBehaviour
 {
     [Header("Ground Movement")]
     [SerializeField] float groundAcceleration = 40;
-    [SerializeField] float groundAecceleration = 40f;
+    [SerializeField] float groundDecceleration = 40f;
     [SerializeField] float groundTurnSpeed = 80;
 
     [Header("Air Movement")]
@@ -52,7 +52,7 @@ public class Walking : MonoBehaviour
         else
         {
             acceleration = airAcceleration;
-            decceleration = airAcceleration;
+            decceleration = airDecceleration;
             turnSpeed = airTurnSpeed;
         }
 
