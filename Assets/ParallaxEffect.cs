@@ -12,7 +12,7 @@ public class ParallaxEffect : MonoBehaviour
 
     [Header("Layers")]
     [SerializeField] Transform[] backgroundLayers;
-    float[] startPos;
+    Vector2[] startPos;
     float[] layerOffsets;
     float[] reversLayerOffsets;
 
@@ -21,7 +21,7 @@ public class ParallaxEffect : MonoBehaviour
 
     void Start()
     {
-        startPos = new float[backgroundLayers.Length];
+        startPos = new Vector2[backgroundLayers.Length];
         layerOffsets = new float[backgroundLayers.Length];
         layerOffsets[0] = closestLayerOffset;
         mainCam = Camera.main;
@@ -32,7 +32,7 @@ public class ParallaxEffect : MonoBehaviour
         }
         for(int i = 0; i < backgroundLayers.Length; i++)
         {
-            startPos[i] = backgroundLayers[i].position.x;
+            startPos[i] = backgroundLayers[i].position;
         }
     }
 
@@ -45,21 +45,21 @@ public class ParallaxEffect : MonoBehaviour
             Debug.Log("i = " + i + " - " + layerOffsets[i]);
 
             backgroundLayers[i].position =
-                new(startPos[i] + (cameraMovement.x * layerOffsets[i] * speed), backgroundLayers[i].position.y, backgroundLayers[i].position.z);
+                new(startPos[i].x + (cameraMovement.x * layerOffsets[i] * speed), startPos[i].y + (cameraMovement.y * layerOffsets[i] * speed), backgroundLayers[i].position.z);
 
             float cameraX = mainCam.transform.position.x;
             float cameraHalfWidth = mainCam.orthographicSize * mainCam.aspect;
             float width = backgroundLayers[i].GetComponent<SpriteRenderer>().bounds.size.x;
 
-            if (cameraX - cameraHalfWidth > startPos[i] + width/1.75f)
+            if (cameraX > backgroundLayers[i].position.x + width/1.75f)
             {
                 Debug.Log("right");
-                startPos[i] += width;
+                startPos[i].x += width;
             }
-            else if (cameraX - cameraHalfWidth < startPos[i] - width / 1.75f)
+            else if (cameraX < backgroundLayers[i].position.x - width / 1.75f)
             {
                 Debug.Log("left");
-                startPos[i] -= width;
+                startPos[i].x -= width;
             }
         }
     }
