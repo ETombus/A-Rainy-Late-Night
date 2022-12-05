@@ -7,82 +7,52 @@ using static System.TimeZoneInfo;
 public class PlayerStateHandler : MonoBehaviour
 {
     [Header("Jump variables")]
-    [SerializeField] private bool isGrounded;
-    private bool midJump = false;
-    private float transitionTime = 0;
-    public float maxJumpDuration = 0.5f;
-    public AnimationCurve jumpgravityTransitionSpeed;
+    public bool isGrounded;
+
     private bool pressingJump = false;
+    private bool midJump = false;
+
+    public float maxJumpDuration = 0.5f;
     private bool grappleJump = false;
 
     [Header("Gravity")]
-    public float gravityUpwards = 1;
-    public float downwardGravity = 1;
+    public float gravityUpwards = 4;
+    public float downwardGravity = 10;
+    public AnimationCurve jumpGravityTransitionSpeed;
+    private float gravityCurveTransitionTime = 0;
+
+
+
     private float baseGravity;
     private float currentGravity;
     private float gravityMultiplier = 1;
 
     [Header("Input")]
     public float inputX;
-    PlayerInputs playerControls;
-    InputAction grappleAction;
-    private InputAction move;
-    private InputAction jump;
-
     
     [Header("Components")]
     private Walking walkingScript;
     private PlayerJump jumpingScript;
-    private BoxCollider2D boxCollider;
     private Rigidbody2D rbody;
 
-    [Header("Ground Check")]
-    public LayerMask groundLayer;
-    public float extraLeangth = 1;
 
     public enum MovementStates
     {
         GroundMoving,
         Idle,
         AirMoving,
-        Gliding,
+        Gliding, //Not implemented yet
         Jumping,
-        MidJumping,
         Grappling
     }
 
     [SerializeField] public MovementStates currentMoveState;
-
-    private void Awake()
-    {
-        playerControls = new PlayerInputs();
-    }
-
-    private void OnEnable()
-    {
-        move = playerControls.Player.Move;
-        move.Enable();
-
-        jump = playerControls.Player.Jump;
-        jump.Enable();
-        jump.performed += Jump;
-        jump.performed += SlowFalling;
-        jump.canceled += OnSpaceReleased;
-
-    }
-
-    private void OnDisable()
-    {
-        move.Disable();
-        jump.Disable();
-    }
 
 
     void Start()
     {
         walkingScript = GetComponent<Walking>();
         jumpingScript = GetComponent<PlayerJump>();
-        boxCollider = GetComponent<BoxCollider2D>();
         rbody = GetComponent<Rigidbody2D>();
 
         currentMoveState = MovementStates.GroundMoving;
@@ -91,9 +61,6 @@ public class PlayerStateHandler : MonoBehaviour
 
     void Update()
     {
-        ManageInputs();
-        isGrounded = IsGrounded();
-
         if (Grapple.stuck && currentMoveState != MovementStates.Jumping)
         {
             currentMoveState = MovementStates.Grappling;
@@ -133,8 +100,8 @@ public class PlayerStateHandler : MonoBehaviour
                 gravityMultiplier = 1;
             }
 
-            transitionTime += Time.deltaTime;
-            currentGravity = Mathf.Lerp(gravityUpwards, downwardGravity, jumpgravityTransitionSpeed.Evaluate(transitionTime));
+            gravityCurveTransitionTime += Time.deltaTime;
+            currentGravity = Mathf.Lerp(gravityUpwards, downwardGravity, jumpGravityTransitionSpeed.Evaluate(gravityCurveTransitionTime));
 
         }
 
@@ -161,54 +128,6 @@ public class PlayerStateHandler : MonoBehaviour
         }
     }
 
-    public void ManageInputs()
-    {
-        inputX = move.ReadValue<Vector2>().x;
-    }
-
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (isGrounded)
-        {
-            pressingJump = true;
-            midJump = true;
-            transitionTime = 0;
-            currentMoveState = MovementStates.Jumping;
-            Invoke(nameof(EndJump), maxJumpDuration);
-        }
-
-        if (currentMoveState == MovementStates.Grappling)
-        {
-            grappleJump = true;
-            pressingJump = true;
-            midJump = true;
-            transitionTime = 0;
-            currentMoveState = MovementStates.Jumping;
-            Invoke(nameof(EndJump), maxJumpDuration);
-        }
-        else
-            grappleJump = false;
-    }
-
-    void EndJump()
-    {
-        pressingJump = false;
-    }
-
-    private void SlowFalling(InputAction.CallbackContext context)
-    {
-
-    }
-    private void OnSpaceReleased(InputAction.CallbackContext context)
-    {
-        if (pressingJump)
-        {
-
-            CancelInvoke();
-            pressingJump = false;
-        }
-    }
-
     private void FixedUpdate()
     {
 
@@ -227,27 +146,47 @@ public class PlayerStateHandler : MonoBehaviour
 
     }
 
-    private bool IsGrounded()
+
+    public void JumpPressed()
     {
-        RaycastHit2D rayHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, extraLeangth, groundLayer);
-        Color rayColor;
-        if (rayHit.collider != null)
+        if (isGrounded)
         {
-            rayColor = Color.green;
+            pressingJump = true;
+            midJump = true;
+            gravityCurveTransitionTime = 0;
+            currentMoveState = MovementStates.Jumping;
+            Invoke(nameof(EndJump), maxJumpDuration);
+        }
+
+        if (currentMoveState == MovementStates.Grappling)
+        {
+            grappleJump = true;
+            pressingJump = true;
+            midJump = true;
+            gravityCurveTransitionTime = 0;
+            currentMoveState = MovementStates.Jumping;
+            Invoke(nameof(EndJump), maxJumpDuration);
         }
         else
-        {
-            rayColor = Color.red;
-        }
-
-
-        Debug.DrawRay(boxCollider.bounds.center + new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y + extraLeangth), rayColor);
-        Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y + extraLeangth), rayColor);
-        Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, boxCollider.bounds.extents.y + extraLeangth), Vector2.right * (boxCollider.bounds.extents.x * 2), rayColor);
-
-
-        return rayHit.collider != null;
+            grappleJump = false;
     }
+
+    public void JumpReleased()
+    {
+        if (pressingJump)
+        {
+            CancelInvoke();
+            pressingJump = false;
+        }
+    }
+
+    void EndJump()
+    {
+        pressingJump = false;
+    }
+
+
+
 
 
 }
