@@ -7,6 +7,7 @@ public class GrappleInput : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] GameObject hookPrefab;
+    [SerializeField] Transform ropeStart;
     GameObject targetPoint;
     GameObject[] hookPoints;
     string hookPointTag = "HookPoint";
@@ -14,16 +15,16 @@ public class GrappleInput : MonoBehaviour
     [Header("Inputs")]
     PlayerInputs playerControls;
     InputAction grappleAction;
-    bool canGrapple = true;
     Vector2 mousePos;
     Vector2 worldPos;
 
     [Header("Values")]
     [Range(0, 25)][SerializeField] float hookMaxReach;
     [Range(0, 25)][SerializeField] float maxMouseDistance;
-    [Range(0, 25)][SerializeField] float hookShootSpeed;
-    [Range(0, 25)][SerializeField] float playerTravelSpeed;
+    [SerializeField] float playerTravelSpeed;
+    [SerializeField] float hookShootSpeed;
     float closestHookDistance;
+    public bool canGrapple = true;
 
     private void Awake()
     {
@@ -73,10 +74,10 @@ public class GrappleInput : MonoBehaviour
         Vector2 targetPos = target.transform.position;
         Collider2D rayTarget = Physics2D.Raycast(targetPos, pos - targetPos, hookMaxReach).collider;
 
-        if (rayTarget == GetComponent<Collider2D>())
-            return true;
-        else
-            return false;
+        if (rayTarget == GetComponent<Collider2D>()) 
+            { return true; }
+        else 
+            { return false; }
     }
 
     private void ShootGrapple(InputAction.CallbackContext context)
@@ -89,12 +90,13 @@ public class GrappleInput : MonoBehaviour
             Debug.Log("shoot");
             canGrapple = false;
 
-            var hook = Instantiate(hookPrefab);
+            var hook = Instantiate(hookPrefab, transform.position, Quaternion.identity);
             var hookCS = hook.GetComponent<HookScript>();
             hookCS.targetPos = targetPoint.transform.position;
             hookCS.hookSpeed = hookShootSpeed;
             hookCS.playerSpeed = playerTravelSpeed;
             hookCS.player = gameObject;
+            hookCS.ropeStart = ropeStart;
         }
     }
 }
