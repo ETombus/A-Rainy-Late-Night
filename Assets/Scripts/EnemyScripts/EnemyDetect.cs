@@ -42,7 +42,7 @@ public class EnemyDetect : MonoBehaviour
             indicatorRenderer.sprite = indicators[0];
 
             handler.movement.isPatroling = false;
-
+            
             timer += Time.deltaTime;
             if (timer >= detectTime)
             {
@@ -55,6 +55,9 @@ public class EnemyDetect : MonoBehaviour
 
         if (!playerVisable && timer > 0)
         {
+            handler.shooting.isShooting = false;
+
+
             timer -= Time.deltaTime;
             //if (timer < 0)
             //    timer = 0;
@@ -64,7 +67,6 @@ public class EnemyDetect : MonoBehaviour
         else if (!playerVisable && timer <= 0)
         {
             indicatorRenderer.gameObject.SetActive(false);
-            handler.shooting.isShooting = false;
             handler.movement.isPatroling = true;
         }
     }
