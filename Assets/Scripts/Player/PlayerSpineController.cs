@@ -75,7 +75,7 @@ public class PlayerSpineController : MonoBehaviour
             {
                 nextAnimation = run;
                 //Debug.Log("Is running");
-                animSpeed = 2;
+                animSpeed = 1;
             }
             else
             {
