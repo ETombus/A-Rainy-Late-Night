@@ -13,7 +13,6 @@ public class PlayerStateHandler : MonoBehaviour
     private bool midJump = false;
 
     public float maxJumpDuration = 0.5f;
-    private bool grappleJump = false;
 
     [Header("Gravity")]
     public float gravityUpwards = 4;
@@ -48,7 +47,6 @@ public class PlayerStateHandler : MonoBehaviour
 
     [SerializeField] public MovementStates currentMoveState;
 
-
     void Start()
     {
         walkingScript = GetComponent<Walking>();
@@ -61,17 +59,12 @@ public class PlayerStateHandler : MonoBehaviour
 
     void Update()
     {
-        if (Grapple.stuck && currentMoveState != MovementStates.Jumping)
-        {
-            currentMoveState = MovementStates.Grappling;
-        }
-
         if (currentMoveState != MovementStates.Grappling)
         {
             ManageGravity();
             ManageMovingStates();
         }
-        else if (currentMoveState == MovementStates.Grappling && !Grapple.stuck)
+        else if (currentMoveState == MovementStates.Grappling)
         {
             currentMoveState = MovementStates.AirMoving;
         }
@@ -130,10 +123,9 @@ public class PlayerStateHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (currentMoveState == MovementStates.Jumping)
         {
-            jumpingScript.Jump(inputX,grappleJump ? true : false); // In case of grapple jump needing diffrent directional force
+            jumpingScript.Jump(inputX);
 
             walkingScript.UpdateCurrentVelocity();
             midJump = false;
@@ -143,7 +135,6 @@ public class PlayerStateHandler : MonoBehaviour
         {
             walkingScript.Movement(inputX, isGrounded);
         }
-
     }
 
 
@@ -157,18 +148,6 @@ public class PlayerStateHandler : MonoBehaviour
             currentMoveState = MovementStates.Jumping;
             Invoke(nameof(EndJump), maxJumpDuration);
         }
-
-        if (currentMoveState == MovementStates.Grappling)
-        {
-            grappleJump = true;
-            pressingJump = true;
-            midJump = true;
-            gravityCurveTransitionTime = 0;
-            currentMoveState = MovementStates.Jumping;
-            Invoke(nameof(EndJump), maxJumpDuration);
-        }
-        else
-            grappleJump = false;
     }
 
     public void JumpReleased()
@@ -185,8 +164,8 @@ public class PlayerStateHandler : MonoBehaviour
         pressingJump = false;
     }
 
-
-
-
-
+    public void Grapple()
+    {
+        currentMoveState = MovementStates.Grappling;
+    }
 }
