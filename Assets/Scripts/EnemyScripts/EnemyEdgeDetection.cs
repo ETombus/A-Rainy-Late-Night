@@ -13,12 +13,10 @@ public class EnemyEdgeDetection : MonoBehaviour
 
         if(hit)
         {
-            Debug.Log(gameObject.name + " detected ground");
             return true;
         }
         else
         {
-            Debug.Log(gameObject.name + "did not detect ground");
             return false;
         }
     }

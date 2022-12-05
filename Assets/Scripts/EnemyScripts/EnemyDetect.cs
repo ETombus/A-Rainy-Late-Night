@@ -54,7 +54,7 @@ public class EnemyDetect : MonoBehaviour
 
                 handler.shooting.isShooting = true;
             }
-        } 
+        }
 
         //when the player leaves the viewarea, enter Search Mode
         //this is based on how long the player is within view
@@ -66,12 +66,15 @@ public class EnemyDetect : MonoBehaviour
             //if (timer < 0)
             //    timer = 0;
 
+            handler.currentMode = EnemyHandler.Mode.Search;
+            indicatorRenderer.sprite = indicators[0];
             // Change to Alert mode then possibly search mode
         }
         else if (!playerVisable && timer <= 0) //the enemy has lost sight and interest
         {
             indicatorRenderer.gameObject.SetActive(false);
             handler.currentMode = EnemyHandler.Mode.Patrol;
+            handler.movement.FlipRotationPublic();
         }
     }
 
@@ -105,7 +108,6 @@ public class EnemyDetect : MonoBehaviour
         if (collision.tag == "Player")
         {
             lastSeenPlayerLocation = player.transform.position;
-            Debug.Log(lastSeenPlayerLocation);
 
             colliderIndex--;
             if (colliderIndex == 0)

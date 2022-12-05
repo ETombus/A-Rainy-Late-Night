@@ -10,7 +10,6 @@ public class BulletScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Collided With Player");
             collision.gameObject.GetComponent<Healthbar>().ReduceHealth(damage);
             
             Destroy(this.gameObject);
