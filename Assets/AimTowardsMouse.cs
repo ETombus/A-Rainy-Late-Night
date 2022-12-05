@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 
 public class AimTowardsMouse : MonoBehaviour
 {
-    FlipPlayer flipX;
-    Vector3 mousePos;
+    Vector2 mousePos;
     float angle;
 
+
+
+    FlipPlayer flipX;
     Slice slice;
 
     private void Start()
@@ -21,7 +23,9 @@ public class AimTowardsMouse : MonoBehaviour
     private void Update()
     {
         mousePos = Mouse.current.position.ReadValue();
-        mousePos.z = Camera.main.transform.position.z;
+        Vector2 camMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        flipX.MoveCameraInbetween(camMousePos);
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos.x -= objectPos.x;

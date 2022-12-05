@@ -6,12 +6,11 @@ using UnityEngine.Windows;
 public class FlipPlayer : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] SpriteRenderer playerSprite;
-    [SerializeField] Transform umbrellaTrans;
+    //[SerializeField] Transform umbrellaTrans;
     [SerializeField] Transform aimTransform;
     [SerializeField] Transform cameraTarget;
     [SerializeField] float cameraTargetXPos;
-    SpriteRenderer umbrellaSR;
+    //SpriteRenderer umbrellaSR;
     Vector2 umbrellaPos;
     Vector2 aimPos;
     public static bool flippedX;
@@ -20,27 +19,26 @@ public class FlipPlayer : MonoBehaviour
 
     private void Awake()
     {
-        playerSprite = GetComponentInChildren<SpriteRenderer>(false);
 
         flippedX = false;
-        umbrellaSR = umbrellaTrans.gameObject.GetComponent<SpriteRenderer>();
+        //umbrellaSR = umbrellaTrans.gameObject.GetComponent<SpriteRenderer>();
     }
 
+    public void MoveCameraInbetween(Vector2 secondPosition)
+    {
+        
+        cameraTarget.position = secondPosition + ((Vector2)transform.position - secondPosition)/1.5f;
+    }
     public void FlipPlayerX()
     {
-        playerSprite.flipX = !playerSprite.flipX;
-        umbrellaSR.flipX = !umbrellaSR.flipX;
+        //umbrellaSR.flipX = !umbrellaSR.flipX;
 
-        cameraTargetXPos = cameraTarget.localPosition.x;
-        umbrellaPos = umbrellaTrans.localPosition;
+        //umbrellaPos = umbrellaTrans.localPosition;
         aimPos = aimTransform.localPosition;
 
         cameraTargetXPos *= -1;
         umbrellaPos.x *= -1;
-        aimPos.x *= -1;
 
-        cameraTarget.localPosition = new(cameraTargetXPos, 0);
-        umbrellaTrans.localPosition = new(umbrellaPos.x, umbrellaPos.y);
-        aimTransform.localPosition = new(aimPos.x, aimPos.y);
+        //umbrellaTrans.localPosition = new(umbrellaPos.x, umbrellaPos.y);
     }
 }

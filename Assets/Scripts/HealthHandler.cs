@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class HealthHandler : MonoBehaviour
 {
     public float health;
-
     public int maxHealth = 100;
+
+    [SerializeField] GameObject bloodParticles;
 
     private void Start()
     {
@@ -17,7 +18,12 @@ public class HealthHandler : MonoBehaviour
     public void ReduceHealth(float reducedHealth)
     {
         if (health - reducedHealth > 0)
+        {
             health -= reducedHealth;
+            if (bloodParticles != null)
+                Instantiate(bloodParticles, transform.position, transform.rotation);
+        }
+
         else
             Death();
     }
@@ -30,6 +36,12 @@ public class HealthHandler : MonoBehaviour
     void Death()
     {
         //Add code for death
-        Debug.Log(gameObject.name + " Died");
+
+        //Debug.Log(gameObject.name + " Died");
+
+        if (bloodParticles != null)
+            Instantiate(bloodParticles, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }
