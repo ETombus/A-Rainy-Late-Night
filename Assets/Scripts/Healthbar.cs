@@ -12,6 +12,7 @@ public class Healthbar : HealthHandler
     private void Start()
     {
         healthBar.maxValue = maxHealth;
+        health = maxHealth;
     }
 
     public void ReduceHealth(int reduceValue)

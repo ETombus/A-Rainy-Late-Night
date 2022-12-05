@@ -13,6 +13,7 @@ public class EnemyDetect : MonoBehaviour
     [SerializeField] private float timer = 0;
     [SerializeField] private bool playerVisable = false;
     [SerializeField] private GameObject player;
+    public Vector2 lastSeenPlayerLocation;
 
     EnemyHandler handler;
 
@@ -36,27 +37,30 @@ public class EnemyDetect : MonoBehaviour
             CheckIfBlockedByTerrain();
         }
 
-        if (playerVisable)
+        if (playerVisable) //only happens of CheckIfBlockedByTerrain returns false
         {
+            //set indicator above enemies head
             indicatorRenderer.gameObject.SetActive(true);
             indicatorRenderer.sprite = indicators[0];
 
-            handler.movement.isPatroling = false;
-            
-            timer += Time.deltaTime;
+            handler.currentMode = EnemyHandler.Mode.Aggression; //stops the enemy from moving
+
+            timer += Time.deltaTime; //allow the player some time to react, as long as timer is lower than detectTime
+
+            //aggression mode
             if (timer >= detectTime)
             {
                 indicatorRenderer.sprite = indicators[1];
 
                 handler.shooting.isShooting = true;
-                //Insert Agression mode here
             }
-        }
+        } 
 
+        //when the player leaves the viewarea, enter Search Mode
+        //this is based on how long the player is within view
         if (!playerVisable && timer > 0)
         {
             handler.shooting.isShooting = false;
-
 
             timer -= Time.deltaTime;
             //if (timer < 0)
@@ -64,10 +68,10 @@ public class EnemyDetect : MonoBehaviour
 
             // Change to Alert mode then possibly search mode
         }
-        else if (!playerVisable && timer <= 0)
+        else if (!playerVisable && timer <= 0) //the enemy has lost sight and interest
         {
             indicatorRenderer.gameObject.SetActive(false);
-            handler.movement.isPatroling = true;
+            handler.currentMode = EnemyHandler.Mode.Patrol;
         }
     }
 
@@ -86,7 +90,6 @@ public class EnemyDetect : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -101,6 +104,9 @@ public class EnemyDetect : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            lastSeenPlayerLocation = player.transform.position;
+            Debug.Log(lastSeenPlayerLocation);
+
             colliderIndex--;
             if (colliderIndex == 0)
             {

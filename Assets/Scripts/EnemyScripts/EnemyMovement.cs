@@ -17,11 +17,13 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rigBody;
     private int moveIndex = 0;
 
-    public bool isPatroling = true;
+    EnemyHandler handler;
 
     private void Start()
     {
         rigBody = GetComponent<Rigidbody2D>();
+        handler = GetComponent<EnemyHandler>();
+
         for (int i = 0; i < movePoints.Length; i++)
         {
             movePoints[i] += (Vector2)transform.position;
@@ -30,7 +32,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isPatroling)
+        
+        if(handler.currentMode == EnemyHandler.Mode.Patrol)
             PatrolMode();
     }
 

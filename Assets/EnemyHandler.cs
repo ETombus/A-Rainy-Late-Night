@@ -9,13 +9,19 @@ public class EnemyHandler : MonoBehaviour
     public EnemyMovement movement;
     public EnemyDetect detection;
     public EnemyShooting shooting;
+    public EnemyEdgeDetection edgeDetection;
+
+    public enum Mode { Patrol, Aggression, Search }
+    public Mode currentMode;
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
 
         movement = GetComponent<EnemyMovement>();
-        detection = GetComponentInChildren<EnemyDetect>();
         shooting = GetComponent<EnemyShooting>();
+
+        detection = GetComponentInChildren<EnemyDetect>();
+        edgeDetection = GetComponentInChildren<EnemyEdgeDetection>();
     }
 }
