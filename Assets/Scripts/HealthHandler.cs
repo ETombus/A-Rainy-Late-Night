@@ -37,8 +37,6 @@ public class HealthHandler : MonoBehaviour
     {
         //Add code for death
 
-        //Debug.Log(gameObject.name + " Died");
-
         if (bloodParticles != null)
             Instantiate(bloodParticles, transform.position, transform.rotation);
 

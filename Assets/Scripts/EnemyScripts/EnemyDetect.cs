@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
+    [Header("LayerMask")]
     public LayerMask detectableLayers;
 
+    [Header("Detection and Visibility")]
     public float detectTime = 1;
+    [SerializeField] private float timer = 0;
+    [SerializeField] private bool playerVisable = false;
+    [SerializeField] private GameObject player;
 
-    [SerializeField]
-    private float timer = 0;
-
-    [SerializeField]
-    private bool playerVisable = false;
-
-    [SerializeField]
-    private GameObject player;
+    EnemyHandler handler;
 
     private bool playerInViewRange = false;
 
@@ -28,6 +26,7 @@ public class EnemyDetect : MonoBehaviour
     private void Start()
     {
         indicatorRenderer.gameObject.SetActive(false);
+        handler = GetComponentInParent<EnemyHandler>();
     }
 
     private void Update()
@@ -42,24 +41,31 @@ public class EnemyDetect : MonoBehaviour
             indicatorRenderer.gameObject.SetActive(true);
             indicatorRenderer.sprite = indicators[0];
 
-            timer += Time.deltaTime;
+            handler.movement.isPatroling = false;
 
+            timer += Time.deltaTime;
             if (timer >= detectTime)
             {
                 indicatorRenderer.sprite = indicators[1];
-                //Debug.Log("Fire at player!");
+
+                handler.shooting.isShooting = true;
                 //Insert Agression mode here
             }
         }
 
         if (!playerVisable && timer > 0)
         {
-            Debug.Log("Alert");
             timer -= Time.deltaTime;
-            if (timer < 0)
-                timer = 0;
+            //if (timer < 0)
+            //    timer = 0;
 
             // Change to Alert mode then possibly search mode
+        }
+        else if (!playerVisable && timer <= 0)
+        {
+            indicatorRenderer.gameObject.SetActive(false);
+            handler.shooting.isShooting = false;
+            handler.movement.isPatroling = true;
         }
     }
 
@@ -68,7 +74,7 @@ public class EnemyDetect : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 20, detectableLayers);
         Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
 
-        if (hit.collider.gameObject.layer == 3) // Terrain Layer
+        if (hit.collider != null) // Terrain Layer
         {
             playerVisable = false;
         }

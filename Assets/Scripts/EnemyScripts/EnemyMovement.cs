@@ -17,6 +17,8 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rigBody;
     private int moveIndex = 0;
 
+    public bool isPatroling = true;
+
     private void Start()
     {
         rigBody = GetComponent<Rigidbody2D>();
@@ -28,7 +30,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PatrolMode();
+        if (isPatroling)
+            PatrolMode();
     }
 
     bool idle = false;
