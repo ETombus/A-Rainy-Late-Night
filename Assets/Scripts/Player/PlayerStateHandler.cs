@@ -163,4 +163,9 @@ public class PlayerStateHandler : MonoBehaviour
     {
         pressingJump = false;
     }
+
+    public void Grapple()
+    {
+        currentMoveState = MovementStates.Grappling;
+    }
 }
