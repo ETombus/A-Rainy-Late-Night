@@ -397,7 +397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2112362775
 Transform:
   m_ObjectHideFlags: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yJumpForce: 20
   xJumpForce: 1.01
-  grapplexJumpForce: 8
+  grapplexJumpForce: 18.6
 --- !u!114 &1426632619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   run: {fileID: 11400000, guid: 70a804d0a22fc3d4db1c6dab5a597469, type: 2}
   idle: {fileID: 11400000, guid: 237b7ae693ef613459df6d6e1b082b81, type: 2}
-  jump: {fileID: 11400000, guid: 5c373abdc2a4dc640a2130a5d94c7d1c, type: 2}
+  jump: {fileID: 11400000, guid: d5d9a90a2686de84b9323f4904e11b8c, type: 2}
 --- !u!33 &5990824859732837804
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -20,7 +20,8 @@ public class HealthHandler : MonoBehaviour
         if (health - reducedHealth > 0)
         {
             health -= reducedHealth;
-            Instantiate(bloodParticles, transform.position, transform.rotation);
+            if (bloodParticles != null)
+                Instantiate(bloodParticles, transform.position, transform.rotation);
         }
 
         else
@@ -38,7 +39,9 @@ public class HealthHandler : MonoBehaviour
 
         //Debug.Log(gameObject.name + " Died");
 
-        Instantiate(bloodParticles, transform.position, transform.rotation);
+        if (bloodParticles != null)
+            Instantiate(bloodParticles, transform.position, transform.rotation);
+
         Destroy(gameObject);
     }
 }

@@ -22,6 +22,14 @@ public class EnemyDetect : MonoBehaviour
 
     private int colliderIndex;
 
+    [SerializeField] Sprite[] indicators; // 0 = ?, 1 = !
+    [SerializeField] SpriteRenderer indicatorRenderer;
+
+    private void Start()
+    {
+        indicatorRenderer.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         if (playerInViewRange)
@@ -31,10 +39,14 @@ public class EnemyDetect : MonoBehaviour
 
         if (playerVisable)
         {
+            indicatorRenderer.gameObject.SetActive(true);
+            indicatorRenderer.sprite = indicators[0];
+
             timer += Time.deltaTime;
 
             if (timer >= detectTime)
             {
+                indicatorRenderer.sprite = indicators[1];
                 //Debug.Log("Fire at player!");
                 //Insert Agression mode here
             }
@@ -64,8 +76,6 @@ public class EnemyDetect : MonoBehaviour
         {
             playerVisable = true;
         }
-
-        //Debug.Log("Currently looking at: " + hit.collider.gameObject.tag);
     }
 
 
@@ -77,8 +87,6 @@ public class EnemyDetect : MonoBehaviour
             player = collision.gameObject;
             colliderIndex++;
         }
-
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)
