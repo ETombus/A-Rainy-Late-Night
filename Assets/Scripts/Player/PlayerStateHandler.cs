@@ -23,14 +23,12 @@ public class PlayerStateHandler : MonoBehaviour
     private float gravityCurveTransitionTime = 0;
 
 
-
     private float baseGravity;
     private float currentGravity;
     private float gravityMultiplier = 1;
 
     [Header("Input")]
     public float inputX;
-    
 
     [Header("Components")]
     private Walking walkingScript;
@@ -73,14 +71,8 @@ public class PlayerStateHandler : MonoBehaviour
         {
             currentMoveState = MovementStates.AirMoving;
             grappleGravity = true;
-            //Invoke(nameof(turnOffGrappleGravity), 0.2f);
         }
     }
-
-<<<<<<< Updated upstream
-    void turnOffGrappleGravity() { grappleGravity = false; }
-=======
->>>>>>> Stashed changes
 
     void ManageGravity()
     {
