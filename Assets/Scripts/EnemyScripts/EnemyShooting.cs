@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyShooting : MonoBehaviour
 {
-    public bool isShooting;
+    //public bool isShooting;
     [SerializeField] float shootCooldown = 0.5f;
     float shootTimer;
     bool canShoot;
@@ -21,7 +21,7 @@ public class EnemyShooting : MonoBehaviour
 
     private void Update()
     {
-        if (isShooting)
+        if (handler.isAttacking)
         {
             if (shootTimer > 0)
                 shootTimer -= Time.deltaTime;

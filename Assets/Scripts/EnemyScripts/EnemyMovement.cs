@@ -65,7 +65,7 @@ public class EnemyMovement : MonoBehaviour
             MoveEnemy(handler.detection.lastSeenPlayerLocation);
     }
 
-    void MoveEnemy(Vector2 targetPos)
+   public void MoveEnemy(Vector2 targetPos)
     {
         rigBody.AddForce(new Vector2(targetPos.x - transform.position.x, 0).normalized * acceleration);
 

@@ -40,6 +40,7 @@ public class HealthHandler : MonoBehaviour
         if (bloodParticles != null)
             Instantiate(bloodParticles, transform.position, transform.rotation);
 
-        Destroy(gameObject);
+        if (gameObject != null)
+            Destroy(gameObject);
     }
 }

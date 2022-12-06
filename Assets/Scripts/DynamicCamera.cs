@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class DynamicCamera : MonoBehaviour
 {
     //Components
-    Transform cameraTarget;
     Walking playerWalk;
 
     //Vectors
@@ -101,7 +100,6 @@ public class DynamicCamera : MonoBehaviour
 
         if (mousePos.y > Camera.main.pixelHeight * 0.85f)
         {
-            Debug.Log("Looking Up");
             yPos = lookUpDist;
         }
         else if (mousePos.y < Camera.main.pixelHeight * 0.5f)

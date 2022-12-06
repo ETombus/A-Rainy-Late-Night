@@ -21,7 +21,7 @@ public class EnemyDetect : MonoBehaviour
 
     private int colliderIndex;
 
-    [SerializeField] Sprite[] indicators; // 0 = ?, 1 = !
+    [SerializeField] Sprite[] indicators; // 0 = ?, 1 = !, 2 = anger
     [SerializeField] SpriteRenderer indicatorRenderer;
 
     private void Start()
@@ -50,9 +50,9 @@ public class EnemyDetect : MonoBehaviour
             //aggression mode
             if (timer >= detectTime)
             {
-                indicatorRenderer.sprite = indicators[1];
+                indicatorRenderer.sprite = indicators[2];
 
-                handler.shooting.isShooting = true;
+                handler.isAttacking = true;
             }
         }
 
@@ -60,14 +60,14 @@ public class EnemyDetect : MonoBehaviour
         //this is based on how long the player is within view
         if (!playerVisable && timer > 0)
         {
-            handler.shooting.isShooting = false;
+            handler.isAttacking = false;
 
             timer -= Time.deltaTime;
             //if (timer < 0)
             //    timer = 0;
 
             handler.currentMode = EnemyHandler.Mode.Search;
-            indicatorRenderer.sprite = indicators[0];
+            indicatorRenderer.sprite = indicators[1];
             // Change to Alert mode then possibly search mode
         }
         else if (!playerVisable && timer <= 0) //the enemy has lost sight and interest

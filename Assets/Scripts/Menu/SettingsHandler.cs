@@ -13,9 +13,27 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider soundSlider;
 
+    [Header("Toggles")]
+    [SerializeField] Toggle muteMusicToggle;
+    [SerializeField] Toggle muteSoundToggle;
+
     private void Start()
     {
         SetSliderValues();
+
+        if (PlayerPrefs.GetFloat("MusicMuted") == 0) { muteMusicToggle.isOn = false; }
+        else
+        {
+            muteMusicToggle.isOn = true;
+            MuteMusic(true);
+        }
+
+        if (PlayerPrefs.GetFloat("SoundMuted") == 0) { muteSoundToggle.isOn = false; }
+        else
+        {
+            muteSoundToggle.isOn = true;
+            MuteSound(true);
+        }
     }
 
     void SetSliderValues()
@@ -44,6 +62,7 @@ public class SettingsHandler : MonoBehaviour
             //Debug.Log("Muted Music");
             musicSlider.interactable = false;
             mixer.SetFloat("MusicVol", -80);
+            PlayerPrefs.SetFloat("MusicMuted", 1);
         }
         else
         {
@@ -52,6 +71,7 @@ public class SettingsHandler : MonoBehaviour
             mixer.SetFloat("MusicVol", ConvertLog(musicSlider.value));
             PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
             //Debug.Log("Music Slider value is: " + musicSlider.value);
+            PlayerPrefs.SetFloat("MusicMuted", 0);
         }
     }
 
@@ -61,12 +81,14 @@ public class SettingsHandler : MonoBehaviour
         {
             soundSlider.interactable = false;
             mixer.SetFloat("SoundVol", -80);
+            PlayerPrefs.SetFloat("SoundMuted", 1);
         }
         else
         {
             soundSlider.interactable = true;
             mixer.SetFloat("SoundVol", ConvertLog(soundSlider.value));
             PlayerPrefs.SetFloat("SoundVolume", soundSlider.value);
+            PlayerPrefs.SetFloat("SoundMuted", 0);
         }
     }
 
