@@ -5,44 +5,83 @@ using UnityEngine;
 public class LedgeClimb : MonoBehaviour
 {
     private PlayerStateHandler stateHandeler;
+    private Rigidbody2D rbody;
 
     public Transform wallCheck;
     public Transform ledgeCheck;
+    public Transform endPosCkeck;
 
-    private Vector2 ledgePosBot;
-    private Vector2 ledgePos1;
-    private Vector2 ledgePos2;
+    private Vector2 endPos;
+    public Vector2 endPosOffset;
 
+    public float climbSpeed;
 
-
-    public float wallCheckDistance = 5;
-    public LayerMask whatIsTerrain;
+    public float groundCheckDistance = 1;
+    public float wallCheckDistance = 1;
 
     private bool isTuchingLedge = false;
     private bool isTuchingWall = false;
 
-    private bool canClimbLedge = false;
+    private bool isClimbLedge = false;
+    [SerializeField] private bool ledgeDetected = false;
 
-    [SerializeField]private bool ledgeDetected = false;
+    public LayerMask whatIsTerrain;
 
     private void Start()
     {
         stateHandeler = GetComponentInParent<PlayerStateHandler>();
-    }
-
-
-
-    void CheckLedgeClimb()
-    {
-        if(ledgeDetected && !canClimbLedge)
-        {
-            canClimbLedge=true;
-        }
+        rbody = GetComponentInParent<Rigidbody2D>();
     }
 
     private void Update()
-    {        
+    {
         CheckDetection();
+        CheckLedgeClimb();
+
+        if (isClimbLedge)
+            ClimbLedge();
+
+        Turn();
+    }
+
+    void ClimbLedge()
+    {
+        rbody.simulated = false;
+
+        transform.parent.position = Vector2.MoveTowards(transform.parent.position, endPos + endPosOffset, climbSpeed * Time.deltaTime);
+
+
+        //Debug.Log(((Vector2)transform.parent.position - (endPos + endPosOffset)).magnitude);
+
+        if (((Vector2)transform.parent.position - (endPos + endPosOffset)).magnitude <= 0)
+        {
+            resetClimb();
+        }
+    }
+
+    void resetClimb()
+    {
+        rbody.simulated = true;
+        rbody.velocity = Vector2.zero;
+        stateHandeler.UpdateAcceleration();
+
+        isClimbLedge = false;
+    }
+
+    void CheckLedgeClimb()
+    {
+        if (ledgeDetected && !isClimbLedge)
+        {
+            endPos = findEndPos();
+            isClimbLedge = true;
+        }
+    }
+
+    private Vector2 findEndPos()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(endPosCkeck.position, Vector2.down, groundCheckDistance, whatIsTerrain);
+
+        return hit.point;
     }
 
     void CheckDetection()
@@ -59,13 +98,32 @@ public class LedgeClimb : MonoBehaviour
         Debug.DrawRay(ledgeCheck.position, transform.right * wallCheckDistance, raycolor);
 
 
-
+        Debug.DrawRay(endPosCkeck.position, Vector2.down * groundCheckDistance);
 
         if (isTuchingWall && !isTuchingLedge && !ledgeDetected)
         {
             ledgeDetected = true;
         }
+        else
+        {
+            ledgeDetected = false;
+        }
+    }
+    void Turn()
+    {
+        if(stateHandeler.inputX > 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+        else if(stateHandeler.inputX < 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(endPos, 0.2f);
+    }
 
 }

@@ -31,6 +31,7 @@ public class PlayerStateHandler : MonoBehaviour
     [Header("Input")]
     public float inputX;
     
+
     [Header("Components")]
     private Walking walkingScript;
     private PlayerJump jumpingScript;
@@ -45,7 +46,7 @@ public class PlayerStateHandler : MonoBehaviour
         AirMoving,
         Gliding, //Not implemented yet
         Jumping,
-        Grappling
+        Grappling,
     }
 
     [SerializeField] public MovementStates currentMoveState;
@@ -76,7 +77,10 @@ public class PlayerStateHandler : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     void turnOffGrappleGravity() { grappleGravity = false; }
+=======
+>>>>>>> Stashed changes
 
     void ManageGravity()
     {
@@ -108,6 +112,13 @@ public class PlayerStateHandler : MonoBehaviour
         rbody.gravityScale = currentGravity * gravityMultiplier;
     }
 
+    public void slopeSlide()
+    {
+
+        rbody.velocity = new Vector2(rbody.velocity.x, -15);
+
+    }
+
     void ManageMovingStates()
     {
         if (!midJump)
@@ -134,10 +145,11 @@ public class PlayerStateHandler : MonoBehaviour
         {
             jumpingScript.Jump(inputX);
 
-            walkingScript.UpdateCurrentVelocity();
+            UpdateAcceleration();
+
             midJump = false;
         }
-        else if (currentMoveState == MovementStates.GroundMoving || 
+        else if (currentMoveState == MovementStates.GroundMoving ||
             currentMoveState == MovementStates.Idle || currentMoveState == MovementStates.AirMoving)
         {
             walkingScript.Movement(inputX, isGrounded);
@@ -148,6 +160,10 @@ public class PlayerStateHandler : MonoBehaviour
         }
     }
 
+    public void UpdateAcceleration()
+    {
+        walkingScript.UpdateCurrentVelocity();
+    }
 
     public void JumpPressed()
     {
