@@ -46,7 +46,7 @@ public class Walking : MonoBehaviour
         if (onGround)
         {
             acceleration = groundAcceleration;
-            decceleration = groundAcceleration;
+            decceleration = groundDecceleration;
             turnSpeed = groundTurnSpeed;
         }
         else

@@ -21,9 +21,13 @@ public class GrappleInput : MonoBehaviour
     [Header("Values")]
     [Range(0, 25)][SerializeField] float hookMaxReach;
     [Range(0, 25)][SerializeField] float maxMouseDistance;
-    [SerializeField] float playerTravelSpeed;
-    [SerializeField] float hookShootSpeed;
     float closestHookDistance;
+
+    [SerializeField] float hookSpeed;
+    [SerializeField] float playerSpeed;
+    [SerializeField] float playerAcceleration;
+    [SerializeField] AnimationCurve playerSpeedOverTime;
+
     public bool canGrapple = true;
 
     private void Awake()
@@ -52,7 +56,7 @@ public class GrappleInput : MonoBehaviour
 
         foreach (GameObject point in hookPoints)
         {
-            float distance = Vector2.Distance(point.transform.position, worldPos);
+            float distance = Vector2.SqrMagnitude((Vector2)point.transform.position - worldPos);
 
             if (distance <= closestHookDistance && RayHitPlayer(point))
             {
@@ -82,21 +86,24 @@ public class GrappleInput : MonoBehaviour
 
     private void ShootGrapple(InputAction.CallbackContext context)
     {
-        float distance = Vector2.Distance(targetPoint.transform.position, worldPos);
+        float distance = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - worldPos);
 
-        Debug.Log("shootInput");
         if (distance <= maxMouseDistance && RayHitPlayer(targetPoint) && canGrapple)
         {
-            Debug.Log("shoot");
+            GetComponent<PlayerStateHandler>().Grapple();
             canGrapple = false;
 
             var hook = Instantiate(hookPrefab, transform.position, Quaternion.identity);
             var hookCS = hook.GetComponent<HookScript>();
+
             hookCS.targetPos = targetPoint.transform.position;
-            hookCS.hookSpeed = hookShootSpeed;
-            hookCS.playerSpeed = playerTravelSpeed;
             hookCS.player = gameObject;
             hookCS.ropeStart = ropeStart;
+
+            hookCS.hookSpeed = hookSpeed;
+            hookCS.playerSpeed = playerSpeed;
+            hookCS.playerAcceleration = playerAcceleration;
+            hookCS.playerSpeedOverTime = playerSpeedOverTime;
         }
     }
 }
