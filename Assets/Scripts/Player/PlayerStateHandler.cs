@@ -8,6 +8,8 @@ public class PlayerStateHandler : MonoBehaviour
 {
     [Header("Jump variables")]
     public bool isGrounded;
+    private bool grappleGravity;
+
 
     private bool pressingJump = false;
     private bool midJump = false;
@@ -32,6 +34,7 @@ public class PlayerStateHandler : MonoBehaviour
     [Header("Components")]
     private Walking walkingScript;
     private PlayerJump jumpingScript;
+    private GrappleInput grappleScript;
     private Rigidbody2D rbody;
 
 
@@ -51,6 +54,7 @@ public class PlayerStateHandler : MonoBehaviour
     {
         walkingScript = GetComponent<Walking>();
         jumpingScript = GetComponent<PlayerJump>();
+        grappleScript = GetComponent<GrappleInput>();
         rbody = GetComponent<Rigidbody2D>();
 
         currentMoveState = MovementStates.GroundMoving;
@@ -64,11 +68,15 @@ public class PlayerStateHandler : MonoBehaviour
             ManageGravity();
             ManageMovingStates();
         }
-        else if (currentMoveState == MovementStates.Grappling)
+        else if (currentMoveState == MovementStates.Grappling && grappleScript.canGrapple)
         {
             currentMoveState = MovementStates.AirMoving;
+            grappleGravity = true;
+            //Invoke(nameof(turnOffGrappleGravity), 0.2f);
         }
     }
+
+    void turnOffGrappleGravity() { grappleGravity = false; }
 
     void ManageGravity()
     {
@@ -84,7 +92,7 @@ public class PlayerStateHandler : MonoBehaviour
         }
         else // in air and not in jump
         {
-            if (rbody.velocity.y > 0)
+            if (rbody.velocity.y > 0 && !grappleGravity)
             {
                 gravityMultiplier = 2;
             }
@@ -95,7 +103,6 @@ public class PlayerStateHandler : MonoBehaviour
 
             gravityCurveTransitionTime += Time.deltaTime;
             currentGravity = Mathf.Lerp(gravityUpwards, downwardGravity, jumpGravityTransitionSpeed.Evaluate(gravityCurveTransitionTime));
-
         }
 
         rbody.gravityScale = currentGravity * gravityMultiplier;
@@ -135,12 +142,16 @@ public class PlayerStateHandler : MonoBehaviour
         {
             walkingScript.Movement(inputX, isGrounded);
         }
+        else
+        {
+            walkingScript.UpdateCurrentVelocity();
+        }
     }
 
 
     public void JumpPressed()
     {
-        if (isGrounded)
+        if (isGrounded && currentMoveState != MovementStates.Grappling)
         {
             pressingJump = true;
             midJump = true;
