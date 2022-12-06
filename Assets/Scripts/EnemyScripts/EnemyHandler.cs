@@ -11,7 +11,7 @@ public class EnemyHandler : MonoBehaviour
     public EnemyShooting shooting;
     public EnemyEdgeDetection edgeDetection;
 
-    public enum Mode { Patrol, Aggression, Search }
+    public enum Mode { Patrol, Aggression, Search, Idle }
     public Mode currentMode;
 
     private void Start()
