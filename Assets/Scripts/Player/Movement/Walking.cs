@@ -76,5 +76,9 @@ public class Walking : MonoBehaviour
         currentVelocity.y = rbody.velocity.y;
         rbody.velocity = currentVelocity;
     }
-
+    
+    public Vector2 PublicMovementVector()
+    {
+        return currentVelocity;
+    }
 }

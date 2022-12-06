@@ -10,6 +10,7 @@ public class PlayerStateHandler : MonoBehaviour
     public bool isGrounded;
     private bool grappleGravity;
 
+
     private bool pressingJump = false;
     private bool midJump = false;
 

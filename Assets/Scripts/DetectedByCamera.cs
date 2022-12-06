@@ -33,7 +33,6 @@ public class DetectedByCamera : MonoBehaviour
 
     void ActivateMarker()
     {
-        Debug.Log("Activated Marker");
         marker = transform.GetChild(1).gameObject;
         if (timeToShowMarker > 0)
         {

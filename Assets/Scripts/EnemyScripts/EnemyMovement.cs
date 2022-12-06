@@ -15,11 +15,15 @@ public class EnemyMovement : MonoBehaviour
     public float targetOffsetAmmount = 1;
 
     private Rigidbody2D rigBody;
-    private int moveIndex = 0;
+    public int moveIndex = 0;
+
+    EnemyHandler handler;
 
     private void Start()
     {
         rigBody = GetComponent<Rigidbody2D>();
+        handler = GetComponent<EnemyHandler>();
+
         for (int i = 0; i < movePoints.Length; i++)
         {
             movePoints[i] += (Vector2)transform.position;
@@ -28,7 +32,13 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PatrolMode();
+        if (!handler.edgeDetection.DetectEdges())
+            rigBody.velocity *= decceleration;
+
+        if (handler.currentMode == EnemyHandler.Mode.Patrol)
+            PatrolMode();
+        else if (handler.currentMode == EnemyHandler.Mode.Search)
+            SearchForPlayer();
     }
 
     bool idle = false;
@@ -45,11 +55,17 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            moveEnemy(movePoints[moveIndex]);
+            MoveEnemy(movePoints[moveIndex]);
         }
     }
 
-    void moveEnemy(Vector2 targetPos)
+    void SearchForPlayer()
+    {
+        if (handler.edgeDetection.DetectEdges())
+            MoveEnemy(handler.detection.lastSeenPlayerLocation);
+    }
+
+    void MoveEnemy(Vector2 targetPos)
     {
         rigBody.AddForce(new Vector2(targetPos.x - transform.position.x, 0).normalized * acceleration);
 
@@ -65,18 +81,22 @@ public class EnemyMovement : MonoBehaviour
             moveIndex = 0;
         else
             moveIndex++;
-        FlipRotation(movePoints[moveIndex].x - transform.position.x);
 
+        FlipRotation(movePoints[moveIndex].x - transform.position.x);
 
         idle = false;
     }
 
-    void FlipRotation(float direction)
+    private void FlipRotation(float direction)
     {
         if (direction < 0)
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
         else
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
+    }
+    public void FlipRotationPublic()
+    {
+        FlipRotation(movePoints[moveIndex].x - transform.position.x);
     }
 
     private void OnDrawGizmos()
@@ -99,8 +119,5 @@ public class EnemyMovement : MonoBehaviour
                 Gizmos.DrawWireSphere(movePoints[x], 0.5f);
             }
         }
-
-
     }
-
 }

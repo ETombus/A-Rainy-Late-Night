@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class MenuHandler : MonoBehaviour
 {
     [Header("Panels")]
+    [SerializeField] GameObject[] panels; //0 = main panel, 1 = settingspanel, 2 = tutorial, 3 = credits
+    [SerializeField] int panelIndex = 0;
     [SerializeField] GameObject mainPanel;
+    [SerializeField] GameObject settingsPanel;
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject creditsPanel;
-    [SerializeField] GameObject settingsPanel;
 
     [Header("Variables")]
     [SerializeField] float speed = 50;
@@ -26,56 +28,36 @@ public class MenuHandler : MonoBehaviour
 
     private void Start()
     {
-        if(PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
+        if (PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
         {
             fadeIn.SetActive(false);
             introMarker.SetActive(false);
         }
     }
 
-    private void Update()
-    {
-        if (moveCameraUp)
-        {
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, tutorialPanel.transform.position + offset, speed * Time.deltaTime);
-        }
-        else
-        {
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, Vector3.zero + offset, speed * Time.deltaTime);
-        }
-
-        if (showSettings)
-        {
-            mainPanel.transform.position = Vector3.MoveTowards(mainPanel.transform.position, new(5, 0, 0), speed * Time.deltaTime);
-        }
-        else
-        {
-            mainPanel.transform.position = Vector3.MoveTowards(mainPanel.transform.position, Vector3.zero, speed * Time.deltaTime);
-        }
-    }
-
     public void ButtonStart()
     {
         Debug.Log("Game Started");
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene(1);
         PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
-    }
-
-    public void ButtonTutorial()
-    {
-        //tutorialPanel.SetActive(true);
-        moveCameraUp = true;
-    }
-
-    public void ButtonCredits()
-    {
-        creditsPanel.SetActive(true);
     }
 
     public void ButtonSettings()
     {
-        showSettings = true;
-        settingsPanel.SetActive(true);
+        SetActivePanel(1);
+        panelIndex = 1;
+    }
+
+    public void ButtonTutorial()
+    {
+        SetActivePanel(2);
+        panelIndex = 2;
+    }
+
+    public void ButtonCredits()
+    {
+        SetActivePanel(3);
+        panelIndex = 3;
     }
 
     public void ButtonExit()
@@ -85,19 +67,28 @@ public class MenuHandler : MonoBehaviour
         PlayerPrefs.DeleteKey("PlayIntroAnimation"); //1 = false, 0 = true
     }
 
-    public void BackTutorial()
+    public void ButtonLeft()
     {
-        moveCameraUp = false;
+        if (panelIndex > 0)
+            panelIndex--;
+
+        SetActivePanel(panelIndex);
     }
 
-    public void BackCredits()
+    public void ButtonRight()
     {
-        creditsPanel.SetActive(false);
+        if (panelIndex < panels.Length - 1)
+            panelIndex++;
+
+        SetActivePanel(panelIndex);
     }
 
-    public void BackSettings()
+    void SetActivePanel(int index)
     {
-        showSettings = false;
-        settingsPanel.SetActive(false);
+        for (int i = 0; i < panels.Length; i++)
+        {
+            panels[i].SetActive(false);
+        }
+        panels[index].SetActive(true);
     }
 }
