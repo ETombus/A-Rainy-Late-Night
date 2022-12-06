@@ -659,7 +659,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   extraLeangth: 1
 --- !u!114 &1315558754864668100
 MonoBehaviour:
@@ -804,8 +804,8 @@ MonoBehaviour:
   groundDecceleration: 40
   groundTurnSpeed: 120
   airAcceleration: 30
-  airDecceleration: 40
-  airTurnSpeed: 70
+  airDecceleration: 10
+  airTurnSpeed: 40
   maxMoveSpeed: 12
 --- !u!114 &7478751764362519482
 MonoBehaviour:
@@ -854,9 +854,35 @@ MonoBehaviour:
   hookPrefab: {fileID: 8932108329419228117, guid: 04bf49ff919ebb24e95c7a7449f31f7a, type: 3}
   ropeStart: {fileID: 8540969607539411500}
   hookMaxReach: 15
-  maxMouseDistance: 5
-  playerTravelSpeed: 7.5
-  hookShootSpeed: 45
+  maxMouseDistance: 10
+  hookSpeed: 40
+  playerSpeed: 45
+  playerAcceleration: 2.5
+  playerSpeedOverTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0041656494
+      value: 0.0023498535
+      inSlope: 0.011835578
+      outSlope: 0.011835578
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.20083764
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.7358494
+      outSlope: 1.7358494
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06276144
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  canGrapple: 1
 --- !u!1 &5762077769975145680
 GameObject:
   m_ObjectHideFlags: 0
