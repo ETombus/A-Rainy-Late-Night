@@ -16,7 +16,7 @@ public class FlipPlayer : MonoBehaviour
     {
         flippedX = false;
     }
-
+    
     //public void MoveCameraInbetween(Vector2 secondPosition)
     //{
     //    cameraTarget.position = secondPosition + ((Vector2)transform.position - secondPosition)/1.5f;

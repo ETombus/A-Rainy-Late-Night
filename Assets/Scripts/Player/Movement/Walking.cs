@@ -46,7 +46,7 @@ public class Walking : MonoBehaviour
         if (onGround)
         {
             acceleration = groundAcceleration;
-            decceleration = groundAcceleration;
+            decceleration = groundDecceleration;
             turnSpeed = groundTurnSpeed;
         }
         else
@@ -76,7 +76,7 @@ public class Walking : MonoBehaviour
         currentVelocity.y = rbody.velocity.y;
         rbody.velocity = currentVelocity;
     }
-
+    
     public Vector2 PublicMovementVector()
     {
         return currentVelocity;
