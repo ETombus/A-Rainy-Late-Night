@@ -23,7 +23,7 @@ public class AimTowardsMouse : MonoBehaviour
         mousePos = Mouse.current.position.ReadValue();
         Vector2 camMousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-        flipX.MoveCameraInbetween(camMousePos);
+        //flipX.MoveCameraInbetween(camMousePos);
 
         Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
         mousePos.x -= objectPos.x;

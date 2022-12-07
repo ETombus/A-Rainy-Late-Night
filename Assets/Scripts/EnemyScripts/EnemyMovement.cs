@@ -35,10 +35,21 @@ public class EnemyMovement : MonoBehaviour
         if (!handler.edgeDetection.DetectEdges())
             rigBody.velocity *= decceleration;
 
-        if (handler.currentMode == EnemyHandler.Mode.Patrol)
-            PatrolMode();
-        else if (handler.currentMode == EnemyHandler.Mode.Search)
-            SearchForPlayer();
+        switch (handler.currentMode)
+        {
+            case EnemyHandler.Mode.Patrol:
+                PatrolMode();
+                break;
+            case EnemyHandler.Mode.Aggression:
+                break;
+            case EnemyHandler.Mode.Search:
+                SearchForPlayer();
+                break;
+            case EnemyHandler.Mode.Idle:
+                break;
+            default:
+                break;
+        }
     }
 
     bool idle = false;
@@ -47,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
         if (transform.position.x - movePoints[moveIndex].x < targetOffsetAmmount && transform.position.x - movePoints[moveIndex].x > -targetOffsetAmmount && !idle)
         {
             idle = true;
-            StartCoroutine(waitBetweenPatrol(1));
+            StartCoroutine(WaitBetweenPatrol(1));
         }
         else if (idle)
         {
@@ -59,21 +70,23 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void SearchForPlayer()
+   public void SearchForPlayer()
     {
         if (handler.edgeDetection.DetectEdges())
             MoveEnemy(handler.detection.lastSeenPlayerLocation);
     }
 
-    void MoveEnemy(Vector2 targetPos)
+    public void MoveEnemy(Vector2 targetPos)
     {
+        if (!handler.edgeDetection.DetectEdges()) { return; }
+
         rigBody.AddForce(new Vector2(targetPos.x - transform.position.x, 0).normalized * acceleration);
 
         if (rigBody.velocity.magnitude > maxSpeed)
             rigBody.velocity = Vector2.ClampMagnitude(rigBody.velocity, maxSpeed);
     }
 
-    IEnumerator waitBetweenPatrol(float idleTime)
+    IEnumerator WaitBetweenPatrol(float idleTime)
     {
         yield return new WaitForSeconds(idleTime);
 
@@ -82,22 +95,12 @@ public class EnemyMovement : MonoBehaviour
         else
             moveIndex++;
 
-        FlipRotation(movePoints[moveIndex].x - transform.position.x);
+        handler.FlipRotation(movePoints[moveIndex].x - transform.position.x);
 
         idle = false;
     }
 
-    private void FlipRotation(float direction)
-    {
-        if (direction < 0)
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
-        else
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-    }
-    public void FlipRotationPublic()
-    {
-        FlipRotation(movePoints[moveIndex].x - transform.position.x);
-    }
+
 
     private void OnDrawGizmos()
     {

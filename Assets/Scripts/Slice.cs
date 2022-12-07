@@ -5,10 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Slice : MonoBehaviour
 {
-    //Inputs
-    PlayerInputs playerControls;
-    private InputAction slice;
-
     [SerializeField] GameObject sliceHitbox;
     [SerializeField] float attackDuration = 0.2f;
     [SerializeField] float attackCooldown = 0.2f;
@@ -21,28 +17,7 @@ public class Slice : MonoBehaviour
 
     //UmbrellaOpener umbrella;
 
-    private void Awake()
-    {
-        playerControls = new PlayerInputs();
-
-        //umbrella = GetComponentInChildren<UmbrellaOpener>();
-    }
-
-
-
-    private void OnEnable()
-    {
-        slice = playerControls.Player.Fire;
-        slice.Enable();
-        slice.performed += StandardSlice;
-    }
-
-    private void OnDisable()
-    {
-        slice.Disable();
-    }
-
-    private void StandardSlice(InputAction.CallbackContext context)
+    public void StandardSlice()
     {
         if (canAttack)
         {

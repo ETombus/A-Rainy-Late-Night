@@ -19,13 +19,6 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] GameObject fadeIn;
     [SerializeField] GameObject introMarker;
 
-    bool moveCameraUp;
-    bool showSettings;
-
-    Vector3 offset = new(0, 0, -10);
-
-    bool playIntroAnimation = true;
-
     private void Start()
     {
         if (PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
@@ -90,5 +83,11 @@ public class MenuHandler : MonoBehaviour
             panels[i].SetActive(false);
         }
         panels[index].SetActive(true);
+    }
+
+    public void ButtonBack()
+    {
+        SetActivePanel(0);
+        panelIndex = 0;
     }
 }

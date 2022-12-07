@@ -8,11 +8,18 @@ public class PlayerStateHandler : MonoBehaviour
 {
     [Header("Jump variables")]
     public bool isGrounded;
+    private bool grappleGravity;
+
 
     private bool pressingJump = false;
     private bool midJump = false;
 
     public float maxJumpDuration = 0.5f;
+
+    [Header("Slope Variables")]
+    public bool onSlope = false;
+    public bool walkableSlope = true;
+    public Vector2 slopeDirection;
 
     [Header("Gravity")]
     public float gravityUpwards = 4;
@@ -21,17 +28,17 @@ public class PlayerStateHandler : MonoBehaviour
     private float gravityCurveTransitionTime = 0;
 
 
-
     private float baseGravity;
     private float currentGravity;
     private float gravityMultiplier = 1;
 
     [Header("Input")]
     public float inputX;
-    
+
     [Header("Components")]
     private Walking walkingScript;
     private PlayerJump jumpingScript;
+    private GrappleInput grappleScript;
     private Rigidbody2D rbody;
 
 
@@ -42,7 +49,7 @@ public class PlayerStateHandler : MonoBehaviour
         AirMoving,
         Gliding, //Not implemented yet
         Jumping,
-        Grappling
+        Grappling,
     }
 
     [SerializeField] public MovementStates currentMoveState;
@@ -51,6 +58,7 @@ public class PlayerStateHandler : MonoBehaviour
     {
         walkingScript = GetComponent<Walking>();
         jumpingScript = GetComponent<PlayerJump>();
+        grappleScript = GetComponent<GrappleInput>();
         rbody = GetComponent<Rigidbody2D>();
 
         currentMoveState = MovementStates.GroundMoving;
@@ -64,9 +72,10 @@ public class PlayerStateHandler : MonoBehaviour
             ManageGravity();
             ManageMovingStates();
         }
-        else if (currentMoveState == MovementStates.Grappling)
+        else if (currentMoveState == MovementStates.Grappling && grappleScript.canGrapple)
         {
             currentMoveState = MovementStates.AirMoving;
+            grappleGravity = true;
         }
     }
 
@@ -84,7 +93,7 @@ public class PlayerStateHandler : MonoBehaviour
         }
         else // in air and not in jump
         {
-            if (rbody.velocity.y > 0)
+            if (rbody.velocity.y > 0 && !grappleGravity)
             {
                 gravityMultiplier = 2;
             }
@@ -95,7 +104,6 @@ public class PlayerStateHandler : MonoBehaviour
 
             gravityCurveTransitionTime += Time.deltaTime;
             currentGravity = Mathf.Lerp(gravityUpwards, downwardGravity, jumpGravityTransitionSpeed.Evaluate(gravityCurveTransitionTime));
-
         }
 
         rbody.gravityScale = currentGravity * gravityMultiplier;
@@ -127,20 +135,32 @@ public class PlayerStateHandler : MonoBehaviour
         {
             jumpingScript.Jump(inputX);
 
-            walkingScript.UpdateCurrentVelocity();
+            UpdateAcceleration();
+
             midJump = false;
         }
-        else if (currentMoveState == MovementStates.GroundMoving || 
-            currentMoveState == MovementStates.Idle || currentMoveState == MovementStates.AirMoving)
+        else if (currentMoveState == MovementStates.GroundMoving || currentMoveState == MovementStates.Idle)
         {
-            walkingScript.Movement(inputX, isGrounded);
+            walkingScript.Movement(inputX, isGrounded, onSlope, walkableSlope, slopeDirection);
+        }
+        else if (currentMoveState == MovementStates.AirMoving)
+        {
+            walkingScript.Movement(inputX, isGrounded, false, false,Vector2.zero);//Due to air moving not tuching slopes setting its variables to false
+        }
+        else
+        {
+            walkingScript.UpdateCurrentVelocity();
         }
     }
 
+    public void UpdateAcceleration()
+    {
+        walkingScript.UpdateCurrentVelocity();
+    }
 
     public void JumpPressed()
     {
-        if (isGrounded)
+        if (isGrounded && currentMoveState != MovementStates.Grappling)
         {
             pressingJump = true;
             midJump = true;
