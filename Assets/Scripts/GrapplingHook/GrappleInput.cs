@@ -34,7 +34,11 @@ public class GrappleInput : MonoBehaviour
     private void Awake()
     {
         hookPoints = GameObject.FindGameObjectsWithTag(hookPointTag);
-        targetPoint = hookPoints[0];
+        try
+        {
+            targetPoint = hookPoints[0];
+        }
+        catch { }
         closestHookDistance = maxMouseDistance;
     }
 
