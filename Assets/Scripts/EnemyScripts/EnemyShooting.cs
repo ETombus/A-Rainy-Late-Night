@@ -21,7 +21,7 @@ public class EnemyShooting : MonoBehaviour
 
     private void Update()
     {
-        if (handler.isAttacking)
+        if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
             if (shootTimer > 0)
                 shootTimer -= Time.deltaTime;
@@ -42,7 +42,7 @@ public class EnemyShooting : MonoBehaviour
 
     private Vector2 GetShootVector()
     {
-        Vector2 targetVector = handler.player.transform.position - transform.position;
+        Vector2 targetVector = handler.playerTrans.position - transform.position;
         return targetVector;
     }
 }

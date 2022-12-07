@@ -31,7 +31,7 @@ public class GroundChecker : MonoBehaviour
         {
             stateManager.isGrounded = IsGrounded();
             circleCollider.sharedMaterial = IsGrounded() ? groundMaterial : playerMaterial;
-        }      
+        }
     }
 
     private void FixedUpdate()
@@ -63,7 +63,7 @@ public class GroundChecker : MonoBehaviour
         Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y + extraLeangth), rayColor);
         Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, boxCollider.bounds.extents.y + extraLeangth), Vector2.right * (boxCollider.bounds.extents.x * 2), rayColor);
 
-        Debug.Log(groundAngle);
+        // Debug.Log(groundAngle);
 
         if (groundAngle > 145)
             return rayHit.collider != null;

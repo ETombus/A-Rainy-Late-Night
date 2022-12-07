@@ -5,117 +5,102 @@ using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
-    [Header("LayerMask")]
-    public LayerMask detectableLayers;
+    [SerializeField] float detectionDistance = 10;
 
-    [Header("Detection and Visibility")]
-    public float detectTime = 1;
-    [SerializeField] private float timer = 0;
-    [SerializeField] private bool playerVisable = false;
-    [SerializeField] private GameObject player;
     public Vector2 lastSeenPlayerLocation;
+
+    public bool seesPlayer;
+    [SerializeField] bool detectedPlayer;
+
+    [SerializeField] LayerMask detectableLayers;
+
+    [SerializeField] float seachDuration = 3f;
+    float searchTimer;
 
     EnemyHandler handler;
 
-    private bool playerInViewRange = false;
-
-    private int colliderIndex;
-
-    [SerializeField] Sprite[] indicators; // 0 = ?, 1 = !, 2 = anger
-    [SerializeField] SpriteRenderer indicatorRenderer;
-
     private void Start()
     {
-        indicatorRenderer.gameObject.SetActive(false);
         handler = GetComponentInParent<EnemyHandler>();
     }
 
     private void Update()
     {
-        if (playerInViewRange)
+        switch (handler.currentMode)
         {
-            CheckIfBlockedByTerrain();
-        }
-
-        if (playerVisable) //only happens of CheckIfBlockedByTerrain returns false
-        {
-            //set indicator above enemies head
-            indicatorRenderer.gameObject.SetActive(true);
-            indicatorRenderer.sprite = indicators[0];
-
-            handler.currentMode = EnemyHandler.Mode.Aggression; //stops the enemy from moving
-
-            timer += Time.deltaTime; //allow the player some time to react, as long as timer is lower than detectTime
-
-            //aggression mode
-            if (timer >= detectTime)
-            {
-                indicatorRenderer.sprite = indicators[2];
-
-                handler.isAttacking = true;
-            }
-        }
-
-        //when the player leaves the viewarea, enter Search Mode
-        //this is based on how long the player is within view
-        if (!playerVisable && timer > 0)
-        {
-            handler.isAttacking = false;
-
-            timer -= Time.deltaTime;
-            //if (timer < 0)
-            //    timer = 0;
-
-            handler.currentMode = EnemyHandler.Mode.Search;
-            indicatorRenderer.sprite = indicators[1];
-            // Change to Alert mode then possibly search mode
-        }
-        else if (!playerVisable && timer <= 0) //the enemy has lost sight and interest
-        {
-            indicatorRenderer.gameObject.SetActive(false);
-            handler.currentMode = EnemyHandler.Mode.Patrol;
-            handler.movement.FlipRotationPublic();
+            case EnemyHandler.Mode.Patrol:
+                SendDetectionRay();
+                break;
+            case EnemyHandler.Mode.Aggression:
+                SearchForPlayerWithinRange();
+                break;
+            case EnemyHandler.Mode.Search:
+                SearchForPlayerOutofRange();
+                break;
+            case EnemyHandler.Mode.Idle:
+                SendDetectionRay();
+                break;
+            default:
+                break;
         }
     }
 
-    void CheckIfBlockedByTerrain()
+    private void SendDetectionRay()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 20, detectableLayers);
-        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, detectionDistance, detectableLayers);
 
-        if (hit.collider != null) // Terrain Layer
+        if (hit)
         {
-            playerVisable = false;
+            if (hit.collider.gameObject.CompareTag("Ground"))
+            {
+                detectedPlayer = false;
+                //Debug.Log(transform.parent.gameObject.name + " hit ground object " + hit.collider.gameObject.name);
+            }
+            else if (hit.collider.gameObject.CompareTag("Player"))
+            {
+                detectedPlayer = true;
+                seesPlayer = true;
+                //Debug.Log(transform.parent.gameObject.name + " hit player object " + hit.collider.gameObject.name);
+                handler.currentMode = EnemyHandler.Mode.Aggression;
+            }
         }
         else
         {
-            playerVisable = true;
+            detectedPlayer = false;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void SearchForPlayerWithinRange()
     {
-        if (collision.tag == "Player")
+        handler.FlipRotation(handler.playerTrans.position.x - transform.position.x);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, handler.playerTrans.position - transform.position,
+            Vector2.Distance(transform.position, handler.playerTrans.position), detectableLayers);
+        Debug.DrawLine(transform.position, handler.playerTrans.position);
+
+        if (Vector2.Distance(transform.position, handler.playerTrans.position) > detectionDistance)
         {
-            playerInViewRange = true;
-            player = collision.gameObject;
-            colliderIndex++;
+            seesPlayer = false;
+            handler.currentMode = EnemyHandler.Mode.Search;
+            lastSeenPlayerLocation = handler.playerTrans.position;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void SearchForPlayerOutofRange()
     {
-        if (collision.tag == "Player")
-        {
-            lastSeenPlayerLocation = player.transform.position;
+        searchTimer += Time.deltaTime;
 
-            colliderIndex--;
-            if (colliderIndex == 0)
-            {
-                playerInViewRange = false;
-                playerVisable = false;
-                player = null;
-            }
+
+        if (Vector2.Distance(transform.position, handler.playerTrans.position) < detectionDistance)
+        {
+            handler.currentMode = EnemyHandler.Mode.Aggression;
+        }
+
+        if(searchTimer >= seachDuration)
+        {
+            handler.currentMode = EnemyHandler.Mode.Patrol;
+            handler.FlipRotation();
+            searchTimer = 0;
         }
     }
 }

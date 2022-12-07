@@ -7,14 +7,7 @@ public class DetectedByCamera : MonoBehaviour
     [SerializeField] float timeToShowMarker = 2;
     [SerializeField] GameObject marker;
 
-    SpriteRenderer spriteRend;
     bool hasBeenSeen = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        spriteRend = GetComponentInChildren<SpriteRenderer>();
-    }
 
     // Update is called once per frame
     void Update()

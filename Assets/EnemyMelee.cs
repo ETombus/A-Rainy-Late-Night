@@ -5,7 +5,14 @@ using UnityEngine;
 public class EnemyMelee : MonoBehaviour
 {
     EnemyHandler handler;
-    EnemyHandler.Mode previousMode;
+
+    [SerializeField] float punchingDistance = 0.5f;
+
+    [SerializeField] float punchingCooldown = 0.6f;
+    float punchingTimer;
+
+    [SerializeField] int damage;
+
     private void Start()
     {
         handler = GetComponent<EnemyHandler>();
@@ -15,8 +22,19 @@ public class EnemyMelee : MonoBehaviour
     {
         if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
-            handler.movement.MoveEnemy(handler.player.transform.position);
+            if (Vector3.Distance(handler.playerTrans.position, transform.position) > punchingDistance)
+                handler.movement.MoveEnemy(handler.playerTrans.position);
+            else if (Vector3.Distance(handler.playerTrans.position, transform.position) < punchingDistance)
+            {
+                punchingTimer += Time.deltaTime;
+
+                if (punchingTimer >= punchingCooldown)
+                {
+                    handler.playerHealth.ReduceHealth(10);
+                    punchingTimer = 0;
+                    Debug.Log("Punching Player");
+                }
+            }
         }
     }
-
 }

@@ -7,7 +7,7 @@ public class EnemyEdgeDetection : MonoBehaviour
     [SerializeField] float distToCheck;
     [SerializeField] LayerMask detectableLayers;
 
-    public bool DetectEdges()
+    public bool DetectEdges() //false means no ledge was found
     {
        RaycastHit2D hit =  Physics2D.Raycast(transform.position, Vector2.down, distToCheck, detectableLayers);
 
