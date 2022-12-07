@@ -22,6 +22,9 @@ public class HealthHandler : MonoBehaviour
             health -= reducedHealth;
             if (bloodParticles != null)
                 Instantiate(bloodParticles, transform.position, transform.rotation);
+
+            EnemyHandler handler = GetComponent<EnemyHandler>();
+            if(handler != null) { handler.AlertEnemy(); }
         }
 
         else

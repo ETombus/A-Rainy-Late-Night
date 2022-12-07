@@ -17,11 +17,16 @@ public class EnemyDetect : MonoBehaviour
     [SerializeField] float seachDuration = 3f;
     float searchTimer;
 
+    [SerializeField] Sprite[] markers; //0 = ?, 1 = !, 2 = anger
+    SpriteRenderer markerRenderer;
+
     EnemyHandler handler;
 
     private void Start()
     {
-        handler = GetComponentInParent<EnemyHandler>();
+        handler = GetComponent<EnemyHandler>();
+        markerRenderer = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
+        markerRenderer.sprite = null;
     }
 
     private void Update()
@@ -72,6 +77,7 @@ public class EnemyDetect : MonoBehaviour
 
     void SearchForPlayerWithinRange()
     {
+        markerRenderer.sprite = markers[2];
         handler.FlipRotation(handler.playerTrans.position.x - transform.position.x);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, handler.playerTrans.position - transform.position,
@@ -89,14 +95,14 @@ public class EnemyDetect : MonoBehaviour
     void SearchForPlayerOutofRange()
     {
         searchTimer += Time.deltaTime;
-
+        markerRenderer.sprite = markers[0];
 
         if (Vector2.Distance(transform.position, handler.playerTrans.position) < detectionDistance)
         {
             handler.currentMode = EnemyHandler.Mode.Aggression;
         }
 
-        if(searchTimer >= seachDuration)
+        if (searchTimer >= seachDuration)
         {
             handler.currentMode = EnemyHandler.Mode.Patrol;
             handler.FlipRotation();

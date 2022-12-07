@@ -64,4 +64,9 @@ public class EnemyHandler : MonoBehaviour
     {
         FlipRotation(movement.movePoints[movement.moveIndex].x - transform.position.x);
     }
+
+    public void AlertEnemy()
+    {
+        currentMode = Mode.Aggression;
+    }
 }
