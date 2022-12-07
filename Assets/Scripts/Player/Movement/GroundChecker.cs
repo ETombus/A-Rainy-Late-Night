@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class GroundChecker : MonoBehaviour
 {
@@ -14,10 +16,7 @@ public class GroundChecker : MonoBehaviour
 
 
     private BoxCollider2D boxCollider;
-    private CircleCollider2D circleCollider;
 
-    public PhysicsMaterial2D groundMaterial;
-    public PhysicsMaterial2D playerMaterial;
 
     [Header("Material")]
     public PhysicsMaterial2D fullFrictionMaterial;
@@ -25,8 +24,6 @@ public class GroundChecker : MonoBehaviour
 
     private PlayerStateHandler stateManager;
 
-    private float groundAngle;
-    private Vector2 groundDirection;
 
     [Header("Slope Check")]
     private CircleCollider2D circleCollider;
@@ -58,11 +55,13 @@ public class GroundChecker : MonoBehaviour
 
     private void Update()
     {
+<<<<<<< Updated upstream
         if (stateManager.isGrounded != IsGrounded())
         {
             stateManager.isGrounded = IsGrounded();
             circleCollider.sharedMaterial = IsGrounded() ? groundMaterial : playerMaterial;
         }
+=======
 
 
         if (stateManager.isGrounded != hitGround)
@@ -74,33 +73,27 @@ public class GroundChecker : MonoBehaviour
         if (stateManager.walkableSlope != canWalkOnSlope)
             stateManager.walkableSlope = canWalkOnSlope;
 
+>>>>>>> Stashed changes
     }
 
 
     private void FixedUpdate()
     {
-        if (groundAngle < 145 && groundAngle != 0)
-        {
-            stateManager.slopeSlide();
-        }
         IsGrounded();
         SlopeCheck();
 
         stateManager.slopeDirection = slopeNormalPerp;
     }
 
-    private bool IsGrounded()
 
 
     private void IsGrounded()
     {
         RaycastHit2D rayHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, extraLeangth, groundLayer);
 
-        groundAngle = Vector3.Angle(rayHit.normal, Vector2.down);
 
         //Visual only
         Color rayColor;
-        if (rayHit.collider != null && groundAngle > 145)
         if (rayHit.collider != null)
         {
             rayColor = Color.green;
@@ -114,7 +107,9 @@ public class GroundChecker : MonoBehaviour
         Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y + extraLeangth), rayColor);
         Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, boxCollider.bounds.extents.y + extraLeangth), Vector2.right * (boxCollider.bounds.extents.x * 2), rayColor);
 
+<<<<<<< Updated upstream
         // Debug.Log(groundAngle);
+=======
         if (rayHit.collider != null)
             hitGround = true;
         else
@@ -126,8 +121,6 @@ public class GroundChecker : MonoBehaviour
     {
         Vector2 checkPos = transform.position + (Vector3)(new Vector2(0, circleCollider.offset.y - circleCollider.radius));
 
-        if (groundAngle > 145)
-            return rayHit.collider != null;
 
         slopeCheckHorizontal(checkPos);
         slopeCheckVertical(checkPos);
@@ -144,6 +137,7 @@ public class GroundChecker : MonoBehaviour
         Debug.DrawLine(checkPos, endPos1, Color.blue);
         Debug.DrawLine(checkPos, endPos2, Color.blue);
 
+>>>>>>> Stashed changes
 
 
         if (slopeHitFront)
@@ -159,7 +153,6 @@ public class GroundChecker : MonoBehaviour
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
         }
         else
-            return false;
         {
             slopeSideAngle = 0.0f;
             isOnSlope = false;
