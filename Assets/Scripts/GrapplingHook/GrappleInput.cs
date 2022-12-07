@@ -8,6 +8,7 @@ public class GrappleInput : MonoBehaviour
     [Header("Components")]
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform ropeStart;
+    [SerializeField] LayerMask rayIgnore;
     GameObject targetPoint;
     GameObject[] hookPoints;
     string hookPointTag = "HookPoint";
@@ -32,21 +33,9 @@ public class GrappleInput : MonoBehaviour
 
     private void Awake()
     {
-        playerControls = new PlayerInputs();
         hookPoints = GameObject.FindGameObjectsWithTag(hookPointTag);
+        targetPoint = hookPoints[0];
         closestHookDistance = maxMouseDistance;
-    }
-
-    private void OnEnable()
-    {
-        grappleAction = playerControls.Player.Grapple;
-        grappleAction.Enable();
-        grappleAction.performed += ShootGrapple;
-    }
-
-    private void OnDisable()
-    {
-        grappleAction.Disable();
     }
 
     private void FixedUpdate()
@@ -58,7 +47,7 @@ public class GrappleInput : MonoBehaviour
         {
             float distance = Vector2.SqrMagnitude((Vector2)point.transform.position - worldPos);
 
-            if (distance <= closestHookDistance && RayHitPlayer(point))
+            if (distance <= maxMouseDistance && RayHitPlayer(point))
             {
                 targetPoint = point;
                 closestHookDistance = distance;
@@ -76,7 +65,7 @@ public class GrappleInput : MonoBehaviour
     {
         Vector2 pos = transform.position;
         Vector2 targetPos = target.transform.position;
-        Collider2D rayTarget = Physics2D.Raycast(targetPos, pos - targetPos, hookMaxReach).collider;
+        Collider2D rayTarget = Physics2D.Raycast(targetPos, pos - targetPos, hookMaxReach, rayIgnore).collider;
 
         if (rayTarget == GetComponent<Collider2D>()) 
             { return true; }
@@ -84,7 +73,7 @@ public class GrappleInput : MonoBehaviour
             { return false; }
     }
 
-    private void ShootGrapple(InputAction.CallbackContext context)
+    public void ShootGrapple()
     {
         float distance = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - worldPos);
 
@@ -104,6 +93,10 @@ public class GrappleInput : MonoBehaviour
             hookCS.playerSpeed = playerSpeed;
             hookCS.playerAcceleration = playerAcceleration;
             hookCS.playerSpeedOverTime = playerSpeedOverTime;
+        }
+        else
+        {
+            GetComponentInChildren<UmbrellaStateHandler>().Idle();
         }
     }
 }

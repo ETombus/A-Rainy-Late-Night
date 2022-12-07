@@ -67,8 +67,8 @@ public class Jumping : MonoBehaviour
                 umbrella.umbrellaOverrideBool = true;
                 umbrella.OpenUmbrella();
             }
-            else if (!isSlowfalling && !Grapple.stuck) { gravityOffset = fastfallGravity; }
-            else if (Grapple.stuck) {gravityOffset = slowfallGravity;}
+            else if (!isSlowfalling && !GrappleOLD.stuck) { gravityOffset = fastfallGravity; }
+            else if (GrappleOLD.stuck) {gravityOffset = slowfallGravity;}
         }
 
         if (isGrounded)

@@ -12,7 +12,14 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction move;
     private InputAction jump;
 
+    [Header("UmbrellaInputs")]
+    private InputAction aim;
+    private InputAction shoot;
+    private InputAction slash;
+    private InputAction grapple;
+
     private PlayerStateHandler stateHandler;
+    private UmbrellaStateHandler umbrellaHandler;
 
 
     private void Awake()
@@ -23,6 +30,7 @@ public class PlayerInputHandler : MonoBehaviour
     private void Start()
     {
         stateHandler = GetComponent<PlayerStateHandler>();
+        umbrellaHandler = GetComponentInChildren<UmbrellaStateHandler>();
     }
 
     private void Update()
@@ -41,12 +49,32 @@ public class PlayerInputHandler : MonoBehaviour
         //jump.performed += SlowFalling;
         jump.canceled += OnSpaceReleased;
 
+        aim = playerControls.Player.Aim;
+        aim.Enable();
+        aim.performed += AimHandler;
+
+        shoot = playerControls.Player.Fire;
+        shoot.Enable();
+        shoot.performed += Shoot;
+
+        slash = playerControls.Player.Fire;
+        slash.Enable();
+        slash.performed += Slash;
+
+        grapple = playerControls.Player.Grapple;
+        grapple.Enable();
+        grapple.performed += Grapple;
     }
 
     private void OnDisable()
     {
         move.Disable();
         jump.Disable();
+
+        aim.Disable();
+        shoot.Disable();
+        slash.Disable();
+        grapple.Disable();
     }
 
     public void HorizontalInputs()
@@ -56,6 +84,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
+        Debug.Log("jump");
         stateHandler.JumpPressed();
     }
 
@@ -70,5 +99,30 @@ public class PlayerInputHandler : MonoBehaviour
         stateHandler.JumpReleased();
     }
 
+    public void AimHandler(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            umbrellaHandler.currentState = UmbrellaStateHandler.UmbrellaState.Aiming;
+        }
+        else if (context.canceled)
+        {
+            umbrellaHandler.Idle();
+        }
+    }
 
+    public void Shoot(InputAction.CallbackContext context)
+    {
+        umbrellaHandler.Shoot();
+    }
+
+    public void Slash(InputAction.CallbackContext context)
+    {
+        umbrellaHandler.Slash();
+    }
+
+    public void Grapple(InputAction.CallbackContext context)
+    {
+        umbrellaHandler.Grapple();
+    }
 }
