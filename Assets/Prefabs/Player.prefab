@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 1516679079}
   m_Layer: 9
   m_Name: GroundCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 1834842748031294926}
   m_Layer: 9
   m_Name: SliceHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -716,7 +716,7 @@ MonoBehaviour:
   onSlope: 0
   walkableSlope: 1
   slopeDirection: {x: 0, y: 0}
-  gravityUpwards: 9
+  gravityUpwards: 4
   downwardGravity: 10
   jumpGravityTransitionSpeed:
     serializedVersion: 2
@@ -828,7 +828,7 @@ MonoBehaviour:
   ropeStart: {fileID: 5836924862112396268}
   rayIgnore:
     serializedVersion: 2
-    m_Bits: 1023
+    m_Bits: 776
   hookMaxReach: 15
   maxMouseDistance: 10
   hookSpeed: 40

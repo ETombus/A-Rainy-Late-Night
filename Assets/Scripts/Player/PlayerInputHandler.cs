@@ -84,7 +84,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        Debug.Log("jump");
         stateHandler.JumpPressed();
     }
 
