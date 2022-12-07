@@ -174,8 +174,6 @@ public class GroundChecker : MonoBehaviour
             Debug.DrawRay(hit.point, slopeNormalPerp, Color.red);
             Debug.DrawRay(hit.point, hit.normal, Color.yellow);
 
-            Debug.Log(slopeDownAngle + " , " + slopeSideAngle);
-
             if (slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
             {
                 canWalkOnSlope = false;

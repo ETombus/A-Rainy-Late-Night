@@ -53,9 +53,6 @@ public class LedgeClimb : MonoBehaviour
 
         transform.parent.position = Vector2.MoveTowards(transform.parent.position, endPos + endPosOffset, climbSpeed * Time.deltaTime);
 
-
-        //Debug.Log(((Vector2)transform.parent.position - (endPos + endPosOffset)).magnitude);
-
         if (((Vector2)transform.parent.position - (endPos + endPosOffset)).magnitude <= 0)
         {
             resetClimb();
