@@ -22,8 +22,11 @@ public class LedgeClimb : MonoBehaviour
     private bool isTuchingLedge = false;
     private bool isTuchingWall = false;
 
+
+    bool facingRight = true;
     private bool isClimbLedge = false;
     [SerializeField] private bool ledgeDetected = false;
+    [SerializeField] private bool wallDetected = false;
 
     public LayerMask whatIsTerrain;
 
@@ -90,12 +93,12 @@ public class LedgeClimb : MonoBehaviour
         isTuchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsTerrain);
 
 
-        isTuchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, wallCheckDistance, whatIsTerrain);
+        isTuchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, wallCheckDistance + 0.5f, whatIsTerrain);
 
         raycolor = isTuchingWall ? Color.red : Color.green;
         Debug.DrawRay(wallCheck.position, transform.right * wallCheckDistance, raycolor);
         raycolor = isTuchingLedge ? Color.red : Color.green;
-        Debug.DrawRay(ledgeCheck.position, transform.right * wallCheckDistance, raycolor);
+        Debug.DrawRay(ledgeCheck.position, transform.right * (wallCheckDistance + 0.5f), raycolor);
 
 
         Debug.DrawRay(endPosCkeck.position, Vector2.down * groundCheckDistance);
@@ -103,9 +106,16 @@ public class LedgeClimb : MonoBehaviour
         if (isTuchingWall && !isTuchingLedge && !ledgeDetected)
         {
             ledgeDetected = true;
+            wallDetected = false;
         }
-        else
+        else if(isTuchingWall && isTuchingLedge && !wallDetected)
         {
+            ledgeDetected = false;
+            wallDetected = true;
+        }
+        else if (!isTuchingLedge && !isTuchingWall)
+        {
+            wallDetected = false;
             ledgeDetected = false;
         }
     }
@@ -114,10 +124,12 @@ public class LedgeClimb : MonoBehaviour
         if(stateHandeler.inputX > 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            facingRight = true;
         }
         else if(stateHandeler.inputX < 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            facingRight = false;
         }
     }
 

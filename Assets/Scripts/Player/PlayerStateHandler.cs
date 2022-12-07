@@ -16,6 +16,11 @@ public class PlayerStateHandler : MonoBehaviour
 
     public float maxJumpDuration = 0.5f;
 
+    [Header("Slope Variables")]
+    public bool onSlope = false;
+    public bool walkableSlope = true;
+    public Vector2 slopeDirection;
+
     [Header("Gravity")]
     public float gravityUpwards = 4;
     public float downwardGravity = 10;
@@ -104,13 +109,6 @@ public class PlayerStateHandler : MonoBehaviour
         rbody.gravityScale = currentGravity * gravityMultiplier;
     }
 
-    public void slopeSlide()
-    {
-
-        rbody.velocity = new Vector2(rbody.velocity.x, -15);
-
-    }
-
     void ManageMovingStates()
     {
         if (!midJump)
@@ -141,10 +139,13 @@ public class PlayerStateHandler : MonoBehaviour
 
             midJump = false;
         }
-        else if (currentMoveState == MovementStates.GroundMoving ||
-            currentMoveState == MovementStates.Idle || currentMoveState == MovementStates.AirMoving)
+        else if (currentMoveState == MovementStates.GroundMoving || currentMoveState == MovementStates.Idle)
         {
-            walkingScript.Movement(inputX, isGrounded);
+            walkingScript.Movement(inputX, isGrounded, onSlope, walkableSlope, slopeDirection);
+        }
+        else if (currentMoveState == MovementStates.AirMoving)
+        {
+            walkingScript.Movement(inputX, isGrounded, false, false,Vector2.zero);//Due to air moving not tuching slopes setting its variables to false
         }
         else
         {

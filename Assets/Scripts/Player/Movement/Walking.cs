@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class Walking : MonoBehaviour
 {
@@ -39,8 +40,7 @@ public class Walking : MonoBehaviour
     {
         currentVelocity = rbody.velocity;
     }
-
-    public void Movement(float horizontalInput, bool onGround)
+    public void Movement(float horizontalInput, bool onGround, bool onSlope, bool validSlope,Vector2 slopeDir)
     {
 
         if (onGround)
@@ -72,11 +72,25 @@ public class Walking : MonoBehaviour
             speedChange = decceleration * Time.deltaTime;
         }
 
-        currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, horizontalInput * maxMoveSpeed, speedChange);
-        currentVelocity.y = rbody.velocity.y;
-        rbody.velocity = currentVelocity;
+        if (!onSlope)
+        {
+            currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, horizontalInput * maxMoveSpeed, speedChange);
+            currentVelocity.y = rbody.velocity.y;
+
+            rbody.velocity = currentVelocity;
+        }
+        else if (onSlope && validSlope)
+        {
+            currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, -horizontalInput * maxMoveSpeed * slopeDir.x, speedChange);
+            currentVelocity.y = Mathf.MoveTowards(currentVelocity.y, -horizontalInput * maxMoveSpeed * slopeDir.y, speedChange);
+
+            rbody.velocity = currentVelocity;
+        }
+        else
+            UpdateCurrentVelocity();
+
     }
-    
+
     public Vector2 PublicMovementVector()
     {
         return currentVelocity;
