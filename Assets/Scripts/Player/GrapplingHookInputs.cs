@@ -11,7 +11,7 @@ public class GrapplingHookInputs : MonoBehaviour
     public bool canGrapple = true;
     Vector2 shootDirection;
     Rigidbody2D rb2D;
-    Grapple hookCS;
+    GrappleOLD hookCS;
 
     [Header("Inputs")]
     PlayerInputs playerControls;
@@ -37,7 +37,7 @@ public class GrapplingHookInputs : MonoBehaviour
         jumpAction.Enable();
         jumpAction.performed += CancelGrapple;
 
-        hookCS = hook.GetComponent<Grapple>();
+        hookCS = hook.GetComponent<GrappleOLD>();
     }
 
     private void OnDisable()
@@ -71,7 +71,7 @@ public class GrapplingHookInputs : MonoBehaviour
 
     void CancelGrapple(InputAction.CallbackContext context)
     {
-        if (!canGrapple && !Grapple.onPlayer)
+        if (!canGrapple && !GrappleOLD.onPlayer)
         {
             hookCS.SetParent();
         }

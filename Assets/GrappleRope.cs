@@ -39,12 +39,12 @@ public class GrappleRope : MonoBehaviour
 
     void DrawRope()
     {
-        if (Grapple.onPlayer)
+        if (GrappleOLD.onPlayer)
             rope.enabled = false;
         else
             rope.enabled = true;
 
-        if (!Grapple.stuck && !Grapple.extended && Vector2.Distance(hookStart.position, hook.position) <= Grapple.maxDistance - 10)
+        if (!GrappleOLD.stuck && !GrappleOLD.extended && Vector2.Distance(hookStart.position, hook.position) <= GrappleOLD.maxDistance - 10)
         {
             intensityModifier = startIntensity;
             DrawRopeWaves();
