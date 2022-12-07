@@ -44,15 +44,20 @@ public class HookScript : MonoBehaviour
 
             if (Vector2.SqrMagnitude((Vector2)player.transform.position - targetPos) < 1f)
             {
-                player.GetComponent<GrappleInput>().canGrapple = true;
                 player.GetComponent<Rigidbody2D>().velocity += new Vector2(0, dir.normalized.y * Mathf.Abs(dir.normalized.x) * 10);
-                Destroy(gameObject);
+                ResetHook();
             }
             else if(failsafe >= 1f)
             {
-                player.GetComponent<GrappleInput>().canGrapple = true;
-                Destroy(gameObject);
+                ResetHook();
             }
         }
+    }
+
+    private void ResetHook()
+    {
+        player.GetComponentInChildren<UmbrellaStateHandler>().Idle();
+        player.GetComponent<GrappleInput>().canGrapple = true;
+        Destroy(gameObject);
     }
 }

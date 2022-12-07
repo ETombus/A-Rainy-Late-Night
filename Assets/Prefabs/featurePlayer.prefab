@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4843751893562854010}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallCheckObj
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -41,7 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1848171204937837332}
   - component: {fileID: 6184567286739394955}
-  m_Layer: 0
+  - component: {fileID: 118315767}
+  - component: {fileID: 118315766}
+  m_Layer: 10
   m_Name: umbrella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2326640496584396560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.63110465, y: 2.8643355, z: 0}
+  m_LocalPosition: {x: 0.656, y: 1.502, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,6 +117,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &118315767
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326640496584396560}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.4}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.79, y: 2.47}
+    newSize: {x: 3.79, y: 2.47}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 0.25}
+  m_EdgeRadius: 0
+--- !u!114 &118315766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326640496584396560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453ec206f0c45a54d89c496017f089f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRainHeightCheck: 20
+  ignorePlayer:
+    serializedVersion: 2
+    m_Bits: 511
+  player: {fileID: 3866038219683769663}
+  currentState: 0
 --- !u!1 &2415704452297030505
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2415704452297030506}
   - component: {fileID: 2415704452297030507}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -174,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2415704452512755471}
   - component: {fileID: 2415704452512755464}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlashVfx2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2415704452834741909}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraTarget
   m_TagString: Player
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -291,7 +337,7 @@ GameObject:
   - component: {fileID: 2415704452859815524}
   - component: {fileID: 2415704452859815525}
   - component: {fileID: 2415704452859815526}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Umbrella[OLD}
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -422,7 +468,7 @@ GameObject:
   - component: {fileID: 2415704452925279707}
   - component: {fileID: 2415704452925279701}
   - component: {fileID: 4103031756763138306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SliceHitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -495,7 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2415704453580834828}
   - component: {fileID: 2415704453580834829}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlashVfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2415704453677790457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopOfLedgeChecker
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -610,7 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8108346687661156128}
   - component: {fileID: 6734507640347322977}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Aim
   m_TagString: Player
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -654,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6618655669578057466}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LedgeCheckObj
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -697,7 +743,7 @@ GameObject:
   - component: {fileID: 2415704452703953735}
   - component: {fileID: 1756142169110951772}
   - component: {fileID: 6655262945166130504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: featurePlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -939,6 +985,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hookPrefab: {fileID: 8932108329419228117, guid: 04bf49ff919ebb24e95c7a7449f31f7a, type: 3}
   ropeStart: {fileID: 8108346687661156128}
+  rayIgnore:
+    serializedVersion: 2
+    m_Bits: 1023
   hookMaxReach: 15
   maxMouseDistance: 10
   hookSpeed: 40
@@ -979,7 +1028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561971233243112162}
   - component: {fileID: 2415704452754428320}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LedgeChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1089,7 @@ GameObject:
   - component: {fileID: 8261256613683024224}
   - component: {fileID: 7766984500376921587}
   - component: {fileID: 5505329695532410735}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spine GameObject (NullSpine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
