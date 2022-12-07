@@ -55,15 +55,6 @@ public class GroundChecker : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< Updated upstream
-        if (stateManager.isGrounded != IsGrounded())
-        {
-            stateManager.isGrounded = IsGrounded();
-            circleCollider.sharedMaterial = IsGrounded() ? groundMaterial : playerMaterial;
-        }
-=======
-
-
         if (stateManager.isGrounded != hitGround)
             stateManager.isGrounded = hitGround;
 
@@ -72,8 +63,6 @@ public class GroundChecker : MonoBehaviour
 
         if (stateManager.walkableSlope != canWalkOnSlope)
             stateManager.walkableSlope = canWalkOnSlope;
-
->>>>>>> Stashed changes
     }
 
 
@@ -107,9 +96,6 @@ public class GroundChecker : MonoBehaviour
         Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y + extraLeangth), rayColor);
         Debug.DrawRay(boxCollider.bounds.center - new Vector3(boxCollider.bounds.extents.x, boxCollider.bounds.extents.y + extraLeangth), Vector2.right * (boxCollider.bounds.extents.x * 2), rayColor);
 
-<<<<<<< Updated upstream
-        // Debug.Log(groundAngle);
-=======
         if (rayHit.collider != null)
             hitGround = true;
         else
@@ -137,7 +123,6 @@ public class GroundChecker : MonoBehaviour
         Debug.DrawLine(checkPos, endPos1, Color.blue);
         Debug.DrawLine(checkPos, endPos2, Color.blue);
 
->>>>>>> Stashed changes
 
 
         if (slopeHitFront)
