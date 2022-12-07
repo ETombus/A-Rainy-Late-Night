@@ -37,7 +37,6 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("CUR STATE "+currentState);
         if (!umbrellaOpen
             && Physics2D.Raycast(player.transform.position, Vector2.up, maxRainHeightCheck, ignorePlayer).collider == null)
         {
@@ -58,8 +57,8 @@ public class UmbrellaStateHandler : MonoBehaviour
         if (currentState == UmbrellaState.Idle)
         {
             currentState = UmbrellaState.Slash;
-            //Slash
-            Invoke(nameof(Idle), 0.5f);
+            GetComponentInParent<Slice>().StandardSlice();
+            Invoke(nameof(Idle), 0.25f);
         }
     }
 
