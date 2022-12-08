@@ -276,7 +276,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2721ac19ebda2534da79028019413b7c, type: 2}
+  - {fileID: 2100000, guid: 35d9555ca4f06124ebdca5695fa8fcd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -310,10 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2be4382fcd0aa4b80977a0b3d94f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idle: {fileID: 11400000, guid: 43b9ee20c8d9d574782ba0d11b8db3fb, type: 2}
-  run: {fileID: 11400000, guid: 9ebdc2a9985848044b88d14b999cf6cb, type: 2}
-  walk: {fileID: 11400000, guid: 015481f80b2d5a74daea26b677aaf961, type: 2}
-  Aim: {fileID: 11400000, guid: 862ad97b056caaf4899aad4959b03f8d, type: 2}
+  idle: {fileID: 11400000, guid: 1efff2cc53b4c6644abffcd8a70ecd9d, type: 2}
+  run: {fileID: 11400000, guid: 62c9e48d8a3bf1544ac221a3bde62983, type: 2}
+  walk: {fileID: 11400000, guid: 4b62d49139513fc47a7e21556108d994, type: 2}
+  Aim: {fileID: 11400000, guid: c8f9d5aad1ec88e469d844bc4fdb39c5, type: 2}
 --- !u!114 &2156060855115811064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: a867b542679bc9b4ea41bb347a285147, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: afe39e82dde5cb243882685c0690bc04, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
