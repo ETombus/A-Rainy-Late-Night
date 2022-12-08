@@ -11,18 +11,21 @@ public class Healthbar : HealthHandler
 
     private void Start()
     {
-        healthBar.maxValue = maxHealth;
+        if (healthBar != null)
+            healthBar.maxValue = maxHealth;
         health = maxHealth;
     }
 
     public void ReduceHealth(int reduceValue)
     {
         health -= reduceValue;
-        healthBar.value = healthShown.Evaluate(health / 100) * 100;
+        if (healthBar != null)
+            healthBar.value = healthShown.Evaluate(health / 100) * 100;
     }
 
     public void AddHealth()
     {
-        healthBar.value = health;
+        if (healthBar != null)
+            healthBar.value = health;
     }
 }

@@ -10,8 +10,15 @@ public class BulletScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Healthbar>().ReduceHealth(damage);
-            
+            try
+            {
+                collision.gameObject.GetComponent<Healthbar>().ReduceHealth(damage);
+            }
+            catch
+            {
+                Debug.Log("Player got no healthScript");
+            }
+
             Destroy(this.gameObject);
         }
     }
