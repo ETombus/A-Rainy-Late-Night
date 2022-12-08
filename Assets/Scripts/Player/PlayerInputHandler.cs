@@ -21,7 +21,6 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerStateHandler stateHandler;
     private UmbrellaStateHandler umbrellaHandler;
 
-
     private void Awake()
     {
         playerControls = new PlayerInputs();
@@ -52,6 +51,7 @@ public class PlayerInputHandler : MonoBehaviour
         aim = playerControls.Player.Aim;
         aim.Enable();
         aim.performed += AimHandler;
+        aim.canceled += AimHandler;
 
         shoot = playerControls.Player.Fire;
         shoot.Enable();
@@ -100,12 +100,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void AimHandler(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !umbrellaHandler.reloading)
         {
+            Debug.Log("aim");
             umbrellaHandler.currentState = UmbrellaStateHandler.UmbrellaState.Aiming;
         }
-        else if (context.canceled)
+        else if (context.canceled && umbrellaHandler.currentState == UmbrellaStateHandler.UmbrellaState.Aiming)
         {
+            Debug.Log("down aim");
             umbrellaHandler.Idle();
         }
     }
