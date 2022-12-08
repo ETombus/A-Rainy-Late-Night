@@ -22,17 +22,25 @@ public class EnemyMelee : MonoBehaviour
     {
         if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
-            if (Vector3.Distance(handler.playerTrans.position, transform.position) > punchingDistance)
+            if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) > punchingDistance)
                 handler.movement.MoveEnemy(handler.playerTrans.position);
-            else if (Vector3.Distance(handler.playerTrans.position, transform.position) < punchingDistance)
+
+            //if (Vector2.Distance(handler.playerTrans.position, transform.position) > punchingDistance)
+            //{
+            //    handler.movement.MoveEnemy(handler.playerTrans.position);
+            //    Debug.Log("Punching distance is " + punchingDistance);
+            //}
+
+            else if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) <= punchingDistance)
             {
+                handler.movement.StopEnemy();
                 punchingTimer += Time.deltaTime;
 
                 if (punchingTimer >= punchingCooldown)
                 {
                     handler.playerHealth.ReduceHealth(10);
                     punchingTimer = 0;
-                    Debug.Log("Punching Player");
+                    //Debug.Log("Punching Player");
                 }
             }
         }

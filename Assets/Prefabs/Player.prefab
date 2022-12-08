@@ -635,9 +635,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17574ad43ee4944289feaeb3753c401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 29.86
-  maxDistance: 11
-  lookUpDist: 6.5
+  cameraSpeed: 2
+  maxDistance: 6
+  lookUpDist: 3
   bufferTime: 0.4
   bufferTimer: 0
   changeDirBuffer: 0.8
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   onSlope: 0
   walkableSlope: 1
   slopeDirection: {x: 0, y: 0}
-  gravityUpwards: 4
+  gravityUpwards: 6
   downwardGravity: 10
   jumpGravityTransitionSpeed:
     serializedVersion: 2

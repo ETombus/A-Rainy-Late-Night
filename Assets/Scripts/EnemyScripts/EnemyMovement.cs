@@ -33,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (!handler.edgeDetection.DetectEdges())
-            rigBody.velocity *= decceleration;
+            StopEnemy();
 
         switch (handler.currentMode)
         {
@@ -64,7 +64,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (idle)
         {
-            rigBody.velocity *= decceleration;
+            StopEnemy();
         }
         else
         {
@@ -89,6 +89,11 @@ public class EnemyMovement : MonoBehaviour
             rigBody.velocity = Vector2.ClampMagnitude(rigBody.velocity, maxSpeed);
     }
 
+    public void StopEnemy()
+    {
+        rigBody.velocity *= decceleration;
+    }
+
     IEnumerator WaitBetweenPatrol(float idleTime)
     {
         yield return new WaitForSeconds(idleTime);
@@ -102,8 +107,6 @@ public class EnemyMovement : MonoBehaviour
 
         idle = false;
     }
-
-
 
     private void OnDrawGizmos()
     {

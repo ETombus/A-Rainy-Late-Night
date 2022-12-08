@@ -35,6 +35,9 @@ public class PlayerStateHandler : MonoBehaviour
     [Header("Input")]
     public float inputX;
 
+    public float coyoteDuration;
+    [SerializeField] private float coyoteTimer;
+
     [Header("Components")]
     private Walking walkingScript;
     private PlayerJump jumpingScript;
@@ -61,6 +64,8 @@ public class PlayerStateHandler : MonoBehaviour
         grappleScript = GetComponent<GrappleInput>();
         rbody = GetComponent<Rigidbody2D>();
 
+
+        coyoteTimer = coyoteDuration;
         currentMoveState = MovementStates.GroundMoving;
         currentGravity = baseGravity = rbody.gravityScale;
     }
@@ -95,7 +100,7 @@ public class PlayerStateHandler : MonoBehaviour
         {
             if (rbody.velocity.y > 0 && !grappleGravity)
             {
-                gravityMultiplier = 2;
+                gravityMultiplier = 3;
             }
             else
             {
@@ -115,6 +120,8 @@ public class PlayerStateHandler : MonoBehaviour
         {
             if (isGrounded)
             {
+                if (!pressingJump)
+                    coyoteTimer = coyoteDuration;
                 if (inputX != 0)
                 {
                     currentMoveState = MovementStates.GroundMoving;
@@ -124,6 +131,8 @@ public class PlayerStateHandler : MonoBehaviour
             }
             else
             {
+                if (coyoteTimer > 0)
+                    coyoteTimer -= Time.deltaTime;
                 currentMoveState = MovementStates.AirMoving;
             }
         }
@@ -138,6 +147,7 @@ public class PlayerStateHandler : MonoBehaviour
             UpdateAcceleration();
 
             midJump = false;
+
         }
         else if (currentMoveState == MovementStates.GroundMoving || currentMoveState == MovementStates.Idle)
         {
@@ -145,7 +155,7 @@ public class PlayerStateHandler : MonoBehaviour
         }
         else if (currentMoveState == MovementStates.AirMoving)
         {
-            walkingScript.Movement(inputX, isGrounded, false, false,Vector2.zero);//Due to air moving not tuching slopes setting its variables to false
+            walkingScript.Movement(inputX, isGrounded, false, false, Vector2.zero);//Due to air moving not tuching slopes setting its variables to false
         }
         else
         {
@@ -160,10 +170,12 @@ public class PlayerStateHandler : MonoBehaviour
 
     public void JumpPressed()
     {
-        if (isGrounded && currentMoveState != MovementStates.Grappling)
+        if ((isGrounded || coyoteTimer > 0) && currentMoveState != MovementStates.Grappling)
         {
             pressingJump = true;
             midJump = true;
+            coyoteTimer = 0;
+
             gravityCurveTransitionTime = 0;
             currentMoveState = MovementStates.Jumping;
             Invoke(nameof(EndJump), maxJumpDuration);

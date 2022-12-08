@@ -6,6 +6,7 @@ public class EnemyShooting : MonoBehaviour
 {
     //public bool isShooting;
     [SerializeField] float shootCooldown = 0.5f;
+    [SerializeField] Transform gunTrans; //transform to shoot from
     float shootTimer;
     bool canShoot;
 
@@ -36,7 +37,7 @@ public class EnemyShooting : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bulletInstance = Instantiate(bullet, transform.position, transform.rotation);
+        GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
     }
 

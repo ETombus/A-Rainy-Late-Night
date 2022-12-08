@@ -183,7 +183,7 @@ public class GroundChecker : MonoBehaviour
                 canWalkOnSlope = true;
             }
 
-            if (isOnSlope && canWalkOnSlope && stateManager.inputX == 0.0f)
+            if (isOnSlope && canWalkOnSlope && stateManager.inputX == 0.0f && stateManager.currentMoveState != PlayerStateHandler.MovementStates.Grappling)
             {
                 rbody.sharedMaterial = fullFrictionMaterial;
             }

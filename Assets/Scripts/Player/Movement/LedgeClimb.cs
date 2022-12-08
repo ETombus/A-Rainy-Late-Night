@@ -72,17 +72,10 @@ public class LedgeClimb : MonoBehaviour
     {
         if (ledgeDetected && !isClimbLedge)
         {
-            endPos = findEndPos();
             isClimbLedge = true;
         }
     }
 
-    private Vector2 findEndPos()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(endPosCkeck.position, Vector2.down, groundCheckDistance, whatIsTerrain);
-
-        return hit.point;
-    }
 
     void CheckDetection()
     {
@@ -102,10 +95,14 @@ public class LedgeClimb : MonoBehaviour
 
         if (isTuchingWall && !isTuchingLedge && !ledgeDetected)
         {
-            ledgeDetected = true;
             wallDetected = false;
+            endPos = FindEndPos();
+            if (endPos != Vector2.zero) //In cases it does not hit a ledge
+                ledgeDetected = true;
+            else
+                ledgeDetected = false;
         }
-        else if(isTuchingWall && isTuchingLedge && !wallDetected)
+        else if (isTuchingWall && isTuchingLedge && !wallDetected)
         {
             ledgeDetected = false;
             wallDetected = true;
@@ -116,14 +113,21 @@ public class LedgeClimb : MonoBehaviour
             ledgeDetected = false;
         }
     }
+    private Vector2 FindEndPos()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(endPosCkeck.position, Vector2.down, groundCheckDistance, whatIsTerrain);
+
+        return hit.point;
+    }
+
     void Turn()
     {
-        if(stateHandeler.inputX > 0)
+        if (stateHandeler.inputX > 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             facingRight = true;
         }
-        else if(stateHandeler.inputX < 0)
+        else if (stateHandeler.inputX < 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             facingRight = false;

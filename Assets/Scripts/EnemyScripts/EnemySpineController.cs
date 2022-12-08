@@ -26,7 +26,6 @@ public class EnemySpineController : MonoBehaviour
     void Update()
     {
         var currentState = handler.currentMode;
-        Debug.Log(currentState);
         if (previousState != currentState)
         {
             PlayNewAnimation();
