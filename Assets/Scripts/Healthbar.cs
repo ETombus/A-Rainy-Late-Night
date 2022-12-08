@@ -11,7 +11,8 @@ public class Healthbar : HealthHandler
 
     private void Start()
     {
-        healthBar.maxValue = maxHealth;
+        if (healthBar != null)
+            healthBar.maxValue = maxHealth;
         health = maxHealth;
     }
 
