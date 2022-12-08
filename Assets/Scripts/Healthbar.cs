@@ -18,11 +18,13 @@ public class Healthbar : HealthHandler
     public void ReduceHealth(int reduceValue)
     {
         health -= reduceValue;
-        healthBar.value = healthShown.Evaluate(health / 100) * 100;
+        if (healthBar != null)
+            healthBar.value = healthShown.Evaluate(health / 100) * 100;
     }
 
     public void AddHealth()
     {
-        healthBar.value = health;
+        if (healthBar != null)
+            healthBar.value = health;
     }
 }

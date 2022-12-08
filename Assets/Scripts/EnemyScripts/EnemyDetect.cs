@@ -61,13 +61,11 @@ public class EnemyDetect : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Ground"))
             {
                 detectedPlayer = false;
-                //Debug.Log(transform.parent.gameObject.name + " hit ground object " + hit.collider.gameObject.name);
             }
             else if (hit.collider.gameObject.CompareTag("Player"))
             {
                 detectedPlayer = true;
                 seesPlayer = true;
-                //Debug.Log(transform.parent.gameObject.name + " hit player object " + hit.collider.gameObject.name);
                 handler.currentMode = EnemyHandler.Mode.Aggression;
             }
         }
@@ -84,7 +82,6 @@ public class EnemyDetect : MonoBehaviour
         if (hit.collider != null)
         {
             Debug.DrawLine(transform.position, hit.point);
-            Debug.Log(hit.collider.gameObject.layer);
 
             if (Vector2.Distance(transform.position, handler.playerTrans.position) > detectionDistance
                || ((1 << hit.collider.gameObject.layer) & groundLayers) != 0) //compare the objects layer with the layermask

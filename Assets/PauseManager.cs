@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject youSurePanel;
 
     PlayerInputs playerControls;
     private InputAction escape;
@@ -50,6 +51,22 @@ public class PauseManager : MonoBehaviour
 
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+    }
+
+    public void ButtonExit()
+    {
+        youSurePanel.SetActive(true);
+    }
+    public void ButtonYouSureBack()
+    {
+        youSurePanel.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Game Quit");
+        PlayerPrefs.SetInt("PlayIntroAnimation", 0); //0 = true, 1 = false
+        Application.Quit();
     }
 
     private void EnablePlayerActions(bool setTo)
