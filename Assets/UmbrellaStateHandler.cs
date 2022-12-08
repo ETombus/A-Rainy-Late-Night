@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +16,11 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private LayerMask rayIgnore;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject rainColliderTag;
+    [SerializeField] private int rainDamage;
 
     public bool reloading = false;
-    
+    public bool inRain = false;
+
 
     public UmbrellaState currentState;
 
@@ -48,18 +51,29 @@ public class UmbrellaStateHandler : MonoBehaviour
 
         if (rayHit == null || rayHit.CompareTag(rainColliderTag.tag))
         {
-            if(currentState == UmbrellaState.Idle)
+            if (currentState == UmbrellaState.Idle)
             {
                 //equip umbrella
+                inRain = false;
             }
-            else
+            else if(!inRain)
             {
-                //Take rain damage
+                inRain = true;
+                StartCoroutine(RainDamage());
             }
         }
         else
         {
             //unequip umbrella
+        }
+    }
+
+    private IEnumerator RainDamage()
+    {
+        while(inRain)
+        {
+            player.GetComponent<Healthbar>().ReduceHealth(rainDamage);
+            yield return new WaitForSeconds(0.075f);
         }
     }
 
@@ -75,7 +89,6 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        currentState = UmbrellaState.Shoot;
         yield return null;
         Idle();
 
@@ -83,7 +96,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         reloadSlider.gameObject.SetActive(true);
 
         float fillOverTime = reloadSlider.maxValue / reloadTime;
-        while(reloadSlider.value<reloadSlider.maxValue)
+        while (reloadSlider.value < reloadSlider.maxValue)
         {
             reloadSlider.value += fillOverTime * Time.deltaTime;
             yield return null;
@@ -98,7 +111,6 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         if (currentState == UmbrellaState.Idle)
         {
-            //Debug.Log("sus");
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
             Invoke(nameof(Idle), 0.35f);
