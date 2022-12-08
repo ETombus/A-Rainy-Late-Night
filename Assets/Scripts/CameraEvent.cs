@@ -5,13 +5,19 @@ using Cinemachine;
 
 public class CameraEvent : MonoBehaviour
 {
+    [Header("Player Variables")]
     [SerializeField] bool isInField;
+    [SerializeField] bool bufferPeriod;
+    [SerializeField] float buffertime = 0.3f;
+    [SerializeField] float buffertimer;
+
+    [Header("Camera Variables")]
     [SerializeField] Transform cameraPos;
     [SerializeField] CinemachineVirtualCamera vCam;
     float camSize;
     [SerializeField] float newCamSize = 7;
     [SerializeField] float transitionSpeed = 4;
-    float t;
+    [SerializeField] float t;
 
     Transform cameraOrigin;
 
@@ -33,11 +39,17 @@ public class CameraEvent : MonoBehaviour
 
             t += 0.5f * Time.deltaTime;
         }
-        else if(!isInField && vCam.m_Lens.OrthographicSize > camSize)
+        else if (!isInField && vCam.m_Lens.OrthographicSize > camSize)
         {
             vCam.m_Lens.OrthographicSize = Mathf.Lerp(newCamSize, camSize, t);
 
             t += 0.5f * Time.deltaTime;
+        }
+
+        if (bufferPeriod)
+        {
+            buffertimer += Time.deltaTime;
+            if (buffertimer >= buffertime) { ReturnCamera(); }
         }
     }
 
@@ -45,7 +57,9 @@ public class CameraEvent : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            t = 0;
+            bufferPeriod = false;
+            buffertimer = 0;
+
             vCam.Follow = cameraPos;
             cameraOrigin = collision.transform.GetChild(0);
             isInField = true;
@@ -63,19 +77,23 @@ public class CameraEvent : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+            bufferPeriod = true;
+    }
+
+    void ReturnCamera()
+    {
+        isInField = false;
+        bufferPeriod = false;
+
+
+        vCam.Follow = cameraOrigin;
+        t = 0;
+
+        if (imgsToShow.Length > 0)
         {
-            t = 0;
-            isInField = false;
-
-            vCam.Follow = cameraOrigin;
-            vCam.m_Lens.OrthographicSize = camSize;
-
-            if (imgsToShow.Length > 0)
+            for (int i = 0; i < imgsToShow.Length; i++)
             {
-                for (int i = 0; i < imgsToShow.Length; i++)
-                {
-                    imgsToShow[i].SetActive(false);
-                }
+                imgsToShow[i].SetActive(false);
             }
         }
     }
