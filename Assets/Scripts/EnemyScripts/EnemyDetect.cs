@@ -13,6 +13,7 @@ public class EnemyDetect : MonoBehaviour
     [SerializeField] bool detectedPlayer;
 
     [SerializeField] LayerMask detectableLayers;
+    [SerializeField] LayerMask groundLayers;
 
     [SerializeField] float seachDuration = 3f;
     float searchTimer;
@@ -52,6 +53,7 @@ public class EnemyDetect : MonoBehaviour
 
     private void SendDetectionRay()
     {
+        markerRenderer.sprite = null;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, detectionDistance, detectableLayers);
 
         if (hit)
@@ -69,10 +71,7 @@ public class EnemyDetect : MonoBehaviour
                 handler.currentMode = EnemyHandler.Mode.Aggression;
             }
         }
-        else
-        {
-            detectedPlayer = false;
-        }
+        else { detectedPlayer = false; }
     }
 
     void SearchForPlayerWithinRange()
@@ -82,13 +81,18 @@ public class EnemyDetect : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, handler.playerTrans.position - transform.position,
             Vector2.Distance(transform.position, handler.playerTrans.position), detectableLayers);
-        Debug.DrawLine(transform.position, handler.playerTrans.position);
-
-        if (Vector2.Distance(transform.position, handler.playerTrans.position) > detectionDistance)
+        if (hit.collider != null)
         {
-            seesPlayer = false;
-            handler.currentMode = EnemyHandler.Mode.Search;
-            lastSeenPlayerLocation = handler.playerTrans.position;
+            Debug.DrawLine(transform.position, hit.point);
+            Debug.Log(hit.collider.gameObject.layer);
+
+            if (Vector2.Distance(transform.position, handler.playerTrans.position) > detectionDistance
+               || ((1 << hit.collider.gameObject.layer) & groundLayers) != 0) //compare the objects layer with the layermask
+            {
+                seesPlayer = false;
+                handler.currentMode = EnemyHandler.Mode.Search;
+                lastSeenPlayerLocation = handler.playerTrans.position;
+            }
         }
     }
 
@@ -97,7 +101,13 @@ public class EnemyDetect : MonoBehaviour
         searchTimer += Time.deltaTime;
         markerRenderer.sprite = markers[0];
 
-        if (Vector2.Distance(transform.position, handler.playerTrans.position) < detectionDistance)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, handler.playerTrans.position - transform.position,
+            Vector2.Distance(transform.position, handler.playerTrans.position), groundLayers);
+
+        Debug.DrawLine(transform.position, handler.playerTrans.position, Color.blue);
+
+        if (Vector2.Distance(transform.position, handler.playerTrans.position) < detectionDistance
+            && hit.collider == null)
         {
             handler.currentMode = EnemyHandler.Mode.Aggression;
         }

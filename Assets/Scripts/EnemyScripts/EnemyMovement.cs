@@ -46,6 +46,7 @@ public class EnemyMovement : MonoBehaviour
                 SearchForPlayer();
                 break;
             case EnemyHandler.Mode.Idle:
+                PatrolMode();
                 break;
             default:
                 break;
@@ -57,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (transform.position.x - movePoints[moveIndex].x < targetOffsetAmmount && transform.position.x - movePoints[moveIndex].x > -targetOffsetAmmount && !idle)
         {
+            handler.currentMode = EnemyHandler.Mode.Idle;
             idle = true;
             StartCoroutine(WaitBetweenPatrol(1));
         }
@@ -66,6 +68,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
+            handler.currentMode = EnemyHandler.Mode.Patrol;
             MoveEnemy(movePoints[moveIndex]);
         }
     }
