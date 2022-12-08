@@ -8,8 +8,9 @@ public class UmbrellaStateHandler : MonoBehaviour
     private Animator umbrellaVisualState;
 
     [SerializeField] private float maxRainHeightCheck;
-    [SerializeField] private LayerMask ignorePlayer;
+    [SerializeField] private LayerMask rayIgnore;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject rainColliderTag;
 
     private bool umbrellaOpen = true;
 
@@ -37,10 +38,22 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private void Update()
     {
-        if (!umbrellaOpen
-            && Physics2D.Raycast(player.transform.position, Vector2.up, maxRainHeightCheck, ignorePlayer).collider == null)
+        var rayHit = Physics2D.Raycast(player.transform.position, Vector2.up, maxRainHeightCheck, rayIgnore).collider;
+
+        if (rayHit == null || rayHit.CompareTag(rainColliderTag.tag))
         {
-            //Take rain damage
+            if(currentState == UmbrellaState.Idle)
+            {
+                //equip umbrella
+            }
+            else
+            {
+                //Take rain damage
+            }
+        }
+        else
+        {
+            //unequip umbrella
         }
     }
 
@@ -58,7 +71,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         {
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
-            Invoke(nameof(Idle), 0.25f);
+            Invoke(nameof(Idle), 0.35f);
         }
     }
 

@@ -9,8 +9,8 @@ public class GrappleInput : MonoBehaviour
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform ropeStart;
     [SerializeField] LayerMask rayIgnore;
-    GameObject targetPoint;
     GameObject[] hookPoints;
+    GameObject targetPoint;
     string hookPointTag = "HookPoint";
 
     [Header("Inputs")]
