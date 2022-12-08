@@ -934,46 +934,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1450338445620509171, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
   m_PrefabInstance: {fileID: 1522932922}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &150286532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150286518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a2f57715965613418415845b3f75858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 100
-  bloodParticles: {fileID: 2025191881}
-  healthBar: {fileID: 2025191883}
-  healthShown:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &156977411
 GameObject:
   m_ObjectHideFlags: 0
@@ -6460,22 +6420,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2014392998, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 2056493656, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 2112362774, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 24136076581838000, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 1450338445620509169, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -6524,18 +6468,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1450338445620509171, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 5990824859732837804, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7227084021561764370, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
+    - target: {fileID: 7279731664676654465, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 2025191883}
+    - target: {fileID: 7279731664676654465, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
+      propertyPath: bloodParticles
+      value: 
+      objectReference: {fileID: 2025191881}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
 --- !u!1 &1531663710
@@ -7916,30 +7860,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1864583822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2056493656, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-  m_PrefabInstance: {fileID: 1522932922}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1864583823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864583822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17574ad43ee4944289feaeb3753c401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraSpeed: 29.86
-  maxDistance: 11
-  lookUpDist: 6.5
-  bufferTime: 0.4
-  bufferTimer: 0
-  changeDirBuffer: 0.8
-  dirBufferTimer: 0
 --- !u!1 &1885221762 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 69136602759149846, guid: 9ca5e91ff75777e4b8e41543d356a0f9, type: 3}
@@ -8988,5 +8908,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5260019988308587262, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871184404804980625, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: punchingDistance
+      value: 3.13
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8871184403259919059, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}

@@ -98,7 +98,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         if (currentState == UmbrellaState.Idle)
         {
-            Debug.Log("sus");
+            //Debug.Log("sus");
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
             Invoke(nameof(Idle), 0.35f);
