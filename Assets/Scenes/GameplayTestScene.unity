@@ -8912,9 +8912,13 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: decceleration
+      value: 0.09
+      objectReference: {fileID: 0}
     - target: {fileID: 8871184404804980625, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: punchingDistance
-      value: 3.13
+      value: 1.23
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8871184403259919059, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
