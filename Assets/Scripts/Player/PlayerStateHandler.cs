@@ -95,7 +95,7 @@ public class PlayerStateHandler : MonoBehaviour
         {
             if (rbody.velocity.y > 0 && !grappleGravity)
             {
-                gravityMultiplier = 2;
+                gravityMultiplier = 3;
             }
             else
             {
