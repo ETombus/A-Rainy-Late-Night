@@ -6,10 +6,11 @@ using static PlayerStateHandler;
 
 public class PlayerSpineController : MonoBehaviour
 {
-    public AnimationReferenceAsset run, idle, jump;
+    public AnimationReferenceAsset run, idle, jump, descend;
     private SkeletonAnimation skeletonAnimation;
     private Slice sliceAction;
-    
+
+    private Rigidbody2D rbody;
     private PlayerStateHandler stateHandler;
     MovementStates previusState;
 
@@ -19,6 +20,7 @@ public class PlayerSpineController : MonoBehaviour
         stateHandler = GetComponentInParent<PlayerStateHandler>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         sliceAction = GetComponentInParent<Slice>();
+        rbody = GetComponentInParent<Rigidbody2D>();
         if (stateHandler == null) Debug.LogError("Can't find playerStateHandler");
 
     }
@@ -46,7 +48,6 @@ public class PlayerSpineController : MonoBehaviour
         }
 
         previusState = currentState;
-
     }
 
     float animSpeed;
