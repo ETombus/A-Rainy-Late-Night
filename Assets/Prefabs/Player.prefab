@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282481994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,6 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b36155fa854c2489004b21ea0b5fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailLength: 5
+  shotMaxDistance: 15
+  rifleDamage: 50
+  rayIgnore:
+    serializedVersion: 2
+    m_Bits: 328
+  bulletTrail: {fileID: 0}
 --- !u!120 &282481997
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1068,8 +1075,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 264
   player: {fileID: 1450338445620509171}
+  rifle: {fileID: 282481994}
   rainColliderTag: {fileID: 8679037771655832474, guid: 058b259195bb58d4c92561395eeb4a39, type: 3}
   rainDamage: 1
+  clips: []
   reloading: 0
   inRain: 0
   currentState: 0

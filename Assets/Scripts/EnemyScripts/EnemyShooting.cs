@@ -39,6 +39,7 @@ public class EnemyShooting : MonoBehaviour
     {
         GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
+        Destroy(bulletInstance, 2f);
     }
 
     private Vector2 GetShootVector()

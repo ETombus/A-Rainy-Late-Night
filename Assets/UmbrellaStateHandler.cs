@@ -15,6 +15,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private float reloadTime;
     [SerializeField] private LayerMask rayIgnore;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject rainColliderTag;
     [SerializeField] private int rainDamage;
 
@@ -88,7 +89,8 @@ public class UmbrellaStateHandler : MonoBehaviour
         if (currentState == UmbrellaState.Aiming)
         {
             Debug.Log("shoot");
-            //Shoot
+            rifle.GetComponent<RifleScript>().ShootRifle();
+            rifle.GetComponent<RifleScript>().bulletTrail.enabled = false;
             StartCoroutine(Reload());
         }
     }
