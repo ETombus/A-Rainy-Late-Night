@@ -18,7 +18,7 @@ public class Healthbar : HealthHandler
 
     public void ReduceHealth(int reduceValue)
     {
-        Debug.Log("hp: "+healthBar.value);
+        //Debug.Log("hp: "+healthBar.value);
         health -= reduceValue;
         if (healthBar != null)
             healthBar.value = healthShown.Evaluate(health / 100) * 100;

@@ -18,6 +18,10 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject rainColliderTag;
     [SerializeField] private int rainDamage;
 
+    PlayerSoundHandler soundHandler;
+    [SerializeField] AudioClip[] clips;
+    //0 - slash, 1 - grapple, 2 - shoot
+
     public bool reloading = false;
     public bool inRain = false;
 
@@ -40,6 +44,8 @@ public class UmbrellaStateHandler : MonoBehaviour
         umbrellaCollider = GetComponent<Collider2D>();
         umbrellaVisualState = GetComponent<Animator>();
         grapplingHook = GetComponentInParent<GrappleInput>();
+
+        soundHandler = GetComponentInParent<PlayerSoundHandler>();
 
         currentState = UmbrellaState.Idle;
         reloadSlider.gameObject.SetActive(false);
@@ -114,6 +120,8 @@ public class UmbrellaStateHandler : MonoBehaviour
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
             Invoke(nameof(Idle), 0.35f);
+
+            soundHandler.PlaySound(clips[0]);
         }
     }
 
