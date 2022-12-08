@@ -11,7 +11,7 @@ public class RifleScript : MonoBehaviour
     private Vector2 shotDirection;
     private LineRenderer bulletTrail;
 
-    private void Start()
+    private void Update()
     {
         bulletTrail= GetComponent<LineRenderer>();
         bulletTrail.enabled = false;
@@ -23,13 +23,14 @@ public class RifleScript : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         origin = transform.position;
 
-        shotDirection = mousePos - origin;
+        shotDirection = origin-mousePos;
         shotDirection.Normalize();
 
         shot = Physics2D.Raycast(origin, mousePos);
 
+
         bulletTrail.SetPosition(0, origin);
-        bulletTrail.SetPosition(1, shot.point);
+        bulletTrail.SetPosition(1, shotDirection);
         bulletTrail.enabled = true;
 
     }
