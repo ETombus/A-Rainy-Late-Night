@@ -76,13 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b36155fa854c2489004b21ea0b5fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailLength: 5
-  shotMaxDistance: 15
-  rifleDamage: 50
   rayIgnore:
     serializedVersion: 2
     m_Bits: 328
   bulletTrail: {fileID: 0}
+  trailLength: 5
+  shotMaxDistance: 15
+  rifleDamage: 75
 --- !u!120 &282481997
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2b9d46a536bc64badcb0e490698e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 35
 --- !u!1 &24136076581838000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,15 +1068,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453ec206f0c45a54d89c496017f089f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRainHeightCheck: 20
-  reloadSlider: {fileID: 945673642}
-  reloadTime: 2.5
-  rayIgnore:
-    serializedVersion: 2
-    m_Bits: 264
   player: {fileID: 1450338445620509171}
   rifle: {fileID: 282481994}
   rainColliderTag: {fileID: 8679037771655832474, guid: 058b259195bb58d4c92561395eeb4a39, type: 3}
+  reloadSlider: {fileID: 945673642}
+  rayIgnore:
+    serializedVersion: 2
+    m_Bits: 264
+  maxRainHeightCheck: 20
+  reloadTime: 2.5
   rainDamage: 1
   soundHandler: {fileID: 0}
   clips:
@@ -1085,6 +1085,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91f168f2f8e5d2d47b4eff25a6b65ff4, type: 3}
   reloading: 0
   inRain: 0
+  umbrellaUp: 0
   currentState: 0
 --- !u!1 &1450338445620509171
 GameObject:
@@ -1622,6 +1623,8 @@ MonoBehaviour:
   idle: {fileID: 11400000, guid: 46b28c233186cb24bba011cfa6911c6f, type: 2}
   jump: {fileID: 11400000, guid: 6f99f5ee3b813014dbffa17231adba08, type: 2}
   descend: {fileID: 11400000, guid: 0e1c0e82678352240b076b28a86ede55, type: 2}
+  UmbrellaUp: {fileID: 0}
+  UmbrellaDown: {fileID: 0}
 --- !u!33 &5990824859732837804
 MeshFilter:
   m_ObjectHideFlags: 0
