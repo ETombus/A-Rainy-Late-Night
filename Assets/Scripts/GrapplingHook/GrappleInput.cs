@@ -53,7 +53,7 @@ public class GrappleInput : MonoBehaviour
         {
             float distance = Vector2.SqrMagnitude((Vector2)point.transform.position - worldPos);
 
-            if (distance <= maxMouseDistance && RayHitPlayer(point))
+            if (distance <= closestHookDistance && RayHitPlayer(point))
             {
                 targetPoint = point;
                 closestHookDistance = distance;
