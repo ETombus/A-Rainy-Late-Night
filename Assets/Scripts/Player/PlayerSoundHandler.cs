@@ -13,8 +13,6 @@ public class PlayerSoundHandler : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        Debug.Log("Played Sound Effect " + clip.name);
-
         audSource.pitch = Random.Range(0.8f, 1.2f);
         audSource.PlayOneShot(clip);
     }

@@ -40,6 +40,7 @@ public class EnemyMelee : MonoBehaviour
                 {
                     handler.playerHealth.ReduceHealth(10);
                     punchingTimer = 0;
+                    handler.PlaySound(handler.thisType);
                     //Debug.Log("Punching Player");
                 }
             }
