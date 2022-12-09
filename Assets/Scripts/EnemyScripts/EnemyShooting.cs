@@ -27,9 +27,10 @@ public class EnemyShooting : MonoBehaviour
             if (shootTimer > 0)
                 shootTimer -= Time.deltaTime;
 
-            else if(shootTimer <= 0)
+            else if (shootTimer <= 0)
             {
                 Shoot();
+                handler.PlaySound(handler.thisType);
                 shootTimer = shootCooldown;
             }
         }

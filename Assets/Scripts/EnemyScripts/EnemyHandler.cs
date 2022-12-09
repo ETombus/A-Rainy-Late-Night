@@ -22,6 +22,12 @@ public class EnemyHandler : MonoBehaviour
     public bool isAttacking;
     public bool isOnLedge;
 
+    [Header("Sound")]
+    public AudioClip[] clips;
+    AudioSource audSource;
+    //0 = punch, 1 = shoot
+
+
     public enum Mode { Patrol, Aggression, Search, Idle }
     public enum Type { Melee, Ranged }
     [Header("Enums")]
@@ -36,11 +42,15 @@ public class EnemyHandler : MonoBehaviour
         playerTrans = player.GetComponent<Transform>();
 
         movement = GetComponent<EnemyMovement>();
+        if (movement == null) { Debug.LogError(gameObject.name + " is missing Movement!"); }
+
+        audSource = GetComponent<AudioSource>();
+        if (audSource == null) { Debug.LogError(gameObject.name + " is missing AudioSource!"); }
 
         if (thisType == Type.Ranged)
         {
             shooting = GetComponent<EnemyShooting>();
-            if (shooting == null) { Debug.LogError(gameObject.name + " is marked ranged and should Have the EnemyShooting script! Have you not added it or is EnemyType wrong?"); }
+            if (shooting == null) { Debug.LogError(gameObject.name + " is marked ranged and should have the EnemyShooting script! Have you not added it or is EnemyType wrong?"); }
         }
         else if (thisType == Type.Melee)
         {
@@ -68,5 +78,22 @@ public class EnemyHandler : MonoBehaviour
     public void AlertEnemy()
     {
         currentMode = Mode.Aggression;
+    }
+
+    public void PlaySound(EnemyHandler.Type typeOfEnemy)
+    {
+        audSource.pitch = Random.Range(0.8f, 1.2f);
+        switch (typeOfEnemy)
+        {
+            case Type.Melee:
+                audSource.PlayOneShot(clips[0]);
+                break;
+            case Type.Ranged:
+                audSource.PlayOneShot(clips[1]);
+                break;
+            default:
+                Debug.LogError("Cannot play sound effect, invalid EnemyType! Has this enemy been assigned an EnemyType?");
+                break;
+        }
     }
 }
