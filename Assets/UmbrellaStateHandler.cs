@@ -90,7 +90,6 @@ public class UmbrellaStateHandler : MonoBehaviour
         {
             Debug.Log("shoot");
             rifle.GetComponent<RifleScript>().ShootRifle();
-            rifle.GetComponent<RifleScript>().bulletTrail.enabled = false;
             StartCoroutine(Reload());
         }
     }
