@@ -8,6 +8,7 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject youSurePanel;
+    [SerializeField] GameObject tutorialPanel;
 
     PlayerInputs playerControls;
     private InputAction escape;
@@ -73,5 +74,15 @@ public class PauseManager : MonoBehaviour
     {
         player.GetComponent<Slice>().enabled = setTo;
         player.GetComponentInChildren<AimTowardsMouse>().enabled = setTo;
+    }
+
+    public void TutorialOpen()
+    {
+        tutorialPanel.SetActive(true);
+    }
+
+    public void TutorialClose()
+    {
+        tutorialPanel.SetActive(false);
     }
 }
