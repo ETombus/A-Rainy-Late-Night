@@ -31,6 +31,8 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private GrappleInput grapplingHook;
 
+    public bool umbrellaUp = false;
+
     public enum UmbrellaState
     {
         Idle,
@@ -61,6 +63,7 @@ public class UmbrellaStateHandler : MonoBehaviour
             if (currentState == UmbrellaState.Idle)
             {
                 //equip umbrella
+                umbrellaUp = true;
                 inRain = false;
             }
             else if (!inRain)
@@ -69,9 +72,10 @@ public class UmbrellaStateHandler : MonoBehaviour
                 StartCoroutine(RainDamage());
             }
         }
-        else
+        else if(currentState == UmbrellaState.Idle)
         {
             //unequip umbrella
+            umbrellaUp = false;
         }
     }
 
