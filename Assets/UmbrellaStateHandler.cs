@@ -7,31 +7,32 @@ using UnityEngine.UI;
 
 public class UmbrellaStateHandler : MonoBehaviour
 {
-    private Collider2D umbrellaCollider;
-    private Animator umbrellaVisualState;
-
-    [SerializeField] private float maxRainHeightCheck;
-    [SerializeField] private Slider reloadSlider;
-    [SerializeField] private float reloadTime;
-    [SerializeField] private LayerMask rayIgnore;
+    [Header("Components")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject rainColliderTag;
+    [SerializeField] private Slider reloadSlider;
+    [SerializeField] private LayerMask rayIgnore;
+    private GrappleInput grapplingHook;
+    private Collider2D umbrellaCollider;
+
+    [Header("Values")]
+    [SerializeField] private float maxRainHeightCheck;
+    [SerializeField] private float reloadTime;
     [SerializeField] private int rainDamage;
 
+    [Header("Audio")]
     public PlayerSoundHandler soundHandler;
     public AudioClip[] clips;
     //0 - slash, 1 - grapple, 2 - shoot
 
+    [Header("Bools")]
     public bool reloading = false;
     public bool inRain = false;
-
-
-    public UmbrellaState currentState;
-
-    private GrappleInput grapplingHook;
-
     public bool umbrellaUp = false;
+
+    [Header("Enum")]
+    public UmbrellaState currentState;
 
     public enum UmbrellaState
     {
@@ -45,7 +46,6 @@ public class UmbrellaStateHandler : MonoBehaviour
     private void Start()
     {
         umbrellaCollider = GetComponent<Collider2D>();
-        umbrellaVisualState = GetComponent<Animator>();
         grapplingHook = GetComponentInParent<GrappleInput>();
 
         soundHandler = GetComponentInParent<PlayerSoundHandler>();

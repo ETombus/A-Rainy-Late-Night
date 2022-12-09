@@ -6,15 +6,21 @@ using UnityEngine.InputSystem;
 
 public class RifleScript : MonoBehaviour
 {
+    [Header("Components")]
+    [SerializeField] LayerMask rayIgnore;
+    [HideInInspector] public LineRenderer bulletTrail;
+    private RaycastHit2D shot;
+
+
+    [Header("Values")]
     [SerializeField] float trailLength;
     [SerializeField] float shotMaxDistance;
     [SerializeField] float rifleDamage;
-    [SerializeField] LayerMask rayIgnore;
-    private RaycastHit2D shot;
+
+    [Header("Vectors")]
     private Vector2 origin;
     private Vector2 mousePos;
     private Vector2 shotDirection;
-    [HideInInspector] public LineRenderer bulletTrail;
 
     private void Start()
     {

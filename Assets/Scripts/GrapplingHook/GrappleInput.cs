@@ -9,6 +9,7 @@ public class GrappleInput : MonoBehaviour
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform ropeStart;
     [SerializeField] LayerMask rayIgnore;
+    UmbrellaStateHandler umbrella;
     GameObject[] hookPoints;
     GameObject targetPoint;
     string hookPointTag = "HookPoint";
@@ -22,13 +23,10 @@ public class GrappleInput : MonoBehaviour
     [Header("Values")]
     [Range(0, 25)] [SerializeField] float hookMaxReach;
     [Range(0, 25)] [SerializeField] float maxMouseDistance;
-    float closestHookDistance;
-
     [SerializeField] float hookSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float playerAcceleration;
     [SerializeField] AnimationCurve playerSpeedOverTime;
-    UmbrellaStateHandler umbrella;
 
     public bool canGrapple = true;
 

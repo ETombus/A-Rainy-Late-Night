@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class HookScript : MonoBehaviour
 {
+    [Header("Components")]
+    [HideInInspector] public AnimationCurve playerSpeedOverTime;
     public GameObject player;
     public Vector2 targetPos;
+    public Transform ropeStart;
+    LineRenderer rope;
 
-    float percentage;
-    float failsafe;
+    [Header("Values")]
     [HideInInspector] public float hookSpeed;
     [HideInInspector] public float playerSpeed;
     [HideInInspector] public float playerAcceleration;
-    [HideInInspector] public AnimationCurve playerSpeedOverTime;
+    float percentage;
+    float failsafe;
 
-    LineRenderer rope;
-    public Transform ropeStart;
 
     private void Start()
     {
