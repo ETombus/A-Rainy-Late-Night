@@ -9,6 +9,7 @@ public class EnemyShooting : MonoBehaviour
     [SerializeField] Transform gunTrans; //transform to shoot from
     float shootTimer;
     bool canShoot;
+    private EnemySpineController spineController;
 
     [SerializeField] GameObject bullet;
     [SerializeField] float bulletSpeed = 50f;
@@ -17,6 +18,7 @@ public class EnemyShooting : MonoBehaviour
     private void Start()
     {
         handler = GetComponent<EnemyHandler>();
+        spineController = GetComponentInChildren<EnemySpineController>();
         shootTimer = shootCooldown;
     }
 
@@ -38,9 +40,11 @@ public class EnemyShooting : MonoBehaviour
 
     public void Shoot()
     {
+        spineController.PlayAttackAnimation();
         GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
         Destroy(bulletInstance, 2f);
+
     }
 
     private Vector2 GetShootVector()
