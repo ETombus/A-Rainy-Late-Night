@@ -19,8 +19,8 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject rainColliderTag;
     [SerializeField] private int rainDamage;
 
-    PlayerSoundHandler soundHandler;
-    [SerializeField] AudioClip[] clips;
+    public PlayerSoundHandler soundHandler;
+    public AudioClip[] clips;
     //0 - slash, 1 - grapple, 2 - shoot
 
     public bool reloading = false;
@@ -63,7 +63,7 @@ public class UmbrellaStateHandler : MonoBehaviour
                 //equip umbrella
                 inRain = false;
             }
-            else if(!inRain)
+            else if (!inRain)
             {
                 inRain = true;
                 StartCoroutine(RainDamage());
@@ -77,7 +77,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private IEnumerator RainDamage()
     {
-        while(inRain)
+        while (inRain)
         {
             player.GetComponent<Healthbar>().ReduceHealth(rainDamage);
             yield return new WaitForSeconds(0.075f);
@@ -91,6 +91,8 @@ public class UmbrellaStateHandler : MonoBehaviour
             Debug.Log("shoot");
             rifle.GetComponent<RifleScript>().ShootRifle();
             StartCoroutine(Reload());
+
+            soundHandler.PlaySound(clips[2]);
         }
     }
 

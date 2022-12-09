@@ -20,16 +20,19 @@ public class GrappleInput : MonoBehaviour
     Vector2 worldPos;
 
     [Header("Values")]
-    [Range(0, 25)][SerializeField] float hookMaxReach;
-    [Range(0, 25)][SerializeField] float maxMouseDistance;
+    [Range(0, 25)] [SerializeField] float hookMaxReach;
+    [Range(0, 25)] [SerializeField] float maxMouseDistance;
     float closestHookDistance;
 
     [SerializeField] float hookSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float playerAcceleration;
     [SerializeField] AnimationCurve playerSpeedOverTime;
+    UmbrellaStateHandler umbrella;
 
     public bool canGrapple = true;
+
+    private void Start() { umbrella = GetComponentInChildren<UmbrellaStateHandler>(); }
 
     private void Awake()
     {
@@ -71,10 +74,10 @@ public class GrappleInput : MonoBehaviour
         Vector2 targetPos = target.transform.position;
         Collider2D rayTarget = Physics2D.Raycast(targetPos, pos - targetPos, hookMaxReach, rayIgnore).collider;
 
-        if (rayTarget == GetComponent<Collider2D>()) 
-            { return true; }
-        else 
-            { return false; }
+        if (rayTarget == GetComponent<Collider2D>())
+        { return true; }
+        else
+        { return false; }
     }
 
     public void ShootGrapple()
@@ -97,6 +100,8 @@ public class GrappleInput : MonoBehaviour
             hookCS.playerSpeed = playerSpeed;
             hookCS.playerAcceleration = playerAcceleration;
             hookCS.playerSpeedOverTime = playerSpeedOverTime;
+
+           umbrella.soundHandler.PlaySound(umbrella.clips[1]);
         }
         else
         {
