@@ -4090,10 +4090,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 65219155523805052, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: coyoteDuration
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 1450338445620509169, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4142,38 +4138,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3827123247727634966, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4918692793852440873, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: run
+      propertyPath: UmbrellaUp
       value: 
-      objectReference: {fileID: 11400000, guid: e922a7dd8bf28a149b92cca799de0156, type: 2}
+      objectReference: {fileID: 11400000, guid: 23ff1f7825e5b074aa5bedad63717b87, type: 2}
     - target: {fileID: 4918692793852440873, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: idle
+      propertyPath: UmbrellaDown
       value: 
-      objectReference: {fileID: 11400000, guid: 46b28c233186cb24bba011cfa6911c6f, type: 2}
-    - target: {fileID: 4918692793852440873, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: jump
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f99f5ee3b813014dbffa17231adba08, type: 2}
-    - target: {fileID: 4918692793852440873, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: descend
-      value: 
-      objectReference: {fileID: 11400000, guid: 0e1c0e82678352240b076b28a86ede55, type: 2}
-    - target: {fileID: 5354658077112447295, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2a9bc561a75f50744a3e827af6bb3f74, type: 2}
+      objectReference: {fileID: 11400000, guid: 0a2e7d30936a8c24083ef43345156321, type: 2}
     - target: {fileID: 5990824859732837804, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7917489044366734243, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: skeletonDataAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: ef039d33416c98d43949269db4739368, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
 --- !u!1001 &69136602948104093
