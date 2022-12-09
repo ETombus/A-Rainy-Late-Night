@@ -27,6 +27,7 @@ public class GrappleInput : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float playerAcceleration;
     [SerializeField] AnimationCurve playerSpeedOverTime;
+    float closestHookDistance;
 
     public bool canGrapple = true;
 
