@@ -6,10 +6,14 @@ using static EnemyHandler;
 
 public class EnemySpineController : MonoBehaviour
 {
-    [SerializeField] AnimationReferenceAsset idle, run, walk, Aim;
+    [SerializeField] AnimationReferenceAsset idle, run, walk, Aim, Attack;
     SkeletonAnimation skelAnimation;
 
     EnemyHandler handler;
+
+    private EnemyShooting shooter;
+    private EnemyMelee meleeer;
+
     Mode previousState;
 
     [Header("Aim variables")]
@@ -28,6 +32,14 @@ public class EnemySpineController : MonoBehaviour
         previousState = Mode.Idle;
         aimBone = skelAnimation.Skeleton.FindBone(boneName);
 
+        if (GetComponentInParent<EnemyMelee>() != null)
+            meleeer = GetComponentInParent<EnemyMelee>();
+        else if (GetComponentInParent<EnemyShooting>() != null)
+            shooter = GetComponentInParent<EnemyShooting>();
+        else
+            Debug.LogError(transform.parent.gameObject + " has no Ranged Or Melee script on them");
+
+
 
         if (handler == null) Debug.LogError("Handler in " + gameObject.name + " is missing");
     }
@@ -38,8 +50,14 @@ public class EnemySpineController : MonoBehaviour
         var currentState = handler.currentMode;
         if (previousState != currentState)
         {
-            PlayNewAnimation();
+            if (shooter != null)
+                PlayNewShooterAnimation();
+            else
+                PlayNewMeleerAnimation();
         }
+
+
+
         //UpdateTargetLocation();
         previousState = currentState;
     }
@@ -55,7 +73,43 @@ public class EnemySpineController : MonoBehaviour
     //    aimBone.SetLocalPosition(handler.playerTrans.position);
     //}
 
-    void PlayNewAnimation()
+    void PlayNewMeleerAnimation()
+    {
+        var newAnimationState = handler.currentMode;
+        Spine.Animation nextAnimation;
+
+        switch (newAnimationState)
+        {
+            case Mode.Patrol:
+                nextAnimation = walk;
+                break;
+            case Mode.Aggression:
+                nextAnimation = run;
+                break;
+            case Mode.Search:
+                nextAnimation = run;
+                break;
+            case Mode.Idle:
+                nextAnimation = idle;
+                break;
+            default:
+                Debug.LogError("Invalid Animation State");
+                nextAnimation = idle;
+                break;
+        }
+
+        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, true);
+    }
+
+    public void PlayAttackAnimation()
+    {
+        var shootTrack = skelAnimation.AnimationState.SetAnimation(1, Attack, false);
+        shootTrack.AttachmentThreshold = 1f;
+        shootTrack.MixDuration = 0f;
+        skelAnimation.state.AddEmptyAnimation(1, 0.5f, 0.1f);
+    }
+
+    void PlayNewShooterAnimation()
     {
         var newAnimationState = handler.currentMode;
         Spine.Animation nextAnimation;
@@ -106,6 +160,6 @@ public class EnemySpineController : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (handler != null)
-            Gizmos.DrawWireSphere( transform.position + new Vector3(0, 1.8f) + ((handler.playerTrans.position - (transform.position + new Vector3(0, 1.8f))).normalized) * aimOffset, 0.3f);
+            Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1.8f) + ((handler.playerTrans.position - (transform.position + new Vector3(0, 1.8f))).normalized) * aimOffset, 0.3f);
     }
 }

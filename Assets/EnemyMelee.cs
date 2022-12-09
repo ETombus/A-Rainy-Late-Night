@@ -12,10 +12,13 @@ public class EnemyMelee : MonoBehaviour
     float punchingTimer;
 
     [SerializeField] int damage;
+    private EnemySpineController enemySpine;
+
 
     private void Start()
     {
         handler = GetComponent<EnemyHandler>();
+        enemySpine = GetComponentInChildren<EnemySpineController>();
     }
 
     private void Update()
@@ -24,12 +27,6 @@ public class EnemyMelee : MonoBehaviour
         {
             if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) > punchingDistance)
                 handler.movement.MoveEnemy(handler.playerTrans.position);
-
-            //if (Vector2.Distance(handler.playerTrans.position, transform.position) > punchingDistance)
-            //{
-            //    handler.movement.MoveEnemy(handler.playerTrans.position);
-            //    Debug.Log("Punching distance is " + punchingDistance);
-            //}
 
             else if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) <= punchingDistance)
             {
@@ -41,6 +38,7 @@ public class EnemyMelee : MonoBehaviour
                     handler.playerHealth.ReduceHealth(10);
                     punchingTimer = 0;
                     handler.PlaySound(handler.thisType);
+                    enemySpine.PlayAttackAnimation();
                     //Debug.Log("Punching Player");
                 }
             }

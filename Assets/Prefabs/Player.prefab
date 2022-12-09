@@ -1363,7 +1363,7 @@ MonoBehaviour:
   rayIgnore:
     serializedVersion: 2
     m_Bits: 776
-  hookMaxReach: 15
+  hookMaxReach: 10
   maxMouseDistance: 10
   hookSpeed: 40
   playerSpeed: 45
@@ -1623,8 +1623,8 @@ MonoBehaviour:
   idle: {fileID: 11400000, guid: 46b28c233186cb24bba011cfa6911c6f, type: 2}
   jump: {fileID: 11400000, guid: 6f99f5ee3b813014dbffa17231adba08, type: 2}
   descend: {fileID: 11400000, guid: 0e1c0e82678352240b076b28a86ede55, type: 2}
-  UmbrellaUp: {fileID: 0}
-  UmbrellaDown: {fileID: 0}
+  UmbrellaUp: {fileID: 11400000, guid: 23ff1f7825e5b074aa5bedad63717b87, type: 2}
+  UmbrellaDown: {fileID: 11400000, guid: 0a2e7d30936a8c24083ef43345156321, type: 2}
 --- !u!33 &5990824859732837804
 MeshFilter:
   m_ObjectHideFlags: 0
