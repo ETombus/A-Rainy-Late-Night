@@ -7,7 +7,7 @@ using static UmbrellaStateHandler;
 
 public class PlayerSpineController : MonoBehaviour
 {
-    public AnimationReferenceAsset run, idle, jump, descend;
+    public AnimationReferenceAsset run, idle, jump, ascend, descend, landing;
     public AnimationReferenceAsset UmbrellaUp, UmbrellaDown;
 
 
@@ -18,14 +18,20 @@ public class PlayerSpineController : MonoBehaviour
     private PlayerStateHandler playerState;
     private UmbrellaStateHandler umbrellaState;
     MovementStates previusPlayerState;
+    bool previusFallingState;
     UmbrellaState previusUmbrellaState;
     bool previusIdleUmbrellaState;
+
+    float animSpeed;
+
 
     // Start is called before the first frame update
     void Start()
     {
         playerState = GetComponentInParent<PlayerStateHandler>();
         umbrellaState = transform.parent.gameObject.GetComponentInChildren<UmbrellaStateHandler>();
+
+        //Time.timeScale = 0.1f;
 
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         sliceAction = GetComponentInParent<Slice>();
@@ -37,12 +43,9 @@ public class PlayerSpineController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if (sliceAction.isSlicing)
         {
             Turn(sliceAction.sliceDirection < 0);
-
         }
         else if ((skeletonAnimation.skeleton.ScaleX < 0) != playerState.inputX <= 0)
         {
@@ -51,26 +54,26 @@ public class PlayerSpineController : MonoBehaviour
 
         var currentPlayerState = playerState.currentMoveState;
 
-        var currentUmbrellaState = umbrellaState.currentState;
-        bool umbrellaCurrentlyUp = umbrellaState.umbrellaUp;
-
-
-        if (previusPlayerState != currentPlayerState)
+        // MOVEMENT
+        if (previusPlayerState != playerState.currentMoveState || previusFallingState != playerState.falling)
         {
             PlayNewMovementAnimationState();
         }
 
-        if (previusUmbrellaState != currentUmbrellaState || previusIdleUmbrellaState != umbrellaCurrentlyUp)
+        previusPlayerState = playerState.currentMoveState;
+        previusFallingState = playerState.falling;
+
+
+        // UMBRELLA
+        if (previusUmbrellaState != umbrellaState.currentState || previusIdleUmbrellaState != umbrellaState.umbrellaUp)
         {
             PlayUmbrellaStates();
         }
 
-        previusIdleUmbrellaState = umbrellaCurrentlyUp;
-        previusUmbrellaState = currentUmbrellaState;
-        previusPlayerState = currentPlayerState;
+        previusIdleUmbrellaState = umbrellaState.umbrellaUp;
+        previusUmbrellaState = umbrellaState.currentState;
     }
 
-    float animSpeed;
     void PlayNewMovementAnimationState()
     {
         var newAnimationState = playerState.currentMoveState;
@@ -82,6 +85,7 @@ public class PlayerSpineController : MonoBehaviour
             nextAnimation = jump; // Jumping animation
             //Debug.Log("Is jumping");
             animSpeed = 1;
+            
         }
         else if (newAnimationState == MovementStates.Idle)
         {
@@ -98,8 +102,11 @@ public class PlayerSpineController : MonoBehaviour
         }
         else
         {
-            nextAnimation = jump; // Falling animation
-                                  //Debug.Log("Is falling");
+            if (playerState.falling)
+                nextAnimation = descend; // Falling animation
+            else
+                nextAnimation = ascend;
+
             animSpeed = 1;
         }
 
