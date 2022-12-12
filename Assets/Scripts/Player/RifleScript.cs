@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -70,35 +71,40 @@ public class RifleScript : MonoBehaviour
 
         }
 
-        bulletTrail.SetPosition(0, origin);
-        bulletTrail.SetPosition(1, origin + shotDirection * trailLength);
-        bulletTrail.enabled = true;
-
         StartCoroutine(LineFade());
     }
 
     private IEnumerator LineFade()
     {
-        if(shot.collider != null)
-        {
+        bulletTrail.SetPosition(0, origin);
+        bulletTrail.enabled = true;
 
+        if (shot.collider != null)
+        {
+            bulletTrail.SetPosition(1, shot.collider.transform.position);
         }
         else
         {
+            bulletTrail.SetPosition(1, origin + shotDirection * trailLength);
+        }
 
-        }
-        var gradientHolder = bulletTrail.colorGradient;
-        var gradKeys = gradientHolder.alphaKeys;
-        while (gradKeys[0].alpha > 0.05f)
-        {
-            gradKeys[0].alpha -= 0.01f;
+        //var gradientHolder = bulletTrail.colorGradient;
+        //var gradKeys = gradientHolder.alphaKeys;
+        //var alphaHolder = gradKeys[1].alpha;
+        //while (gradKeys[2].alpha > 0.05f)
+        //{
+        //    gradKeys[1].alpha -= 0.01f;
+        //    gradKeys[1].alpha = Mathf.Clamp(gradKeys[1].alpha, 0, alphaHolder);
+        //    gradKeys[2].alpha -= 0.01f;
+
             yield return null;
-            gradientHolder.alphaKeys = gradKeys;
-            bulletTrail.colorGradient = gradientHolder;
-        }
-        gradKeys[0].alpha = 1;
-        gradientHolder.alphaKeys = gradKeys;
-        bulletTrail.colorGradient = gradientHolder;
-        bulletTrail.enabled = false;
+        //    gradientHolder.alphaKeys = gradKeys;
+        //    bulletTrail.colorGradient = gradientHolder;
+        //}
+        //gradKeys[1].alpha = alphaHolder;
+        //gradKeys[2].alpha = 1;
+        //gradientHolder.alphaKeys = gradKeys;
+        //bulletTrail.colorGradient = gradientHolder;
+        //bulletTrail.enabled = false;
     }
 }
