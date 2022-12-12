@@ -4238,18 +4238,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4918692793852440873, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: jump
-      value: 
-      objectReference: {fileID: 11400000, guid: ad8d46d8ab9c0af44a5167e2d9043197, type: 2}
-    - target: {fileID: 4918692793852440873, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: ascend
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f99f5ee3b813014dbffa17231adba08, type: 2}
-    - target: {fileID: 4918692793852440873, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: landing
-      value: 
-      objectReference: {fileID: 11400000, guid: ceb8b0b2182a16646832a706573830d4, type: 2}
     - target: {fileID: 5990824859732837804, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4269,15 +4257,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69136602759149840, guid: 9ca5e91ff75777e4b8e41543d356a0f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.626162
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 69136602759149840, guid: 9ca5e91ff75777e4b8e41543d356a0f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5602636
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 69136602759149840, guid: 9ca5e91ff75777e4b8e41543d356a0f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.6655536
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 69136602759149840, guid: 9ca5e91ff75777e4b8e41543d356a0f9, type: 3}
       propertyPath: m_LocalRotation.w

@@ -46,6 +46,7 @@ public class PlayerStateHandler : MonoBehaviour
     private GrappleInput grappleScript;
     private Rigidbody2D rbody;
     private PlayerSpineController spineController;
+    private UmbrellaStateHandler umbrellaHandler;
 
     public enum MovementStates
     {
@@ -66,7 +67,7 @@ public class PlayerStateHandler : MonoBehaviour
         grappleScript = GetComponent<GrappleInput>();
         rbody = GetComponent<Rigidbody2D>();
         spineController = GetComponentInChildren<PlayerSpineController>();
-
+        umbrellaHandler = GetComponentInChildren<UmbrellaStateHandler>();
 
         coyoteTimer = coyoteDuration;
         currentMoveState = MovementStates.GroundMoving;
@@ -163,8 +164,13 @@ public class PlayerStateHandler : MonoBehaviour
 
             walkingScript.Movement(inputX, isGrounded, false, false, Vector2.zero);//Due to air moving not tuching slopes setting its variables to false
 
-            if (falling && slowfalling)
+            if (falling && slowfalling && umbrellaHandler.currentState == UmbrellaStateHandler.UmbrellaState.Idle)
+            {
+                umbrellaHandler.slowFalling = true;
                 jumpingScript.SlowFalling();
+            }
+            else
+                umbrellaHandler.slowFalling = false;
         }
         else
         {

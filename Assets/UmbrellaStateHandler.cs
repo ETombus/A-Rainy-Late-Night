@@ -32,6 +32,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     public bool reloading = false;
     public bool inRain = false;
     public bool umbrellaUp = false;
+    public bool slowFalling = false;
 
     [Header("Enum")]
     public UmbrellaState currentState;
@@ -79,7 +80,8 @@ public class UmbrellaStateHandler : MonoBehaviour
         else if (currentState == UmbrellaState.Idle)
         {
             //unequip umbrella
-            umbrellaUp = false;
+
+            umbrellaUp = slowFalling ? true : false;
         }
     }
 
