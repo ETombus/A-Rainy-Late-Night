@@ -6,7 +6,7 @@ using Cinemachine;
 public class CameraEvent : MonoBehaviour
 {
     [Header("Player Variables")]
-    [SerializeField] bool isInField;
+    [SerializeField] static bool isInField = false;
     [SerializeField] bool bufferPeriod;
     [SerializeField] float buffertime = 0.3f;
     [SerializeField] float buffertimer;
@@ -14,13 +14,14 @@ public class CameraEvent : MonoBehaviour
     [Header("Camera Variables")]
     [SerializeField] Transform cameraPos;
     [SerializeField] CinemachineVirtualCamera vCam;
-    float camSize;
-    [SerializeField] float newCamSize = 7;
+    float originalCamSize;
+    static float newCamSize;
+    [SerializeField] float thisNewCamSize = 7;
     [SerializeField] float transitionSpeed = 4;
-    [SerializeField] float t;
 
     Transform cameraOrigin;
 
+    [Header("Non-Required")]
     [SerializeField] GameObject[] imgsToShow;
 
     // Start is called before the first frame update
@@ -28,22 +29,18 @@ public class CameraEvent : MonoBehaviour
     {
         cameraPos = this.gameObject.transform.GetChild(0);
         vCam = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
-        camSize = vCam.m_Lens.OrthographicSize;
+        originalCamSize = vCam.m_Lens.OrthographicSize;
     }
 
     private void Update()
     {
         if (isInField && vCam.m_Lens.OrthographicSize < newCamSize)
         {
-            vCam.m_Lens.OrthographicSize = Mathf.Lerp(camSize, newCamSize, t);
-
-            t += 0.5f * Time.deltaTime;
+            vCam.m_Lens.OrthographicSize += Time.deltaTime * transitionSpeed;
         }
-        else if (!isInField && vCam.m_Lens.OrthographicSize > camSize)
+        else if (!isInField && vCam.m_Lens.OrthographicSize > originalCamSize)
         {
-            vCam.m_Lens.OrthographicSize = Mathf.Lerp(newCamSize, camSize, t);
-
-            t += 0.5f * Time.deltaTime;
+            vCam.m_Lens.OrthographicSize -= Time.deltaTime * transitionSpeed;
         }
 
         if (bufferPeriod)
@@ -57,6 +54,8 @@ public class CameraEvent : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            newCamSize = thisNewCamSize;
+
             bufferPeriod = false;
             buffertimer = 0;
 
@@ -85,9 +84,9 @@ public class CameraEvent : MonoBehaviour
         isInField = false;
         bufferPeriod = false;
 
-
         vCam.Follow = cameraOrigin;
-        t = 0;
+
+        cameraOrigin = null;
 
         if (imgsToShow.Length > 0)
         {
