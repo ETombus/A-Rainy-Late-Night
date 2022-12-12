@@ -104,7 +104,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void AimHandler(InputAction.CallbackContext context)
     {
-        if (context.performed && !umbrellaHandler.reloading)
+        if (context.performed && !umbrellaHandler.reloading && umbrellaHandler.currentState == UmbrellaStateHandler.UmbrellaState.Idle)
         {
             StartCoroutine(rifleScript.Aim());
             umbrellaHandler.currentState = UmbrellaStateHandler.UmbrellaState.Aiming;

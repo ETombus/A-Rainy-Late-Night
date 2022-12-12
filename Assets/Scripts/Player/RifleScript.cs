@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +15,6 @@ public class RifleScript : MonoBehaviour
 
 
     [Header("Values")]
-    [SerializeField] float trailLength;
     [SerializeField] float aimLaserLength;
     [SerializeField] float shotMaxDistance;
     [SerializeField] float rifleDamage;
@@ -81,30 +79,25 @@ public class RifleScript : MonoBehaviour
 
         if (shot.collider != null)
         {
-            bulletTrail.SetPosition(1, shot.collider.transform.position);
+            Debug.Log(shot.collider.name);
+            bulletTrail.SetPosition(1, shot.point);
         }
         else
         {
-            bulletTrail.SetPosition(1, origin + shotDirection * trailLength);
+            bulletTrail.SetPosition(1, origin + shotDirection * shotMaxDistance);
         }
-
-        //var gradientHolder = bulletTrail.colorGradient;
-        //var gradKeys = gradientHolder.alphaKeys;
-        //var alphaHolder = gradKeys[1].alpha;
-        //while (gradKeys[2].alpha > 0.05f)
-        //{
-        //    gradKeys[1].alpha -= 0.01f;
-        //    gradKeys[1].alpha = Mathf.Clamp(gradKeys[1].alpha, 0, alphaHolder);
-        //    gradKeys[2].alpha -= 0.01f;
-
+        var gradientHolder = bulletTrail.colorGradient;
+        var gradKeys = gradientHolder.alphaKeys;
+        while (gradKeys[1].alpha > 0.05f)
+        {
+            gradKeys[1].alpha -= 0.015f;
             yield return null;
-        //    gradientHolder.alphaKeys = gradKeys;
-        //    bulletTrail.colorGradient = gradientHolder;
-        //}
-        //gradKeys[1].alpha = alphaHolder;
-        //gradKeys[2].alpha = 1;
-        //gradientHolder.alphaKeys = gradKeys;
-        //bulletTrail.colorGradient = gradientHolder;
-        //bulletTrail.enabled = false;
+            gradientHolder.alphaKeys = gradKeys;
+            bulletTrail.colorGradient = gradientHolder;
+        }
+        gradKeys[1].alpha = 1;
+        gradientHolder.alphaKeys = gradKeys;
+        bulletTrail.colorGradient = gradientHolder;
+        bulletTrail.enabled = false;
     }
 }

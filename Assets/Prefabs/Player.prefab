@@ -81,7 +81,6 @@ MonoBehaviour:
     m_Bits: 328
   aimLaser: {fileID: 2097947645}
   bulletTrail: {fileID: 0}
-  trailLength: 5
   aimLaserLength: 20
   shotMaxDistance: 15
   rifleDamage: 75
@@ -125,7 +124,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -149,7 +148,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0.20784314}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -166,8 +165,8 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 13107
-      atime2: 62258
+      atime1: 65535
+      atime2: 65535
       atime3: 65535
       atime4: 0
       atime5: 0
@@ -175,9 +174,9 @@ LineRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 4
+      m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 3
     alignment: 0
     textureMode: 0
     shadowBias: 0.5

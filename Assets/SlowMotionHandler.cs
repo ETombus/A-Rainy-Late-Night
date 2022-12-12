@@ -20,7 +20,6 @@ public class SlowMotionHandler : MonoBehaviour
 
     public IEnumerator SlowTime(float slowDownSpeed)
     {
-        Debug.Log("execute");
         while (currentSlowTime <= slowDownCurve.length)
         {
             currentSlowTime += slowDownSpeed/10;
