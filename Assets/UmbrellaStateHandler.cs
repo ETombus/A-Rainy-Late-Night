@@ -60,7 +60,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
         var rayHit = Physics2D.Raycast(player.transform.position, Vector2.up, maxRainHeightCheck, rayIgnore).collider;
 
         if (rayHit == null || rayHit.CompareTag(rainColliderTag.tag))
