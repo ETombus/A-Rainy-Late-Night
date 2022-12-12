@@ -21,8 +21,8 @@ public class GrappleInput : MonoBehaviour
     Vector2 worldPos;
 
     [Header("Values")]
-    [Range(0, 25)] [SerializeField] float hookMaxReach;
-    [Range(0, 25)] [SerializeField] float maxMouseDistance;
+    [Range(0, 25)][SerializeField] float hookMaxReach;
+    [Range(0, 25)][SerializeField] float maxMouseDistance;
     [SerializeField] float hookSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float playerAcceleration;
@@ -30,6 +30,7 @@ public class GrappleInput : MonoBehaviour
     float closestHookDistance;
 
     public bool canGrapple = true;
+    public bool targetLocked = false;
 
     private void Start() { umbrella = GetComponentInChildren<UmbrellaStateHandler>(); }
 
@@ -48,6 +49,8 @@ public class GrappleInput : MonoBehaviour
     {
         mousePos = Mouse.current.position.ReadValue();
         worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        targetLocked = false;
+        closestHookDistance = maxMouseDistance;
 
         foreach (GameObject point in hookPoints)
         {
@@ -55,13 +58,13 @@ public class GrappleInput : MonoBehaviour
 
             if (distance <= closestHookDistance && RayHitPlayer(point))
             {
+                targetLocked = true;
                 targetPoint = point;
                 closestHookDistance = distance;
                 point.GetComponent<SpriteRenderer>().color = Color.yellow;
             }
             else if (distance > maxMouseDistance || !RayHitPlayer(point))
             {
-                closestHookDistance = maxMouseDistance;
                 point.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
@@ -100,7 +103,7 @@ public class GrappleInput : MonoBehaviour
             hookCS.playerAcceleration = playerAcceleration;
             hookCS.playerSpeedOverTime = playerSpeedOverTime;
 
-           umbrella.soundHandler.PlaySound(umbrella.clips[1]);
+            umbrella.soundHandler.PlaySound(umbrella.clips[1]);
         }
         else
         {

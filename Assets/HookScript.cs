@@ -56,10 +56,14 @@ public class HookScript : MonoBehaviour
         }
     }
 
-    private void ResetHook()
+    public void ResetHook()
     {
         player.GetComponentInChildren<UmbrellaStateHandler>().Idle();
         player.GetComponent<GrappleInput>().canGrapple = true;
+
+        //var slowMo = player.GetComponent<SlowMotionHandler>();
+        //slowMo.StartCoroutine(slowMo.SlowTime(0.5f, 0.5f));
+
         Destroy(gameObject);
     }
 }

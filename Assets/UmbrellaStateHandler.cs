@@ -14,6 +14,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject rainColliderTag;
     [SerializeField] private Slider reloadSlider;
     [SerializeField] private LayerMask rayIgnore;
+    private SlowMotionHandler slowMo;
     private GrappleInput grapplingHook;
     private Collider2D umbrellaCollider;
 
@@ -48,6 +49,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         umbrellaCollider = GetComponent<Collider2D>();
         grapplingHook = GetComponentInParent<GrappleInput>();
+        slowMo = player.GetComponent<SlowMotionHandler>();
 
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
 
@@ -73,7 +75,7 @@ public class UmbrellaStateHandler : MonoBehaviour
                 StartCoroutine(RainDamage());
             }
         }
-        else if(currentState == UmbrellaState.Idle)
+        else if (currentState == UmbrellaState.Idle)
         {
             //unequip umbrella
             umbrellaUp = false;
@@ -123,7 +125,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     public void Slash()
     {
-        if (currentState == UmbrellaState.Idle)
+        if (currentState == UmbrellaState.Idle && !grapplingHook.targetLocked || currentState == UmbrellaState.Grapple)
         {
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
@@ -145,6 +147,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     public void Idle()
     {
         inRain = false;
+        slowMo.NormalSpeed();
         currentState = UmbrellaState.Idle;
     }
 }
