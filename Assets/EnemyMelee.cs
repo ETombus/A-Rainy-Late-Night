@@ -25,6 +25,7 @@ public class EnemyMelee : MonoBehaviour
     {
         if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
+            // TODO: EnemyMelee.cs has no vertical check, can punch player even if player is above enemy
             if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) > punchingDistance)
                 handler.movement.MoveEnemy(handler.playerTrans.position);
 

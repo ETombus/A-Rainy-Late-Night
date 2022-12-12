@@ -18,6 +18,8 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction slash;
     private InputAction grapple;
 
+    [Header("Scripts")]
+    private RifleScript rifleScript;
     private PlayerStateHandler stateHandler;
     private UmbrellaStateHandler umbrellaHandler;
 
@@ -30,6 +32,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         stateHandler = GetComponent<PlayerStateHandler>();
         umbrellaHandler = GetComponentInChildren<UmbrellaStateHandler>();
+        rifleScript = GetComponentInChildren<RifleScript>();
     }
 
     private void Update()
@@ -102,12 +105,12 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.performed && !umbrellaHandler.reloading)
         {
-            Debug.Log("aim");
+            StartCoroutine(rifleScript.Aim());
             umbrellaHandler.currentState = UmbrellaStateHandler.UmbrellaState.Aiming;
         }
         else if (context.canceled && umbrellaHandler.currentState == UmbrellaStateHandler.UmbrellaState.Aiming)
         {
-            Debug.Log("down aim");
+            rifleScript.aimLaser.enabled = false;
             umbrellaHandler.Idle();
         }
     }

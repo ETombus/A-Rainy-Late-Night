@@ -8,12 +8,14 @@ public class RifleScript : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] LayerMask rayIgnore;
+    [SerializeField] public LineRenderer aimLaser;
     [HideInInspector] public LineRenderer bulletTrail;
     private RaycastHit2D shot;
 
 
     [Header("Values")]
     [SerializeField] float trailLength;
+    [SerializeField] float aimLaserLength;
     [SerializeField] float shotMaxDistance;
     [SerializeField] float rifleDamage;
 
@@ -28,8 +30,25 @@ public class RifleScript : MonoBehaviour
         bulletTrail.enabled = false;
     }
 
+    public IEnumerator Aim()
+    {
+        aimLaser.enabled = true;
+
+        while (aimLaser.enabled)
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 aimStart = aimLaser.gameObject.transform.position;
+
+            aimLaser.SetPosition(0, aimStart);
+            aimLaser.SetPosition(1, aimStart + (mousePos - aimStart).normalized * aimLaserLength);
+            yield return null;
+        }
+    }
+
     public void ShootRifle()
     {
+        aimLaser.enabled = false;
+
         mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         origin = transform.position;
 
@@ -37,13 +56,14 @@ public class RifleScript : MonoBehaviour
         shotDirection.Normalize();
 
         shot = Physics2D.Raycast(origin, shotDirection, shotMaxDistance, rayIgnore);
-        if(shot.collider != null && shot.collider.CompareTag("Enemy"))
+        if (shot.collider != null && shot.collider.CompareTag("Enemy"))
         {
             try
             {
                 shot.collider.GetComponent<HealthHandler>().ReduceHealth(rifleDamage);
-            }catch(System.Exception ex) { Debug.LogException(ex); }
-            
+            }
+            catch (System.Exception ex) { Debug.LogException(ex); }
+
         }
 
         bulletTrail.SetPosition(0, origin);
@@ -57,7 +77,7 @@ public class RifleScript : MonoBehaviour
     {
         var gradientHolder = bulletTrail.colorGradient;
         var gradKeys = gradientHolder.alphaKeys;
-        while(gradKeys[0].alpha > 0.05f)
+        while (gradKeys[0].alpha > 0.05f)
         {
             gradKeys[0].alpha -= 0.01f;
             yield return null;

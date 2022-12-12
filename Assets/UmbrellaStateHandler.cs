@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -84,7 +85,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         while (inRain)
         {
             player.GetComponent<Healthbar>().ReduceHealth(rainDamage);
-            yield return new WaitForSeconds(0.075f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -143,6 +144,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     public void Idle()
     {
+        inRain = false;
         currentState = UmbrellaState.Idle;
     }
 }
