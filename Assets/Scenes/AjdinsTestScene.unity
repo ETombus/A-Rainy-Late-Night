@@ -989,6 +989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7445323701956416538, guid: d34ac8c27232c2843a65e4ab503d4d28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7445323701956416543, guid: d34ac8c27232c2843a65e4ab503d4d28, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3234,9 +3238,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1691409258831822163, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ee83717beb98d85439fabb3b783868e7, type: 2}
     - target: {fileID: 4786642925610190677, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360589796107155416, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d7989b860e9cdc48a42f2ae1ef7dc96, type: 2}
+    - target: {fileID: 8688179405035896730, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: Aim
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e18a9cd4706e004283997689cd522ef, type: 2}
+    - target: {fileID: 8688179405035896730, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: run
+      value: 
+      objectReference: {fileID: 11400000, guid: d051b1c995306e047a15fe6a34e31ffc, type: 2}
+    - target: {fileID: 8688179405035896730, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: idle
+      value: 
+      objectReference: {fileID: 11400000, guid: 9be8292ee474f23469bd9f8312bb7860, type: 2}
+    - target: {fileID: 8688179405035896730, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 11400000, guid: cc5fb7cc7a234a74d883b6febfdb0fb0, type: 2}
+    - target: {fileID: 8688179405035896730, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: Attack
+      value: 
+      objectReference: {fileID: 11400000, guid: 7253a7a64df6a2c4c9356c3bb859181b, type: 2}
+    - target: {fileID: 8688179405035896730, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: boneName
+      value: Aim
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}

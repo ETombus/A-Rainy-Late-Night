@@ -58,20 +58,20 @@ public class EnemySpineController : MonoBehaviour
 
 
 
-        //UpdateTargetLocation();
+        UpdateTargetLocation();
         previousState = currentState;
     }
 
-    //void UpdateTargetLocation()
-    //{
-    //    Vector3 direction = handler.playerTrans.position - transform.position;
-    //    direction.Normalize();
+    void UpdateTargetLocation()
+    {
+        Vector3 direction = handler.playerTrans.position - transform.position;
+        direction.Normalize();
 
-    //    var skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(direction);
-    //    skeletonSpacePoint.x *= skelAnimation.Skeleton.ScaleX;
-    //    skeletonSpacePoint.y *= skelAnimation.Skeleton.ScaleY;
-    //    aimBone.SetLocalPosition(handler.playerTrans.position);
-    //}
+        var skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(direction);
+        skeletonSpacePoint.x *= skelAnimation.Skeleton.ScaleX;
+        skeletonSpacePoint.y *= skelAnimation.Skeleton.ScaleY;
+        aimBone.SetLocalPosition(handler.playerTrans.position);
+    }
 
     void PlayNewMeleerAnimation()
     {
