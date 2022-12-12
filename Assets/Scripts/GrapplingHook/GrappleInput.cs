@@ -9,8 +9,8 @@ public class GrappleInput : MonoBehaviour
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform ropeStart;
     [SerializeField] LayerMask rayIgnore;
+    [HideInInspector] public List<GameObject> hookPoints;
     UmbrellaStateHandler umbrella;
-    GameObject[] hookPoints;
     GameObject targetPoint;
     string hookPointTag = "HookPoint";
 
@@ -23,6 +23,7 @@ public class GrappleInput : MonoBehaviour
     [Header("Values")]
     [Range(0, 25)][SerializeField] float hookMaxReach;
     [Range(0, 25)][SerializeField] float maxMouseDistance;
+    [SerializeField] float minHookDistance;
     [SerializeField] float hookSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float playerAcceleration;
@@ -36,7 +37,8 @@ public class GrappleInput : MonoBehaviour
 
     private void Awake()
     {
-        hookPoints = GameObject.FindGameObjectsWithTag(hookPointTag);
+        hookPoints.AddRange(GameObject.FindGameObjectsWithTag(hookPointTag));
+
         try
         {
             targetPoint = hookPoints[0];
@@ -54,18 +56,26 @@ public class GrappleInput : MonoBehaviour
 
         foreach (GameObject point in hookPoints)
         {
-            float distance = Vector2.SqrMagnitude((Vector2)point.transform.position - worldPos);
-
-            if (distance <= closestHookDistance && RayHitPlayer(point))
+            if (point == null)
             {
-                targetLocked = true;
-                targetPoint = point;
-                closestHookDistance = distance;
-                point.GetComponent<SpriteRenderer>().color = Color.yellow;
+                hookPoints.Remove(point);
+                break;
             }
-            else if (distance > maxMouseDistance || !RayHitPlayer(point))
+            else
             {
-                point.GetComponent<SpriteRenderer>().color = Color.white;
+                float distance = Vector2.SqrMagnitude((Vector2)point.transform.position - worldPos);
+
+                if (distance <= closestHookDistance && RayHitPlayer(point))
+                {
+                    targetLocked = true;
+                    targetPoint = point;
+                    closestHookDistance = distance;
+                    point.GetComponent<SpriteRenderer>().color = Color.yellow;
+                }
+                else if (distance > maxMouseDistance || !RayHitPlayer(point))
+                {
+                    point.GetComponent<SpriteRenderer>().color = Color.white;
+                }
             }
         }
     }
@@ -85,9 +95,13 @@ public class GrappleInput : MonoBehaviour
     public void ShootGrapple()
     {
         float distance = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - worldPos);
+        float distanceToHook = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - (Vector2)transform.position);
 
-        if (distance <= maxMouseDistance && RayHitPlayer(targetPoint) && canGrapple)
+        if (distance <= maxMouseDistance && distanceToHook >= minHookDistance && RayHitPlayer(targetPoint) && canGrapple)
         {
+            if (targetPoint.transform.parent != null && targetPoint.transform.parent.CompareTag("Enemy"))
+                targetPoint.GetComponentInParent<EnemyHandler>().currentMode = EnemyHandler.Mode.Idle;
+
             GetComponent<PlayerStateHandler>().Grapple();
             canGrapple = false;
 
@@ -107,7 +121,7 @@ public class GrappleInput : MonoBehaviour
         }
         else
         {
-            GetComponentInChildren<UmbrellaStateHandler>().Idle();
+            GetComponentInChildren<UmbrellaStateHandler>().Slash();
         }
     }
 }

@@ -1175,7 +1175,7 @@ MonoBehaviour:
   reloadSlider: {fileID: 945673642}
   rayIgnore:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 280
   maxRainHeightCheck: 45.88
   reloadTime: 2.5
   rainDamage: 1
@@ -1277,8 +1277,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 0.65, y: 2.5}
+  m_Offset: {x: 0, y: -0.11453116}
+  m_Size: {x: 0.65, y: 2.6709378}
   m_Direction: 0
 --- !u!58 &4902979660180940264
 CircleCollider2D:
@@ -1469,8 +1469,10 @@ MonoBehaviour:
   rayIgnore:
     serializedVersion: 2
     m_Bits: 776
+  hookPoints: []
   hookMaxReach: 10
   maxMouseDistance: 10
+  minHookDistance: 20
   hookSpeed: 40
   playerSpeed: 45
   playerAcceleration: 2.5
