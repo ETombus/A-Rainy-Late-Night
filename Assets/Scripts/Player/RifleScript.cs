@@ -10,6 +10,7 @@ public class RifleScript : MonoBehaviour
     [SerializeField] LayerMask rayIgnore;
     [SerializeField] public LineRenderer aimLaser;
     [HideInInspector] public LineRenderer bulletTrail;
+    private SlowMotionHandler slowMo;
     private RaycastHit2D shot;
 
 
@@ -26,13 +27,15 @@ public class RifleScript : MonoBehaviour
 
     private void Start()
     {
-        bulletTrail = GetComponent<LineRenderer>();
+        bulletTrail = GetComponent<LineRenderer>(); 
+        slowMo = GetComponentInParent<SlowMotionHandler>();
         bulletTrail.enabled = false;
     }
 
     public IEnumerator Aim()
     {
         aimLaser.enabled = true;
+        slowMo.StartCoroutine(slowMo.SlowTime(0.1f));
 
         while (aimLaser.enabled)
         {
@@ -48,6 +51,7 @@ public class RifleScript : MonoBehaviour
     public void ShootRifle()
     {
         aimLaser.enabled = false;
+        slowMo.NormalSpeed();
 
         mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         origin = transform.position;
@@ -75,6 +79,14 @@ public class RifleScript : MonoBehaviour
 
     private IEnumerator LineFade()
     {
+        if(shot.collider != null)
+        {
+
+        }
+        else
+        {
+
+        }
         var gradientHolder = bulletTrail.colorGradient;
         var gradKeys = gradientHolder.alphaKeys;
         while (gradKeys[0].alpha > 0.05f)
