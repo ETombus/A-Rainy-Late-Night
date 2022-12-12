@@ -1346,6 +1346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  falling: 0
   maxJumpDuration: 0.5
   onSlope: 0
   walkableSlope: 1
@@ -1723,8 +1724,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   run: {fileID: 11400000, guid: e922a7dd8bf28a149b92cca799de0156, type: 2}
   idle: {fileID: 11400000, guid: 46b28c233186cb24bba011cfa6911c6f, type: 2}
-  jump: {fileID: 11400000, guid: 6f99f5ee3b813014dbffa17231adba08, type: 2}
+  jump: {fileID: 11400000, guid: ad8d46d8ab9c0af44a5167e2d9043197, type: 2}
+  ascend: {fileID: 11400000, guid: 6f99f5ee3b813014dbffa17231adba08, type: 2}
   descend: {fileID: 11400000, guid: 0e1c0e82678352240b076b28a86ede55, type: 2}
+  landing: {fileID: 11400000, guid: ceb8b0b2182a16646832a706573830d4, type: 2}
   UmbrellaUp: {fileID: 11400000, guid: 23ff1f7825e5b074aa5bedad63717b87, type: 2}
   UmbrellaDown: {fileID: 11400000, guid: 0a2e7d30936a8c24083ef43345156321, type: 2}
 --- !u!33 &5990824859732837804

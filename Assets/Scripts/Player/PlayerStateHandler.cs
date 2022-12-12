@@ -13,6 +13,7 @@ public class PlayerStateHandler : MonoBehaviour
 
     private bool pressingJump = false;
     private bool midJump = false;
+    public bool falling = false;
 
     public float maxJumpDuration = 0.5f;
 
@@ -43,7 +44,7 @@ public class PlayerStateHandler : MonoBehaviour
     private PlayerJump jumpingScript;
     private GrappleInput grappleScript;
     private Rigidbody2D rbody;
-
+    private PlayerSpineController spineController;
 
     public enum MovementStates
     {
@@ -63,6 +64,7 @@ public class PlayerStateHandler : MonoBehaviour
         jumpingScript = GetComponent<PlayerJump>();
         grappleScript = GetComponent<GrappleInput>();
         rbody = GetComponent<Rigidbody2D>();
+        spineController = GetComponentInChildren<PlayerSpineController>();
 
 
         coyoteTimer = coyoteDuration;
@@ -82,6 +84,8 @@ public class PlayerStateHandler : MonoBehaviour
             currentMoveState = MovementStates.AirMoving;
             grappleGravity = true;
         }
+
+        falling = rbody.velocity.y > 0 ? false : true;
     }
 
     void ManageGravity()

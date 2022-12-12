@@ -23,6 +23,9 @@ public class EnemySpineController : MonoBehaviour
     public float aimOffset = 1;
 
     private Bone aimBone;
+    Vector3 startPos;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,15 +33,17 @@ public class EnemySpineController : MonoBehaviour
         handler = GetComponentInParent<EnemyHandler>();
         skelAnimation = GetComponent<SkeletonAnimation>();
         previousState = Mode.Idle;
-        aimBone = skelAnimation.Skeleton.FindBone(boneName);
 
         if (GetComponentInParent<EnemyMelee>() != null)
             meleeer = GetComponentInParent<EnemyMelee>();
         else if (GetComponentInParent<EnemyShooting>() != null)
+        {
             shooter = GetComponentInParent<EnemyShooting>();
+            aimBone = skelAnimation.Skeleton.FindBone(boneName);
+            startPos = aimBone.GetLocalPosition();
+        }
         else
             Debug.LogError(transform.parent.gameObject + " has no Ranged Or Melee script on them");
-
 
 
         if (handler == null) Debug.LogError("Handler in " + gameObject.name + " is missing");
@@ -57,21 +62,38 @@ public class EnemySpineController : MonoBehaviour
         }
 
 
+        if (shooter != null)
+            UpdateTargetLocation();
 
-        //UpdateTargetLocation();
         previousState = currentState;
     }
 
-    //void UpdateTargetLocation()
-    //{
-    //    Vector3 direction = handler.playerTrans.position - transform.position;
-    //    direction.Normalize();
+    Vector3 playerLastPosition;
+    Vector3 currentTarget;
+    Vector3 skeletonSpacePoint;
+    void UpdateTargetLocation()
+    {
+        Vector3 aimPosition = transform.position + new Vector3(0, 1.8f);
 
-    //    var skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(direction);
-    //    skeletonSpacePoint.x *= skelAnimation.Skeleton.ScaleX;
-    //    skeletonSpacePoint.y *= skelAnimation.Skeleton.ScaleY;
-    //    aimBone.SetLocalPosition(handler.playerTrans.position);
-    //}
+        if (handler.currentMode == Mode.Aggression)
+        {
+            playerLastPosition = currentTarget = handler.playerTrans.position;
+            skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(aimPosition + (currentTarget - aimPosition).normalized * aimOffset);
+        }
+        else if (handler.currentMode == Mode.Search)
+        {
+            currentTarget = playerLastPosition;
+            skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(aimPosition + (currentTarget - aimPosition).normalized * aimOffset);
+        }
+        else
+        {
+            skeletonSpacePoint = startPos;
+        }
+
+        skeletonSpacePoint.x *= skelAnimation.Skeleton.ScaleX;
+        skeletonSpacePoint.y *= skelAnimation.Skeleton.ScaleY;
+        aimBone.SetLocalPosition(skeletonSpacePoint);
+    }
 
     void PlayNewMeleerAnimation()
     {
