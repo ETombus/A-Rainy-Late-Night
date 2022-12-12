@@ -25,6 +25,7 @@ public class EnemySpineController : MonoBehaviour
     private Bone aimBone;
     Vector3 startPos;
 
+    bool wasMoving = false;
 
 
     // Start is called before the first frame update
@@ -53,7 +54,7 @@ public class EnemySpineController : MonoBehaviour
     void Update()
     {
         var currentState = handler.currentMode;
-        if (previousState != currentState)
+        if (previousState != currentState || wasMoving != handler.isMoving)
         {
             if (shooter != null)
                 PlayNewShooterAnimation();
@@ -66,10 +67,10 @@ public class EnemySpineController : MonoBehaviour
             UpdateTargetLocation();
 
         previousState = currentState;
+        wasMoving = handler.isMoving;
     }
 
     Vector3 playerLastPosition;
-    Vector3 currentTarget;
     Vector3 skeletonSpacePoint;
     void UpdateTargetLocation()
     {
@@ -77,13 +78,12 @@ public class EnemySpineController : MonoBehaviour
 
         if (handler.currentMode == Mode.Aggression)
         {
-            playerLastPosition = currentTarget = handler.playerTrans.position;
-            skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(aimPosition + (currentTarget - aimPosition).normalized * aimOffset);
+            playerLastPosition = handler.playerTrans.position;
+            skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(aimPosition + (handler.playerTrans.position - aimPosition).normalized * aimOffset);
         }
         else if (handler.currentMode == Mode.Search)
         {
-            currentTarget = playerLastPosition;
-            skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(aimPosition + (currentTarget - aimPosition).normalized * aimOffset);
+            skeletonSpacePoint = skelAnimation.transform.InverseTransformPoint(aimPosition + (playerLastPosition - aimPosition).normalized * aimOffset);
         }
         else
         {
@@ -106,8 +106,14 @@ public class EnemySpineController : MonoBehaviour
                 nextAnimation = walk;
                 break;
             case Mode.Aggression:
-                nextAnimation = run;
-                break;
+                {
+                    if (handler.isMoving)
+                        nextAnimation = run;
+                    else
+                        nextAnimation = idle;
+
+                    break;
+                }
             case Mode.Search:
                 nextAnimation = run;
                 break;

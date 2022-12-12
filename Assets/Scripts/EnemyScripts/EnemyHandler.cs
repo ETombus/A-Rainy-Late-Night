@@ -9,6 +9,7 @@ public class EnemyHandler : MonoBehaviour
 
     [Header("Movement")]
     public EnemyMovement movement;
+    public bool isMoving = false;
 
     [Header("Detection")]
     public EnemyDetect detection;
