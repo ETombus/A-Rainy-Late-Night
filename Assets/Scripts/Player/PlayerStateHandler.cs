@@ -14,6 +14,7 @@ public class PlayerStateHandler : MonoBehaviour
     private bool pressingJump = false;
     private bool midJump = false;
     public bool falling = false;
+    public bool slowfalling = false;
 
     public float maxJumpDuration = 0.5f;
 
@@ -81,6 +82,7 @@ public class PlayerStateHandler : MonoBehaviour
         }
         else if (currentMoveState == MovementStates.Grappling && grappleScript.canGrapple)
         {
+            coyoteTimer = 0;
             currentMoveState = MovementStates.AirMoving;
             grappleGravity = true;
         }
@@ -96,7 +98,6 @@ public class PlayerStateHandler : MonoBehaviour
         }
         else if (pressingJump)
         {
-
             currentGravity = gravityUpwards;
             gravityMultiplier = 1;
         }
@@ -135,8 +136,7 @@ public class PlayerStateHandler : MonoBehaviour
             }
             else
             {
-                if (coyoteTimer > 0)
-                    coyoteTimer -= Time.deltaTime;
+
                 currentMoveState = MovementStates.AirMoving;
             }
         }
@@ -159,7 +159,12 @@ public class PlayerStateHandler : MonoBehaviour
         }
         else if (currentMoveState == MovementStates.AirMoving)
         {
+
+
             walkingScript.Movement(inputX, isGrounded, false, false, Vector2.zero);//Due to air moving not tuching slopes setting its variables to false
+
+            if (falling && slowfalling)
+                jumpingScript.SlowFalling();
         }
         else
         {

@@ -48,7 +48,7 @@ public class PlayerInputHandler : MonoBehaviour
         jump = playerControls.Player.Jump;
         jump.Enable();
         jump.performed += Jump;
-        //jump.performed += SlowFalling;
+        jump.performed += SlowFalling;
         jump.canceled += OnSpaceReleased;
 
         aim = playerControls.Player.Aim;
@@ -91,14 +91,15 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
-    //private void SlowFalling(InputAction.CallbackContext context)
-    //{
-
-    //}
+    private void SlowFalling(InputAction.CallbackContext context)
+    {
+        stateHandler.slowfalling = true;
+    }
 
     private void OnSpaceReleased(InputAction.CallbackContext context)
     {
         stateHandler.JumpReleased();
+        stateHandler.slowfalling = false;
     }
 
     public void AimHandler(InputAction.CallbackContext context)
