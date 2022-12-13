@@ -70,10 +70,16 @@ public class GrappleInput : MonoBehaviour
                     targetLocked = true;
                     targetPoint = point;
                     closestHookDistance = distance;
+
+                    // Visual for hovering 
+
                     point.GetComponent<SpriteRenderer>().color = Color.yellow;
                 }
                 else if (distance > maxMouseDistance || !RayHitPlayer(point))
                 {
+
+                    // Visual for non-hovering 
+
                     point.GetComponent<SpriteRenderer>().color = Color.white;
                 }
             }
@@ -99,13 +105,8 @@ public class GrappleInput : MonoBehaviour
 
         if (distance <= maxMouseDistance && distanceToHook >= minHookDistance && RayHitPlayer(targetPoint) && canGrapple)
         {
-            if (targetPoint.transform.parent != null && targetPoint.transform.parent.CompareTag("Enemy"))
-            {
-                targetPoint.GetComponentInParent<EnemyHandler>().currentMode = EnemyHandler.Mode.Idle;
-                targetPoint.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
-            }
-
             GetComponent<PlayerStateHandler>().Grapple();
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             canGrapple = false;
 
             var hook = Instantiate(hookPrefab, transform.position, Quaternion.identity);
@@ -119,6 +120,13 @@ public class GrappleInput : MonoBehaviour
             hookCS.playerSpeed = playerSpeed;
             hookCS.playerAcceleration = playerAcceleration;
             hookCS.playerSpeedOverTime = playerSpeedOverTime;
+
+            if (targetPoint.transform.parent != null && targetPoint.transform.parent.CompareTag("Enemy"))
+            {
+                hookCS.target = targetPoint;
+                targetPoint.GetComponentInParent<EnemyHandler>().currentMode = EnemyHandler.Mode.Idle;
+                targetPoint.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            }
 
             umbrella.soundHandler.PlaySound(umbrella.clips[1]);
         }
