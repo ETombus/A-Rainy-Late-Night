@@ -80,11 +80,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 328
   aimLaser: {fileID: 2097947645}
+  umbrellaHandler: {fileID: 850067010036326724}
   bulletTrail: {fileID: 0}
-  trailLength: 5
   aimLaserLength: 20
   shotMaxDistance: 15
   rifleDamage: 75
+  reloadTime: 2.5
+  maxTimeSlowdown: 2.5
 --- !u!120 &282481997
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -125,7 +127,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -149,9 +151,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0.20784314}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -166,9 +168,9 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 3277
-      atime2: 36044
-      atime3: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 65535
       atime4: 0
       atime5: 0
       atime6: 0
@@ -177,7 +179,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 3
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -1056,8 +1058,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1577858854080552396}
   - component: {fileID: 3827123247727634966}
-  - component: {fileID: 2656825068862196344}
   - component: {fileID: 850067010036326724}
+  - component: {fileID: 7070179389979919921}
   m_Layer: 10
   m_Name: umbrella
   m_TagString: Untagged
@@ -1132,32 +1134,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2656825068862196344
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978953238246528112}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.79, y: 2.47}
-    newSize: {x: 3.79, y: 2.47}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3, y: 0.25}
-  m_EdgeRadius: 0
 --- !u!114 &850067010036326724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,13 +1149,14 @@ MonoBehaviour:
   player: {fileID: 1450338445620509171}
   rifle: {fileID: 282481994}
   rainColliderTag: {fileID: 8679037771655832474, guid: 058b259195bb58d4c92561395eeb4a39, type: 3}
-  reloadSlider: {fileID: 945673642}
+  clockSlider: {fileID: 945673642}
   rayIgnore:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 280
   maxRainHeightCheck: 45.88
   reloadTime: 2.5
-  rainDamage: 1
+  rainDamageInterval: 0.05
+  rainDamage: 0.1
   soundHandler: {fileID: 0}
   clips:
   - {fileID: 8300000, guid: ff5f39d60646fbc4b94fae02de855c3b, type: 3}
@@ -1188,7 +1165,30 @@ MonoBehaviour:
   reloading: 0
   inRain: 0
   umbrellaUp: 0
+  slowFalling: 0
   currentState: 0
+--- !u!68 &7070179389979919921
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978953238246528112}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.6386261, y: -0.25489426}
+  - {x: 0.23820457, y: 0.29961205}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1450338445620509171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1213,8 @@ GameObject:
   - component: {fileID: 7279731664676654465}
   - component: {fileID: 150286546}
   - component: {fileID: 150286547}
+  - component: {fileID: 1127421039}
+  - component: {fileID: 1127421040}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1276,8 +1278,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 0.65, y: 2.5}
+  m_Offset: {x: 0, y: -0.11453116}
+  m_Size: {x: 0.65, y: 2.6709378}
   m_Direction: 0
 --- !u!58 &4902979660180940264
 CircleCollider2D:
@@ -1347,6 +1349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   falling: 0
+  slowfalling: 0
   maxJumpDuration: 0.5
   onSlope: 0
   walkableSlope: 1
@@ -1417,6 +1420,7 @@ MonoBehaviour:
   yJumpForce: 20
   xJumpForce: 1.01
   grapplexJumpForce: 18.6
+  slowfallSpeed: -1
 --- !u!114 &1118271371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,8 +1470,10 @@ MonoBehaviour:
   rayIgnore:
     serializedVersion: 2
     m_Bits: 776
+  hookPoints: []
   hookMaxReach: 10
   maxMouseDistance: 10
+  minHookDistance: 20
   hookSpeed: 40
   playerSpeed: 45
   playerAcceleration: 2.5
@@ -1496,6 +1502,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   canGrapple: 1
+  targetLocked: 0
 --- !u!114 &7279731664676654465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,6 +1651,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a122217a22a35439e9a4d1a58f96cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1127421039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2777f4432128d428c02dd743f19fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowDownCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1.8355854
+      outSlope: -1.8355854
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.054027904
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: 0.001190235
+      outSlope: 0.001190235
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.4201548
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeSlowed: 0
+--- !u!114 &1127421040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f8fdb0c1ccab048b2fbea78b8888fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1450338445620509171}
 --- !u!1 &2633669397770518439
 GameObject:
   m_ObjectHideFlags: 0

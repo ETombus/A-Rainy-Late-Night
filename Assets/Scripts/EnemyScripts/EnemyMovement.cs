@@ -32,6 +32,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        handler.isMoving = rigBody.velocity.x != 0 ? true : false;
+
         if (!handler.edgeDetection.DetectEdges())
             StopEnemy();
 

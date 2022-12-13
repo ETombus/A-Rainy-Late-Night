@@ -16,7 +16,7 @@ public class Healthbar : HealthHandler
         health = maxHealth;
     }
 
-    public void ReduceHealth(int reduceValue)
+    public void ReduceHealth(float reduceValue)
     {
         //Debug.Log("hp: "+healthBar.value);
         health -= reduceValue;

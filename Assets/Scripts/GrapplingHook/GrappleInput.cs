@@ -9,8 +9,8 @@ public class GrappleInput : MonoBehaviour
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform ropeStart;
     [SerializeField] LayerMask rayIgnore;
+    [HideInInspector] public List<GameObject> hookPoints;
     UmbrellaStateHandler umbrella;
-    GameObject[] hookPoints;
     GameObject targetPoint;
     string hookPointTag = "HookPoint";
 
@@ -21,8 +21,9 @@ public class GrappleInput : MonoBehaviour
     Vector2 worldPos;
 
     [Header("Values")]
-    [Range(0, 25)] [SerializeField] float hookMaxReach;
-    [Range(0, 25)] [SerializeField] float maxMouseDistance;
+    [Range(0, 25)][SerializeField] float hookMaxReach;
+    [Range(0, 25)][SerializeField] float maxMouseDistance;
+    [SerializeField] float minHookDistance;
     [SerializeField] float hookSpeed;
     [SerializeField] float playerSpeed;
     [SerializeField] float playerAcceleration;
@@ -30,12 +31,14 @@ public class GrappleInput : MonoBehaviour
     float closestHookDistance;
 
     public bool canGrapple = true;
+    public bool targetLocked = false;
 
     private void Start() { umbrella = GetComponentInChildren<UmbrellaStateHandler>(); }
 
     private void Awake()
     {
-        hookPoints = GameObject.FindGameObjectsWithTag(hookPointTag);
+        hookPoints.AddRange(GameObject.FindGameObjectsWithTag(hookPointTag));
+
         try
         {
             targetPoint = hookPoints[0];
@@ -48,21 +51,37 @@ public class GrappleInput : MonoBehaviour
     {
         mousePos = Mouse.current.position.ReadValue();
         worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        targetLocked = false;
+        closestHookDistance = maxMouseDistance;
 
         foreach (GameObject point in hookPoints)
         {
-            float distance = Vector2.SqrMagnitude((Vector2)point.transform.position - worldPos);
-
-            if (distance <= closestHookDistance && RayHitPlayer(point))
+            if (point == null)
             {
-                targetPoint = point;
-                closestHookDistance = distance;
-                point.GetComponent<SpriteRenderer>().color = Color.yellow;
+                hookPoints.Remove(point);
+                break;
             }
-            else if (distance > maxMouseDistance || !RayHitPlayer(point))
+            else
             {
-                closestHookDistance = maxMouseDistance;
-                point.GetComponent<SpriteRenderer>().color = Color.white;
+                float distance = Vector2.SqrMagnitude((Vector2)point.transform.position - worldPos);
+
+                if (distance <= closestHookDistance && RayHitPlayer(point))
+                {
+                    targetLocked = true;
+                    targetPoint = point;
+                    closestHookDistance = distance;
+
+                    // Visual for hovering 
+
+                    point.GetComponent<SpriteRenderer>().color = Color.yellow;
+                }
+                else if (distance > maxMouseDistance || !RayHitPlayer(point))
+                {
+
+                    // Visual for non-hovering 
+
+                    point.GetComponent<SpriteRenderer>().color = Color.white;
+                }
             }
         }
     }
@@ -82,10 +101,12 @@ public class GrappleInput : MonoBehaviour
     public void ShootGrapple()
     {
         float distance = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - worldPos);
+        float distanceToHook = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - (Vector2)transform.position);
 
-        if (distance <= maxMouseDistance && RayHitPlayer(targetPoint) && canGrapple)
+        if (distance <= maxMouseDistance && distanceToHook >= minHookDistance && RayHitPlayer(targetPoint) && canGrapple)
         {
             GetComponent<PlayerStateHandler>().Grapple();
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             canGrapple = false;
 
             var hook = Instantiate(hookPrefab, transform.position, Quaternion.identity);
@@ -100,11 +121,18 @@ public class GrappleInput : MonoBehaviour
             hookCS.playerAcceleration = playerAcceleration;
             hookCS.playerSpeedOverTime = playerSpeedOverTime;
 
-           umbrella.soundHandler.PlaySound(umbrella.clips[1]);
+            if (targetPoint.transform.parent != null && targetPoint.transform.parent.CompareTag("Enemy"))
+            {
+                hookCS.target = targetPoint;
+                targetPoint.GetComponentInParent<EnemyHandler>().currentMode = EnemyHandler.Mode.Idle;
+                targetPoint.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+
+            umbrella.soundHandler.PlaySound(umbrella.clips[1]);
         }
         else
         {
-            GetComponentInChildren<UmbrellaStateHandler>().Idle();
+            GetComponentInChildren<UmbrellaStateHandler>().Slash();
         }
     }
 }

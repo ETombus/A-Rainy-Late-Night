@@ -55,8 +55,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: HookPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 2383867991641383354, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}
+--- !u!1 &3906482919948123751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2383867991641383354, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}
+  m_PrefabInstance: {fileID: 1667368470965526493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6936588465487741880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,6 +121,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 909134506515365661, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0356
+      objectReference: {fileID: 0}
+    - target: {fileID: 909134506515365661, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5778
+      objectReference: {fileID: 0}
+    - target: {fileID: 909134506515365662, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1008768
+      objectReference: {fileID: 0}
+    - target: {fileID: 909134506515365662, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_Size.y
+      value: 3.413974
+      objectReference: {fileID: 0}
     - target: {fileID: 2156060855115811064, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: skeletonDataAsset
       value: 
@@ -144,6 +169,10 @@ PrefabInstance:
       propertyPath: Attack
       value: 
       objectReference: {fileID: 11400000, guid: 3deefe78bd21dea40b5e4790227e23d9, type: 2}
+    - target: {fileID: 8871184403424991047, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: hookPoint
+      value: 
+      objectReference: {fileID: 3906482919948123751}
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

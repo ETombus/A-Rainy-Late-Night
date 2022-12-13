@@ -86,6 +86,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 909134506515365661, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.479
+      objectReference: {fileID: 0}
+    - target: {fileID: 909134506515365662, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0619781
+      objectReference: {fileID: 0}
+    - target: {fileID: 909134506515365662, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_Size.y
+      value: 3.1642199
+      objectReference: {fileID: 0}
     - target: {fileID: 2156060855115811064, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: loop
       value: 0
@@ -97,7 +109,7 @@ PrefabInstance:
     - target: {fileID: 2156060855115811064, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: afe39e82dde5cb243882685c0690bc04, type: 2}
+      objectReference: {fileID: 11400000, guid: ee83717beb98d85439fabb3b783868e7, type: 2}
     - target: {fileID: 3191370445856615018, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -115,24 +127,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: Aim
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e18a9cd4706e004283997689cd522ef, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: run
       value: 
-      objectReference: {fileID: 11400000, guid: 62c9e48d8a3bf1544ac221a3bde62983, type: 2}
+      objectReference: {fileID: 11400000, guid: d051b1c995306e047a15fe6a34e31ffc, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: idle
       value: 
-      objectReference: {fileID: 11400000, guid: 1efff2cc53b4c6644abffcd8a70ecd9d, type: 2}
+      objectReference: {fileID: 11400000, guid: 9be8292ee474f23469bd9f8312bb7860, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 11400000, guid: cc5fb7cc7a234a74d883b6febfdb0fb0, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: Attack
       value: 
-      objectReference: {fileID: 11400000, guid: 17ee0575f78762d41884e9312a9112d1, type: 2}
+      objectReference: {fileID: 11400000, guid: 7253a7a64df6a2c4c9356c3bb859181b, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: boneName
-      value: Aim Target IK
+      value: Aim
       objectReference: {fileID: 0}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: aimOffset
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: movePoints.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8871184404417359565, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: thisType
@@ -141,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 35d9555ca4f06124ebdca5695fa8fcd7, type: 2}
+      objectReference: {fileID: 2100000, guid: 1d7989b860e9cdc48a42f2ae1ef7dc96, type: 2}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 8871184404804980625, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
@@ -166,7 +190,7 @@ MonoBehaviour:
   shootCooldown: 0.5
   gunTrans: {fileID: 2138514811}
   bullet: {fileID: 1468664371664091499, guid: 1710ac62b055d33438fe2868ca12fc4b, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 40
 --- !u!4 &2799212215146717121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3191370445856615018, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}

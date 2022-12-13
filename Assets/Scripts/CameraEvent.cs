@@ -84,9 +84,10 @@ public class CameraEvent : MonoBehaviour
         isInField = false;
         bufferPeriod = false;
 
+        Debug.Log(cameraOrigin);
         vCam.Follow = cameraOrigin;
 
-        cameraOrigin = null;
+        //cameraOrigin = null;
 
         if (imgsToShow.Length > 0)
         {

@@ -7,6 +7,7 @@ public class HookScript : MonoBehaviour
     [Header("Components")]
     [HideInInspector] public AnimationCurve playerSpeedOverTime;
     public GameObject player;
+    public GameObject target;
     public Vector2 targetPos;
     public Transform ropeStart;
     LineRenderer rope;
@@ -41,8 +42,9 @@ public class HookScript : MonoBehaviour
             percentage += Time.deltaTime * playerAcceleration;
             percentage = Mathf.Clamp(percentage, 0, playerSpeedOverTime.length);
 
-            player.GetComponent<Rigidbody2D>().velocity =
-                (dir * playerSpeedOverTime.Evaluate(percentage) * playerSpeed);
+            var playerRB = player.GetComponent<Rigidbody2D>();
+            playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+            playerRB.velocity = (dir * playerSpeedOverTime.Evaluate(percentage) * playerSpeed);
 
             if (Vector2.SqrMagnitude((Vector2)player.transform.position - targetPos) < 1f)
             {
@@ -56,8 +58,11 @@ public class HookScript : MonoBehaviour
         }
     }
 
-    private void ResetHook()
+    public void ResetHook()
     {
+        if (target != null)
+            target.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
         player.GetComponentInChildren<UmbrellaStateHandler>().Idle();
         player.GetComponent<GrappleInput>().canGrapple = true;
         Destroy(gameObject);
