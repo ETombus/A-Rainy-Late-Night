@@ -80,10 +80,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 328
   aimLaser: {fileID: 2097947645}
+  umbrellaHandler: {fileID: 850067010036326724}
   bulletTrail: {fileID: 0}
   aimLaserLength: 20
   shotMaxDistance: 15
   rifleDamage: 75
+  reloadTime: 2.5
+  maxTimeSlowdown: 2.5
 --- !u!120 &282481997
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1172,13 +1175,14 @@ MonoBehaviour:
   player: {fileID: 1450338445620509171}
   rifle: {fileID: 282481994}
   rainColliderTag: {fileID: 8679037771655832474, guid: 058b259195bb58d4c92561395eeb4a39, type: 3}
-  reloadSlider: {fileID: 945673642}
+  clockSlider: {fileID: 945673642}
   rayIgnore:
     serializedVersion: 2
     m_Bits: 280
   maxRainHeightCheck: 45.88
   reloadTime: 2.5
-  rainDamage: 1
+  rainDamageInterval: 0.05
+  rainDamage: 0.1
   soundHandler: {fileID: 0}
   clips:
   - {fileID: 8300000, guid: ff5f39d60646fbc4b94fae02de855c3b, type: 3}
@@ -1686,6 +1690,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  timeSlowed: 0
 --- !u!1 &2633669397770518439
 GameObject:
   m_ObjectHideFlags: 0

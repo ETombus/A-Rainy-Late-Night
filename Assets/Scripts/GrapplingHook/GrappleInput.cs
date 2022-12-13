@@ -100,7 +100,10 @@ public class GrappleInput : MonoBehaviour
         if (distance <= maxMouseDistance && distanceToHook >= minHookDistance && RayHitPlayer(targetPoint) && canGrapple)
         {
             if (targetPoint.transform.parent != null && targetPoint.transform.parent.CompareTag("Enemy"))
+            {
                 targetPoint.GetComponentInParent<EnemyHandler>().currentMode = EnemyHandler.Mode.Idle;
+                targetPoint.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
+            }
 
             GetComponent<PlayerStateHandler>().Grapple();
             canGrapple = false;
