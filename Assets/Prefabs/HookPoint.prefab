@@ -149,16 +149,24 @@ PrefabInstance:
       value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: isAHookPoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: timePerCharacter
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: distanceFromPlayer
       value: 111
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652279, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_Size.x
-      value: 0.9707559
+      value: 0.425637
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652279, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_Size.y
-      value: 0.93484205
+      value: 0.425637
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652297, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_Name
