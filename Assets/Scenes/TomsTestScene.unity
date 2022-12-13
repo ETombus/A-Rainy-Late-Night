@@ -7170,6 +7170,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3066459069965816095, guid: d34ac8c27232c2843a65e4ab503d4d28, type: 3}
+      propertyPath: punchingDistance
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3906482919948123751, guid: d34ac8c27232c2843a65e4ab503d4d28, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9927,10 +9931,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 334722037}
-    - target: {fileID: 850067010036326724, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: slashDelay
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 1450338445620509169, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
       propertyPath: m_RootOrder
       value: 3

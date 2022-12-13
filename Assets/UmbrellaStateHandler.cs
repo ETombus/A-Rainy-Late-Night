@@ -138,11 +138,9 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         if (currentState == UmbrellaState.Idle && !grapplingHook.targetLocked || currentState == UmbrellaState.Grapple)
         {
-            if(currentState != UmbrellaState.Grapple)
-                Invoke(nameof(Idle), slashDelay);
-
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
+            Invoke(nameof(Idle), slashDelay);
 
             soundHandler.PlaySound(clips[0]);
         }
