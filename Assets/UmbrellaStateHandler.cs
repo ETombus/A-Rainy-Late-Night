@@ -14,9 +14,12 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject rainColliderTag;
     [SerializeField] private Slider clockSlider;
     [SerializeField] private LayerMask rayIgnore;
-    private SlowMotionHandler slowMo;
+
+    private EdgeCollider2D umbrellaCollider;
+
+    private PlayerStateHandler stateHandler;
     private GrappleInput grapplingHook;
-    private Collider2D umbrellaCollider;
+    private SlowMotionHandler slowMo;
 
     [Header("Values")]
     [SerializeField] private float maxRainHeightCheck;
@@ -49,11 +52,12 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private void Start()
     {
-        umbrellaCollider = GetComponent<Collider2D>();
+        stateHandler = GetComponentInParent<PlayerStateHandler>();
         grapplingHook = GetComponentInParent<GrappleInput>();
         slowMo = player.GetComponent<SlowMotionHandler>();
 
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
+        umbrellaCollider = GetComponent<EdgeCollider2D>();
 
         currentState = UmbrellaState.Idle;
         clockSlider.gameObject.SetActive(false);
@@ -67,21 +71,31 @@ public class UmbrellaStateHandler : MonoBehaviour
         {
             if (currentState == UmbrellaState.Idle)
             {
-                //equip umbrella
+                umbrellaCollider.enabled = true;
+
                 umbrellaUp = true;
                 inRain = false;
             }
             else if (!inRain)
             {
+                umbrellaCollider.enabled = false;
+
                 inRain = true;
                 StartCoroutine(RainDamage());
             }
         }
         else if (currentState == UmbrellaState.Idle)
         {
-            //unequip umbrella
-
             umbrellaUp = slowFalling ? true : false;
+        }
+
+        if (stateHandler.inputX > 0)
+        {
+            gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+        }
+        else if (stateHandler.inputX < 0)
+        {
+            gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
         }
     }
 

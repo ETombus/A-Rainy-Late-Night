@@ -26,7 +26,7 @@ public class DetectedByCamera : MonoBehaviour
     public float timePerRemoval = 0.05f;
 
     private TextMeshProUGUI uiText;
-    private Canvas canvas;
+    public GameObject canvas;
 
     int characterIndex;
     float timer;
@@ -37,17 +37,26 @@ public class DetectedByCamera : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        canvas = GetComponentInChildren<Canvas>();
 
         if (ShouldHaveText)
         {
-            canvas.enabled = true;
-            uiText = GetComponentInChildren<TextMeshProUGUI>();
-            uiText.text = "";
+            if (canvas != null)
+            {
+
+                canvas.SetActive(true);
+                uiText = GetComponentInChildren<TextMeshProUGUI>();
+                uiText.text = "";
+            }
+            else
+                Debug.LogError(gameObject.name+ " is missing a canvas for text writing, disable ShouldHaveText to ignore problem");
         }
         else
         {
-            canvas.enabled = false;
+            if (canvas != null)
+            {
+                canvas.SetActive(false);
+            }
+
         }
 
     }
@@ -64,7 +73,7 @@ public class DetectedByCamera : MonoBehaviour
             DisableMarker();
         }
 
-        if(isAHookPoint)
+        if (isAHookPoint)
         {
             if (isSelected)
                 animator.SetBool("Selected", true);
@@ -91,7 +100,7 @@ public class DetectedByCamera : MonoBehaviour
     void ActivateMarker()
     {
         lookingAtIt = true;
-        animator.SetTrigger("ResetAnim");
+        animator.SetBool("MarkerVisable", true);
 
         if (ShouldHaveText)
         {
@@ -103,7 +112,8 @@ public class DetectedByCamera : MonoBehaviour
     void DisableMarker()
     {
         lookingAtIt = false;
-        animator.SetTrigger("RemoveMarker");
+        animator.SetBool("MarkerVisable", false);
+
 
         if (ShouldHaveText)
         {
