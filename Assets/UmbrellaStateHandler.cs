@@ -12,7 +12,6 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject rainColliderTag;
-    [SerializeField] private Slider reloadSlider;
     [SerializeField] private Slider clockSlider;
     [SerializeField] private LayerMask rayIgnore;
     private SlowMotionHandler slowMo;
@@ -22,7 +21,6 @@ public class UmbrellaStateHandler : MonoBehaviour
     [Header("Values")]
     [SerializeField] private float maxRainHeightCheck;
     [SerializeField] private float reloadTime;
-    [SerializeField] private int rainDamage;
     [SerializeField] private float rainDamageInterval;
     [SerializeField] private float rainDamage;
 
@@ -58,13 +56,11 @@ public class UmbrellaStateHandler : MonoBehaviour
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
 
         currentState = UmbrellaState.Idle;
-        reloadSlider.gameObject.SetActive(false);
         clockSlider.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        //Debug.Log(currentState);
         var rayHit = Physics2D.Raycast(player.transform.position, Vector2.up, maxRainHeightCheck, rayIgnore).collider;
 
         if (rayHit == null || rayHit.CompareTag(rainColliderTag.tag))
@@ -94,7 +90,6 @@ public class UmbrellaStateHandler : MonoBehaviour
         while (inRain)
         {
             player.GetComponent<Healthbar>().ReduceHealth(rainDamage);
-            yield return new WaitForSeconds(0.05f);
             yield return new WaitForSeconds(rainDamageInterval);
         }
     }
@@ -103,27 +98,21 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         if (currentState == UmbrellaState.Aiming)
         {
-            Debug.Log("shoot");
             rifle.GetComponent<RifleScript>().ShootRifle();
-            StartCoroutine(Reload());
 
             soundHandler.PlaySound(clips[2]);
         }
     }
 
-    private IEnumerator Reload()
     public IEnumerator Reload(float time, bool fill)
     {
-        yield return null;
-        Idle();
-
         clockSlider.gameObject.SetActive(true);
         float fillOverTime = clockSlider.maxValue / time;
         reloading = true;
-        reloadSlider.gameObject.SetActive(true);
 
-        float fillOverTime = reloadSlider.maxValue / reloadTime;
-        while (reloadSlider.value < reloadSlider.maxValue)
+        if (fill)
+        {
+            yield return null;
             clockSlider.value = clockSlider.minValue;
             Idle();
         }
@@ -135,14 +124,11 @@ public class UmbrellaStateHandler : MonoBehaviour
 
         while (fill ? clockSlider.value < clockSlider.maxValue : clockSlider.value > clockSlider.minValue)
         {
-            reloadSlider.value += fillOverTime * Time.deltaTime;
             clockSlider.value += fillOverTime * Time.deltaTime;
             yield return null;
         }
 
         reloading = false;
-        reloadSlider.value = 0f;
-        reloadSlider.gameObject.SetActive(false);
         clockSlider.value = 0f;
         clockSlider.gameObject.SetActive(false);
     }
