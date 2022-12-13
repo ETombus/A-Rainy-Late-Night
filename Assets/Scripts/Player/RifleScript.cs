@@ -95,7 +95,6 @@ public class RifleScript : MonoBehaviour
 
         if (shot.collider != null)
         {
-            Debug.Log(shot.collider.name);
             bulletTrail.SetPosition(1, shot.point);
         }
         else
