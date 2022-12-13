@@ -22,6 +22,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private float maxRainHeightCheck;
     [SerializeField] private float rainDamageInterval;
     [SerializeField] private float rainDamage;
+    [SerializeField] private float slashDelay;
 
     [Header("Audio")]
     public PlayerSoundHandler soundHandler;
@@ -60,6 +61,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(currentState);
         var rayHit = Physics2D.Raycast(player.transform.position, Vector2.up, maxRainHeightCheck, rayIgnore).collider;
 
         if (rayHit == null || rayHit.CompareTag(rainColliderTag.tag))
@@ -136,9 +138,11 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         if (currentState == UmbrellaState.Idle && !grapplingHook.targetLocked || currentState == UmbrellaState.Grapple)
         {
+            if(currentState != UmbrellaState.Grapple)
+                Invoke(nameof(Idle), slashDelay);
+
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
-            Invoke(nameof(Idle), 0.35f);
 
             soundHandler.PlaySound(clips[0]);
         }
