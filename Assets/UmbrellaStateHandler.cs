@@ -13,6 +13,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject rainColliderTag;
     [SerializeField] private Slider reloadSlider;
+    [SerializeField] private Slider clockSlider;
     [SerializeField] private LayerMask rayIgnore;
     private SlowMotionHandler slowMo;
     private GrappleInput grapplingHook;
@@ -22,6 +23,8 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private float maxRainHeightCheck;
     [SerializeField] private float reloadTime;
     [SerializeField] private int rainDamage;
+    [SerializeField] private float rainDamageInterval;
+    [SerializeField] private float rainDamage;
 
     [Header("Audio")]
     public PlayerSoundHandler soundHandler;
@@ -56,6 +59,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
         currentState = UmbrellaState.Idle;
         reloadSlider.gameObject.SetActive(false);
+        clockSlider.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -91,6 +95,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         {
             player.GetComponent<Healthbar>().ReduceHealth(rainDamage);
             yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(rainDamageInterval);
         }
     }
 
@@ -107,23 +112,39 @@ public class UmbrellaStateHandler : MonoBehaviour
     }
 
     private IEnumerator Reload()
+    public IEnumerator Reload(float time, bool fill)
     {
         yield return null;
         Idle();
 
+        clockSlider.gameObject.SetActive(true);
+        float fillOverTime = clockSlider.maxValue / time;
         reloading = true;
         reloadSlider.gameObject.SetActive(true);
 
         float fillOverTime = reloadSlider.maxValue / reloadTime;
         while (reloadSlider.value < reloadSlider.maxValue)
+            clockSlider.value = clockSlider.minValue;
+            Idle();
+        }
+        else
+        {
+            clockSlider.value = clockSlider.maxValue;
+            fillOverTime *= -1;
+        }
+
+        while (fill ? clockSlider.value < clockSlider.maxValue : clockSlider.value > clockSlider.minValue)
         {
             reloadSlider.value += fillOverTime * Time.deltaTime;
+            clockSlider.value += fillOverTime * Time.deltaTime;
             yield return null;
         }
 
         reloading = false;
         reloadSlider.value = 0f;
         reloadSlider.gameObject.SetActive(false);
+        clockSlider.value = 0f;
+        clockSlider.gameObject.SetActive(false);
     }
 
     public void Slash()

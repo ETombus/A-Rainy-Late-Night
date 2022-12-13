@@ -9,6 +9,7 @@ public class RifleScript : MonoBehaviour
     [Header("Components")]
     [SerializeField] LayerMask rayIgnore;
     [SerializeField] public LineRenderer aimLaser;
+    [SerializeField] UmbrellaStateHandler umbrellaHandler;
     [HideInInspector] public LineRenderer bulletTrail;
     private SlowMotionHandler slowMo;
     private RaycastHit2D shot;
@@ -18,6 +19,8 @@ public class RifleScript : MonoBehaviour
     [SerializeField] float aimLaserLength;
     [SerializeField] float shotMaxDistance;
     [SerializeField] float rifleDamage;
+    [SerializeField] float reloadTime;
+    [SerializeField] float maxTimeSlowdown;
 
     [Header("Vectors")]
     private Vector2 origin;
@@ -29,12 +32,16 @@ public class RifleScript : MonoBehaviour
         bulletTrail = GetComponent<LineRenderer>(); 
         slowMo = GetComponentInParent<SlowMotionHandler>();
         bulletTrail.enabled = false;
+        maxTimeSlowdown /= 2;
     }
 
     public IEnumerator Aim()
     {
         aimLaser.enabled = true;
-        slowMo.StartCoroutine(slowMo.SlowTime(0.1f));
+        umbrellaHandler.StartCoroutine(umbrellaHandler.Reload(maxTimeSlowdown, false));
+        slowMo.StartCoroutine(slowMo.SlowTime(0.1f, maxTimeSlowdown));
+
+        Invoke(nameof(AutoShoot), maxTimeSlowdown);
 
         while (aimLaser.enabled)
         {
@@ -47,8 +54,16 @@ public class RifleScript : MonoBehaviour
         }
     }
 
+    private void AutoShoot()
+    {
+        if(aimLaser.enabled)
+            ShootRifle();
+    }
+
     public void ShootRifle()
     {
+        umbrellaHandler.StopAllCoroutines();
+        StartCoroutine(umbrellaHandler.Reload(reloadTime, true));
         aimLaser.enabled = false;
         slowMo.NormalSpeed();
 

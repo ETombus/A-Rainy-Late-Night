@@ -12,6 +12,8 @@ public class SlowMotionHandler : MonoBehaviour
     float currentSlowTime;
     float currentTimeScaleMultiplier;
 
+    public bool timeSlowed;
+
     void Start()
     {
         normalTimeScale = Time.timeScale;
@@ -20,6 +22,9 @@ public class SlowMotionHandler : MonoBehaviour
 
     public IEnumerator SlowTime(float slowDownSpeed)
     {
+        timeSlowed = true;
+        currentSlowTime = 0;
+
         while (currentSlowTime <= slowDownCurve.length)
         {
             currentSlowTime += slowDownSpeed/10;
@@ -35,20 +40,7 @@ public class SlowMotionHandler : MonoBehaviour
 
     public IEnumerator SlowTime(float slowDownSpeed, float duration)
     {
-        currentSlowTime = 0;
-
-        while (currentSlowTime < 1)
-        {
-            currentSlowTime += slowDownSpeed / 10;
-            currentSlowTime = Mathf.Clamp01(currentSlowTime);
-            currentTimeScaleMultiplier = slowDownCurve.Evaluate(currentSlowTime);
-
-            Time.timeScale = normalTimeScale * currentTimeScaleMultiplier;
-            Time.fixedDeltaTime = normalDeltaTime * currentTimeScaleMultiplier;
-
-            Debug.Log(currentSlowTime);
-            yield return null;
-        }
+        StartCoroutine(SlowTime(slowDownSpeed));
 
         yield return new WaitForSeconds(duration);
 
@@ -61,6 +53,7 @@ public class SlowMotionHandler : MonoBehaviour
     public void NormalSpeed()
     {
         StopAllCoroutines();
+        timeSlowed = false;
         Time.timeScale = normalTimeScale;
         Time.fixedDeltaTime = normalDeltaTime;
     }
