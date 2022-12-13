@@ -29,7 +29,7 @@ public class EnemyMelee : MonoBehaviour
             if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) > punchingDistance)
                 handler.movement.MoveEnemy(handler.playerTrans.position);
 
-            else if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) <= punchingDistance)
+            else if (Vector2.SqrMagnitude(handler.playerTrans.position - transform.position) <= punchingDistance)
             {
                 handler.movement.StopEnemy();
                 punchingTimer += Time.deltaTime;

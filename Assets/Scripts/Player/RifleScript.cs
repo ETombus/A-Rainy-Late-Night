@@ -38,6 +38,7 @@ public class RifleScript : MonoBehaviour
     public IEnumerator Aim()
     {
         aimLaser.enabled = true;
+        umbrellaHandler.CancelInvoke();
         umbrellaHandler.StartCoroutine(umbrellaHandler.Reload(maxTimeSlowdown, false));
         slowMo.StartCoroutine(slowMo.SlowTime(0.1f, maxTimeSlowdown));
 

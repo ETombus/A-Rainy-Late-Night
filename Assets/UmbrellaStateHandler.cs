@@ -22,6 +22,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private float maxRainHeightCheck;
     [SerializeField] private float rainDamageInterval;
     [SerializeField] private float rainDamage;
+    [SerializeField] private float slashDelay;
 
     [Header("Audio")]
     public PlayerSoundHandler soundHandler;
@@ -138,7 +139,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         {
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();
-            Invoke(nameof(Idle), 0.35f);
+            Invoke(nameof(Idle), slashDelay);
 
             soundHandler.PlaySound(clips[0]);
         }
