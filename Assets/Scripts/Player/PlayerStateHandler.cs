@@ -137,7 +137,7 @@ public class PlayerStateHandler : MonoBehaviour
             }
             else
             {
-
+                coyoteTimer -= Time.deltaTime;
                 currentMoveState = MovementStates.AirMoving;
             }
         }

@@ -1,41 +1,58 @@
+using Spine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DetectedByCamera : MonoBehaviour
 {
-    [SerializeField] float timeToShowMarker = 2;
-    [SerializeField] GameObject marker;
+    Animator animator;
 
-    bool hasBeenSeen = false;
+    bool lookingAtIt = false;
+
+    [Range(0f, 185f)]
+    public float distanceFromPlayer = 100;
+
+    public string PopupText;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!hasBeenSeen && IsVisibleToCamera(transform))
+        if (IsVisibleToCamera() && !lookingAtIt)
         {
             ActivateMarker();
         }
+        else if(!IsVisibleToCamera() && lookingAtIt)
+        {
+            DisableMarker();
+        }
     }
 
-    public bool IsVisibleToCamera(Transform transform)
+    public bool IsVisibleToCamera()
     {
-        Vector3 visTest = Camera.main.WorldToViewportPoint(transform.position);
-        return (visTest.x >= 0 && visTest.y >= 0) && (visTest.x <= 1 && visTest.y <= 1) && visTest.z >= 0;
+        //Vector3 visTest = Camera.main.WorldToViewportPoint(transform.position);
+        //return (visTest.x >= 0 && visTest.y >= 0) && (visTest.x <= 1 && visTest.y <= 1) && visTest.z >= 0;
+
+        //Whole Screen is ca 185 units
+        return (transform.position - ScannerController.Instance.Player.transform.position).sqrMagnitude < distanceFromPlayer;
     }
 
     void ActivateMarker()
     {
-        marker = transform.GetChild(1).gameObject;
-        if (timeToShowMarker > 0)
-        {
-            marker.SetActive(true);
-            timeToShowMarker -= Time.deltaTime;
-        }
-        else
-        {
-            marker.SetActive(false);
-            hasBeenSeen = true;
-        }
+        lookingAtIt = true;
+        animator.SetTrigger("ResetAnim");
+
+    }
+
+    void DisableMarker()
+    {
+        lookingAtIt = false;
+        animator.SetTrigger("RemoveMarker");
     }
 }
