@@ -28,7 +28,7 @@ public class DetectedByCamera : MonoBehaviour
         {
             ActivateMarker();
         }
-        else if(!IsVisibleToCamera() && lookingAtIt)
+        else if (!IsVisibleToCamera() && lookingAtIt)
         {
             DisableMarker();
         }
@@ -47,6 +47,11 @@ public class DetectedByCamera : MonoBehaviour
     {
         lookingAtIt = true;
         animator.SetTrigger("ResetAnim");
+        if (PopupText != null || PopupText == "")
+        {
+            ScannerController.Instance.WriteText(PopupText, 0.1f);
+            Debug.Log("Write "+PopupText );
+        }
 
     }
 
