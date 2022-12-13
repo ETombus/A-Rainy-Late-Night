@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Timeline;
 
 public class GrappleInput : MonoBehaviour
 {
@@ -72,14 +73,14 @@ public class GrappleInput : MonoBehaviour
                     closestHookDistance = distance;
 
                     // Visual for hovering 
-
+                    point.GetComponentInChildren<DetectedByCamera>().isSelected = true;
                     point.GetComponent<SpriteRenderer>().color = Color.yellow;
                 }
                 else if (distance > maxMouseDistance || !RayHitPlayer(point))
                 {
 
                     // Visual for non-hovering 
-
+                    point.GetComponentInChildren<DetectedByCamera>().isSelected = false;
                     point.GetComponent<SpriteRenderer>().color = Color.white;
                 }
             }
