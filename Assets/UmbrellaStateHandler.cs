@@ -20,7 +20,6 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     [Header("Values")]
     [SerializeField] private float maxRainHeightCheck;
-    [SerializeField] private float reloadTime;
     [SerializeField] private float rainDamageInterval;
     [SerializeField] private float rainDamage;
 
