@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1377397217
 RectTransform:
   m_ObjectHideFlags: 0
@@ -355,8 +355,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec058109ca3c1408e56b4ff6831394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFromPlayer: 60.5
+  distanceFromPlayer: 72.4
+  isAHookPoint: 0
+  isSelected: 0
   ShouldHaveText: 0
   textToWrite: You Dead As Hell
   timePerCharacter: 0.2
   timePerRemoval: 0.05
+  canvas: {fileID: 1377397216}
