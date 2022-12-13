@@ -4658,19 +4658,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1450338445620509171, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
   m_PrefabInstance: {fileID: 5264048538148345204}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1127421040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127421022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88f8fdb0c1ccab048b2fbea78b8888fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 1127421022}
 --- !u!1 &1163008600
 GameObject:
   m_ObjectHideFlags: 0
@@ -6103,6 +6090,14 @@ PrefabInstance:
     - target: {fileID: 973452818824765964, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435619104247838939, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: bulletSpeed
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435619104247838939, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: shootCooldown
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4786642925610190677, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
       propertyPath: m_Mesh
