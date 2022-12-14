@@ -29,7 +29,7 @@ public class EnemyHandler : MonoBehaviour
     //0 = punch, 1 = shoot
 
 
-    public enum Mode { Patrol, Aggression, Search, Idle }
+    public enum Mode { Patrol, Aggression, Search, Idle, Dead }
     public enum Type { Melee, Ranged }
     [Header("Enums")]
     public Mode currentMode;
@@ -79,6 +79,11 @@ public class EnemyHandler : MonoBehaviour
     public void AlertEnemy()
     {
         currentMode = Mode.Aggression;
+    }
+
+    public void EnemyDead()
+    {
+        currentMode = Mode.Dead;
     }
 
     public void PlaySound(EnemyHandler.Type typeOfEnemy)
