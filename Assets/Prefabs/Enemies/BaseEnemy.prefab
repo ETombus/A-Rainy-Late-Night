@@ -94,10 +94,10 @@ MonoBehaviour:
   movePoints:
   - {x: 1.03, y: 0}
   - {x: 6.17, y: 0}
-  - {x: -5.64, y: 0}
   acceleration: 10
-  maxSpeed: 5
   decceleration: 0.6
+  maxWalkingSpeed: 3
+  maxRunningSpeed: 5
   waitTime: 1
   targetOffsetAmmount: 1
   moveIndex: 0
@@ -115,6 +115,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 100
+  damageTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  deathTrigger:
+    m_PersistentCalls:
+      m_Calls: []
   bloodParticles: {fileID: 6746497761879769038, guid: 839e5ab9da5e3f84d87bd412418a67c7, type: 3}
 --- !u!114 &8871184404417359565
 MonoBehaviour:
@@ -281,7 +287,7 @@ GameObject:
   - component: {fileID: 8214661436944730673}
   - component: {fileID: 2156060855115811064}
   m_Layer: 0
-  m_Name: Spine GameObject (CorpoRangedSpine)
+  m_Name: Spine GameObject (WorkerBot)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +336,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 35d9555ca4f06124ebdca5695fa8fcd7, type: 2}
+  - {fileID: 2100000, guid: ce119c3de2037e24085d2e129590841b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -364,13 +370,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2be4382fcd0aa4b80977a0b3d94f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idle: {fileID: 11400000, guid: 1efff2cc53b4c6644abffcd8a70ecd9d, type: 2}
-  run: {fileID: 11400000, guid: 62c9e48d8a3bf1544ac221a3bde62983, type: 2}
-  walk: {fileID: 11400000, guid: 4b62d49139513fc47a7e21556108d994, type: 2}
+  idle: {fileID: 11400000, guid: 5100610ec91920442a9e57f173c4a654, type: 2}
+  run: {fileID: 11400000, guid: d9351d7f166d57a498813eb7be5e2069, type: 2}
+  walk: {fileID: 11400000, guid: 2020ea0d26546d64c8f44b3f7d2ac0d0, type: 2}
   Aim: {fileID: 11400000, guid: c8f9d5aad1ec88e469d844bc4fdb39c5, type: 2}
-  Attack: {fileID: 0}
+  Attack: {fileID: 11400000, guid: 641ce1f90702c7748b9e870891bb178f, type: 2}
+  damage: {fileID: 0}
+  dead: {fileID: 0}
   boneName: 
   aimOffset: 1
+  attackAnimTimeOffset: 2
 --- !u!114 &2156060855115811064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: afe39e82dde5cb243882685c0690bc04, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: d26dbf4b12026314c82a86ad73400145, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0

@@ -22,6 +22,8 @@ public class EnemySpineController : MonoBehaviour
     public string boneName;
 
     public float aimOffset = 1;
+    public float attackAnimTimeOffset = 0.5f;
+
 
     private Bone aimBone;
     Vector3 startPos;
@@ -199,14 +201,9 @@ public class EnemySpineController : MonoBehaviour
     {
         var shootTrack = skelAnimation.AnimationState.SetAnimation(1, Attack, false);
         shootTrack.AttachmentThreshold = 1f;
-        shootTrack.MixDuration = 0f;
-        skelAnimation.state.AddEmptyAnimation(1, 0.5f, 0.1f);
+        shootTrack.MixDuration = 0;
+        skelAnimation.state.AddEmptyAnimation(1, attackAnimTimeOffset, 0.1f);
 
-        // Play the aim animation on track 2 to aim at the mouse target.
-        //var aimTrack = skelAnimation.AnimationState.SetAnimation(3, Aim, false);
-        //aimTrack.AttachmentThreshold = 1f;
-        //aimTrack.MixDuration = 0f;
-        //skelAnimation.state.AddEmptyAnimation(3, 0.5f, 0.1f);
     }
 
     private void OnDrawGizmos()
