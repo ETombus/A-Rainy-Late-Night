@@ -86,6 +86,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         }
         else if (currentState == UmbrellaState.Idle)
         {
+            umbrellaCollider.enabled = false;
             umbrellaUp = slowFalling ? true : false;
         }
 
