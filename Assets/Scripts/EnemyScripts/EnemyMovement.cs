@@ -7,9 +7,11 @@ public class EnemyMovement : MonoBehaviour
     public Vector2[] movePoints;
 
     public float acceleration;
-    public float maxSpeed;
     public float decceleration;
+    public float maxWalkingSpeed = 3;
+    public float maxRunningSpeed = 5;
 
+    private float maxSpeed;
     public float waitTime;
 
     public float targetOffsetAmmount = 1;
@@ -23,6 +25,8 @@ public class EnemyMovement : MonoBehaviour
     {
         rigBody = GetComponent<Rigidbody2D>();
         handler = GetComponent<EnemyHandler>();
+
+        maxSpeed = maxWalkingSpeed;
 
         for (int i = 0; i < movePoints.Length; i++)
         {
@@ -41,13 +45,17 @@ public class EnemyMovement : MonoBehaviour
         {
             case EnemyHandler.Mode.Patrol:
                 PatrolMode();
+                maxSpeed = maxWalkingSpeed;
                 break;
             case EnemyHandler.Mode.Aggression:
+                maxSpeed = maxRunningSpeed;
                 break;
             case EnemyHandler.Mode.Search:
+                maxSpeed = maxRunningSpeed;
                 SearchForPlayer();
                 break;
             case EnemyHandler.Mode.Idle:
+                maxSpeed = maxWalkingSpeed;
                 PatrolMode();
                 break;
             default:
