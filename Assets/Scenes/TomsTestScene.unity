@@ -6188,6 +6188,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8360589796107155416, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f47f499ac8fb57341849b5b9e8840e24, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
 --- !u!1 &1411039469
@@ -7162,6 +7166,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2222443147143102923, guid: d34ac8c27232c2843a65e4ab503d4d28, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 33edbb37504bd6d4a86747994cfe0819, type: 2}
     - target: {fileID: 2935482992915542342, guid: d34ac8c27232c2843a65e4ab503d4d28, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -8789,7 +8797,7 @@ GameObject:
   - component: {fileID: 1927075177}
   - component: {fileID: 1927075179}
   - component: {fileID: 1927075175}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8811,19 +8819,31 @@ MonoBehaviour:
   function:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1927075175}
+        m_TargetAssemblyTypeName: InteractScript, Assembly-CSharp
+        m_MethodName: DebugHit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  isInteractable: 1
+      - m_Target: {fileID: 1927075175}
+        m_TargetAssemblyTypeName: InteractScript, Assembly-CSharp
+        m_MethodName: DestroyThis
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isInteractable: 0
   interactDistance: 2
 --- !u!212 &1927075177
 SpriteRenderer:
