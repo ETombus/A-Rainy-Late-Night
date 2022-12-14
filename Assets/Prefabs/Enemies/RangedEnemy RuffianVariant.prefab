@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 973452818824765964, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.89
+      value: -38.54
       objectReference: {fileID: 0}
     - target: {fileID: 973452818824765964, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
       propertyPath: m_LocalPosition.y
@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7248371853370410373, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
+      propertyPath: m_Name
+      value: Spine GameObject (Knatten)
+      objectReference: {fileID: 0}
     - target: {fileID: 8182491971851070660, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
       propertyPath: maxWalkingSpeed
       value: 2
@@ -109,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 69377a5b84e500d429e349389363ab42, type: 2}
     - target: {fileID: 8688179405035896730, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
       propertyPath: boneName
-      value: bone
+      value: Aim
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73beaeb45f5f2ba43ba4aadc39f91488, type: 3}
