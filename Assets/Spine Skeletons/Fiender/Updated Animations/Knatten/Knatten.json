@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "EmfH4+5okx0",
+	"hash": "BLvEKjeZR2M",
 	"spine": "4.1.17",
 	"x": -352.81,
 	"y": -8,
@@ -31,8 +31,8 @@
 	{ "name": "Ankle R", "parent": "root", "rotation": 116.55, "x": -181.8, "y": 63.03, "color": "ff3f00ff" },
 	{ "name": "Ankle L", "parent": "root", "rotation": -18, "x": 49.04, "y": 145.46, "color": "ff3f00ff" },
 	{ "name": "Wrist L", "parent": "root", "rotation": -19.11, "x": 146.02, "y": 1112.35, "color": "ff3f00ff" },
-	{ "name": "bone", "parent": "root", "x": 256.24, "y": 413.71 },
-	{ "name": "Aim IK", "parent": "bone", "rotation": -110.43, "x": -0.49, "y": 0.63, "color": "ff3f00ff" }
+	{ "name": "Aim bone", "parent": "root", "x": 256.24, "y": 413.71 },
+	{ "name": "Aim IK", "parent": "Aim bone", "rotation": -110.43, "x": -0.49, "y": 0.63, "color": "ff3f00ff" }
 ],
 "slots": [
 	{ "name": "Hand L", "bone": "Hand L", "attachment": "Hand L" },
@@ -60,7 +60,7 @@
 	{ "name": "Flash  2", "bone": "Upper Arm R", "attachment": "Flash  2" },
 	{ "name": "Flash 3", "bone": "Upper Arm R", "attachment": "Flash 3" },
 	{ "name": "Flash 4", "bone": "Upper Arm R", "attachment": "Flash 4" },
-	{ "name": "Aim", "bone": "bone" }
+	{ "name": "Aim", "bone": "Aim bone" }
 ],
 "ik": [
 	{
@@ -437,14 +437,6 @@
 			}
 		},
 		"bones": {
-			"Torso": {
-				"rotate": [
-					{}
-				],
-				"translate": [
-					{}
-				]
-			},
 			"Aim IK": {
 				"rotate": [
 					{ "value": -24.83 }
@@ -463,12 +455,7 @@
 					{ "value": 8.67 }
 				]
 			},
-			"Upper Arm R": {
-				"translate": [
-					{}
-				]
-			},
-			"bone": {
+			"Aim bone": {
 				"translate": [
 					{ "x": 1375.76, "y": 1457.35 }
 				]
@@ -537,11 +524,6 @@
 				"rotate": [
 					{ "value": 8.67 }
 				]
-			},
-			"Upper Arm R": {
-				"translate": [
-					{}
-				]
 			}
 		}
 	},
@@ -549,7 +531,6 @@
 		"slots": {
 			"Flash 1": {
 				"attachment": [
-					{ "name": "Flash 1" },
 					{ "time": 0.0333 }
 				]
 			},
@@ -576,20 +557,9 @@
 			}
 		},
 		"bones": {
-			"Torso": {
-				"rotate": [
-					{ "curve": "stepped" },
-					{ "time": 0.2667 }
-				],
-				"translate": [
-					{ "curve": "stepped" },
-					{ "time": 0.2667 }
-				]
-			},
 			"Aim IK": {
 				"rotate": [
-					{ "value": -24.83, "curve": "stepped" },
-					{ "time": 0.2667, "value": -24.83 }
+					{ "value": -24.83 }
 				],
 				"translate": [
 					{ "x": 0.68, "y": -0.09 },
@@ -598,28 +568,20 @@
 			},
 			"Wrist L": {
 				"translate": [
-					{ "x": -53.42, "y": -24.65, "curve": "stepped" },
-					{ "time": 0.2667, "x": -53.42, "y": -24.65 }
+					{ "x": -53.42, "y": -24.65 }
 				]
 			},
 			"Torso2": {
 				"rotate": [
-					{ "value": -9.41, "curve": "stepped" },
-					{ "time": 0.2667, "value": -9.41 }
+					{ "value": -9.41 }
 				]
 			},
 			"Head": {
 				"rotate": [
-					{ "value": 8.67, "curve": "stepped" },
-					{ "time": 0.2667, "value": 8.67 }
+					{ "value": 8.67 }
 				]
 			},
-			"Upper Arm R": {
-				"translate": [
-					{}
-				]
-			},
-			"bone": {
+			"Aim bone": {
 				"translate": [
 					{ "x": 325.31, "y": 25.05 },
 					{ "time": 0.2667, "x": 343.22, "y": 1.26 }
@@ -729,26 +691,22 @@
 		"slots": {
 			"Flash 1": {
 				"attachment": [
-					{},
-					{ "time": 1.0667 }
+					{}
 				]
 			},
 			"Flash  2": {
 				"attachment": [
-					{},
-					{ "time": 1.0667 }
+					{}
 				]
 			},
 			"Flash 3": {
 				"attachment": [
-					{},
-					{ "time": 1.0667 }
+					{}
 				]
 			},
 			"Flash 4": {
 				"attachment": [
-					{},
-					{ "time": 1.0667 }
+					{}
 				]
 			}
 		},
@@ -790,20 +748,17 @@
 			},
 			"Torso2": {
 				"rotate": [
-					{ "value": -11.15, "curve": "stepped" },
-					{ "time": 1.0667, "value": -11.15 }
+					{ "value": -11.15 }
 				]
 			},
 			"Head": {
 				"rotate": [
-					{ "value": 12.02, "curve": "stepped" },
-					{ "time": 1.0667, "value": 12.02 }
+					{ "value": 12.02 }
 				]
 			},
 			"Wrist L": {
 				"rotate": [
-					{ "value": -38.39, "curve": "stepped" },
-					{ "time": 1.0667, "value": -38.39 }
+					{ "value": -38.39 }
 				],
 				"translate": [
 					{ "x": -417.62, "y": -10.35 },
@@ -851,8 +806,7 @@
 			},
 			"Torso": {
 				"rotate": [
-					{ "value": -7.74, "curve": "stepped" },
-					{ "time": 1.0667, "value": -7.74 }
+					{ "value": -7.74 }
 				]
 			},
 			"hips": {
@@ -870,13 +824,12 @@
 			},
 			"Toe R": {
 				"rotate": [
-					{ "curve": "stepped" },
 					{ "time": 0.8 },
 					{ "time": 0.9333, "value": 24.03 },
 					{ "time": 1.0667 }
 				]
 			},
-			"bone": {
+			"Aim bone": {
 				"translate": [
 					{ "x": 577.17, "y": 13.99 },
 					{ "time": 0.5, "x": 231.18, "y": -168.03 },
@@ -893,44 +846,34 @@
 		"slots": {
 			"Flash 1": {
 				"attachment": [
-					{},
-					{ "time": 1.3333 }
+					{}
 				]
 			},
 			"Flash  2": {
 				"attachment": [
-					{},
-					{ "time": 1.3333 }
+					{}
 				]
 			},
 			"Flash 3": {
 				"attachment": [
-					{},
-					{ "time": 1.3333 }
+					{}
 				]
 			},
 			"Flash 4": {
 				"attachment": [
-					{},
-					{ "time": 1.3333 }
+					{}
 				]
 			}
 		},
 		"bones": {
 			"Torso": {
 				"rotate": [
-					{ "value": -1.08, "curve": "stepped" },
-					{ "time": 1.3333, "value": -1.08 }
-				],
-				"translate": [
-					{ "curve": "stepped" },
-					{ "time": 1.3333 }
+					{ "value": -1.08 }
 				]
 			},
 			"Aim IK": {
 				"rotate": [
-					{ "value": -24.83, "curve": "stepped" },
-					{ "time": 1.3333, "value": -24.83 }
+					{ "value": -24.83 }
 				],
 				"translate": [
 					{ "x": 0.82, "y": -0.74 },
@@ -947,16 +890,12 @@
 			},
 			"Torso2": {
 				"rotate": [
-					{ "value": -9.41, "curve": "stepped" },
-					{ "time": 1, "value": -9.41, "curve": "stepped" },
-					{ "time": 1.3333, "value": -9.41 }
+					{ "value": -9.41 }
 				]
 			},
 			"Head": {
 				"rotate": [
-					{ "value": 8.67, "curve": "stepped" },
-					{ "time": 1, "value": 8.67, "curve": "stepped" },
-					{ "time": 1.3333, "value": 8.67 }
+					{ "value": 8.67 }
 				]
 			},
 			"Ankle L": {
@@ -965,8 +904,7 @@
 					{ "time": 0.1667, "value": -29.86 },
 					{ "time": 0.3333, "value": -155.48 },
 					{ "time": 0.8333, "value": -44.46 },
-					{ "time": 1, "value": -153.91, "curve": "stepped" },
-					{ "time": 1.3333, "value": -153.91 }
+					{ "time": 1, "value": -153.91 }
 				],
 				"translate": [
 					{ "x": 166.65, "y": 11.14 },
@@ -988,8 +926,7 @@
 					{ "time": 0.5, "value": -238.83 },
 					{ "time": 0.6667, "value": -197.74 },
 					{ "time": 0.8333, "value": -143.53 },
-					{ "time": 1, "value": -109.34, "curve": "stepped" },
-					{ "time": 1.3333, "value": -109.34 }
+					{ "time": 1, "value": -109.34 }
 				],
 				"translate": [
 					{ "x": -180.13, "y": 46.11 },
@@ -1046,8 +983,7 @@
 					{ "time": 0.3333, "value": 3.24 },
 					{ "time": 0.5, "value": 0.37 },
 					{ "time": 0.6667, "value": 1.89 },
-					{ "time": 1, "curve": "stepped" },
-					{ "time": 1.3333 }
+					{ "time": 1 }
 				]
 			},
 			"Toe L": {
@@ -1057,14 +993,12 @@
 					{ "time": 0.3333, "value": 8.59 },
 					{ "time": 0.5, "value": 19.22 },
 					{ "time": 0.6667, "value": 18.9 },
-					{ "time": 1, "value": 6.52, "curve": "stepped" },
-					{ "time": 1.3333, "value": 6.52 }
+					{ "time": 1, "value": 6.52 }
 				]
 			},
-			"bone": {
+			"Aim bone": {
 				"translate": [
-					{ "x": 64.51, "y": -30.43, "curve": "stepped" },
-					{ "time": 1.3333, "x": 64.51, "y": -30.43 }
+					{ "x": 64.51, "y": -30.43 }
 				]
 			}
 		},
