@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class HealthHandler : MonoBehaviour
 {
     public float health;
     public int maxHealth = 100;
+
+    public UnityEvent damageTrigger, deathTrigger;
 
     [SerializeField] GameObject bloodParticles;
 
@@ -23,10 +26,12 @@ public class HealthHandler : MonoBehaviour
             if (bloodParticles != null)
                 Instantiate(bloodParticles, transform.position, transform.rotation);
 
-            EnemyHandler handler = GetComponent<EnemyHandler>();
-            if(handler != null) { handler.AlertEnemy(); }
-        }
+            //Only invokes if there is anything there
+            damageTrigger.Invoke();
 
+            EnemyHandler handler = GetComponent<EnemyHandler>();
+            if (handler != null) { handler.AlertEnemy(); }
+        }
         else
             Death();
     }
@@ -43,7 +48,14 @@ public class HealthHandler : MonoBehaviour
         if (bloodParticles != null)
             Instantiate(bloodParticles, transform.position, transform.rotation);
 
-        if (gameObject != null)
+        if (gameObject != null && deathTrigger.GetPersistentEventCount() == 0)
+        {
             Destroy(gameObject);
+
+        }
+        else
+        {
+            deathTrigger.Invoke();
+        }
     }
 }
