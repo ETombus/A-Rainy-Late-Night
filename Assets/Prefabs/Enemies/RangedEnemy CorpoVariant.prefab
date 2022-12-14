@@ -40,7 +40,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 509095876351793058, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Name
-      value: RangedEnemy CorpoVariant
+      value: RangedEnemy Variant
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_RootOrder
@@ -48,7 +48,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.005651
+      value: -16.85
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_LocalPosition.y
@@ -135,6 +135,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 230fa22e5f0b28b4db5449e3c260eee1, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: dead
+      value: 
+      objectReference: {fileID: 11400000, guid: 17b34cf9cb590dc419b17e4d782fb704, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: idle
       value: 
       objectReference: {fileID: 11400000, guid: bb88347a9a29c5d4a976f4a0b176a697, type: 2}
@@ -147,6 +151,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 74158d6b39a188f4babf29130e4a918b, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: damage
+      value: 
+      objectReference: {fileID: 11400000, guid: f6913a23b739a254fa0c4e66bc03cb81, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: boneName
       value: Aim
       objectReference: {fileID: 0}
@@ -156,7 +164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: movePoints.Array.size
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: movePoints.Array.data[1].x
+      value: 6.67
       objectReference: {fileID: 0}
     - target: {fileID: 8871184404417359565, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: thisType

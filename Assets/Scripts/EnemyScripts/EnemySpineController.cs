@@ -3,10 +3,11 @@ using UnityEngine;
 using Spine;
 using Spine.Unity;
 using static EnemyHandler;
+using Unity.Burst.Intrinsics;
 
 public class EnemySpineController : MonoBehaviour
 {
-    [SerializeField] AnimationReferenceAsset idle, run, walk, Aim, Attack;
+    [SerializeField] AnimationReferenceAsset idle, run, walk, Aim, Attack, damage, dead;
     SkeletonAnimation skelAnimation;
 
     EnemyHandler handler;
@@ -26,11 +27,12 @@ public class EnemySpineController : MonoBehaviour
     Vector3 startPos;
 
     bool wasMoving = false;
-
+    bool loopingAnim = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        loopingAnim = true;
         handler = GetComponentInParent<EnemyHandler>();
         skelAnimation = GetComponent<SkeletonAnimation>();
         previousState = Mode.Idle;
@@ -68,6 +70,15 @@ public class EnemySpineController : MonoBehaviour
 
         previousState = currentState;
         wasMoving = handler.isMoving;
+    }
+
+    public void PlayDamageAnim()
+    {
+        var shootTrack = skelAnimation.AnimationState.SetAnimation(2, damage, false);
+        shootTrack.AttachmentThreshold = 1f;
+        shootTrack.MixDuration = 0f;
+        shootTrack.TimeScale = 0.5f;
+        skelAnimation.state.AddEmptyAnimation(2, 0f, 0.1f);
     }
 
     Vector3 playerLastPosition;
@@ -120,13 +131,18 @@ public class EnemySpineController : MonoBehaviour
             case Mode.Idle:
                 nextAnimation = idle;
                 break;
+            case Mode.Dead:
+                StopPlayingAim();
+                nextAnimation = dead;
+                loopingAnim = false;
+                break;
             default:
                 Debug.LogError("Invalid Animation State");
                 nextAnimation = idle;
                 break;
         }
 
-        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, true);
+        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
     }
 
 
@@ -153,25 +169,30 @@ public class EnemySpineController : MonoBehaviour
                 nextAnimation = idle;
                 StopPlayingAim();
                 break;
+            case Mode.Dead:
+                StopPlayingAim();
+                nextAnimation = dead;
+                loopingAnim = false;
+                break;
             default:
                 Debug.LogError("Invalid Animation State");
                 nextAnimation = idle;
                 break;
         }
 
-        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, true);
+        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
     }
 
 
     void PlayAim()
     {
-        var aimTrack = skelAnimation.AnimationState.SetAnimation(2, Aim, true);
+        var aimTrack = skelAnimation.AnimationState.SetAnimation(3, Aim, true);
         aimTrack.AttachmentThreshold = 1f;
         aimTrack.MixDuration = 0f;
     }
     public void StopPlayingAim()
     {
-        skelAnimation.state.AddEmptyAnimation(2, 0.5f, 0.1f);
+        skelAnimation.state.AddEmptyAnimation(3, 0.5f, 0.1f);
     }
 
     public void PlayAttackAnimation()
@@ -180,6 +201,12 @@ public class EnemySpineController : MonoBehaviour
         shootTrack.AttachmentThreshold = 1f;
         shootTrack.MixDuration = 0f;
         skelAnimation.state.AddEmptyAnimation(1, 0.5f, 0.1f);
+
+        // Play the aim animation on track 2 to aim at the mouse target.
+        //var aimTrack = skelAnimation.AnimationState.SetAnimation(3, Aim, false);
+        //aimTrack.AttachmentThreshold = 1f;
+        //aimTrack.MixDuration = 0f;
+        //skelAnimation.state.AddEmptyAnimation(3, 0.5f, 0.1f);
     }
 
     private void OnDrawGizmos()

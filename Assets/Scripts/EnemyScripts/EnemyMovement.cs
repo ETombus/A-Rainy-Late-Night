@@ -58,6 +58,9 @@ public class EnemyMovement : MonoBehaviour
                 maxSpeed = maxWalkingSpeed;
                 PatrolMode();
                 break;
+            case EnemyHandler.Mode.Dead:
+                StopEnemy();
+                break;
             default:
                 break;
         }
