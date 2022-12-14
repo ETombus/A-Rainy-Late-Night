@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "LcsdTBUkm1A",
+	"hash": "FobTwNo8Puw",
 	"spine": "4.1.17",
 	"x": -344.85,
 	"y": -8,
@@ -78,20 +78,20 @@
 	},
 	{
 		"name": "Arm R",
-		"order": 4,
+		"order": 2,
 		"bones": [ "Upper Arm R" ],
 		"target": "Arm IK"
 	},
 	{
 		"name": "target",
-		"order": 2,
+		"order": 3,
 		"bones": [ "Leg R", "Lower Leg R" ],
 		"target": "Ankle R",
 		"bendPositive": false
 	},
 	{
 		"name": "Wrist L",
-		"order": 3,
+		"order": 4,
 		"bones": [ "Upper Arm L", "Lower Arm L" ],
 		"target": "Wrist L"
 	}
@@ -890,9 +890,9 @@
 			},
 			"Wrist L": {
 				"translate": [
-					{ "x": -207.86, "y": -16.1 },
+					{ "x": -216.84, "y": 14.42 },
 					{ "time": 0.6667, "x": -8.33, "y": -6.49 },
-					{ "time": 1.3333, "x": -207.86, "y": -16.1 }
+					{ "time": 1.3333, "x": -216.84, "y": 14.42 }
 				]
 			},
 			"Torso2": {
@@ -962,7 +962,7 @@
 			},
 			"hips": {
 				"translate": [
-					{ "y": -4.74 },
+					{ "y": -8.72 },
 					{ "time": 0.1667, "y": -19.25 },
 					{ "time": 0.3333, "y": -3.55 },
 					{ "time": 0.5, "y": 8.26 },
