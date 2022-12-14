@@ -22,7 +22,7 @@ public class InteractScript : MonoBehaviour
 
     [Header("Values")]
     [Tooltip("Only needed if isInteractable")]
-    [SerializeField] private float interactDistance;
+    [SerializeField] private float interactDistance = 2;
 
     private void Awake() { playerControls = new PlayerInputs(); }
 
@@ -30,13 +30,11 @@ public class InteractScript : MonoBehaviour
     {
         if (isInteractable)
         {
-            GetComponent<Collider2D>().isTrigger = true;
-            gameObject.layer = 0;
             interactCollider = gameObject.AddComponent(typeof(CircleCollider2D)) as CircleCollider2D;
             interactCollider.isTrigger = true;
             interactCollider.radius = interactDistance;
         }
-        else
+        else if (gameObject.layer == 0)
             gameObject.layer = 8;
     }
 
@@ -59,10 +57,9 @@ public class InteractScript : MonoBehaviour
     //Interact within range
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isInteractable && collision.CompareTag("Player"))
+        if (isInteractable && collision.transform.parent != null && collision.transform.parent.CompareTag("Player"))
         {
             //Visual indication of interactable
-
             if (interactTrigger)
             {
                 interactTrigger = false;

@@ -86,10 +86,8 @@ public class RifleScript : MonoBehaviour
                 }
                 catch (System.Exception ex) { Debug.LogException(ex); }
             }
-            else
-            {
-                shot.transform.SendMessage(nameof(InteractScript.Hit), SendMessageOptions.DontRequireReceiver);
-            }
+
+            shot.transform.SendMessage(nameof(InteractScript.Hit), SendMessageOptions.DontRequireReceiver);
         }
 
         StartCoroutine(LineFade());
