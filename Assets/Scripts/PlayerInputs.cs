@@ -82,6 +82,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""918a8232-a939-403b-98e8-34c9b215e458"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""DevToolTeleport"",
                     ""type"": ""Button"",
                     ""id"": ""57b0e0af-c4f6-4f0b-8092-0ac55dd78e3f"",
@@ -426,6 +435,17 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Grapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c96ca65b-f156-4a80-816b-3fbdc82845ef"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1050,6 +1070,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Grapple = m_Player.FindAction("Grapple", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_DevToolTeleport = m_Player.FindAction("DevToolTeleport", throwIfNotFound: true);
         m_Player_DevToolSpawnBarrel = m_Player.FindAction("DevToolSpawnBarrel", throwIfNotFound: true);
         m_Player_DevToolResetScene = m_Player.FindAction("DevToolResetScene", throwIfNotFound: true);
@@ -1131,6 +1152,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Grapple;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_DevToolTeleport;
     private readonly InputAction m_Player_DevToolSpawnBarrel;
     private readonly InputAction m_Player_DevToolResetScene;
@@ -1144,6 +1166,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Grapple => m_Wrapper.m_Player_Grapple;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @DevToolTeleport => m_Wrapper.m_Player_DevToolTeleport;
         public InputAction @DevToolSpawnBarrel => m_Wrapper.m_Player_DevToolSpawnBarrel;
         public InputAction @DevToolResetScene => m_Wrapper.m_Player_DevToolResetScene;
@@ -1174,6 +1197,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Grapple.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
                 @Grapple.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
                 @Grapple.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrapple;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @DevToolTeleport.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevToolTeleport;
                 @DevToolTeleport.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevToolTeleport;
                 @DevToolTeleport.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevToolTeleport;
@@ -1205,6 +1231,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Grapple.started += instance.OnGrapple;
                 @Grapple.performed += instance.OnGrapple;
                 @Grapple.canceled += instance.OnGrapple;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @DevToolTeleport.started += instance.OnDevToolTeleport;
                 @DevToolTeleport.performed += instance.OnDevToolTeleport;
                 @DevToolTeleport.canceled += instance.OnDevToolTeleport;
@@ -1384,6 +1413,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnDevToolTeleport(InputAction.CallbackContext context);
         void OnDevToolSpawnBarrel(InputAction.CallbackContext context);
         void OnDevToolResetScene(InputAction.CallbackContext context);

@@ -29,7 +29,7 @@ public class RifleScript : MonoBehaviour
 
     private void Start()
     {
-        bulletTrail = GetComponent<LineRenderer>(); 
+        bulletTrail = GetComponent<LineRenderer>();
         slowMo = GetComponentInParent<SlowMotionHandler>();
         bulletTrail.enabled = false;
         maxTimeSlowdown /= 2;
@@ -57,7 +57,7 @@ public class RifleScript : MonoBehaviour
 
     private void AutoShoot()
     {
-        if(aimLaser.enabled)
+        if (aimLaser.enabled)
             ShootRifle();
     }
 
@@ -75,14 +75,21 @@ public class RifleScript : MonoBehaviour
         shotDirection.Normalize();
 
         shot = Physics2D.Raycast(origin, shotDirection, shotMaxDistance, rayIgnore);
-        if (shot.collider != null && shot.collider.CompareTag("Enemy"))
-        {
-            try
-            {
-                shot.collider.GetComponent<HealthHandler>().ReduceHealth(rifleDamage);
-            }
-            catch (System.Exception ex) { Debug.LogException(ex); }
 
+        if (shot.collider != null)
+        {
+            if (shot.collider.CompareTag("Enemy"))
+            {
+                try
+                {
+                    shot.collider.GetComponent<HealthHandler>().ReduceHealth(rifleDamage);
+                }
+                catch (System.Exception ex) { Debug.LogException(ex); }
+            }
+            else
+            {
+                shot.transform.SendMessage(nameof(InteractScript.Hit), SendMessageOptions.DontRequireReceiver);
+            }
         }
 
         StartCoroutine(LineFade());

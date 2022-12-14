@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "918a8232-a939-403b-98e8-34c9b215e458",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "DevToolTeleport",
                     "type": "Button",
                     "id": "57b0e0af-c4f6-4f0b-8092-0ac55dd78e3f",
@@ -404,6 +413,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Grapple",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c96ca65b-f156-4a80-816b-3fbdc82845ef",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -23,11 +23,8 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerStateHandler stateHandler;
     private UmbrellaStateHandler umbrellaHandler;
 
-    private void Awake()
-    {
-        playerControls = new PlayerInputs();
+    private void Awake() { playerControls = new PlayerInputs(); }
 
-    }
     private void Start()
     {
         stateHandler = GetComponent<PlayerStateHandler>();
