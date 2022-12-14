@@ -83,5 +83,6 @@ public class InteractScript : MonoBehaviour
             function.Invoke();
     }
 
+    public void DebugFunction() { Debug.Log("Interact"); }
     public void DisableScript() { enabled = false; }
 }
