@@ -131,10 +131,10 @@ public class EnemySpineController : MonoBehaviour
 
     public void PlayAttackAnimation()
     {
-        var shootTrack = skelAnimation.AnimationState.SetAnimation(2, Attack, false);
+        var shootTrack = skelAnimation.AnimationState.SetAnimation(1, Attack, false);
         shootTrack.AttachmentThreshold = 1f;
         shootTrack.MixDuration = 0f;
-        skelAnimation.state.AddEmptyAnimation(2, 0.5f, 0.1f);
+        skelAnimation.state.AddEmptyAnimation(1, 0.5f, 0.1f);
     }
 
     void PlayNewShooterAnimation()
@@ -171,13 +171,13 @@ public class EnemySpineController : MonoBehaviour
 
     void PlayAim()
     {
-        var aimTrack = skelAnimation.AnimationState.SetAnimation(1, Aim, true);
+        var aimTrack = skelAnimation.AnimationState.SetAnimation(2, Aim, true);
         aimTrack.AttachmentThreshold = 1f;
         aimTrack.MixDuration = 0f;
     }
     public void StopPlayingAim()
     {
-        skelAnimation.state.AddEmptyAnimation(1, 0.5f, 0.1f);
+        skelAnimation.state.AddEmptyAnimation(2, 0.5f, 0.1f);
     }
 
 

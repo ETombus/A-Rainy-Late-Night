@@ -40,7 +40,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 509095876351793058, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Name
-      value: RangedEnemy Variant
+      value: RangedEnemy CorpoVariant
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_RootOrder
@@ -109,7 +109,7 @@ PrefabInstance:
     - target: {fileID: 2156060855115811064, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: ee83717beb98d85439fabb3b783868e7, type: 2}
+      objectReference: {fileID: 11400000, guid: 7dfef9efa4fa252438052c3dd19a1f71, type: 2}
     - target: {fileID: 3191370445856615018, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -129,23 +129,23 @@ PrefabInstance:
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: Aim
       value: 
-      objectReference: {fileID: 11400000, guid: 6e18a9cd4706e004283997689cd522ef, type: 2}
+      objectReference: {fileID: 11400000, guid: 954730a312ee40241a0651f2d695ae62, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: run
       value: 
-      objectReference: {fileID: 11400000, guid: d051b1c995306e047a15fe6a34e31ffc, type: 2}
+      objectReference: {fileID: 11400000, guid: 230fa22e5f0b28b4db5449e3c260eee1, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: idle
       value: 
-      objectReference: {fileID: 11400000, guid: 9be8292ee474f23469bd9f8312bb7860, type: 2}
+      objectReference: {fileID: 11400000, guid: bb88347a9a29c5d4a976f4a0b176a697, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: walk
       value: 
-      objectReference: {fileID: 11400000, guid: cc5fb7cc7a234a74d883b6febfdb0fb0, type: 2}
+      objectReference: {fileID: 11400000, guid: 0442d6c086fe9ba409e8af118810df7a, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: Attack
       value: 
-      objectReference: {fileID: 11400000, guid: 7253a7a64df6a2c4c9356c3bb859181b, type: 2}
+      objectReference: {fileID: 11400000, guid: 74158d6b39a188f4babf29130e4a918b, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: boneName
       value: Aim
@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1d7989b860e9cdc48a42f2ae1ef7dc96, type: 2}
+      objectReference: {fileID: 2100000, guid: f47f499ac8fb57341849b5b9e8840e24, type: 2}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 8871184404804980625, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
