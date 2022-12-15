@@ -1,12 +1,12 @@
 {
 "skeleton": {
-	"hash": "z0eGDd+Xq2I",
+	"hash": "2vzYIwi8M0U",
 	"spine": "4.1.17",
-	"x": -358.48,
+	"x": -370.13,
 	"y": -24.93,
-	"width": 1699.56,
-	"height": 2465.97,
-	"images": "../Dokument/Min Rainy mapp/RigReady/CorpoRangedSpine/",
+	"width": 1753.54,
+	"height": 2467.77,
+	"images": "../../Dokument/Min Rainy mapp/RigReady/CorpoRangedSpine/",
 	"audio": "C:/Users/Malte/OneDrive/Dokument/Min Rainy mapp/RigReady/CorpoRangedSpine"
 },
 "bones": [
@@ -51,15 +51,8 @@
 	{ "name": "Wrist IK R", "parent": "Hand IK R", "x": -110.64, "y": 2.58, "color": "ff3f00ff" },
 	{ "name": "Hand IK L", "parent": "Tommy Gun", "rotation": -1.71, "x": 453.63, "y": -175.09, "color": "ff3f00ff" },
 	{ "name": "Wrist IK L", "parent": "Hand IK L", "rotation": -34.67, "x": -182.8, "y": 22.4, "color": "ff3f00ff" },
-	{
-		"name": "Aim",
-		"parent": "root",
-		"x": 1643.55,
-		"y": 1931.88,
-		"scaleX": 0.3314,
-		"scaleY": 0.3314,
-		"color": "ff4000ff"
-	}
+	{ "name": "Aim", "parent": "root", "x": 1353.58, "y": 1614.73 },
+	{ "name": "Aim Target IK", "parent": "Aim", "rotation": -8.32, "x": -204.59, "y": -12.05, "color": "ff3f00ff" }
 ],
 "slots": [
 	{ "name": "Neck", "bone": "Neck", "attachment": "Neck" },
@@ -70,7 +63,7 @@
 	{ "name": "Forearm L", "bone": "Forearm L", "attachment": "Forearm L" },
 	{ "name": "Thigh L", "bone": "Thigh L", "attachment": "Thigh L" },
 	{ "name": "Calf L", "bone": "Calf L", "attachment": "Calf L" },
-	{ "name": "Hips", "bone": "bone", "attachment": "Hips" },
+	{ "name": "Hips", "bone": "root", "attachment": "Hips" },
 	{ "name": "Toes R", "bone": "Toes R", "attachment": "Toes R" },
 	{ "name": "Shoe R", "bone": "root", "attachment": "Shoe R" },
 	{ "name": "Thigh R", "bone": "Thigh R", "attachment": "Thigh R" },
@@ -97,74 +90,94 @@
 "ik": [
 	{
 		"name": "Aim Target IK",
-		"bones": [ "Rotation Limit" ],
-		"target": "Aim"
+		"order": 2,
+		"bones": [ "Tommy Gun" ],
+		"target": "Aim Target IK"
 	},
 	{
 		"name": "Ankle L",
-		"order": 2,
+		"order": 4,
 		"bones": [ "Calf L" ],
 		"target": "Ankle L"
 	},
 	{
 		"name": "Ankle R",
-		"order": 4,
+		"order": 6,
 		"bones": [ "Calf R" ],
 		"target": "Ankle R"
 	},
 	{
 		"name": "Hand IK",
-		"order": 7,
+		"order": 9,
 		"bones": [ "Palm R" ],
 		"target": "Hand IK R"
 	},
 	{
 		"name": "Hand Tip IK L",
-		"order": 9,
+		"order": 11,
 		"bones": [ "Palm L" ],
 		"target": "Hand IK L"
 	},
 	{
 		"name": "Knee L",
-		"order": 1,
+		"order": 3,
 		"bones": [ "Thigh L" ],
 		"target": "Knee L"
 	},
 	{
 		"name": "Knee R",
-		"order": 3,
+		"order": 5,
 		"bones": [ "Thigh R" ],
 		"target": "Knee R"
 	},
 	{
+		"name": "Rotation Limit IK",
+		"bones": [ "Rotation Limit" ],
+		"target": "Aim Target IK"
+	},
+	{
 		"name": "Sole L",
-		"order": 10,
+		"order": 12,
 		"bones": [ "Shoe L" ],
 		"target": "Sole L"
 	},
 	{
 		"name": "Sole R",
-		"order": 11,
+		"order": 13,
 		"bones": [ "Calf R2" ],
 		"target": "Sole R"
 	},
 	{
 		"name": "Wrist IK L",
-		"order": 8,
+		"order": 10,
 		"bones": [ "Upper arm L", "Forearm L" ],
 		"target": "Wrist IK L"
 	},
 	{
 		"name": "Wrist R",
-		"order": 6,
+		"order": 8,
 		"bones": [ "Upper arm R", "Forearm R" ],
 		"target": "Wrist IK R"
 	}
 ],
 "transform": [
 	{
+		"name": "Rifle Movement",
+		"order": 1,
+		"bones": [ "Tommy Gun" ],
+		"target": "Aim Target IK",
+		"rotation": 8.4,
+		"x": -992.05,
+		"y": -146.44,
+		"mixRotate": 0,
+		"mixX": 0.2,
+		"mixY": 0,
+		"mixScaleX": 0,
+		"mixShearY": 0
+	},
+	{
 		"name": "Rotation Limit Head",
-		"order": 13,
+		"order": 15,
 		"bones": [ "Head" ],
 		"target": "Rotation Limit",
 		"rotation": 80.01,
@@ -177,7 +190,7 @@
 	},
 	{
 		"name": "Rotation Limit Neck",
-		"order": 12,
+		"order": 14,
 		"bones": [ "Neck" ],
 		"target": "Rotation Limit",
 		"rotation": 67.94,
@@ -190,7 +203,7 @@
 	},
 	{
 		"name": "Torso Rotation",
-		"order": 5,
+		"order": 7,
 		"bones": [ "Vest" ],
 		"target": "Rotation Limit",
 		"rotation": 83.98,
@@ -211,7 +224,7 @@
 					"type": "mesh",
 					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
 					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 99.81, -127.57, -133.15, -93.49, -101.58, 122.43, 131.39, 88.35 ],
+					"vertices": [ 34.19, -46.1, -46.95, -34.23, -35.95, 40.97, 45.19, 29.1 ],
 					"hull": 4,
 					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
 					"width": 82,
@@ -590,11 +603,6 @@
 	},
 	"Damage": {
 		"slots": {
-			"Aim": {
-				"attachment": [
-					{ "name": "Aim" }
-				]
-			},
 			"Flash 1": {
 				"attachment": [
 					{}
@@ -622,6 +630,11 @@
 					{},
 					{ "time": 0.1, "value": -20.15 },
 					{ "time": 0.4 }
+				]
+			},
+			"Aim Target IK": {
+				"rotate": [
+					{ "value": 7.96 }
 				]
 			},
 			"Aim": {
@@ -1215,6 +1228,22 @@
 					{ "time": 0.5, "x": -19.31, "y": 901.12 },
 					{ "time": 0.6667, "x": 151.39, "y": 718.39 }
 				]
+			},
+			"Aim Target IK": {
+				"rotate": [
+					{},
+					{ "time": 0.6667, "value": 10.93 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": 52, "y": -657.61 },
+					{ "time": 0.6667, "x": -952.56, "y": -1268.18 },
+					{ "time": 0.7667, "x": -1561.79, "y": -711.48 },
+					{ "time": 0.8667, "x": -2602.23, "y": -1707.66 },
+					{ "time": 1, "x": -2642.82, "y": -1788.97 },
+					{ "time": 1.0333, "x": -2605.13, "y": -1560.84 },
+					{ "time": 1.1, "x": -2529.75, "y": -1104.59 }
+				]
 			}
 		},
 		"ik": {
@@ -1306,9 +1335,19 @@
 					{ "time": 1.2 }
 				]
 			},
+			"Aim Target IK": {
+				"rotate": [
+					{ "value": -6.91 }
+				],
+				"translate": [
+					{ "x": -187.73, "y": -625.76 },
+					{ "time": 0.5667, "x": -171.97, "y": -550.11 },
+					{ "time": 1.2, "x": -187.73, "y": -625.76 }
+				]
+			},
 			"Neck": {
 				"rotate": [
-					{ "value": 10.02 }
+					{ "value": 44.15 }
 				]
 			}
 		},
@@ -1865,9 +1904,14 @@
 					{ "time": 1.6333 }
 				]
 			},
+			"Aim Target IK": {
+				"translate": [
+					{ "x": 171.31, "y": -1148.79 }
+				]
+			},
 			"Neck": {
 				"rotate": [
-					{ "value": 27.16 }
+					{ "value": 63.19 }
 				]
 			},
 			"Aim": {
