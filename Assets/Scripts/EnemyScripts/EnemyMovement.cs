@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
     public float targetOffsetAmmount = 1;
 
-    private Rigidbody2D rigBody;
+    [HideInInspector] public Rigidbody2D rigBody;
     public int moveIndex = 0;
 
     EnemyHandler handler;

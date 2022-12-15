@@ -161,9 +161,14 @@ public class EnemySpineController : MonoBehaviour
                 StopPlayingAim();
                 break;
             case Mode.Aggression:
-                nextAnimation = idle;
-                PlayAim();
-                break;
+                {
+                    if (handler.isMoving)
+                        nextAnimation = run;
+                    else
+                        nextAnimation = idle;
+                    PlayAim();
+                    break;
+                }
             case Mode.Search:
                 nextAnimation = run;
                 break;
