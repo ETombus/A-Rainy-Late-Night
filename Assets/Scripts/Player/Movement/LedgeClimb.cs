@@ -44,7 +44,7 @@ public class LedgeClimb : MonoBehaviour
         if (isClimbLedge)
             ClimbLedge();
 
-        Turn();
+        Turn(stateHandeler.inputX);
     }
 
     void ClimbLedge()
@@ -120,14 +120,14 @@ public class LedgeClimb : MonoBehaviour
         return hit.point;
     }
 
-    void Turn()
+    void Turn(float xDirection)
     {
-        if (stateHandeler.inputX > 0)
+        if (xDirection > 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             facingRight = true;
         }
-        else if (stateHandeler.inputX < 0)
+        else if (xDirection < 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             facingRight = false;

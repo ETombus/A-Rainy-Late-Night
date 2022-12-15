@@ -36,6 +36,7 @@ public class PlayerStateHandler : MonoBehaviour
 
     [Header("Input")]
     public float inputX;
+    public bool facingRight = true;
 
     public float coyoteDuration;
     [SerializeField] private float coyoteTimer;

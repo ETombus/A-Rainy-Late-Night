@@ -160,6 +160,14 @@ PrefabInstance:
       propertyPath: distanceFromPlayer
       value: 111
       objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: maxDistanceFromPlayer
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: minDistanceFromPlayer
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652279, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_Size.x
       value: 0.425637

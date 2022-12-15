@@ -12,7 +12,10 @@ public class DetectedByCamera : MonoBehaviour
     bool lookingAtIt = false;
 
     [Range(0f, 185f)]
-    public float distanceFromPlayer = 100;
+    public float maxDistanceFromPlayer = 100;
+
+    [Range(0f, 185f)]
+    public float minDistanceFromPlayer = 0;
 
     [Header("Hook Variables")]
     public bool isAHookPoint = false;
@@ -48,7 +51,7 @@ public class DetectedByCamera : MonoBehaviour
                 uiText.text = "";
             }
             else
-                Debug.LogError(gameObject.name+ " is missing a canvas for text writing, disable ShouldHaveText to ignore problem");
+                Debug.LogError(gameObject.name + " is missing a canvas for text writing, disable ShouldHaveText to ignore problem");
         }
         else
         {
@@ -64,18 +67,18 @@ public class DetectedByCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsVisibleToCamera() && !lookingAtIt)
+        if (CloseEnoughToPlayer(true) && !lookingAtIt)
         {
             ActivateMarker();
         }
-        else if (!IsVisibleToCamera() && lookingAtIt)
+        else if (!CloseEnoughToPlayer(true) && lookingAtIt)
         {
             DisableMarker();
         }
 
         if (isAHookPoint)
         {
-            if (isSelected)
+            if (isSelected && CloseEnoughToPlayer(false))
                 animator.SetBool("Selected", true);
             else
                 animator.SetBool("Selected", false);
@@ -88,13 +91,19 @@ public class DetectedByCamera : MonoBehaviour
             EraseText();
     }
 
-    public bool IsVisibleToCamera()
+    public bool CloseEnoughToPlayer(bool returnMax)
     {
         //Vector3 visTest = Camera.main.WorldToViewportPoint(transform.position);
         //return (visTest.x >= 0 && visTest.y >= 0) && (visTest.x <= 1 && visTest.y <= 1) && visTest.z >= 0;
 
+        float markerToPlayer = (transform.position - ScannerController.Instance.Player.transform.position).sqrMagnitude;
+
         //Whole Screen is ca 185 units
-        return (transform.position - ScannerController.Instance.Player.transform.position).sqrMagnitude < distanceFromPlayer;
+
+        if (returnMax)
+            return markerToPlayer < maxDistanceFromPlayer;
+        else
+            return markerToPlayer > minDistanceFromPlayer;
     }
 
     void ActivateMarker()
