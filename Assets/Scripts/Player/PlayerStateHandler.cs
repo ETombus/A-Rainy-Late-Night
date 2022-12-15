@@ -81,6 +81,11 @@ public class PlayerStateHandler : MonoBehaviour
         {
             ManageGravity();
             ManageMovingStates();
+
+            if (inputX > 0)
+                facingRight = true;
+            else if (inputX < 0)
+                facingRight = false;
         }
         else if (currentMoveState == MovementStates.Grappling && grappleScript.canGrapple)
         {

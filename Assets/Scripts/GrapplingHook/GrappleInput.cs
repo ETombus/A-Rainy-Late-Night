@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Timeline;
@@ -12,6 +13,7 @@ public class GrappleInput : MonoBehaviour
     [SerializeField] LayerMask rayIgnore;
     [HideInInspector] public List<GameObject> hookPoints;
     UmbrellaStateHandler umbrella;
+    PlayerStateHandler playerState;
     GameObject targetPoint;
     string hookPointTag = "HookPoint";
 
@@ -34,7 +36,11 @@ public class GrappleInput : MonoBehaviour
     public bool canGrapple = true;
     public bool targetLocked = false;
 
-    private void Start() { umbrella = GetComponentInChildren<UmbrellaStateHandler>(); }
+    private void Start()
+    {
+        umbrella = GetComponentInChildren<UmbrellaStateHandler>();
+        playerState = GetComponent<PlayerStateHandler>();
+    }
 
     private void Awake()
     {
@@ -101,10 +107,19 @@ public class GrappleInput : MonoBehaviour
 
     public void ShootGrapple()
     {
-        float distance = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - worldPos);
-        float distanceToHook = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - (Vector2)transform.position);
+        float distanceToMouse = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - worldPos);
+        float distanceToPlayer = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - (Vector2)transform.position);
 
-        if (distance <= maxMouseDistance && distanceToHook >= minHookDistance && RayHitPlayer(targetPoint) && canGrapple)
+        if((targetPoint.transform.position.x - transform.position.x) > 0)
+        {
+            playerState.facingRight = true;
+        }
+        else if ((targetPoint.transform.position.x - transform.position.x) < 0)
+        {
+            playerState.facingRight = false;
+        }
+
+        if (distanceToMouse <= maxMouseDistance && distanceToPlayer >= minHookDistance && RayHitPlayer(targetPoint) && canGrapple)
         {
             GetComponent<PlayerStateHandler>().Grapple();
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;

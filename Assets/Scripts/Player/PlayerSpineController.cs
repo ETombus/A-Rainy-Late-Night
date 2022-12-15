@@ -47,9 +47,9 @@ public class PlayerSpineController : MonoBehaviour
         {
             Turn(sliceAction.sliceDirection < 0);
         }
-        else if ((skeletonAnimation.skeleton.ScaleX < 0) != playerState.inputX <= 0)
+        else if ((skeletonAnimation.skeleton.ScaleX < 0) != !playerState.facingRight)
         {
-            Turn(playerState.inputX < 0);
+            Turn(!playerState.facingRight);
         }
 
         var currentPlayerState = playerState.currentMoveState;
