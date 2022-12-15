@@ -31,6 +31,9 @@ public class EnemySpineController : MonoBehaviour
     bool wasMoving = false;
     bool loopingAnim = true;
 
+    Spine.EventData eventData;
+    string eventName;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -216,8 +219,14 @@ public class EnemySpineController : MonoBehaviour
         var shootTrack = skelAnimation.AnimationState.SetAnimation(1, Attack, false);
         shootTrack.AttachmentThreshold = 1f;
         shootTrack.MixDuration = 0;
-        skelAnimation.state.AddEmptyAnimation(1, attackAnimTimeOffset, 0.1f);
+        skelAnimation.state.AddEmptyAnimation(1, 0.1f, attackAnimTimeOffset);
 
+        shootTrack.Event += HandleAnimationState;
+    }
+
+    void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
+    {
+        Debug.Log(e.Data.Name);
     }
 
     public void PlayWorkingAnimation()
