@@ -28,10 +28,10 @@ public class EnemyShooting : MonoBehaviour
         if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
             Vector2 direction = transform.position - handler.playerTrans.position;
-            Vector2 targetPos = (Vector2)handler.playerTrans.position + direction.normalized * minDistanceToPlayer;
+            float targetPos = handler.playerTrans.position.x + direction.normalized.x * minDistanceToPlayer;
 
             if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) < minDistanceToPlayer)
-                handler.movement.MoveEnemy(targetPos);
+                handler.movement.MoveEnemy(new(targetPos, transform.position.y));
             else
                 handler.movement.StopEnemy();
 
