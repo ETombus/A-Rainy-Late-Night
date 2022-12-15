@@ -29,7 +29,7 @@ public class EnemyHandler : MonoBehaviour
     //0 = punch, 1 = shoot
 
 
-    public enum Mode { Patrol, Aggression, Search, Idle, Dead }
+    public enum Mode { Patrol, Aggression, Search, Idle, Dead, Working }
     public enum Type { Melee, Ranged }
     [Header("Enums")]
     public Mode currentMode;

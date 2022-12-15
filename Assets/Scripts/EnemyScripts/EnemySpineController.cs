@@ -7,7 +7,7 @@ using Unity.Burst.Intrinsics;
 
 public class EnemySpineController : MonoBehaviour
 {
-    [SerializeField] AnimationReferenceAsset idle, run, walk, Aim, Attack, damage, dead;
+    [SerializeField] AnimationReferenceAsset idle, run, walk, Aim, Attack, damage, dead, working;
     SkeletonAnimation skelAnimation;
 
     EnemyHandler handler;
@@ -52,6 +52,9 @@ public class EnemySpineController : MonoBehaviour
 
 
         if (handler == null) Debug.LogError("Handler in " + gameObject.name + " is missing");
+
+        if (handler.currentMode == EnemyHandler.Mode.Working)
+            PlayWorkingAnimation();
     }
 
     // Update is called once per frame
@@ -72,6 +75,9 @@ public class EnemySpineController : MonoBehaviour
 
         previousState = currentState;
         wasMoving = handler.isMoving;
+
+
+
     }
 
     public void PlayDamageAnim()
@@ -137,6 +143,9 @@ public class EnemySpineController : MonoBehaviour
                 StopPlayingAim();
                 nextAnimation = dead;
                 loopingAnim = false;
+                break;
+            case Mode.Working:
+                nextAnimation = working;
                 break;
             default:
                 Debug.LogError("Invalid Animation State");
@@ -204,6 +213,11 @@ public class EnemySpineController : MonoBehaviour
         shootTrack.MixDuration = 0;
         skelAnimation.state.AddEmptyAnimation(1, attackAnimTimeOffset, 0.1f);
 
+    }
+
+    public void PlayWorkingAnimation()
+    {
+        skelAnimation.AnimationState.SetAnimation(0, working, true);
     }
 
     private void OnDrawGizmos()
