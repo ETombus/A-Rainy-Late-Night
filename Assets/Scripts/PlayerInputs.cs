@@ -116,6 +116,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fall"",
+                    ""type"": ""Button"",
+                    ""id"": ""79578874-d5f8-467e-94aa-af548b63dc5c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -446,6 +455,17 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e26c835-2bd3-4abb-94ac-b29c8f44e5d3"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1074,6 +1094,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_DevToolTeleport = m_Player.FindAction("DevToolTeleport", throwIfNotFound: true);
         m_Player_DevToolSpawnBarrel = m_Player.FindAction("DevToolSpawnBarrel", throwIfNotFound: true);
         m_Player_DevToolResetScene = m_Player.FindAction("DevToolResetScene", throwIfNotFound: true);
+        m_Player_Fall = m_Player.FindAction("Fall", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1156,6 +1177,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DevToolTeleport;
     private readonly InputAction m_Player_DevToolSpawnBarrel;
     private readonly InputAction m_Player_DevToolResetScene;
+    private readonly InputAction m_Player_Fall;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1170,6 +1192,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @DevToolTeleport => m_Wrapper.m_Player_DevToolTeleport;
         public InputAction @DevToolSpawnBarrel => m_Wrapper.m_Player_DevToolSpawnBarrel;
         public InputAction @DevToolResetScene => m_Wrapper.m_Player_DevToolResetScene;
+        public InputAction @Fall => m_Wrapper.m_Player_Fall;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1209,6 +1232,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @DevToolResetScene.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevToolResetScene;
                 @DevToolResetScene.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevToolResetScene;
                 @DevToolResetScene.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDevToolResetScene;
+                @Fall.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
+                @Fall.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
+                @Fall.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1243,6 +1269,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @DevToolResetScene.started += instance.OnDevToolResetScene;
                 @DevToolResetScene.performed += instance.OnDevToolResetScene;
                 @DevToolResetScene.canceled += instance.OnDevToolResetScene;
+                @Fall.started += instance.OnFall;
+                @Fall.performed += instance.OnFall;
+                @Fall.canceled += instance.OnFall;
             }
         }
     }
@@ -1417,6 +1446,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnDevToolTeleport(InputAction.CallbackContext context);
         void OnDevToolSpawnBarrel(InputAction.CallbackContext context);
         void OnDevToolResetScene(InputAction.CallbackContext context);
+        void OnFall(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

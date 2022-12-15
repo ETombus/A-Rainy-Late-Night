@@ -37,6 +37,7 @@ public class PlayerStateHandler : MonoBehaviour
     [Header("Input")]
     public float inputX;
     public bool facingRight = true;
+    bool fallingDown;
 
     public float coyoteDuration;
     [SerializeField] private float coyoteTimer;
@@ -101,7 +102,13 @@ public class PlayerStateHandler : MonoBehaviour
     {
         if (isGrounded)
         {
-            currentGravity = baseGravity;
+            if (!fallingDown)
+            {
+                currentGravity = baseGravity;
+                gravityMultiplier = 1;
+            }
+            else
+                gravityMultiplier = 2;
         }
         else if (pressingJump)
         {
@@ -201,6 +208,18 @@ public class PlayerStateHandler : MonoBehaviour
             currentMoveState = MovementStates.Jumping;
             Invoke(nameof(EndJump), maxJumpDuration);
         }
+    }
+
+    public void FallThroughPlatforms()
+    {
+        Physics2D.IgnoreLayerCollision(9, 7, true);
+        fallingDown = true;
+    }
+
+    public void StopFallThroughPlatforms()
+    {
+        Physics2D.IgnoreLayerCollision(9, 7, false);
+        fallingDown = false;
     }
 
     public void JumpReleased()
