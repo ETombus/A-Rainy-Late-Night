@@ -8,9 +8,11 @@ public class PlayerInputHandler : MonoBehaviour
 {
     [Header("Input")]
     PlayerInputs playerControls;
-    InputAction grappleAction;
+    InputAction grappleAction; // TOM WTHELL
     private InputAction move;
     private InputAction jump;
+    private InputAction fall;
+    [SerializeField] private bool fallDown = false;
 
     [Header("UmbrellaInputs")]
     private InputAction aim;
@@ -48,6 +50,11 @@ public class PlayerInputHandler : MonoBehaviour
         jump.performed += SlowFalling;
         jump.canceled += OnSpaceReleased;
 
+        fall = playerControls.Player.Fall;
+        fall.Enable();
+        fall.performed += ActivateFall;
+        fall.canceled += DisableFall;
+
         aim = playerControls.Player.Aim;
         aim.Enable();
         aim.performed += AimHandler;
@@ -70,6 +77,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         move.Disable();
         jump.Disable();
+        fall.Disable();
 
         aim.Disable();
         shoot.Disable();
@@ -82,15 +90,29 @@ public class PlayerInputHandler : MonoBehaviour
         stateHandler.inputX = move.ReadValue<Vector2>().x;
     }
 
+    public void ActivateFall(InputAction.CallbackContext context) { fallDown = true; }
+    public void DisableFall(InputAction.CallbackContext context) 
+    { 
+        fallDown = false; 
+        stateHandler.StopFallThroughPlatforms();
+    }
+
     public void Jump(InputAction.CallbackContext context)
     {
-        stateHandler.JumpPressed();
+        if (!fallDown)
+            stateHandler.JumpPressed();
+        else
+        {
+            stateHandler.FallThroughPlatforms();
+        }
+
     }
 
 
     private void SlowFalling(InputAction.CallbackContext context)
     {
         stateHandler.slowfalling = true;
+
     }
 
     private void OnSpaceReleased(InputAction.CallbackContext context)

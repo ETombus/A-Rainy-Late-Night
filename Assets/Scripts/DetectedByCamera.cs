@@ -22,6 +22,7 @@ public class DetectedByCamera : MonoBehaviour
     public bool isSelected = false;
 
     [Header("Text Varibles")]
+    [Tooltip("Writes the text in text to write as long as there is an attached child canvas")]
     public bool ShouldHaveText = false;
     public string textToWrite;
 
