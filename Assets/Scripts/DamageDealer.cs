@@ -10,9 +10,8 @@ public class DamageDealer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         HealthHandler targetHealth = collision.GetComponent<HealthHandler>();
-        if (targetHealth == null) { return; }
-
         collision.transform.SendMessage(nameof(InteractScript.Hit), SendMessageOptions.DontRequireReceiver);
+        if (targetHealth == null) { return; }
 
         targetHealth.ReduceHealth(damage);
     }

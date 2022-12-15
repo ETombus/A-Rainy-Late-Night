@@ -36,6 +36,7 @@ public class PlayerStateHandler : MonoBehaviour
 
     [Header("Input")]
     public float inputX;
+    public bool facingRight = true;
 
     public float coyoteDuration;
     [SerializeField] private float coyoteTimer;
@@ -80,6 +81,11 @@ public class PlayerStateHandler : MonoBehaviour
         {
             ManageGravity();
             ManageMovingStates();
+
+            if (inputX > 0)
+                facingRight = true;
+            else if (inputX < 0)
+                facingRight = false;
         }
         else if (currentMoveState == MovementStates.Grappling && grappleScript.canGrapple)
         {

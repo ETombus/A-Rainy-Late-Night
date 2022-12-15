@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour
 {
     //public bool isShooting;
+    [Range(1f, 10f)] [SerializeField] float minDistanceToPlayer;
     [SerializeField] float shootCooldown = 0.5f;
     [SerializeField] Transform gunTrans; //transform to shoot from
     float shootTimer;
@@ -26,6 +27,14 @@ public class EnemyShooting : MonoBehaviour
     {
         if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
+            Vector2 direction = transform.position - handler.playerTrans.position;
+            Vector2 targetPos = (Vector2)handler.playerTrans.position + direction.normalized * minDistanceToPlayer;
+
+            if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) < minDistanceToPlayer)
+                handler.movement.MoveEnemy(targetPos);
+            else
+                handler.movement.StopEnemy();
+
             if (shootTimer > 0)
                 shootTimer -= Time.deltaTime;
 
