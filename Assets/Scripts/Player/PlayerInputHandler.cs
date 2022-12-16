@@ -7,12 +7,13 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     [Header("Input")]
-    PlayerInputs playerControls;
+    [SerializeField] private PlayerInputs playerControls;
     InputAction grappleAction; // TOM WTHELL
     private InputAction move;
     private InputAction jump;
     private InputAction fall;
     [SerializeField] private bool fallDown = false;
+    [SerializeField] PlayerInput playerInput;
 
     [Header("UmbrellaInputs")]
     private InputAction aim;
@@ -24,8 +25,14 @@ public class PlayerInputHandler : MonoBehaviour
     private RifleScript rifleScript;
     private PlayerStateHandler stateHandler;
     private UmbrellaStateHandler umbrellaHandler;
+    public InputActionAsset inputActions;
 
-    private void Awake() { playerControls = new PlayerInputs(); }
+
+    private void Awake()
+    {
+        playerControls = new PlayerInputs();
+        playerInput = GetComponent<PlayerInput>();
+    }
 
     private void Start()
     {
@@ -41,34 +48,34 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        move = playerControls.Player.Move;
+        move = playerInput.actions["Horizontal"];
         move.Enable();
 
-        jump = playerControls.Player.Jump;
+        jump = playerInput.actions["Jump"];
         jump.Enable();
         jump.performed += Jump;
         jump.performed += SlowFalling;
         jump.canceled += OnSpaceReleased;
 
-        fall = playerControls.Player.Fall;
+        fall = playerInput.actions["Fall"];
         fall.Enable();
         fall.performed += ActivateFall;
         fall.canceled += DisableFall;
 
-        aim = playerControls.Player.Aim;
+        aim = playerInput.actions["Aim"];
         aim.Enable();
         aim.performed += AimHandler;
         aim.canceled += AimHandler;
 
-        shoot = playerControls.Player.Fire;
+        shoot = playerInput.actions["SlashShoot"];
         shoot.Enable();
         shoot.performed += Shoot;
 
-        slash = playerControls.Player.Fire;
+        slash = playerInput.actions["SlashShoot"];
         slash.Enable();
         slash.performed += Slash;
 
-        grapple = playerControls.Player.Grapple;
+        grapple = playerInput.actions["Grapple"];
         grapple.Enable();
         grapple.performed += Grapple;
     }
@@ -87,13 +94,13 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void HorizontalInputs()
     {
-        stateHandler.inputX = move.ReadValue<Vector2>().x;
+        stateHandler.inputX = move.ReadValue<float>();
     }
 
     public void ActivateFall(InputAction.CallbackContext context) { fallDown = true; }
-    public void DisableFall(InputAction.CallbackContext context) 
-    { 
-        fallDown = false; 
+    public void DisableFall(InputAction.CallbackContext context)
+    {
+        fallDown = false;
         stateHandler.StopFallThroughPlatforms();
     }
 

@@ -10,6 +10,7 @@ public class EnemyHandler : MonoBehaviour
     [Header("Movement")]
     public EnemyMovement movement;
     public bool isMoving = false;
+    public Transform objectThatNeedFlippin;
 
     [Header("Detection")]
     public EnemyDetect detection;
@@ -28,6 +29,11 @@ public class EnemyHandler : MonoBehaviour
     AudioSource audSource;
     //0 = punch, 1 = shoot
 
+    private void Update()
+    {
+        if (objectThatNeedFlippin != null)
+            objectThatNeedFlippin.eulerAngles = new Vector3(0, 0, 0);
+    }
 
     public enum Mode { Patrol, Aggression, Search, Idle, Dead, Working }
     public enum Type { Melee, Ranged }
@@ -66,9 +72,13 @@ public class EnemyHandler : MonoBehaviour
     public void FlipRotation(float direction)
     {
         if (direction < 0)
+        {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
+        }
         else
+        {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
+        }
     }
 
     public void FlipRotation()

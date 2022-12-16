@@ -82,4 +82,7 @@ public class InteractScript : MonoBehaviour
 
     public void DebugFunction() { Debug.Log("Interact"); }
     public void DisableScript() { enabled = false; }
+    public void DestroyObject() { Destroy(gameObject); }
+    public void PlaySound(AudioSource sound) { sound.Play(); }
+    public void ParticleEffect(ParticleSystem particle) { particle.Play(); }
 }

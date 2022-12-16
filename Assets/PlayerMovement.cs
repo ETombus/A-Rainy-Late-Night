@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        move = playerControls.Player.Move;
+        move = playerControls.Player.Horizontal;
         move.Enable();
 
         jump = playerControls.Player.Jump;
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Walking()
     {
-        inputX = move.ReadValue<Vector2>().x;
+        inputX = move.ReadValue<float>();
     }
 
     public void Jump(InputAction.CallbackContext context)

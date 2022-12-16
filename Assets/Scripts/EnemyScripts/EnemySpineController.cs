@@ -23,7 +23,7 @@ public class EnemySpineController : MonoBehaviour
 
     public float aimOffset = 1;
     public float attackAnimTimeOffset = 0.5f;
-
+    public float aimStartHeight = 1.8f;
 
     private Bone aimBone;
     Vector3 startPos;
@@ -96,7 +96,7 @@ public class EnemySpineController : MonoBehaviour
     Vector3 skeletonSpacePoint;
     void UpdateTargetLocation()
     {
-        Vector3 aimPosition = transform.position + new Vector3(0, 1.8f);
+        Vector3 aimPosition = transform.position + new Vector3(0, aimStartHeight);
 
         if (handler.currentMode == Mode.Aggression)
         {
@@ -156,7 +156,10 @@ public class EnemySpineController : MonoBehaviour
                 break;
         }
 
-        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
+        var anim = skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
+
+
+        anim.Event += HandleAnimationState;
     }
 
 
@@ -237,6 +240,6 @@ public class EnemySpineController : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (handler != null)
-            Gizmos.DrawWireSphere(transform.position + new Vector3(0, 1.8f) + ((handler.playerTrans.position - (transform.position + new Vector3(0, 1.8f))).normalized) * aimOffset, 0.3f);
+            Gizmos.DrawWireSphere(transform.position + new Vector3(0, aimStartHeight) + ((handler.playerTrans.position - (transform.position + new Vector3(0, 1.8f))).normalized) * aimOffset, 0.3f);
     }
 }

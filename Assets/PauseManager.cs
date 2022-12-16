@@ -33,7 +33,6 @@ public class PauseManager : MonoBehaviour
     {
         EnablePlayerActions(false);
 
-        Debug.Log("Game Paused");
         Time.timeScale = 0;
         pausePanel.SetActive(true);
     }
