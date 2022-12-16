@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Horizontal",
+                    "type": "Value",
+                    "id": "32207598-1384-433c-887f-b6a353cf4b00",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -143,12 +152,47 @@
                 },
                 {
                     "name": "Horizontal",
-                    "type": "Value",
                     "id": "089eb70e-a302-46e9-8245-7f84a05cdbc0",
-                    "expectedControlType": "Axis",
-                    "processors": "",
+                    "path": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "processors": "",
+                    "groups": "",
+                    "action": "",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "1825358a-78bb-40ba-9e4c-b6cd1aace292",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f9d88bef-69e0-4848-9f74-6b90fae6b860",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "37166de3-6546-4b01-b271-deaf6789906d",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Horizontal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

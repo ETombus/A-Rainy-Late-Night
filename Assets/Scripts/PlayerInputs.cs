@@ -116,6 +116,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Horizontal"",
+                    ""type"": ""Value"",
+                    ""id"": ""32207598-1384-433c-887f-b6a353cf4b00"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -173,6 +182,39 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": """",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""1825358a-78bb-40ba-9e4c-b6cd1aace292"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f9d88bef-69e0-4848-9f74-6b90fae6b860"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""37166de3-6546-4b01-b271-deaf6789906d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -799,6 +841,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_DevToolSpawnBarrel = m_Player.FindAction("DevToolSpawnBarrel", throwIfNotFound: true);
         m_Player_DevToolResetScene = m_Player.FindAction("DevToolResetScene", throwIfNotFound: true);
         m_Player_Fall = m_Player.FindAction("Fall", throwIfNotFound: true);
+        m_Player_Horizontal = m_Player.FindAction("Horizontal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -881,6 +924,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DevToolSpawnBarrel;
     private readonly InputAction m_Player_DevToolResetScene;
     private readonly InputAction m_Player_Fall;
+    private readonly InputAction m_Player_Horizontal;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -895,6 +939,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @DevToolSpawnBarrel => m_Wrapper.m_Player_DevToolSpawnBarrel;
         public InputAction @DevToolResetScene => m_Wrapper.m_Player_DevToolResetScene;
         public InputAction @Fall => m_Wrapper.m_Player_Fall;
+        public InputAction @Horizontal => m_Wrapper.m_Player_Horizontal;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -934,6 +979,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Fall.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
                 @Fall.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
                 @Fall.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
+                @Horizontal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontal;
+                @Horizontal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontal;
+                @Horizontal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontal;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -968,6 +1016,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Fall.started += instance.OnFall;
                 @Fall.performed += instance.OnFall;
                 @Fall.canceled += instance.OnFall;
+                @Horizontal.started += instance.OnHorizontal;
+                @Horizontal.performed += instance.OnHorizontal;
+                @Horizontal.canceled += instance.OnHorizontal;
             }
         }
     }
@@ -1142,6 +1193,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnDevToolSpawnBarrel(InputAction.CallbackContext context);
         void OnDevToolResetScene(InputAction.CallbackContext context);
         void OnFall(InputAction.CallbackContext context);
+        void OnHorizontal(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
