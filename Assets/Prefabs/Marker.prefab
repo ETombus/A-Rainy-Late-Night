@@ -357,16 +357,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec058109ca3c1408e56b4ff6831394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  writingSound: {fileID: 0}
+  writingSound:
+  - {fileID: 8300000, guid: 51d0a244613dee24082c2209036ce3ef, type: 3}
+  - {fileID: 8300000, guid: af852503c33016b43beb4c66daefd747, type: 3}
   erasingSound: {fileID: 0}
-  maxDistanceFromPlayer: 100
+  maxDistanceFromPlayer: 10
   minDistanceFromPlayer: 0
   Target: {fileID: 8383155437947863329}
   isAHookPoint: 0
   isSelected: 0
-  ShouldHaveText: 0
-  textToWrite: You Dead As Hell
-  timePerCharacter: 0.2
+  ShouldHaveText: 1
+  textToWrite: 'Systen ERROR: Rebooting         Move With [A] and [D]'
+  timePerCharacter: 0.05
   timePerRemoval: 0.05
   showRadius: 0
   canvas: {fileID: 1377397216}

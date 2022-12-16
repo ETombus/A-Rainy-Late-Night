@@ -10,7 +10,7 @@ public class DetectedByCamera : MonoBehaviour
     Animator animator;
     private AudioSource audSource;
 
-    public AudioClip writingSound;
+    public AudioClip[] writingSound;
     public AudioClip erasingSound;
 
     bool lookingAtIt = false;
@@ -51,8 +51,8 @@ public class DetectedByCamera : MonoBehaviour
         animator = GetComponent<Animator>();
         audSource = GetComponent<AudioSource>();
 
-        if(writingSound != null)
-        audSource.clip = writingSound;
+        //if(writingSound != null)
+        //audSource.clip = writingSound;
 
         if (ShouldHaveText)
         {
@@ -172,10 +172,10 @@ public class DetectedByCamera : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            if (writingSound != null)
+            if (writingSound.Length > 0 && audSource.isPlaying == false)
             {
-                audSource.clip = writingSound;
-                audSource.Play();
+                //audSource.clip = writingSound[Random.Range(0, writingSound.Length)];
+                audSource.PlayOneShot(writingSound[Random.Range(0, writingSound.Length)]);
             }
 
             timer += timePerCharacter;

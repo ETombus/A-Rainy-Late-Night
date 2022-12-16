@@ -149,8 +149,16 @@ PrefabInstance:
       value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: textToWrite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: isAHookPoint
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: ShouldHaveText
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: timePerCharacter
