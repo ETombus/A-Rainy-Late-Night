@@ -107,7 +107,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-<<<<<<< Updated upstream
                 },
                 {
                     ""name"": ""Fall"",
@@ -163,251 +162,17 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-=======
->>>>>>> Stashed changes
                 },
                 {
                     ""name"": ""Horizontal"",
-                    ""type"": ""Value"",
                     ""id"": ""089eb70e-a302-46e9-8245-7f84a05cdbc0"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""c1f7a91b-d0fd-4a62-997e-7fb9b69bf235"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3e5f5442-8668-4b27-a940-df99bad7e831"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Slash/Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Slash/Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""886e731e-7071-4ae4-95c0-e61739dad6fd"",
-                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Touch"",
-                    ""action"": ""Slash/Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Joystick>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Slash/Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8255d333-5683-4943-a58a-ccb207ff1dce"",
-                    ""path"": ""<XRController>/{PrimaryAction}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Slash/Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""72743ac3-8185-4da8-9877-02bcac14da81"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c03c6298-0921-45a5-8072-90f0558a49b6"",
-                    ""path"": ""<XInputController>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1d8bceee-cc9e-4985-b829-7fe84d5107bb"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": """",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9526ebbd-270e-43b5-ac3a-47495e104287"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ff54a9ce-37f5-484d-8da3-6750867c23b3"",
-                    ""path"": ""<Keyboard>/j"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DevToolTeleport"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""84215c78-52b5-41df-98ef-8c6d75fa52c9"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DevToolSpawnBarrel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6a8786a8-fa29-4c6e-8da8-15947c5bf4f3"",
-                    ""path"": ""<Keyboard>/l"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DevToolResetScene"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ecfce899-db61-49ec-a005-8f5b8d186e88"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Grapple"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c96ca65b-f156-4a80-816b-3fbdc82845ef"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-<<<<<<< Updated upstream
-                    ""name"": """",
-                    ""id"": ""1e26c835-2bd3-4abb-94ac-b29c8f44e5d3"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fall"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-=======
-                    ""name"": ""1D Axis"",
-                    ""id"": ""e4c2022c-1cf6-430d-9a13-93b031e2f0f0"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Horizontal"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""7681afb9-ee26-40d0-86ed-b236539c99ac"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Horizontal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""1663937b-cfce-4baa-9e8d-cb7a17df0b1f"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Horizontal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
->>>>>>> Stashed changes
                 }
             ]
         },
@@ -1034,7 +799,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_Player_DevToolSpawnBarrel = m_Player.FindAction("DevToolSpawnBarrel", throwIfNotFound: true);
         m_Player_DevToolResetScene = m_Player.FindAction("DevToolResetScene", throwIfNotFound: true);
         m_Player_Fall = m_Player.FindAction("Fall", throwIfNotFound: true);
-        m_Player_Horizontal = m_Player.FindAction("Horizontal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1117,8 +881,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DevToolSpawnBarrel;
     private readonly InputAction m_Player_DevToolResetScene;
     private readonly InputAction m_Player_Fall;
-    private readonly InputAction m_Player_Horizontal;
-
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -1133,7 +895,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @DevToolSpawnBarrel => m_Wrapper.m_Player_DevToolSpawnBarrel;
         public InputAction @DevToolResetScene => m_Wrapper.m_Player_DevToolResetScene;
         public InputAction @Fall => m_Wrapper.m_Player_Fall;
-        public InputAction @Horizontal => m_Wrapper.m_Player_Horizontal;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1173,9 +934,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Fall.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
                 @Fall.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
                 @Fall.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFall;
-                @Horizontal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontal;
-                @Horizontal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontal;
-                @Horizontal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontal;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1210,9 +968,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @Fall.started += instance.OnFall;
                 @Fall.performed += instance.OnFall;
                 @Fall.canceled += instance.OnFall;
-                @Horizontal.started += instance.OnHorizontal;
-                @Horizontal.performed += instance.OnHorizontal;
-                @Horizontal.canceled += instance.OnHorizontal;
             }
         }
     }
@@ -1387,7 +1142,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnDevToolSpawnBarrel(InputAction.CallbackContext context);
         void OnDevToolResetScene(InputAction.CallbackContext context);
         void OnFall(InputAction.CallbackContext context);
-        void OnHorizontal(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
