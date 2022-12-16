@@ -14,6 +14,14 @@ public class PlayerSoundHandler : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         audSource.pitch = Random.Range(0.8f, 1.2f);
+        audSource.volume = 1;
+        audSource.PlayOneShot(clip);
+    }
+
+    public void PlaySound(AudioClip clip, float volume)
+    {
+        audSource.pitch = Random.Range(0.8f, 1.2f);
+        audSource.volume = volume;
         audSource.PlayOneShot(clip);
     }
 }

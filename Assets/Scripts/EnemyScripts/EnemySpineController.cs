@@ -229,7 +229,7 @@ public class EnemySpineController : MonoBehaviour
 
     void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
     {
-        Debug.Log(e.Data.Name);
+        //Debug.Log(e.Data.Name);
     }
 
     public void PlayWorkingAnimation()

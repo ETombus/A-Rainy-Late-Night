@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Healthbar : HealthHandler
 {
@@ -15,6 +16,8 @@ public class Healthbar : HealthHandler
 
     private void Start()
     {
+        soundHandler = GetComponent<PlayerSoundHandler>();
+
         if (healthBar != null)
             healthBar.maxValue = maxHealth;
         health = maxHealth;
@@ -22,17 +25,27 @@ public class Healthbar : HealthHandler
 
     public void ReduceHealth(float reduceValue)
     {
-        //Debug.Log("hp: "+healthBar.value);
-        health -= reduceValue;
-        if (healthBar != null)
-            healthBar.value = healthShown.Evaluate(health / 100) * 100;
+        if (health - reduceValue > 0)
+        {
+            health -= reduceValue;
+            if (healthBar != null)
+                healthBar.value = healthShown.Evaluate(health / 100) * 100;
 
-        soundHandler.PlaySound(clips[Random.Range(0, clips.Length)]);
+            soundHandler.PlaySound(clips[Random.Range(0, clips.Length)], 0.2f);
+        }
+        else { PlayerDeath(); }
+
     }
 
     public void AddHealth()
     {
         if (healthBar != null)
             healthBar.value = health;
+    }
+
+    void PlayerDeath()
+    {
+        var currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 }
