@@ -70,7 +70,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 509095876351793058, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Name
-      value: EnemyMelee Ruffian Variant
+      value: EnemyMelee Ruffian Variant (1)
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_RootOrder
@@ -78,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.796323
+      value: 28.480822
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.821664
+      value: 12.100241
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_LocalPosition.z
@@ -164,6 +164,14 @@ PrefabInstance:
       propertyPath: Attack
       value: 
       objectReference: {fileID: 11400000, guid: cbd1d919d7d937b4eac42c338f8b7948, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c5b078d3fe7f33479b7a451b44facc5, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: footStep
+      value: 
+      objectReference: {fileID: 11400000, guid: 29cf24ee46ef4f94ea86da86374a016d, type: 2}
     - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: maxWalkingSpeed
       value: 1.2

@@ -8,6 +8,7 @@ using Unity.Burst.Intrinsics;
 public class EnemySpineController : MonoBehaviour
 {
     [SerializeField] AnimationReferenceAsset idle, run, walk, Aim, Attack, damage, dead, working;
+    [SerializeField] EventDataReferenceAsset attack, footStep;
     SkeletonAnimation skelAnimation;
 
     EnemyHandler handler;
@@ -58,6 +59,8 @@ public class EnemySpineController : MonoBehaviour
 
         if (handler.currentMode == EnemyHandler.Mode.Working)
             PlayWorkingAnimation();
+
+        skelAnimation.AnimationState.Event += HandleAnimationState;
     }
 
     // Update is called once per frame
@@ -156,10 +159,7 @@ public class EnemySpineController : MonoBehaviour
                 break;
         }
 
-        var anim = skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
-
-
-        anim.Event += HandleAnimationState;
+        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
     }
 
 
@@ -223,13 +223,14 @@ public class EnemySpineController : MonoBehaviour
         shootTrack.AttachmentThreshold = 1f;
         shootTrack.MixDuration = 0;
         skelAnimation.state.AddEmptyAnimation(1, 0.1f, attackAnimTimeOffset);
-
-        shootTrack.Event += HandleAnimationState;
     }
 
     void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
     {
-        //Debug.Log(e.Data.Name);
+        /*if(e.Data == (attack.EventData))
+            handler.PlaySound(handler.thisType);
+        else if(e.Data == (footStep.EventData))
+            play Footstep sound*/
     }
 
     public void PlayWorkingAnimation()
