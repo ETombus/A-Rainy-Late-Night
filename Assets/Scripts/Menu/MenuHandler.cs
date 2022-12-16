@@ -13,9 +13,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject creditsPanel;
 
-    [Header("Variables")]
-    [SerializeField] float speed = 50;
-
+    [Header("Intro")]
     [SerializeField] GameObject fadeIn;
     [SerializeField] GameObject introMarker;
 
@@ -30,7 +28,6 @@ public class MenuHandler : MonoBehaviour
 
     public void ButtonStart()
     {
-        Debug.Log("Game Started");
         SceneManager.LoadScene(1);
         PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
     }
@@ -55,7 +52,6 @@ public class MenuHandler : MonoBehaviour
 
     public void ButtonExit()
     {
-        Debug.Log("Exited Game");
         Application.Quit();
         PlayerPrefs.DeleteKey("PlayIntroAnimation"); //1 = false, 0 = true
     }

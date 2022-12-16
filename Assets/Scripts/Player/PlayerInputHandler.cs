@@ -41,7 +41,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        move = playerControls.Player.Move;
+        move = playerControls.Player.Horizontal;
         move.Enable();
 
         jump = playerControls.Player.Jump;
@@ -60,11 +60,11 @@ public class PlayerInputHandler : MonoBehaviour
         aim.performed += AimHandler;
         aim.canceled += AimHandler;
 
-        shoot = playerControls.Player.Fire;
+        shoot = playerControls.Player.SlashShoot;
         shoot.Enable();
         shoot.performed += Shoot;
 
-        slash = playerControls.Player.Fire;
+        slash = playerControls.Player.SlashShoot;
         slash.Enable();
         slash.performed += Slash;
 
@@ -87,7 +87,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void HorizontalInputs()
     {
-        stateHandler.inputX = move.ReadValue<Vector2>().x;
+        stateHandler.inputX = move.ReadValue<float>();
     }
 
     public void ActivateFall(InputAction.CallbackContext context) { fallDown = true; }
