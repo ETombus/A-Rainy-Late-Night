@@ -51,6 +51,9 @@ public class DetectedByCamera : MonoBehaviour
         animator = GetComponent<Animator>();
         audSource = GetComponent<AudioSource>();
 
+        if(writingSound != null)
+        audSource.clip = writingSound;
+
         if (ShouldHaveText)
         {
             if (canvas != null)
@@ -74,7 +77,7 @@ public class DetectedByCamera : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    bool toggleSound;
     void Update()
     {
         if (CloseEnoughToPlayer(true) && !lookingAtIt)
@@ -93,6 +96,12 @@ public class DetectedByCamera : MonoBehaviour
             else
                 animator.SetBool("Selected", false);
         }
+
+        //if(writingText && toggleSound && writingSound != null)
+        //{
+        //    audSource.Play();
+        //    toggleSound = false;
+        //}
 
 
         if (writingText)
@@ -127,6 +136,12 @@ public class DetectedByCamera : MonoBehaviour
         {
             writingText = true;
             erasingText = false;
+
+            //if (!toggleSound)
+            //{
+            //    audSource.Stop();
+            //    toggleSound = true;
+            //}
         }
     }
 
@@ -142,6 +157,12 @@ public class DetectedByCamera : MonoBehaviour
             {
                 writingText = false;
                 erasingText = true;
+
+                //if (!toggleSound)
+                //{
+                //    audSource.Stop();
+                //    toggleSound = true;
+                //}
             }
         }
     }
