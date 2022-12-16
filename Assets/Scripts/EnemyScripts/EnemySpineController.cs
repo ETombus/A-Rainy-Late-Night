@@ -156,7 +156,10 @@ public class EnemySpineController : MonoBehaviour
                 break;
         }
 
-        skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
+        var anim = skelAnimation.AnimationState.SetAnimation(0, nextAnimation, loopingAnim);
+
+
+        anim.Event += HandleAnimationState;
     }
 
 
