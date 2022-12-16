@@ -9,6 +9,10 @@ public class Healthbar : HealthHandler
     [SerializeField] public Slider healthBar;
     [SerializeField] private AnimationCurve healthShown;
 
+    [Header("Sound")]
+    [SerializeField] PlayerSoundHandler soundHandler;
+    [SerializeField] AudioClip[] clips;
+
     private void Start()
     {
         if (healthBar != null)
@@ -22,6 +26,8 @@ public class Healthbar : HealthHandler
         health -= reduceValue;
         if (healthBar != null)
             healthBar.value = healthShown.Evaluate(health / 100) * 100;
+
+        soundHandler.PlaySound(clips[Random.Range(0, clips.Length)]);
     }
 
     public void AddHealth()

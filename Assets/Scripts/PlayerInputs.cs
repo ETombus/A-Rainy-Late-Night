@@ -37,7 +37,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Slash/Shoot"",
+                    ""name"": ""SlashShoot"",
                     ""type"": ""Button"",
                     ""id"": ""caf43013-0791-4088-a3bf-4c0d004b5c38"",
                     ""expectedControlType"": ""Button"",
@@ -245,7 +245,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slash/Shoot"",
+                    ""action"": ""SlashShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -942,7 +942,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_SlashShoot = m_Player.FindAction("Slash/Shoot", throwIfNotFound: true);
+        m_Player_SlashShoot = m_Player.FindAction("SlashShoot", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Grapple = m_Player.FindAction("Grapple", throwIfNotFound: true);
