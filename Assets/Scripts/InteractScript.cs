@@ -82,4 +82,9 @@ public class InteractScript : MonoBehaviour
 
     public void DebugFunction() { Debug.Log("Interact"); }
     public void DisableScript() { enabled = false; }
+
+    public void DestroyObject()
+    {
+        Destroy(gameObject);   
+    }
 }

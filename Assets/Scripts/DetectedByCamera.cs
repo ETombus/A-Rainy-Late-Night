@@ -17,6 +17,8 @@ public class DetectedByCamera : MonoBehaviour
     [Range(0f, 185f)]
     public float minDistanceFromPlayer = 0;
 
+    public Transform Target;
+
     [Header("Hook Variables")]
     public bool isAHookPoint = false;
     public bool isSelected = false;
@@ -28,6 +30,8 @@ public class DetectedByCamera : MonoBehaviour
 
     public float timePerCharacter = 0.2f;
     public float timePerRemoval = 0.05f;
+
+    public bool showRadius = false;
 
     private TextMeshProUGUI uiText;
     public GameObject canvas;
@@ -41,6 +45,7 @@ public class DetectedByCamera : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+
 
         if (ShouldHaveText)
         {
@@ -91,13 +96,15 @@ public class DetectedByCamera : MonoBehaviour
         else if (erasingText)
             EraseText();
     }
-
+    float markerToPlayer;
     public bool CloseEnoughToPlayer(bool returnMax)
     {
         //Vector3 visTest = Camera.main.WorldToViewportPoint(transform.position);
         //return (visTest.x >= 0 && visTest.y >= 0) && (visTest.x <= 1 && visTest.y <= 1) && visTest.z >= 0;
-
-        float markerToPlayer = (transform.position - ScannerController.Instance.Player.transform.position).sqrMagnitude;
+        if (Target != null)
+            markerToPlayer = (Target.position - ScannerController.Instance.Player.transform.position).sqrMagnitude;
+        else
+            markerToPlayer = (transform.position - ScannerController.Instance.Player.transform.position).sqrMagnitude;
 
         //Whole Screen is ca 185 units
 
@@ -147,7 +154,6 @@ public class DetectedByCamera : MonoBehaviour
             if (characterIndex >= textToWrite.Length)
             {
                 writingText = false;
-                Debug.Log("Done Writing");
             }
         }
     }
@@ -163,10 +169,19 @@ public class DetectedByCamera : MonoBehaviour
             if (characterIndex <= 0)
             {
                 erasingText = false;
-                Debug.Log("Done Erasing");
             }
         }
     }
 
-
+    private void OnDrawGizmos()
+    {
+        if (showRadius)
+        {
+            Gizmos.color = Color.yellow;
+            if (Target != null)
+                Gizmos.DrawWireSphere(Target.position, Mathf.Sqrt(maxDistanceFromPlayer));
+            else
+                Gizmos.DrawWireSphere(transform.position, Mathf.Sqrt(maxDistanceFromPlayer));
+        }
+    }
 }
