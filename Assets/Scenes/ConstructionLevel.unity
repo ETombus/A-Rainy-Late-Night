@@ -14322,26 +14322,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 2025191883}
-    - target: {fileID: 7279731664676654465, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: bloodParticles
-      value: 
-      objectReference: {fileID: 6746497761879769038, guid: 839e5ab9da5e3f84d87bd412418a67c7, type: 3}
-    - target: {fileID: 7279731664676654465, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: clips.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279731664676654465, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: clips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 6aa58aafe75855e4db4e4f97fb547099, type: 3}
-    - target: {fileID: 7279731664676654465, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: clips.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 60982ea948974624aa807c6cf9e4eecc, type: 3}
-    - target: {fileID: 7279731664676654465, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
-      propertyPath: clips.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 9ade7f455c1e01b47be688c42c42fca0, type: 3}
     - target: {fileID: 9068683970441030020, guid: 9e81ffad1e7fe3d4cb7ad430a9616b88, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -16908,7 +16888,7 @@ RectTransform:
   m_GameObject: {fileID: 1894984687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 689867205}
@@ -16919,7 +16899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -194, y: 174}
+  m_AnchoredPosition: {x: -194, y: 230.49998}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1894984689
@@ -17880,7 +17860,7 @@ RectTransform:
   m_GameObject: {fileID: 2025191881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 292557916}
@@ -17890,7 +17870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -194, y: 174}
+  m_AnchoredPosition: {x: -194, y: 230.5}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2025191883
