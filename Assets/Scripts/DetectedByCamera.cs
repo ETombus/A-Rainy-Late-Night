@@ -8,6 +8,10 @@ using UnityEngine.Events;
 public class DetectedByCamera : MonoBehaviour
 {
     Animator animator;
+    private AudioSource audSource;
+
+    public AudioClip writingSound;
+    public AudioClip erasingSound;
 
     bool lookingAtIt = false;
 
@@ -45,7 +49,7 @@ public class DetectedByCamera : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-
+        audSource = GetComponent<AudioSource>();
 
         if (ShouldHaveText)
         {
@@ -147,6 +151,12 @@ public class DetectedByCamera : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
+            if (writingSound != null)
+            {
+                audSource.clip = writingSound;
+                audSource.Play();
+            }
+
             timer += timePerCharacter;
             characterIndex++;
             uiText.text = textToWrite.Substring(0, characterIndex);
@@ -163,6 +173,12 @@ public class DetectedByCamera : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
+            if (erasingSound != null)
+            {
+                audSource.clip = erasingSound;
+                audSource.Play();
+            }
+
             timer += timePerRemoval;
             characterIndex--;
             uiText.text = textToWrite.Substring(0, characterIndex);
