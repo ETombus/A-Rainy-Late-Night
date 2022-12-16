@@ -40,7 +40,7 @@ public class CameraEvent : MonoBehaviour
         }
         else if (!isInField && vCam.m_Lens.OrthographicSize > originalCamSize)
         {
-            vCam.m_Lens.OrthographicSize -= Time.deltaTime * transitionSpeed;
+            vCam.m_Lens.OrthographicSize -= Time.deltaTime * (transitionSpeed / 4);
         }
 
         if (bufferPeriod)

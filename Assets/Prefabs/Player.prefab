@@ -1284,6 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallDown: 0
+  playerInput: {fileID: 0}
   inputActions: {fileID: 0}
 --- !u!114 &65219155523805052
 MonoBehaviour:
@@ -1474,7 +1475,7 @@ MonoBehaviour:
   deathTrigger:
     m_PersistentCalls:
       m_Calls: []
-  bloodParticles: {fileID: 0}
+  bloodParticles: {fileID: 6746497761879769038, guid: 839e5ab9da5e3f84d87bd412418a67c7, type: 3}
   healthBar: {fileID: 0}
   healthShown:
     serializedVersion: 2
@@ -1501,7 +1502,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   soundHandler: {fileID: 0}
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: 6aa58aafe75855e4db4e4f97fb547099, type: 3}
+  - {fileID: 8300000, guid: 60982ea948974624aa807c6cf9e4eecc, type: 3}
+  - {fileID: 8300000, guid: 9ade7f455c1e01b47be688c42c42fca0, type: 3}
 --- !u!82 &150286546
 AudioSource:
   m_ObjectHideFlags: 0

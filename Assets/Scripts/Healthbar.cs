@@ -31,7 +31,8 @@ public class Healthbar : HealthHandler
             if (healthBar != null)
                 healthBar.value = healthShown.Evaluate(health / 100) * 100;
 
-            soundHandler.PlaySound(clips[Random.Range(0, clips.Length)], 0.2f);
+            if (clips.Length > 0)
+                soundHandler.PlaySound(clips[Random.Range(0, clips.Length)], 0.2f);
         }
         else { PlayerDeath(); }
 

@@ -17,8 +17,14 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] Toggle muteMusicToggle;
     [SerializeField] Toggle muteSoundToggle;
 
+    [Header("SoundTest")]
+    [SerializeField] AudioClip[] clips;
+    AudioSource audSource;
+
     private void Start()
     {
+        audSource = GetComponent<AudioSource>();
+
         SetSliderValues();
 
         if (PlayerPrefs.GetFloat("MusicMuted") == 0) { muteMusicToggle.isOn = false; }
@@ -96,5 +102,11 @@ public class SettingsHandler : MonoBehaviour
     {
         float convertedValue = Mathf.Log10(value) * 20;
         return convertedValue;
+    }
+
+    public void SoundTest()
+    {
+        audSource.pitch = Random.Range(0.8f, 1.2f);
+        audSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
     }
 }
