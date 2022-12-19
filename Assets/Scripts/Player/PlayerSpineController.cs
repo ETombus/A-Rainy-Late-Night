@@ -8,7 +8,10 @@ using static UmbrellaStateHandler;
 public class PlayerSpineController : MonoBehaviour
 {
     public AnimationReferenceAsset run, idle, jump, ascend, descend, landing;
-    public AnimationReferenceAsset UmbrellaUp, UmbrellaDown;
+    public AnimationReferenceAsset UmbrellaUp, UmbrellaDown, Slashing, Grappling, Shooting;
+    private bool umbrellaAnimLooping = false;
+
+    public AnimationReferenceAsset GrappleAim, ShootingAim;
 
 
     private SkeletonAnimation skeletonAnimation;
@@ -122,30 +125,40 @@ public class PlayerSpineController : MonoBehaviour
         if (newUmbrellaAnimationState == UmbrellaState.Idle)
         {
             if (umbrellaState.umbrellaUp)
+            {
+                umbrellaAnimLooping = true;
                 nextUmbrellaAnimation = UmbrellaUp;
+            }
             else
+            {
+                umbrellaAnimLooping = true;
                 nextUmbrellaAnimation = UmbrellaDown;
+            }
             animSpeed = 1;
         }
         else if (newUmbrellaAnimationState == UmbrellaState.Slash)
         {
-            nextUmbrellaAnimation = UmbrellaDown;
+            umbrellaAnimLooping = false;
+            nextUmbrellaAnimation = Slashing;
             animSpeed = 1;
 
         }
         else if (newUmbrellaAnimationState == UmbrellaState.Shoot)
         {
+            umbrellaAnimLooping = true;
             nextUmbrellaAnimation = UmbrellaDown;
             animSpeed = 1;
         }
         else
         {
+            umbrellaAnimLooping = true;
             nextUmbrellaAnimation = UmbrellaDown;
             animSpeed = 1;
         }
 
-        var umbrellaTrack = skeletonAnimation.AnimationState.SetAnimation(1, nextUmbrellaAnimation, true);
+        var umbrellaTrack = skeletonAnimation.AnimationState.SetAnimation(1, nextUmbrellaAnimation, umbrellaAnimLooping);
         umbrellaTrack.TimeScale = animSpeed;
+        umbrellaTrack.MixDuration = 0;
         umbrellaTrack.AttachmentThreshold = 1;
 
     }

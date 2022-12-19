@@ -92,14 +92,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePoints:
-  - {x: 1.03, y: 0}
-  - {x: 6.17, y: 0}
+  - {x: 0, y: 0}
   acceleration: 10
   decceleration: 0.6
   maxWalkingSpeed: 3
   maxRunningSpeed: 5
   waitTime: 1
   targetOffsetAmmount: 1
+  rigBody: {fileID: 0}
   moveIndex: 0
 --- !u!114 &8871184403424991047
 MonoBehaviour:
@@ -139,6 +139,7 @@ MonoBehaviour:
   playerTrans: {fileID: 0}
   movement: {fileID: 0}
   isMoving: 0
+  objectThatNeedFlippin: {fileID: 0}
   detection: {fileID: 0}
   edgeDetection: {fileID: 0}
   shooting: {fileID: 0}
@@ -377,9 +378,13 @@ MonoBehaviour:
   Attack: {fileID: 11400000, guid: 641ce1f90702c7748b9e870891bb178f, type: 2}
   damage: {fileID: 0}
   dead: {fileID: 0}
+  working: {fileID: 0}
+  attack: {fileID: 0}
+  footStep: {fileID: 0}
   boneName: 
   aimOffset: 1
   attackAnimTimeOffset: 2
+  aimStartHeight: 1.8
 --- !u!114 &2156060855115811064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +606,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: textToWrite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: ShouldHaveText
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
