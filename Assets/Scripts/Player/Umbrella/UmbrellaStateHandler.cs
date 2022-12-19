@@ -17,9 +17,11 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private EdgeCollider2D umbrellaCollider;
 
+    [Header("Scripts")]
     private PlayerStateHandler stateHandler;
     private GrappleInput grapplingHook;
     private SlowMotionHandler slowMo;
+    private RifleScript rifleCS;
 
     [Header("Values")]
     [SerializeField] private float maxRainHeightCheck;
@@ -55,6 +57,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         stateHandler = GetComponentInParent<PlayerStateHandler>();
         grapplingHook = GetComponentInParent<GrappleInput>();
         slowMo = player.GetComponent<SlowMotionHandler>();
+        rifleCS = rifle.GetComponent<RifleScript>();
 
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
         umbrellaCollider = GetComponent<EdgeCollider2D>();
@@ -113,7 +116,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         if (currentState == UmbrellaState.Aiming)
         {
-            rifle.GetComponent<RifleScript>().ShootRifle();
+            rifleCS.ShootRifle();
 
             soundHandler.PlaySound(clips[2]);
         }

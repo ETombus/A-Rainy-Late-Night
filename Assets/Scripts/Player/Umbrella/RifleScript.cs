@@ -21,6 +21,8 @@ public class RifleScript : MonoBehaviour
     [SerializeField] float rifleDamage;
     [SerializeField] float reloadTime;
     [SerializeField] float maxTimeSlowdown;
+    [SerializeField] int maxAmmo;
+    [SerializeField] int ammoCount;
 
     [Header("Vectors")]
     private Vector2 origin;
@@ -47,10 +49,23 @@ public class RifleScript : MonoBehaviour
         while (aimLaser.enabled)
         {
             mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
             Vector2 aimStart = aimLaser.gameObject.transform.position;
+            var dir = (mousePos - aimStart);
+            dir.Normalize();
+
+            var aimRay = Physics2D.Raycast(aimStart, dir, shotMaxDistance, rayIgnore);
 
             aimLaser.SetPosition(0, aimStart);
-            aimLaser.SetPosition(1, aimStart + (mousePos - aimStart).normalized * aimLaserLength);
+
+            if (aimRay.collider != null )
+            {
+                aimLaser.SetPosition(1, aimRay.point);
+            }
+            else
+            {
+                aimLaser.SetPosition(1, aimStart + (mousePos - aimStart).normalized * aimLaserLength);
+            }
             yield return null;
         }
     }
@@ -63,34 +78,42 @@ public class RifleScript : MonoBehaviour
 
     public void ShootRifle()
     {
-        umbrellaHandler.StopAllCoroutines();
-        StartCoroutine(umbrellaHandler.Reload(reloadTime, true));
-        aimLaser.enabled = false;
-        slowMo.NormalSpeed();
-
-        mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        origin = transform.position;
-
-        shotDirection = mousePos - origin;
-        shotDirection.Normalize();
-
-        shot = Physics2D.Raycast(origin, shotDirection, shotMaxDistance, rayIgnore);
-
-        if (shot.collider != null)
+        if (ammoCount > 0)
         {
-            if (shot.collider.CompareTag("Enemy"))
+            umbrellaHandler.StopAllCoroutines();
+            StartCoroutine(umbrellaHandler.Reload(reloadTime, true));
+            aimLaser.enabled = false;
+            slowMo.NormalSpeed();
+            ammoCount--;
+
+            mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            origin = transform.position;
+
+            shotDirection = mousePos - origin;
+            shotDirection.Normalize();
+
+            shot = Physics2D.Raycast(origin, shotDirection, shotMaxDistance, rayIgnore);
+
+            if (shot.collider != null)
             {
-                try
+                if (shot.collider.CompareTag("Enemy"))
                 {
-                    shot.collider.GetComponent<HealthHandler>().ReduceHealth(rifleDamage);
+                    try
+                    {
+                        shot.collider.GetComponent<HealthHandler>().ReduceHealth(rifleDamage);
+                    }
+                    catch (System.Exception ex) { Debug.LogException(ex); }
                 }
-                catch (System.Exception ex) { Debug.LogException(ex); }
+
+                shot.transform.SendMessage(nameof(InteractScript.Hit), SendMessageOptions.DontRequireReceiver);
             }
 
-            shot.transform.SendMessage(nameof(InteractScript.Hit), SendMessageOptions.DontRequireReceiver);
+            StartCoroutine(LineFade());
         }
-
-        StartCoroutine(LineFade());
+        //else
+            //DO SOMETHING
+            //GUN JAM?
+            //SMOKE?
     }
 
     private IEnumerator LineFade()
