@@ -83,7 +83,7 @@ MonoBehaviour:
   umbrellaHandler: {fileID: 850067010036326724}
   bulletTrail: {fileID: 0}
   aimLaserLength: 20
-  shotMaxDistance: 15
+  shotMaxDistance: 100
   rifleDamage: 75
   reloadTime: 2.5
   maxTimeSlowdown: 2.5
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 2
   maxDistance: 6
-  lookUpDist: 3
+  lookUpDist: 4.5
   bufferTime: 0.4
   bufferTimer: 0
   changeDirBuffer: 0.8
@@ -761,11 +761,11 @@ GameObject:
   - component: {fileID: 1834842748031294926}
   m_Layer: 0
   m_Name: SliceHitbox
-  m_TagString: Untagged
+  m_TagString: Slice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2112362775
 Transform:
   m_ObjectHideFlags: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
     m_Bits: 280
   maxRainHeightCheck: 45.88
   rainDamageInterval: 0.05
-  rainDamage: 0.1
+  rainDamage: 0.2
   slashDelay: 0.35
   soundHandler: {fileID: 0}
   clips:
@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 1127421039}
   - component: {fileID: 1127421040}
   - component: {fileID: 1593669584389441935}
+  - component: {fileID: 150286536}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1373,9 +1374,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 776
   hookPoints: []
-  hookMaxReach: 10
-  maxMouseDistance: 10
-  minHookDistance: 20
+  hookMaxReach: 15
+  maxMouseDistance: 20
+  minHookDistance: 10
   hookSpeed: 40
   playerSpeed: 45
   playerAcceleration: 2.5
@@ -1425,7 +1426,7 @@ MonoBehaviour:
   deathTrigger:
     m_PersistentCalls:
       m_Calls: []
-  bloodParticles: {fileID: 6746497761879769038, guid: 839e5ab9da5e3f84d87bd412418a67c7, type: 3}
+  bloodParticles: {fileID: 0}
   healthBar: {fileID: 0}
   healthShown:
     serializedVersion: 2
@@ -1737,6 +1738,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &150286536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f83023d429a5004683afbcc898d51fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slice: 0
+  shoot: 0
+  grapple: 0
 --- !u!1 &2633669397770518439
 GameObject:
   m_ObjectHideFlags: 0
