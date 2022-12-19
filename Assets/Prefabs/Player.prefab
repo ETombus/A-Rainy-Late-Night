@@ -520,55 +520,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1516679077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1516679078}
-  - component: {fileID: 1516679079}
-  m_Layer: 9
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1516679078
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516679077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1450338445620509169}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1516679079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516679077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02082b7d4aa922b429ed8702f7d04f99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundcheckDistance: 0
-  bufferCheckDistance: 0.85
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 384
 --- !u!1 &1765613381
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +629,7 @@ RectTransform:
   m_Children:
   - {fileID: 945673641}
   m_Father: {fileID: 1450338445620509169}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -904,7 +855,7 @@ Transform:
   - {fileID: 2112362775}
   - {fileID: 282481995}
   m_Father: {fileID: 1450338445620509169}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9003691135169117869
 MonoBehaviour:
@@ -1185,7 +1136,6 @@ Transform:
   - {fileID: 2056493657}
   - {fileID: 7877881350490408719}
   - {fileID: 1577858854080552396}
-  - {fileID: 1516679078}
   - {fileID: 5836924862112396268}
   - {fileID: 3759224660127741486}
   - {fileID: 1975276600}
@@ -1996,7 +1946,7 @@ Transform:
   - {fileID: 8817060869755867702}
   - {fileID: 148103221}
   m_Father: {fileID: 1450338445620509169}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1205405036
 MonoBehaviour:
