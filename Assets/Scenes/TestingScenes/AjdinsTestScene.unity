@@ -871,9 +871,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyMelee Ruffian Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5863311955445273211, guid: 79488d42a404fcb4e9673d3bece0b086, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5863311955445273214, guid: 79488d42a404fcb4e9673d3bece0b086, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5863311955445273214, guid: 79488d42a404fcb4e9673d3bece0b086, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5991,6 +5995,10 @@ PrefabInstance:
     - target: {fileID: 509095876351793058, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Name
       value: BaseEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 509095876351793058, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_RootOrder
