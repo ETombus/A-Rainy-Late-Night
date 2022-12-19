@@ -122,13 +122,13 @@ public class UmbrellaStateHandler : MonoBehaviour
         }
     }
 
-    public IEnumerator Reload(float time, bool fill)
+    public IEnumerator Reload(float time, bool clockWise)
     {
         clockSlider.gameObject.SetActive(true);
         float fillOverTime = clockSlider.maxValue / time;
         reloading = true;
 
-        if (fill)
+        if (clockWise)
         {
             yield return null;
             clockSlider.value = clockSlider.minValue;
@@ -140,7 +140,7 @@ public class UmbrellaStateHandler : MonoBehaviour
             fillOverTime *= -1;
         }
 
-        while (fill ? clockSlider.value < clockSlider.maxValue : clockSlider.value > clockSlider.minValue)
+        while (clockWise ? clockSlider.value < clockSlider.maxValue : clockSlider.value > clockSlider.minValue)
         {
             clockSlider.value += fillOverTime * Time.deltaTime;
             yield return null;
