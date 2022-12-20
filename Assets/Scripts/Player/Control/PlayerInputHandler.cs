@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static UmbrellaStateHandler;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -130,13 +132,17 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void AimHandler(InputAction.CallbackContext context)
     {
-        if (context.performed && !umbrellaHandler.reloading && umbrellaHandler.currentState == UmbrellaStateHandler.UmbrellaState.Idle)
+        if (context.performed && !umbrellaHandler.timerOn && umbrellaHandler.currentState == UmbrellaStateHandler.UmbrellaState.Idle)
         {
             StartCoroutine(rifleScript.Aim());
             umbrellaHandler.currentState = UmbrellaStateHandler.UmbrellaState.Aiming;
         }
         else if (context.canceled && umbrellaHandler.currentState == UmbrellaStateHandler.UmbrellaState.Aiming)
         {
+            float clockValue = umbrellaHandler.clockSlider.value;
+            umbrellaHandler.StopAllCoroutines();
+            umbrellaHandler.StartCoroutine(umbrellaHandler.Timer(GetComponentInParent<SlowMotionHandler>().cooldown.Evaluate(clockValue), TimerFillAmount.current));
+            umbrellaHandler.clockSlider.value = clockValue;
             rifleScript.aimLaser.enabled = false;
             umbrellaHandler.Idle();
         }

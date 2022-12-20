@@ -15,6 +15,7 @@ public class InteractScript : MonoBehaviour
     [SerializeField] private bool isInteractable;
     private CircleCollider2D interactCollider;
     private bool interactTrigger;
+    public Collider2D colliderTournOff;
 
     [Header("Input")]
     private PlayerInputs playerControls;
@@ -79,10 +80,16 @@ public class InteractScript : MonoBehaviour
         if (enabled)
             function.Invoke();
     }
-
     public void DebugFunction() { Debug.Log("Interact"); }
     public void DisableScript() { enabled = false; }
     public void DestroyObject() { Destroy(gameObject); }
     public void PlaySound(AudioSource sound) { sound.Play(); }
     public void ParticleEffect(ParticleSystem particle) { particle.Play(); }
+    public void ToggleCollider()
+    {
+        if (colliderTournOff.enabled)
+            colliderTournOff.enabled = false;
+        else
+            colliderTournOff.enabled = true;
+    }
 }

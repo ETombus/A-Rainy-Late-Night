@@ -1,12 +1,12 @@
 {
 "skeleton": {
-	"hash": "oSZUAjFceSQ",
+	"hash": "FyPyVWzYNLY",
 	"spine": "4.1.17",
 	"x": -559.52,
 	"y": -26.61,
 	"width": 1944.6,
 	"height": 2926.56,
-	"images": "./Null character/Null RigReady/",
+	"images": "./Null RigReady/",
 	"audio": "C:/Users/hilda/OneDrive/Desktop/A rainy late night/Null character/Null RigReady"
 },
 "bones": [
@@ -2152,15 +2152,6 @@
 					{ "x": 1.008, "y": 1.193 },
 					{ "time": 0.1, "x": 0.735, "y": 1.193 }
 				]
-			},
-			"AIM TARGET": {
-				"rotate": [
-					{ "value": -78.83 }
-				],
-				"translate": [
-					{ "x": 300.71, "y": 1633.98 },
-					{ "time": 0.0333, "x": 645.68, "y": 971.86 }
-				]
 			}
 		},
 		"ik": {
@@ -3018,6 +3009,16 @@
 				]
 			},
 			"slash effect": {
+				"attachment": [
+					{}
+				]
+			},
+			"Sword holster": {
+				"attachment": [
+					{}
+				]
+			},
+			"Swoshblade": {
 				"attachment": [
 					{}
 				]

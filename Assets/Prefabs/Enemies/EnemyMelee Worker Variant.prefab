@@ -344,7 +344,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -529,6 +529,8 @@ MonoBehaviour:
   damage: {fileID: 0}
   dead: {fileID: 0}
   working: {fileID: 0}
+  attack: {fileID: 0}
+  footStep: {fileID: 0}
   boneName: 
   aimOffset: 1
   attackAnimTimeOffset: 2
@@ -582,7 +584,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1377397216, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1377397217, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -650,7 +652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: ShouldHaveText
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: distanceFromPlayer

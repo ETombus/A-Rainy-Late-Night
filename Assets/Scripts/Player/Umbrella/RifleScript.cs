@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using static UmbrellaStateHandler;
 
 public class RifleScript : MonoBehaviour
 {
@@ -39,9 +41,10 @@ public class RifleScript : MonoBehaviour
 
     public IEnumerator Aim()
     {
+        CancelInvoke();
         aimLaser.enabled = true;
         umbrellaHandler.CancelInvoke();
-        umbrellaHandler.StartCoroutine(umbrellaHandler.Reload(maxTimeSlowdown, false));
+        umbrellaHandler.StartCoroutine(umbrellaHandler.Timer(maxTimeSlowdown, TimerFillAmount.filled));
         slowMo.StartCoroutine(slowMo.SlowTime(0.1f, maxTimeSlowdown));
 
         Invoke(nameof(AutoShoot), maxTimeSlowdown);
@@ -81,7 +84,7 @@ public class RifleScript : MonoBehaviour
         if (ammoCount > 0)
         {
             umbrellaHandler.StopAllCoroutines();
-            StartCoroutine(umbrellaHandler.Reload(reloadTime, true));
+            StartCoroutine(umbrellaHandler.Timer(reloadTime, TimerFillAmount.empty));
             aimLaser.enabled = false;
             slowMo.NormalSpeed();
             ammoCount--;

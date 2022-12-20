@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 470
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,7 +103,406 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Pipe_T
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1117
+        width: 494
+        height: 734
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b8a6754eade8a4ea6cfa2517559882
+      internalID: 11622608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_L
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1850
+        width: 545
+        height: 540
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fcde6457aa081b49b116b7556a273aa
+      internalID: -1506029558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_T_Large
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 1895
+        width: 1427
+        height: 495
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fcad5cd30029ba4cae2d7d7e930f104
+      internalID: -1597761227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_I
+      rect:
+        serializedVersion: 2
+        x: 2387
+        y: 37
+        width: 246
+        height: 2312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322ba64467a61204fbc3a097ed050f07
+      internalID: 1553748868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Valve
+      rect:
+        serializedVersion: 2
+        x: 2735
+        y: 1367
+        width: 519
+        height: 542
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af21800dcf63a1543b19f84a72edcbee
+      internalID: -372218074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Pressure
+      rect:
+        serializedVersion: 2
+        x: 2839
+        y: 2011
+        width: 254
+        height: 334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5588a876d04f7f4e832864a58900f23
+      internalID: -1405396742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Twister
+      rect:
+        serializedVersion: 2
+        x: 3404
+        y: 1929
+        width: 557
+        height: 407
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617385af8efa8bf4bbeb7e5e3bdd3638
+      internalID: 383867698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Lever
+      rect:
+        serializedVersion: 2
+        x: 3442
+        y: 1466
+        width: 544
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e5272c92bb32384daa11aa0e1089a51
+      internalID: 151075698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Bolt_Large
+      rect:
+        serializedVersion: 2
+        x: 4224
+        y: 2016
+        width: 302
+        height: 289
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feee66dd7c23ed34ab8d3f3b32765df7
+      internalID: -84264459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_L_Large
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10
+        width: 1086
+        height: 1080
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91d05368591aa74428f72182262e0730
+      internalID: -1419867896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_X
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 853
+        width: 718
+        height: 716
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae83259c62210f49baffae5376cfa61
+      internalID: 357092771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Wall
+      rect:
+        serializedVersion: 2
+        x: 2772
+        y: 761
+        width: 407
+        height: 484
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b60c9aebe2dd9ef4d80cb1e66da1870c
+      internalID: 786172438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Something
+      rect:
+        serializedVersion: 2
+        x: 3442
+        y: 901
+        width: 725
+        height: 444
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c99ea63e4e106e45a521ad46d17abb1
+      internalID: -590155516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Ring
+      rect:
+        serializedVersion: 2
+        x: 4244
+        y: 894
+        width: 217
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b830e94d81cbb649a9dfd115793345a
+      internalID: -381589697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_U
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 61
+        width: 838
+        height: 550
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d34d733f727d41419538d4eeb2b14cb
+      internalID: -935048270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Chute
+      rect:
+        serializedVersion: 2
+        x: 2837
+        y: 52
+        width: 278
+        height: 541
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca62df1d12745c4e9c9acf5307fc527
+      internalID: 117643326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Knob
+      rect:
+        serializedVersion: 2
+        x: 3591
+        y: 536
+        width: 449
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a0781ca0aa4d74fb080447d48c911d
+      internalID: -651833274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_T_Special
+      rect:
+        serializedVersion: 2
+        x: 3407
+        y: 182
+        width: 713
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13a2b4da4dda1434ab8431bb347b0e91
+      internalID: -854743904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pipe_Bolt
+      rect:
+        serializedVersion: 2
+        x: 4235
+        y: 154
+        width: 117
+        height: 291
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c039cc0b732e0b42b52ae83a192b958
+      internalID: -1568824793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +513,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pipe_X: 357092771
+      Pipe_Something: -590155516
+      Pipe_Valve: -372218074
+      Pipe_U: -935048270
+      Pipe_I: 1553748868
+      Pipe_T_Special: -854743904
+      Pipe_T_Large: -1597761227
+      Pipe_L_Large: -1419867896
+      Pipe_Pressure: -1405396742
+      Pipe_Wall: 786172438
+      Pipe_Ring: -381589697
+      Pipe_Twister: 383867698
+      Pipe_Lever: 151075698
+      Pipe_Chute: 117643326
+      Pipe_Knob: -651833274
+      Pipe_Bolt_Large: -84264459
+      Pipe_T: 11622608
+      Pipe_L: -1506029558
+      Pipe_Bolt: -1568824793
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

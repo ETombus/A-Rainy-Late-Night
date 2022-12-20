@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,11 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0560e4e859d821d4592618e9121fc6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeedOverTime:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   player: {fileID: 0}
+  target: {fileID: 0}
   targetPos: {x: 0, y: 0}
+  ropeStart: {fileID: 0}
   hookSpeed: 0
   playerSpeed: 0
-  ropeStart: {fileID: 0}
+  playerAcceleration: 0
 --- !u!120 &645003326498573048
 LineRenderer:
   m_ObjectHideFlags: 0
