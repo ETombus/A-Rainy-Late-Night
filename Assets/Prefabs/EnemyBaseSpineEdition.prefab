@@ -100,7 +100,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -185,7 +185,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -338,6 +338,16 @@ MonoBehaviour:
   run: {fileID: 0}
   walk: {fileID: 0}
   Aim: {fileID: 0}
+  Attack: {fileID: 0}
+  damage: {fileID: 0}
+  dead: {fileID: 0}
+  working: {fileID: 0}
+  attack: {fileID: 0}
+  footStep: {fileID: 0}
+  boneName: 
+  aimOffset: 1
+  attackAnimTimeOffset: 0.5
+  aimStartHeight: 1.8
 --- !u!114 &5565739422390052027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,10 +485,12 @@ MonoBehaviour:
   - {x: 6.17, y: 0}
   - {x: -5.64, y: 0}
   acceleration: 10
-  maxSpeed: 5
   decceleration: 0.6
+  maxWalkingSpeed: 3
+  maxRunningSpeed: 5
   waitTime: 1
   targetOffsetAmmount: 1
+  rigBody: {fileID: 0}
   moveIndex: 0
 --- !u!114 &1010796770
 MonoBehaviour:
@@ -494,6 +506,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 100
+  damageTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  deathTrigger:
+    m_PersistentCalls:
+      m_Calls: []
   bloodParticles: {fileID: 6746497761879769038, guid: 839e5ab9da5e3f84d87bd412418a67c7, type: 3}
 --- !u!114 &1010796778
 MonoBehaviour:
@@ -507,8 +525,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec058109ca3c1408e56b4ff6831394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToShowMarker: 2
-  marker: {fileID: 0}
+  writingSound: []
+  erasingSound: {fileID: 0}
+  maxDistanceFromPlayer: 100
+  minDistanceFromPlayer: 0
+  Target: {fileID: 0}
+  isAHookPoint: 0
+  isSelected: 0
+  ShouldHaveText: 0
+  textToWrite: 
+  timePerCharacter: 0.2
+  timePerRemoval: 0.05
+  showRadius: 0
+  canvas: {fileID: 0}
 --- !u!114 &2035708264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,12 +554,15 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   playerTrans: {fileID: 0}
   movement: {fileID: 0}
+  isMoving: 0
+  objectThatNeedFlippin: {fileID: 0}
   detection: {fileID: 0}
   edgeDetection: {fileID: 0}
   shooting: {fileID: 0}
   melee: {fileID: 0}
   isAttacking: 0
   isOnLedge: 0
+  clips: []
   currentMode: 0
   thisType: 0
 --- !u!114 &911562102
