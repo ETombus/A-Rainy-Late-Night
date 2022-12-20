@@ -14,6 +14,7 @@ public class DetectedByCamera : MonoBehaviour
     public AudioClip erasingSound;
 
     bool lookingAtIt = false;
+    bool disabled = false;
 
     [Range(0f, 185f)]
     public float maxDistanceFromPlayer = 100;
@@ -78,13 +79,22 @@ public class DetectedByCamera : MonoBehaviour
     }
 
     bool toggleSound;
+
+    public void ToggleMarker()
+    {
+        if (!disabled)
+            disabled = true;
+        else
+            disabled = false;
+    }
+
     void Update()
     {
-        if (CloseEnoughToPlayer(true) && !lookingAtIt)
+        if (CloseEnoughToPlayer(true) && !lookingAtIt && !disabled)
         {
             ActivateMarker();
         }
-        else if (!CloseEnoughToPlayer(true) && lookingAtIt)
+        else if ((!CloseEnoughToPlayer(true) && lookingAtIt) || disabled)
         {
             DisableMarker();
         }
@@ -109,7 +119,9 @@ public class DetectedByCamera : MonoBehaviour
         else if (erasingText)
             EraseText();
     }
+
     float markerToPlayer;
+
     public bool CloseEnoughToPlayer(bool returnMax)
     {
         //Vector3 visTest = Camera.main.WorldToViewportPoint(transform.position);
@@ -170,7 +182,7 @@ public class DetectedByCamera : MonoBehaviour
     void WriteText()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (timer <= 0 && characterIndex < textToWrite.Length)
         {
             if (writingSound.Length > 0 && audSource.isPlaying == false)
             {
@@ -192,7 +204,7 @@ public class DetectedByCamera : MonoBehaviour
     void EraseText()
     {
         timer -= Time.deltaTime;
-        if (timer <= 0)
+        if (timer <= 0 && characterIndex > 0)
         {
             if (erasingSound != null)
             {

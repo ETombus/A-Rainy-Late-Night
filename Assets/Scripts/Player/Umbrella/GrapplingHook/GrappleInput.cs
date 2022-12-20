@@ -36,6 +36,8 @@ public class GrappleInput : MonoBehaviour
     public bool canGrapple = true;
     public bool targetLocked = false;
 
+    public bool showGrappleLeangth = false;
+
     private void Start()
     {
         umbrella = GetComponentInChildren<UmbrellaStateHandler>();
@@ -97,7 +99,7 @@ public class GrappleInput : MonoBehaviour
     {
         Vector2 pos = transform.position;
         Vector2 targetPos = target.transform.position;
-        Collider2D rayTarget = Physics2D.Raycast(targetPos, pos - targetPos, hookMaxReach, rayIgnore).collider;
+        Collider2D rayTarget = Physics2D.Raycast(targetPos, (pos - targetPos).normalized, hookMaxReach, rayIgnore).collider;
 
         if (rayTarget == GetComponent<Collider2D>())
         { return true; }
@@ -110,7 +112,7 @@ public class GrappleInput : MonoBehaviour
         float distanceToMouse = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - worldPos);
         float distanceToPlayer = Vector2.SqrMagnitude((Vector2)targetPoint.transform.position - (Vector2)transform.position);
 
-        if((targetPoint.transform.position.x - transform.position.x) > 0)
+        if ((targetPoint.transform.position.x - transform.position.x) > 0)
         {
             playerState.facingRight = true;
         }
@@ -149,6 +151,17 @@ public class GrappleInput : MonoBehaviour
         else
         {
             GetComponentInChildren<UmbrellaStateHandler>().Slash();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (showGrappleLeangth)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, hookMaxReach);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position,Mathf.Sqrt(minHookDistance));
         }
     }
 }

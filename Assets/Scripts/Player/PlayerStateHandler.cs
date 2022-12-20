@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using static System.TimeZoneInfo;
+using System.ComponentModel;
 
 public class PlayerStateHandler : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerStateHandler : MonoBehaviour
     private bool grappleGravity;
 
 
-    private bool pressingJump = false;
+    [SerializeField] private bool pressingJump = false;
     private bool midJump = false;
     public bool falling = false;
     public bool slowfalling = false;
@@ -76,10 +77,19 @@ public class PlayerStateHandler : MonoBehaviour
         currentGravity = baseGravity = rbody.gravityScale;
     }
 
+    bool justGrappled = false;
+
     void Update()
     {
         if (currentMoveState != MovementStates.Grappling)
         {
+            if (justGrappled)
+            {
+                justGrappled = false;
+                CancelInvoke(nameof(DisableGrappleGravity));
+                Invoke(nameof(DisableGrappleGravity), 0.5f);
+            }
+
             ManageGravity();
             ManageMovingStates();
 
@@ -87,12 +97,15 @@ public class PlayerStateHandler : MonoBehaviour
                 facingRight = true;
             else if (inputX < 0)
                 facingRight = false;
+
+
         }
         else if (currentMoveState == MovementStates.Grappling && grappleScript.canGrapple)
         {
             coyoteTimer = 0;
             currentMoveState = MovementStates.AirMoving;
             grappleGravity = true;
+            justGrappled = true;
         }
 
         falling = rbody.velocity.y > 0 ? false : true;
@@ -108,7 +121,7 @@ public class PlayerStateHandler : MonoBehaviour
                 gravityMultiplier = 1;
             }
             else
-                gravityMultiplier = 2;
+                gravityMultiplier = 3;
         }
         else if (pressingJump)
         {
@@ -132,6 +145,8 @@ public class PlayerStateHandler : MonoBehaviour
 
         rbody.gravityScale = currentGravity * gravityMultiplier;
     }
+
+    void DisableGrappleGravity() { grappleGravity = false; }
 
     void ManageMovingStates()
     {
@@ -210,6 +225,15 @@ public class PlayerStateHandler : MonoBehaviour
         }
     }
 
+    public void JumpReleased()
+    {
+        if (pressingJump)
+        {
+            CancelInvoke();
+            pressingJump = false;
+        }
+    }
+
     public void FallThroughPlatforms()
     {
         Physics2D.IgnoreLayerCollision(9, 7, true);
@@ -222,14 +246,6 @@ public class PlayerStateHandler : MonoBehaviour
         fallingDown = false;
     }
 
-    public void JumpReleased()
-    {
-        if (pressingJump)
-        {
-            CancelInvoke();
-            pressingJump = false;
-        }
-    }
 
     void EndJump()
     {
