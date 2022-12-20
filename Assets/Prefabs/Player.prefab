@@ -5871,10 +5871,10 @@ MonoBehaviour:
   player: {fileID: 1450338445620509171}
   rifle: {fileID: 282481994}
   rainColliderTag: {fileID: 8679037771655832474, guid: 058b259195bb58d4c92561395eeb4a39, type: 3}
-  clockSlider: {fileID: 945673642}
   rayIgnore:
     serializedVersion: 2
     m_Bits: 280
+  clockSlider: {fileID: 945673642}
   maxRainHeightCheck: 45.88
   rainDamageInterval: 0.05
   rainDamage: 0.2
@@ -5884,7 +5884,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff5f39d60646fbc4b94fae02de855c3b, type: 3}
   - {fileID: 8300000, guid: c5d74bbfcfaa7e24c92cef6cc5cef551, type: 3}
   - {fileID: 8300000, guid: 91f168f2f8e5d2d47b4eff25a6b65ff4, type: 3}
-  reloading: 0
+  timerOn: 0
   inRain: 0
   umbrellaUp: 0
   slowFalling: 0
@@ -6076,6 +6076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  pressingJump: 0
   falling: 0
   slowfalling: 0
   maxJumpDuration: 0.5
@@ -6232,6 +6233,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   canGrapple: 1
   targetLocked: 0
+  showGrappleLeangth: 0
 --- !u!114 &7279731664676654465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6423,6 +6425,30 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.4201548
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  cooldown:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2
+      inSlope: -0.8172183
+      outSlope: -0.8172183
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16666667
+    - serializedVersion: 3
+      time: 1
+      value: 0.25
+      inSlope: -3.7971666
+      outSlope: -3.7971666
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.050000012
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
