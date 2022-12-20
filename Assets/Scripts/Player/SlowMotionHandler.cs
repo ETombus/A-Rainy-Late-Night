@@ -5,6 +5,8 @@ using UnityEngine;
 public class SlowMotionHandler : MonoBehaviour
 {
     [SerializeField] AnimationCurve slowDownCurve;
+    [Tooltip("cooldown time depending on how long usage of slowmotion")]
+    [SerializeField] public AnimationCurve cooldown;
 
     float normalTimeScale;
     float normalDeltaTime;
