@@ -82,7 +82,7 @@ MonoBehaviour:
   aimLaser: {fileID: 2097947645}
   umbrellaHandler: {fileID: 850067010036326724}
   bulletTrail: {fileID: 0}
-  aimLaserLength: 35
+  aimLaserLength: 20
   shotMaxDistance: 100
   rifleDamage: 75
   reloadTime: 2.5
@@ -5757,8 +5757,8 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 0, b: 0, a: 0.6862745}
-      key1: {r: 1, g: 0, b: 0, a: 0.6862745}
-      key2: {r: 0, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 0, b: 0, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -5772,7 +5772,7 @@ LineRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
+      atime0: 62258
       atime1: 65535
       atime2: 65535
       atime3: 0
@@ -5941,6 +5941,7 @@ GameObject:
   - component: {fileID: 1593669584389441935}
   - component: {fileID: 150286536}
   - component: {fileID: 150286520}
+  - component: {fileID: 4225370552404129275}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -5958,7 +5959,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2056493657}
   - {fileID: 7877881350490408719}
@@ -6087,7 +6088,25 @@ MonoBehaviour:
   downwardGravity: 10
   jumpGravityTransitionSpeed:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -6201,9 +6220,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 776
   hookPoints: []
-  hookMaxReach: 15
-  maxMouseDistance: 20
-  minHookDistance: 10
+  hookMaxReach: 10.9
+  maxMouseDistance: 15
+  minHookDistance: 15
   hookSpeed: 40
   playerSpeed: 45
   playerAcceleration: 2.5
@@ -6233,7 +6252,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   canGrapple: 1
   targetLocked: 0
-  showGrappleLeangth: 0
+  showGrappleLeangth: 1
 --- !u!114 &7279731664676654465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6618,6 +6637,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstep: {fileID: 651696777}
+--- !u!114 &4225370552404129275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f83023d429a5004683afbcc898d51fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slice: 0
+  shoot: 0
+  grapple: 0
 --- !u!1 &2633669397770518439
 GameObject:
   m_ObjectHideFlags: 0
@@ -6698,15 +6732,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: {fileID: 0}
   footStep: {fileID: 11400000, guid: a9d9812ecfe7b634fb0eb23173efb9e4, type: 2}
-  run: {fileID: 11400000, guid: e922a7dd8bf28a149b92cca799de0156, type: 2}
-  idle: {fileID: 11400000, guid: 46b28c233186cb24bba011cfa6911c6f, type: 2}
-  jump: {fileID: 11400000, guid: ad8d46d8ab9c0af44a5167e2d9043197, type: 2}
-  ascend: {fileID: 11400000, guid: 6f99f5ee3b813014dbffa17231adba08, type: 2}
-  descend: {fileID: 11400000, guid: 0e1c0e82678352240b076b28a86ede55, type: 2}
-  landing: {fileID: 11400000, guid: ceb8b0b2182a16646832a706573830d4, type: 2}
-  UmbrellaUp: {fileID: 11400000, guid: 23ff1f7825e5b074aa5bedad63717b87, type: 2}
-  UmbrellaDown: {fileID: 11400000, guid: 0a2e7d30936a8c24083ef43345156321, type: 2}
-  Slashing: {fileID: 0}
+  run: {fileID: 11400000, guid: 2e446efeb17d544448d6f6d5be1c562b, type: 2}
+  idle: {fileID: 11400000, guid: 2f70129e3682af04099dbb7e7d3c2138, type: 2}
+  jump: {fileID: 11400000, guid: 6b7ae7971f4da3046b2db0c3401fed2f, type: 2}
+  ascend: {fileID: 11400000, guid: fd39566b91b646143a5b1431811e46bd, type: 2}
+  descend: {fileID: 11400000, guid: ee7d8d193f595354ab744fc6143dcafd, type: 2}
+  landing: {fileID: 11400000, guid: c865bf5cda562504196ef783208ebe70, type: 2}
+  UmbrellaUp: {fileID: 11400000, guid: eb099552834fb2649b4c1bc9a0e2c03f, type: 2}
+  UmbrellaDown: {fileID: 11400000, guid: dabdeae749a2cdc44945823fefb53681, type: 2}
+  Slashing: {fileID: 11400000, guid: 4b9cfa12e7875bd44ab43fab740a02ef, type: 2}
   Grappling: {fileID: 0}
   Shooting: {fileID: 0}
   GrappleAim: {fileID: 0}
@@ -6739,7 +6773,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2a9bc561a75f50744a3e827af6bb3f74, type: 2}
+  - {fileID: 2100000, guid: ef35230d300989e498a07118e2970820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6773,7 +6807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: ef039d33416c98d43949269db4739368, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: e9688628670b0de4792e9be54e855972, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
