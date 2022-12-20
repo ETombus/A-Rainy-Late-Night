@@ -7,6 +7,7 @@ using static UmbrellaStateHandler;
 
 public class PlayerSpineController : MonoBehaviour
 {
+    [SerializeField] EventDataReferenceAsset attack, footStep;
     public AnimationReferenceAsset run, idle, jump, ascend, descend, landing;
     public AnimationReferenceAsset UmbrellaUp, UmbrellaDown, Slashing, Grappling, Shooting;
     private bool umbrellaAnimLooping = false;
@@ -41,6 +42,15 @@ public class PlayerSpineController : MonoBehaviour
         rbody = GetComponentInParent<Rigidbody2D>();
         if (playerState == null) Debug.LogError("Can't find playerStateHandler");
 
+        skeletonAnimation.AnimationState.Event += HandleAnimationState;
+    }
+
+    void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
+    {
+        /*if(e.Data == (attack.EventData))
+            handler.PlaySound(handler.thisType);*/
+        if (e.Data == (footStep.EventData))
+            GetComponentInParent<SpineEventHandler>().Footstep();
     }
 
     // Update is called once per frame

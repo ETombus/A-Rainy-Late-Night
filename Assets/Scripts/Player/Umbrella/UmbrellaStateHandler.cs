@@ -95,11 +95,11 @@ public class UmbrellaStateHandler : MonoBehaviour
 
         if (stateHandler.inputX > 0)
         {
-            gameObject.transform.localScale = new Vector2(1, gameObject.transform.localScale.y);
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (stateHandler.inputX < 0)
         {
-            gameObject.transform.localScale = new Vector2(-1, gameObject.transform.localScale.y);
+            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
