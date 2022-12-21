@@ -40,7 +40,7 @@ public class EnemyShooting : MonoBehaviour
 
             else if (shootTimer <= 0)
             {
-                Shoot();
+                spineController.PlayAttackAnimation();
                 handler.PlaySound(handler.thisType);
                 shootTimer = shootCooldown;
             }
@@ -49,11 +49,9 @@ public class EnemyShooting : MonoBehaviour
 
     public void Shoot()
     {
-        spineController.PlayAttackAnimation();
         GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
         Destroy(bulletInstance, 2f);
-
     }
 
     private Vector2 GetShootVector()

@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "/qNurEdtGKs",
+	"hash": "X4l1K8GqkYk",
 	"spine": "4.1.17",
 	"x": -485.76,
 	"y": 8.45,
@@ -227,6 +227,13 @@
 		}
 	}
 ],
+"events": {
+	"Driving": {},
+	"Driving fast": {},
+	"Hammer strike": {},
+	"Mechanical sounds": {},
+	"Swoosh": {}
+},
 "animations": {
 	"Angry run": {
 		"slots": {
@@ -315,6 +322,9 @@
 					{ "slot": "Calf L", "offset": -3 }
 				]
 			}
+		],
+		"events": [
+			{ "name": "Driving fast" }
 		]
 	},
 	"Idle": {
@@ -420,7 +430,10 @@
 					{ "value": 6.55 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "name": "Driving" }
+		]
 	},
 	"Strike": {
 		"slots": {
@@ -539,7 +552,10 @@
 					{ "time": 1.5667 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.8333, "name": "Swoosh" }
+		]
 	},
 	"Transition to Working": {
 		"bones": {
@@ -714,7 +730,10 @@
 					{ "time": 1.1667, "x": -127.27, "y": -24.08 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.5, "name": "Mechanical sounds" }
+		]
 	},
 	"Working": {
 		"bones": {
@@ -889,7 +908,11 @@
 					{ "time": 0.7667 }
 				]
 			}
-		}
+		},
+		"events": [
+			{ "time": 0.2667, "name": "Swoosh" },
+			{ "time": 0.3, "name": "Hammer strike" }
+		]
 	}
 }
 }

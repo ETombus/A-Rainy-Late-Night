@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a1cc9fab90ebe8943a8dde40175df491
+guid: 1ab45428d838b5841abab247e6518db1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 470
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,217 +103,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: ScaffoldingPlatform
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 3504
-        width: 3408
-        height: 337
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61ce175ea46e6504696ee7d576caa3dd
-      internalID: -1545159219
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VerticalPlank_Long
-      rect:
-        serializedVersion: 2
-        x: 3529
-        y: 0
-        width: 248
-        height: 3843
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b73eca513a4752c45a279197eb152f37
-      internalID: -1659168757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Scaffolding_Inner
-      rect:
-        serializedVersion: 2
-        x: 3910
-        y: 146
-        width: 97
-        height: 3673
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ccaf56000deee1f409cb0c242762f622
-      internalID: 952065134
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScaffoldingPlanks_3
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 3216
-        width: 3378
-        height: 101
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0aa754cc324d3c8409ad07e692e948a6
-      internalID: -2001773726
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScaffoldingPlanks_15
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 2938
-        width: 908
-        height: 86
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ccfe225a0769fa4b94c0ded722d4f81
-      internalID: 501763759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScaffoldingPlanks_17
-      rect:
-        serializedVersion: 2
-        x: 1664
-        y: 2813
-        width: 1732
-        height: 246
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5fff3711adffaa4193f83d6f6765bcc
-      internalID: 478341965
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScaffoldingPlanks_18
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 2732
-        width: 271
-        height: 76
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ddd406a48ff551e4b95dc884d05aa67c
-      internalID: 665339731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ScaffoldingPlanks_19
-      rect:
-        serializedVersion: 2
-        x: 1662
-        y: 2486
-        width: 1726
-        height: 248
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: acd6d171a65ba8e4bbec00b3c422fcac
-      internalID: 2031702747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HorizontalPlank_Clean
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2054
-        width: 3386
-        height: 246
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2019350a257266843a57314080b65781
-      internalID: 2026336007
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HorizontalPlank_Dirty
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 1646
-        width: 3375
-        height: 248
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab695168a6d337940ae616c57cc4f3d4
-      internalID: -723654273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -324,29 +114,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      VerticalPlank_Long: -1659168757
-      ScaffoldingPlanks_12: 825744420
-      ScaffoldingPlanks_11: 1130355535
-      ScaffoldingPlanks_10: 1653011913
-      ScaffoldingPlanks_15: 501763759
-      ScaffoldingPlanks_18: 665339731
-      HorizontalPlank_Clean: 2026336007
-      ScaffoldingPlanks_7: -1343143659
-      ScaffoldingPlanks_4: 1913479109
-      ScaffoldingPlanks_8: 1460717554
-      ScaffoldingPlanks_17: 478341965
-      ScaffoldingPlanks_6: -1216210187
-      ScaffoldingPlanks_9: -2083130847
-      ScaffoldingPlanks_3: -2001773726
-      ScaffoldingPlatform: -1545159219
-      ScaffoldingPlanks_14: -1382594476
-      Scaffolding_Inner: 952065134
-      HorizontalPlank_Dirty: -723654273
-      ScaffoldingPlanks_19: 2031702747
-      ScaffoldingPlanks_16: 1615211600
-      ScaffoldingPlanks_5: 508619728
-      ScaffoldingPlanks_13: 1823844474
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
