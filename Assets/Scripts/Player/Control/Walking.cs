@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -29,6 +30,8 @@ public class Walking : MonoBehaviour
     [Header("Components")]
     private Rigidbody2D rbody;
     FlipPlayer flipPlayerCS;
+    PlayerStateHandler stateHandler;
+    private bool knockedBack = false;
 
     private void Start()
     {
@@ -72,24 +75,37 @@ public class Walking : MonoBehaviour
             speedChange = decceleration * Time.deltaTime;
         }
 
-        if (!onSlope)
+        if (!knockedBack)
         {
-            currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, horizontalInput * maxMoveSpeed, speedChange);
-            currentVelocity.y = rbody.velocity.y;
+            if (!onSlope)
+            {
+                currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, horizontalInput * maxMoveSpeed, speedChange);
+                currentVelocity.y = rbody.velocity.y;
 
-            rbody.velocity = currentVelocity;
+                rbody.velocity = currentVelocity;
+            }
+            else if (onSlope && validSlope)
+            {
+                currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, -horizontalInput * maxMoveSpeed * slopeDir.x, speedChange);
+                currentVelocity.y = Mathf.MoveTowards(currentVelocity.y, -horizontalInput * maxMoveSpeed * slopeDir.y, speedChange);
+
+                rbody.velocity = currentVelocity;
+            }
+            else
+                UpdateCurrentVelocity();
         }
-        else if (onSlope && validSlope)
-        {
-            currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, -horizontalInput * maxMoveSpeed * slopeDir.x, speedChange);
-            currentVelocity.y = Mathf.MoveTowards(currentVelocity.y, -horizontalInput * maxMoveSpeed * slopeDir.y, speedChange);
-
-            rbody.velocity = currentVelocity;
-        }
-        else
-            UpdateCurrentVelocity();
-
     }
+
+    public void Knockback(float force, Vector2 hitPosition)
+    {
+        knockedBack = true;
+        Vector2 direction = (Vector2)transform.position - hitPosition;
+        direction.Normalize();
+        GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+        Invoke(nameof(knockbackfalse), 0.1f);
+    }
+
+    private void knockbackfalse() { knockedBack = false; }
 
     public Vector2 PublicMovementVector()
     {
