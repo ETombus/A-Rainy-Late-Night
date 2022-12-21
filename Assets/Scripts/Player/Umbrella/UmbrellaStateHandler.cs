@@ -12,6 +12,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject rainColliderTag;
+    [SerializeField] private ParticleSystem sparks;
     [SerializeField] private LayerMask rayIgnore;
     [SerializeField] public Slider clockSlider;
 
@@ -112,11 +113,13 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private IEnumerator RainDamage()
     {
+        sparks.Play();
         while (inRain)
         {
             player.GetComponent<Healthbar>().ReduceHealth(rainDamage);
             yield return new WaitForSeconds(rainDamageInterval);
         }
+        sparks.Stop();
     }
 
     public void Shoot()
