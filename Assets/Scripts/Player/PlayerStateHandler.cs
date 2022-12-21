@@ -146,7 +146,7 @@ public class PlayerStateHandler : MonoBehaviour
         rbody.gravityScale = currentGravity * gravityMultiplier;
     }
 
-    void DisableGrappleGravity() { grappleGravity = false; }
+    void DisableGrappleGravity() { grappleGravity = false; Debug.Log("What the hell man"); }
 
     void ManageMovingStates()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    [SerializeField] int damage = 10;
+    public int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
