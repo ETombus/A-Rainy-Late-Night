@@ -8,7 +8,7 @@ using static UmbrellaStateHandler;
 public class PlayerSpineController : MonoBehaviour
 {
     [SerializeField] EventDataReferenceAsset attack, footStep;
-    public AnimationReferenceAsset run, idle, jump, ascend, descend, landing;
+    public AnimationReferenceAsset run, idle, jump, ascend, descend, landing, damage;
     public AnimationReferenceAsset UmbrellaUp, UmbrellaDown, Slashing, Grappling, Shooting;
     private bool umbrellaAnimLooping = false;
 
@@ -111,6 +111,12 @@ public class PlayerSpineController : MonoBehaviour
         {
             nextAnimation = run;
             //Debug.Log("Is running");
+            animSpeed = 1;
+        }
+        else if(newAnimationState == MovementStates.Knockback)
+        {
+            nextAnimation = damage;
+            Debug.Log("Is running");
             animSpeed = 1;
         }
         else

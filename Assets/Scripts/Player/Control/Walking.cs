@@ -37,6 +37,7 @@ public class Walking : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         flipPlayerCS = GetComponent<FlipPlayer>();
+        stateHandler = GetComponent<PlayerStateHandler>();
     }
 
     public void UpdateCurrentVelocity()
@@ -99,13 +100,18 @@ public class Walking : MonoBehaviour
     public void Knockback(float force, Vector2 hitPosition)
     {
         knockedBack = true;
+        stateHandler.currentMoveState = PlayerStateHandler.MovementStates.Knockback;
         Vector2 direction = (Vector2)transform.position - hitPosition;
         direction.Normalize();
         GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
-        Invoke(nameof(knockbackfalse), 0.1f);
+        Invoke(nameof(Knockbackfalse), 0.1f);
     }
 
-    private void knockbackfalse() { knockedBack = false; }
+    private void Knockbackfalse() 
+    {
+        knockedBack = false;
+        stateHandler.currentMoveState = PlayerStateHandler.MovementStates.Idle;
+    }
 
     public Vector2 PublicMovementVector()
     {

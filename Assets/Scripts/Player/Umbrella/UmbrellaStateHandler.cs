@@ -71,7 +71,6 @@ public class UmbrellaStateHandler : MonoBehaviour
         umbrellaCollider = GetComponent<EdgeCollider2D>();
 
         currentState = UmbrellaState.Idle;
-        clockSlider.gameObject.SetActive(false);
     }
 
     private void Update()

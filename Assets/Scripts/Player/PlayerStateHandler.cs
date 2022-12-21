@@ -57,6 +57,7 @@ public class PlayerStateHandler : MonoBehaviour
         Idle,
         AirMoving,
         Gliding, //Not implemented yet
+        Knockback,
         Jumping,
         Grappling,
     }
