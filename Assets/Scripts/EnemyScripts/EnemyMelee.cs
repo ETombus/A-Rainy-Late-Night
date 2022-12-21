@@ -25,9 +25,9 @@ public class EnemyMelee : MonoBehaviour
     {
         if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
-            if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) > punchingDistance)
+            if (XDist() > punchingDistance)
                 handler.movement.MoveEnemy(handler.playerTrans.position);
-            else if (Mathf.Abs(handler.playerTrans.position.y - transform.position.y) <= punchingDistance)
+            else if (YDist() <= punchingDistance)
             {
                 handler.movement.StopEnemy();
                 punchingTimer += Time.deltaTime;
@@ -42,10 +42,20 @@ public class EnemyMelee : MonoBehaviour
         }
     }
 
+    private float XDist() { return Mathf.Abs(handler.playerTrans.position.x - transform.position.x); }
+    private float YDist() { return Mathf.Abs(handler.playerTrans.position.x - transform.position.x); }
+
     public void Attack()
     {
-        handler.playerHealth.ReduceHealth(10);
-        handler.player.GetComponent<Walking>().Knockback(10, transform.position);
-        handler.PlaySound(handler.thisType);
+        if (XDist() <= punchingDistance && YDist() <= punchingDistance)
+        {
+            handler.playerHealth.ReduceHealth(10);
+            handler.player.GetComponent<Walking>().Knockback(10, transform.position);
+            handler.PlaySound(handler.thisType);
+        }
+        else
+        {
+            //whiff sound effect
+        }
     }
 }

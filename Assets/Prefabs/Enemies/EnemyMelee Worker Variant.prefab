@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePoints:
   - {x: 0, y: 0}
-  - {x: 9.49, y: 0}
+  - {x: 7.65, y: 0}
   acceleration: 10
   decceleration: 0.6
   maxWalkingSpeed: 3
@@ -529,7 +529,7 @@ MonoBehaviour:
   damage: {fileID: 0}
   dead: {fileID: 0}
   working: {fileID: 0}
-  attack: {fileID: 0}
+  attack: {fileID: 11400000, guid: 08281955f86cdaf4e819283e2883e7da, type: 2}
   footStep: {fileID: 0}
   boneName: 
   aimOffset: 1
