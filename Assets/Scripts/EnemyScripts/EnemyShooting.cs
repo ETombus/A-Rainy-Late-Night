@@ -1,31 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShooting : MonoBehaviour
 {
-    //public bool isShooting;
-    [Range(1f, 10f)] [SerializeField] float minDistanceToPlayer;
-    [SerializeField] float shootCooldown = 0.5f;
+    [Header("Components")]
     [SerializeField] Transform gunTrans; //transform to shoot from
-    float shootTimer;
-    bool canShoot;
+    [SerializeField] GameObject bullet;
+
+    [Header("Scripts")]
+    private EnemyHandler handler;
     private EnemySpineController spineController;
 
-    [SerializeField] GameObject bullet;
+    [Header("Values")]
+    [Range(1f, 10f)][SerializeField] float minDistanceToPlayer;
+    public int damage = 10;
+    [Tooltip("bullets shot before reload")]
+    [SerializeField] int magSize = 5;
+    [Tooltip("bullets travel speed")]
     [SerializeField] float bulletSpeed = 50f;
-    EnemyHandler handler;
+    [Tooltip("delay between bullets")]
+    [SerializeField] float shootCooldown = 0.1f;
+    [Tooltip("read the name, you don't need a tooltip")]
+    [SerializeField] float reloadTime = 1f;
+    private bool firing = false;
 
     private void Start()
     {
         handler = GetComponent<EnemyHandler>();
         spineController = GetComponentInChildren<EnemySpineController>();
-        shootTimer = shootCooldown;
     }
 
     private void Update()
     {
-        if (handler.currentMode == EnemyHandler.Mode.Aggression)
+        if (handler.currentMode == EnemyHandler.Mode.Aggression && !firing)
         {
             Vector2 direction = transform.position - handler.playerTrans.position;
             float targetPos = handler.playerTrans.position.x + direction.normalized.x * minDistanceToPlayer;
@@ -35,23 +44,31 @@ public class EnemyShooting : MonoBehaviour
             else
                 handler.movement.StopEnemy();
 
-            if (shootTimer > 0)
-                shootTimer -= Time.deltaTime;
-
-            else if (shootTimer <= 0)
-            {
-                spineController.PlayAttackAnimation();
-                handler.PlaySound(handler.thisType);
-                shootTimer = shootCooldown;
-            }
+            StartCoroutine(Shoot());
         }
     }
 
-    public void Shoot()
+    private IEnumerator Shoot()
     {
-        GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
-        bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
-        Destroy(bulletInstance, 2f);
+        firing = true;
+
+        for (int i = magSize; i > 0; i--)
+        {
+            handler.PlaySound(handler.thisType);
+            spineController.PlayAttackAnimation();
+
+            GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
+            bulletInstance.GetComponent<BulletScript>().damage = damage;
+            bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
+            Destroy(bulletInstance, 2f);
+
+            yield return new WaitForSeconds(shootCooldown);
+        }
+
+        //reload
+        yield return new WaitForSeconds(reloadTime);
+
+        firing = false;
     }
 
     private Vector2 GetShootVector()
