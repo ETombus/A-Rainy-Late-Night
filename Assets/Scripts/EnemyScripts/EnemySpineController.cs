@@ -227,12 +227,9 @@ public class EnemySpineController : MonoBehaviour
 
     void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
     {
-        if (e.Data == (attack.EventData))
+        if (e.Data == attack.EventData)
         {
-            if (handler.thisType == Type.Melee)
-                handler.melee.Attack();
-            else
-                handler.shooting.Shoot();
+             handler.melee.Attack();
         }
         /*else if(e.Data == (footStep.EventData))
             play Footstep sound*/
