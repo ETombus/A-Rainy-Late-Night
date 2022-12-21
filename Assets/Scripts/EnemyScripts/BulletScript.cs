@@ -12,7 +12,7 @@ public class BulletScript : MonoBehaviour
         {
             try
             {
-                collision.gameObject.GetComponent<Healthbar>().ReduceHealth(damage);
+                collision.gameObject.GetComponent<Healthbar>().ReduceHealth(damage, false);
             }
             catch
             {

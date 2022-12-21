@@ -141,6 +141,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             float clockValue = umbrellaHandler.clockSlider.value;
             umbrellaHandler.StopAllCoroutines();
+            umbrellaHandler.sparks.Stop();
             umbrellaHandler.StartCoroutine(umbrellaHandler.Timer(GetComponentInParent<SlowMotionHandler>().cooldown.Evaluate(clockValue), TimerFillAmount.current));
             umbrellaHandler.clockSlider.value = clockValue;
             rifleScript.aimLaser.enabled = false;
