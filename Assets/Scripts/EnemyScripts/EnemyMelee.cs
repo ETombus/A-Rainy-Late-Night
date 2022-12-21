@@ -35,6 +35,7 @@ public class EnemyMelee : MonoBehaviour
                 if (punchingTimer >= punchingCooldown)
                 {
                     handler.playerHealth.ReduceHealth(10);
+                    handler.player.GetComponent<Walking>().Knockback(10, transform.position);
                     punchingTimer = 0;
                     handler.PlaySound(handler.thisType);
                     enemySpine.PlayAttackAnimation();

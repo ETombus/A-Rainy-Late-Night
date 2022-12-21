@@ -8,6 +8,7 @@ public class SpineEventHandler : MonoBehaviour
 
     public void Footstep()
     {
+        Debug.Log("step");
         footstep.Play();
     }
 }
