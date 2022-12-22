@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -18,14 +19,28 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] GameObject fadeIn;
     [SerializeField] GameObject introMarker;
 
-    private void Start()
+
+    PlayerInputs playerControls;
+    InputAction cancel;
+
+    private void Awake()
     {
+        playerControls = new PlayerInputs();
         if (PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
         {
             fadeIn.SetActive(false);
             introMarker.SetActive(false);
         }
     }
+    private void OnEnable()
+    {
+        cancel = playerControls.UI.Cancel;
+        cancel.Enable();
+
+        cancel.performed += ButtonBack;
+    }
+
+    private void OnDisable() { cancel.Disable(); }
 
     public void ButtonStart()
     {
@@ -81,6 +96,11 @@ public class MenuHandler : MonoBehaviour
         panels[index].SetActive(true);
     }
 
+    public void ButtonBack(InputAction.CallbackContext context)
+    {
+        SetActivePanel(0);
+        panelIndex = 0;
+    }
     public void ButtonBack()
     {
         SetActivePanel(0);
