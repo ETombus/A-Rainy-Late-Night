@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject player;
 
     CheckpointManager checkpoints;
+
+    [SerializeField] Toggle skipDeathToggle;
 
     private void Awake()
     {
@@ -39,6 +42,9 @@ public class PauseManager : MonoBehaviour
 
         Time.timeScale = 0;
         pausePanel.SetActive(true);
+
+        if (PlayerPrefs.GetInt("SkipDeathScene") == 0) { skipDeathToggle.isOn = false; }
+        else { skipDeathToggle.isOn = true; }
     }
 
     public void UnpauseGame()

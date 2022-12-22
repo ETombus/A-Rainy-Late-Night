@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class DisappearingWall : MonoBehaviour
 {
-    SpriteRenderer sprite;
+    SpriteRenderer mainSprite;
+    SpriteRenderer[] childSprites;
+
+    [SerializeField] bool removeChildren = false;
 
     [SerializeField] bool bufferPeriod;
     [SerializeField] float buffertime = 0.2f;
     [SerializeField] float buffertimer;
 
-    private void Start() { sprite = GetComponent<SpriteRenderer>(); }
+    private void Start()
+    {
+        mainSprite = GetComponent<SpriteRenderer>();
+
+        if (removeChildren)
+            childSprites = GetComponentsInChildren<SpriteRenderer>();
+
+    }
 
     private void Update()
     {
@@ -25,7 +35,14 @@ public class DisappearingWall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            sprite.enabled = false;
+            mainSprite.enabled = false;
+
+            if (removeChildren)
+                for (int i = 0; i < childSprites.Length; i++)
+                {
+                    childSprites[i].enabled = false;
+                }
+
             bufferPeriod = false;
             buffertimer = 0;
         }
@@ -39,7 +56,14 @@ public class DisappearingWall : MonoBehaviour
 
     void HideWall()
     {
-        sprite.enabled = true;
+        mainSprite.enabled = true;
+
+        if (removeChildren)
+            for (int i = 0; i < childSprites.Length; i++)
+            {
+                childSprites[i].enabled = true;
+            }
+
         bufferPeriod = false;
         buffertimer = 0;
     }

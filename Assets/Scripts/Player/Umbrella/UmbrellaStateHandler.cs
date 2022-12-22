@@ -36,6 +36,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     //0 - slash, 1 - grapple, 2 - shoot
 
     [Header("Bools")]
+    public bool roof;
     public bool timerOn = false;
     public bool inRain = false;
     public bool umbrellaUp = false;
@@ -80,6 +81,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
         if (rayHit == null || rayHit.CompareTag(rainColliderTag.tag))
         {
+            roof = false;
             if (currentState == UmbrellaState.Idle)
             {
                 umbrellaCollider.enabled = true;
@@ -97,9 +99,12 @@ public class UmbrellaStateHandler : MonoBehaviour
         }
         else if (currentState == UmbrellaState.Idle)
         {
+            roof = true;
             umbrellaCollider.enabled = false;
             umbrellaUp = slowFalling ? true : false;
         }
+        else
+            roof = true;
 
         if (stateHandler.inputX > 0)
         {
