@@ -12,6 +12,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] GameObject settingsPanel;
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject creditsPanel;
+    [SerializeField] GameObject preGamePanel;
 
     [Header("Intro")]
     [SerializeField] GameObject fadeIn;
@@ -28,8 +29,7 @@ public class MenuHandler : MonoBehaviour
 
     public void ButtonStart()
     {
-        SceneManager.LoadScene(1);
-        PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
+        preGamePanel.SetActive(true);
     }
 
     public void ButtonSettings()
@@ -85,5 +85,21 @@ public class MenuHandler : MonoBehaviour
     {
         SetActivePanel(0);
         panelIndex = 0;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+        PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
+    }
+
+    public void ResetCheckpoints()
+    {
+        PlayerPrefs.DeleteKey("CheckpointReached");
+    }
+
+    public void PregameBack()
+    {
+        preGamePanel.SetActive(false);
     }
 }
