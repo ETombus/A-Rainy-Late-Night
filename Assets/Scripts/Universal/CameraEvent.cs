@@ -124,4 +124,13 @@ public class CameraEvent : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        if (cameraPos != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(cameraPos.position, new Vector3(newCamSize * 2, newCamSize * 2, 1));
+        }
+    }
 }
