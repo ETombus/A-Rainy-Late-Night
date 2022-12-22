@@ -61,7 +61,7 @@ public class RifleScript : MonoBehaviour
 
             aimLaser.SetPosition(0, aimStart);
 
-            if (aimRay.collider != null )
+            if (aimRay.collider != null)
             {
                 aimLaser.SetPosition(1, aimRay.point);
             }
@@ -84,6 +84,7 @@ public class RifleScript : MonoBehaviour
         if (ammoCount > 0)
         {
             umbrellaHandler.StopAllCoroutines();
+            umbrellaHandler.sparks.Stop();
             StartCoroutine(umbrellaHandler.Timer(reloadTime, TimerFillAmount.empty));
             aimLaser.enabled = false;
             slowMo.NormalSpeed();
@@ -114,9 +115,9 @@ public class RifleScript : MonoBehaviour
             StartCoroutine(LineFade());
         }
         //else
-            //DO SOMETHING
-            //GUN JAM?
-            //SMOKE?
+        //DO SOMETHING
+        //GUN JAM?
+        //SMOKE?
     }
 
     private IEnumerator LineFade()

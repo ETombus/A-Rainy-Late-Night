@@ -12,8 +12,8 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject rainColliderTag;
-    [SerializeField] private ParticleSystem sparks;
     [SerializeField] private LayerMask rayIgnore;
+    [SerializeField] public ParticleSystem sparks;
     [SerializeField] public Slider clockSlider;
 
     private EdgeCollider2D umbrellaCollider;
@@ -71,6 +71,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         umbrellaCollider = GetComponent<EdgeCollider2D>();
 
         currentState = UmbrellaState.Idle;
+        clockSlider.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -115,7 +116,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         sparks.Play();
         while (inRain)
         {
-            player.GetComponent<Healthbar>().ReduceHealth(rainDamage);
+            player.GetComponent<Healthbar>().ReduceHealth(rainDamage, true);
             yield return new WaitForSeconds(rainDamageInterval);
         }
         sparks.Stop();

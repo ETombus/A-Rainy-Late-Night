@@ -15,6 +15,9 @@ public class Healthbar : HealthHandler
     [SerializeField] PlayerSoundHandler soundHandler;
     [SerializeField] AudioClip[] clips;
 
+    [Header("Components")]
+    [SerializeField] ParticleSystem damageSpark;
+
     private void Start()
     {
         soundHandler = GetComponent<PlayerSoundHandler>();
@@ -24,8 +27,11 @@ public class Healthbar : HealthHandler
         health = maxHealth;
     }
 
-    public void ReduceHealth(float reduceValue)
+    public void ReduceHealth(float reduceValue, bool rainDamage)
     {
+        if(!rainDamage)
+            damageSpark.Play();
+
         if (health - reduceValue > 0)
         {
             health -= reduceValue;

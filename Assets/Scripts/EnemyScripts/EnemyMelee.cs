@@ -49,7 +49,7 @@ public class EnemyMelee : MonoBehaviour
     {
         if (XDist() <= punchingDistance && YDist() <= punchingDistance)
         {
-            handler.playerHealth.ReduceHealth(10);
+            handler.playerHealth.ReduceHealth(10, false);
             handler.player.GetComponent<Walking>().Knockback(10, transform.position);
             handler.PlaySound(handler.thisType);
         }
