@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
-    public Checkpoint[] checkPoints;
+    public Checkpoint[] checkPoints; //must currently be dragged in manually!
 
     [SerializeField] int furthestCheckpointReached;
 
