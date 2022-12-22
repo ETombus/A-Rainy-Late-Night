@@ -14,6 +14,8 @@ public class InteractScript : MonoBehaviour
     [Header("Components")]
     [Tooltip("If true object will be interactable through input\nif false will be interactable through damage")]
     [SerializeField] private bool isInteractable;
+    [Tooltip("Only used with PlaySound() Method")]
+    [SerializeField] AudioClip[] clip;
     private CircleCollider2D interactCollider;
     private bool interactTrigger;
     public Collider2D colliderTournOff;
@@ -85,7 +87,15 @@ public class InteractScript : MonoBehaviour
     public void DisableScript() { enabled = false; }
     public void DestroyObject() { Destroy(gameObject); }
     public void ParticleEffect(ParticleSystem particle) { particle.Play(); }
-    public void PlaySound(AudioClip[] clip)
+
+    [Tooltip("Requires Audioclip component")]
+    public void PlaySound(AudioSource source)
+    {
+        source.pitch = Random.Range(0.8f, 1.2f);
+        source.PlayOneShot(clip[Random.Range(0, clip.Length - 1)]);
+    }
+    [Tooltip("Requires Audioclip component")]
+    public void PlaySound()
     {
         AudioSource source = GetComponent<AudioSource>();
         source.pitch = Random.Range(0.8f, 1.2f);
