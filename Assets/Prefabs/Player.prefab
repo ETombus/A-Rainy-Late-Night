@@ -9781,11 +9781,14 @@ MonoBehaviour:
     m_Bits: 328
   aimLaser: {fileID: 2097947645}
   umbrellaHandler: {fileID: 850067010036326724}
+  bulletTrail: {fileID: 0}
   rifleSounds:
   - {fileID: 8300000, guid: d7e9e4da3513708449a4b6e3e6f11f42, type: 3}
   - {fileID: 8300000, guid: 799cf7671331fc4499f238787403cee9, type: 3}
   - {fileID: 8300000, guid: d78b7aa37cedebf47b5aae9636e74948, type: 3}
-  bulletTrail: {fileID: 0}
+  reloadSounds:
+  - {fileID: 8300000, guid: 92f8265d34ea14a408e0df457ea598e7, type: 3}
+  - {fileID: 8300000, guid: e126288ea66847246871498e91b29f9a, type: 3}
   aimLaserLength: 20
   shotMaxDistance: 100
   rifleDamage: 75

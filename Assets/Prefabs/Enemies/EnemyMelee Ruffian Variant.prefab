@@ -61,6 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}
+--- !u!1 &2383867990410679535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2383867991641383354, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}
+  m_PrefabInstance: {fileID: 1995388245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6218916004178511321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,7 +75,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 509095876351793058, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Name
-      value: EnemyMelee Ruffian Variant (1)
+      value: EnemyMelee Ruffian Variant
       objectReference: {fileID: 0}
     - target: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_RootOrder
@@ -172,6 +177,14 @@ PrefabInstance:
       propertyPath: footStep
       value: 
       objectReference: {fileID: 11400000, guid: 29cf24ee46ef4f94ea86da86374a016d, type: 2}
+    - target: {fileID: 8871184403424991047, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 6544823363262003897}
+    - target: {fileID: 8871184403424991047, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: hookPoint
+      value: 
+      objectReference: {fileID: 2383867990410679535}
     - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: maxWalkingSpeed
       value: 1.2
@@ -205,5 +218,10 @@ MonoBehaviour:
 --- !u!4 &5863311955445273214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+  m_PrefabInstance: {fileID: 6218916004178511321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6544823363262003897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 909134506515365728, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
   m_PrefabInstance: {fileID: 6218916004178511321}
   m_PrefabAsset: {fileID: 0}

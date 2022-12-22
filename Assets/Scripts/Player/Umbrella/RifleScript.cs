@@ -10,13 +10,15 @@ public class RifleScript : MonoBehaviour
     [SerializeField] LayerMask rayIgnore;
     [SerializeField] public LineRenderer aimLaser;
     [SerializeField] UmbrellaStateHandler umbrellaHandler;
-    [SerializeField] AudioClip[] rifleSounds;
     [HideInInspector] public LineRenderer bulletTrail;
 
     private SlowMotionHandler slowMo;
     private PlayerSoundHandler soundHandler;
     private RaycastHit2D shot;
 
+    [Header("Sounds")]
+    [SerializeField] AudioClip[] rifleSounds;
+    [SerializeField] AudioClip[] reloadSounds;
 
     [Header("Values")]
     [SerializeField] float aimLaserLength;
@@ -38,8 +40,6 @@ public class RifleScript : MonoBehaviour
         slowMo = GetComponentInParent<SlowMotionHandler>();
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
         bulletTrail.enabled = false;
-
-        Debug.Log(rifleSounds);
     }
 
     public IEnumerator Aim()
@@ -86,13 +86,15 @@ public class RifleScript : MonoBehaviour
     {
         if (ammoCount > 0)
         {
+            soundHandler.PlaySound(rifleSounds[Random.Range(0, rifleSounds.Length - 1)]);
+            soundHandler.QueueSound(reloadSounds[Random.Range(0, reloadSounds.Length - 1)]);
+
             umbrellaHandler.StopAllCoroutines();
             umbrellaHandler.sparks.Stop();
 
             StartCoroutine(umbrellaHandler.Timer(reloadTime, TimerFillAmount.empty));
             slowMo.NormalSpeed();
 
-            soundHandler.PlaySound(rifleSounds[Random.Range(0, rifleSounds.Length - 1)]);
             aimLaser.enabled = false;
             ammoCount--;
 
