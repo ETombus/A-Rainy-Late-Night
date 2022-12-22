@@ -9781,6 +9781,10 @@ MonoBehaviour:
     m_Bits: 328
   aimLaser: {fileID: 2097947645}
   umbrellaHandler: {fileID: 850067010036326724}
+  rifleSounds:
+  - {fileID: 8300000, guid: 7d77e7c1c4b631a479bdea3db3e6a89d, type: 3}
+  - {fileID: 8300000, guid: bd958736000d1ee41a44841c27d62450, type: 3}
+  - {fileID: 8300000, guid: b4d0e3a58336a6d409e2e9086a7af93a, type: 3}
   bulletTrail: {fileID: 0}
   aimLaserLength: 20
   shotMaxDistance: 100
@@ -15702,6 +15706,7 @@ GameObject:
   - component: {fileID: 150286536}
   - component: {fileID: 150286520}
   - component: {fileID: 4225370552404129275}
+  - component: {fileID: 150286541}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -16398,7 +16403,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a027d5dc65e869468d9d5b104b5bd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstep: {fileID: 651696777}
+  step: {fileID: 0}
+  footsplash: {fileID: 0}
+  soundHandler: {fileID: 0}
 --- !u!114 &4225370552404129275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16414,6 +16421,14 @@ MonoBehaviour:
   slice: 0
   shoot: 0
   grapple: 0
+--- !u!81 &150286541
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450338445620509171}
+  m_Enabled: 1
 --- !u!1 &2633669397770518439
 GameObject:
   m_ObjectHideFlags: 0
