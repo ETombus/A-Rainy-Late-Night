@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -12,8 +10,11 @@ public class RifleScript : MonoBehaviour
     [SerializeField] LayerMask rayIgnore;
     [SerializeField] public LineRenderer aimLaser;
     [SerializeField] UmbrellaStateHandler umbrellaHandler;
+    [SerializeField] AudioClip[] rifleSounds;
     [HideInInspector] public LineRenderer bulletTrail;
+
     private SlowMotionHandler slowMo;
+    private PlayerSoundHandler soundHandler;
     private RaycastHit2D shot;
 
 
@@ -35,8 +36,10 @@ public class RifleScript : MonoBehaviour
     {
         bulletTrail = GetComponent<LineRenderer>();
         slowMo = GetComponentInParent<SlowMotionHandler>();
+        soundHandler = GetComponentInParent<PlayerSoundHandler>();
         bulletTrail.enabled = false;
-        maxTimeSlowdown /= 2;
+
+        Debug.Log(rifleSounds);
     }
 
     public IEnumerator Aim()
@@ -85,9 +88,12 @@ public class RifleScript : MonoBehaviour
         {
             umbrellaHandler.StopAllCoroutines();
             umbrellaHandler.sparks.Stop();
+
             StartCoroutine(umbrellaHandler.Timer(reloadTime, TimerFillAmount.empty));
-            aimLaser.enabled = false;
             slowMo.NormalSpeed();
+
+            soundHandler.PlaySound(rifleSounds[Random.Range(0, rifleSounds.Length - 1)]);
+            aimLaser.enabled = false;
             ammoCount--;
 
             mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
