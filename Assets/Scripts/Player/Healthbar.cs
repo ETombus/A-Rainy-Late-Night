@@ -18,9 +18,12 @@ public class Healthbar : HealthHandler
     [Header("Components")]
     [SerializeField] ParticleSystem damageSpark;
 
+    GameOverManager gameOver;
+
     private void Start()
     {
         soundHandler = GetComponent<PlayerSoundHandler>();
+        gameOver = GameObject.Find("GameManager").GetComponent<GameOverManager>();
 
         if (healthBar != null)
             healthBar.maxValue = maxHealth;
@@ -53,7 +56,7 @@ public class Healthbar : HealthHandler
 
     void PlayerDeath()
     {
-        var currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentScene);
+        gameOver.PlayerDeath();
+        health = maxHealth;
     }
 }
