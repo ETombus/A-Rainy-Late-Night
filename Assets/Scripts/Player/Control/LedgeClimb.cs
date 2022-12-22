@@ -38,8 +38,11 @@ public class LedgeClimb : MonoBehaviour
 
     private void Update()
     {
-        CheckDetection();
-        CheckLedgeClimb();
+        if (!ledgeDetected)
+        {
+            CheckDetection();
+            CheckLedgeClimb();
+        }
 
         if (isClimbLedge)
             ClimbLedge();
@@ -66,6 +69,7 @@ public class LedgeClimb : MonoBehaviour
         stateHandeler.UpdateAcceleration();
 
         isClimbLedge = false;
+        ledgeDetected = false;
     }
 
     void CheckLedgeClimb()
@@ -97,7 +101,7 @@ public class LedgeClimb : MonoBehaviour
         {
             wallDetected = false;
             endPos = FindEndPos();
-            if (endPos != Vector2.zero) //In cases it does not hit a ledge
+            if ((endPos - Vector2.zero).sqrMagnitude > 1f) //In cases it does not hit a ledge
                 ledgeDetected = true;
             else
                 ledgeDetected = false;
