@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class SpineEventHandler : MonoBehaviour
 {
-    [SerializeField] ParticleSystem footstep;
+    [SerializeField] AudioClip step;
+    [SerializeField] ParticleSystem footsplash;
+
+
+    [SerializeField] PlayerSoundHandler soundHandler;
 
     public void Footstep()
     {
-        footstep.Play();
+        footsplash.Play();
+        soundHandler.PlaySound(step);
     }
 }
