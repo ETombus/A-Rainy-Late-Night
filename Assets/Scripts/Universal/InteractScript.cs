@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Collider2D))]
 
@@ -83,8 +84,13 @@ public class InteractScript : MonoBehaviour
     public void DebugFunction() { Debug.Log("Interact"); }
     public void DisableScript() { enabled = false; }
     public void DestroyObject() { Destroy(gameObject); }
-    public void PlaySound(AudioSource sound) { sound.Play(); }
     public void ParticleEffect(ParticleSystem particle) { particle.Play(); }
+    public void PlaySound(AudioClip[] clip)
+    {
+        AudioSource source = GetComponent<AudioSource>();
+        source.pitch = Random.Range(0.8f, 1.2f);
+        source.PlayOneShot(clip[Random.Range(0, clip.Length - 1)]);
+    }
     public void ToggleCollider()
     {
         if (colliderTournOff.enabled)
