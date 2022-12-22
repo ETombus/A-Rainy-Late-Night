@@ -762,6 +762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBase
       objectReference: {fileID: 0}
+    - target: {fileID: 8938637240927438855, guid: 5f3c0c4c2751d974b8c14ac5e13b1586, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8938637241865190288, guid: 5f3c0c4c2751d974b8c14ac5e13b1586, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -9314,6 +9318,14 @@ PrefabInstance:
       propertyPath: vCam
       value: 
       objectReference: {fileID: 54018868}
+    - target: {fileID: 1062037594378468482, guid: eb73fc19f0db72c4e8754ff215ca525f, type: 3}
+      propertyPath: thisEventType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062037594378468482, guid: eb73fc19f0db72c4e8754ff215ca525f, type: 3}
+      propertyPath: thisNewCamSize
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1062037594378468540, guid: eb73fc19f0db72c4e8754ff215ca525f, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -9540,6 +9552,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   soundHandler: {fileID: 0}
   clips: []
+  damageSpark: {fileID: 0}
 --- !u!114 &1450338445996698611
 MonoBehaviour:
   m_ObjectHideFlags: 0
