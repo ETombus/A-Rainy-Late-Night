@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 260
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_1
+      name: Crane_Hoist
       rect:
         serializedVersion: 2
         x: 576
@@ -126,7 +126,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_2
+      name: Spotlight_On
       rect:
         serializedVersion: 2
         x: 1864
@@ -147,11 +147,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_3
+      name: Spotlight_Off
       rect:
         serializedVersion: 2
         x: 2330
-        y: 2529
+        y: 2532
         width: 286
         height: 264
       alignment: 0
@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_4
+      name: RoofSpotlight_On
       rect:
         serializedVersion: 2
         x: 2964
@@ -210,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane_RopeThinn
+      name: Rope_Crane
       rect:
         serializedVersion: 2
         x: 178
@@ -231,7 +231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_7
+      name: Rope_Hook
       rect:
         serializedVersion: 2
         x: 135
@@ -252,7 +252,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_8
+      name: Rope_Corner
       rect:
         serializedVersion: 2
         x: 358
@@ -294,7 +294,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IndustrialLamp1
+      name: Spotlight_Bot1
       rect:
         serializedVersion: 2
         x: 1613
@@ -315,7 +315,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IndustrialLamp2
+      name: Spotlight_Bot2
       rect:
         serializedVersion: 2
         x: 2302
@@ -336,7 +336,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_12
+      name: RoofSpotlight_Off
       rect:
         serializedVersion: 2
         x: 2994
@@ -399,7 +399,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_24
+      name: Crane_Jib
       rect:
         serializedVersion: 2
         x: 350
@@ -420,10 +420,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LampStick
+      name: Spotlight_Neck
       rect:
         serializedVersion: 2
-        x: 1731
+        x: 1728
         y: 2355
         width: 54
         height: 485
@@ -441,7 +441,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LampStickExtender
+      name: Spotlight_NeckExtender
       rect:
         serializedVersion: 2
         x: 1639
@@ -472,32 +472,32 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      RoofSpotlight_On: 577502139
       Crane Cockpit crane arms and industry lamps_9: -187824319
-      Crane Cockpit crane arms and industry lamps_1: 864223487
-      Crane Cockpit crane arms and industry lamps_3: -836020429
+      Rope_Hook: 621250927
+      Spotlight_Off: -836020429
+      Spotlight_Neck: -787004254
       Crane Cockpit crane arms and industry lamps_16: -316310653
-      Crane Cockpit crane arms and industry lamps_4: 577502139
-      Crane_Cab_NoRope: 680667896
-      LampStick: 286155439
       Crane_Cab: 329358595
+      Crane_Cab_NoRope: 680667896
+      Spotlight_On: -328415903
       Crane Cockpit crane arms and industry lamps_20: 44472046
-      Crane_RopeThinn: -1462776220
       Crane Cockpit crane arms and industry lamps_21: 1747449005
+      RoofSpotlight_Off: -311003407
+      Spotlight_NeckExtender: -316549223
       Crane Cockpit crane arms and industry lamps_15: 1299683033
       Crane Cockpit crane arms and industry lamps_17: 64051324
-      LampStickExtender: -316549223
       Crane_mast: -1277348673
-      Crane Cockpit crane arms and industry lamps_12: -311003407
-      Crane Cockpit crane arms and industry lamps_2: -328415903
-      IndustrialLamp1: -2001848961
-      IndustrialLamp2: -1122838999
+      Crane_Hoist: 864223487
       Crane Cockpit crane arms and industry lamps_13: 107885172
-      Crane Cockpit crane arms and industry lamps_24: -1354963328
+      Spotlight_Bot2: -1122838999
       Crane Cockpit crane arms and industry lamps_18: 1285185557
+      Spotlight_Bot1: -2001848961
+      Rope_Crane: -1462776220
       Crane Cockpit crane arms and industry lamps_14: -1597601551
       Crane Cockpit crane arms and industry lamps_19: -417707955
-      Crane Cockpit crane arms and industry lamps_7: 621250927
-      Crane Cockpit crane arms and industry lamps_8: 1764590336
+      Rope_Corner: 1764590336
+      Crane_Jib: -1354963328
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
