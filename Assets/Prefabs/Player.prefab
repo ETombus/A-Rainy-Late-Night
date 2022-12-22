@@ -15648,6 +15648,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff5f39d60646fbc4b94fae02de855c3b, type: 3}
   - {fileID: 8300000, guid: c5d74bbfcfaa7e24c92cef6cc5cef551, type: 3}
   - {fileID: 8300000, guid: 91f168f2f8e5d2d47b4eff25a6b65ff4, type: 3}
+  roof: 0
   timerOn: 0
   inRain: 0
   umbrellaUp: 0
@@ -15706,7 +15707,6 @@ GameObject:
   - component: {fileID: 150286536}
   - component: {fileID: 150286520}
   - component: {fileID: 4225370552404129275}
-  - component: {fileID: 150286541}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -16179,6 +16179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a122217a22a35439e9a4d1a58f96cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audSource: {fileID: 0}
 --- !u!114 &1127421039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16403,9 +16404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a027d5dc65e869468d9d5b104b5bd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  step: {fileID: 0}
-  footsplash: {fileID: 0}
-  soundHandler: {fileID: 0}
+  step:
+  - {fileID: 8300000, guid: a79307746c71aa44f8d1f162f114b4a5, type: 3}
+  - {fileID: 8300000, guid: 4c518d3305cd10c47a2cfac38150817d, type: 3}
+  footsplash: {fileID: 651696777}
+  soundHandler: {fileID: 150286547}
 --- !u!114 &4225370552404129275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16421,14 +16424,6 @@ MonoBehaviour:
   slice: 0
   shoot: 0
   grapple: 0
---- !u!81 &150286541
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450338445620509171}
-  m_Enabled: 1
 --- !u!1 &2633669397770518439
 GameObject:
   m_ObjectHideFlags: 0
