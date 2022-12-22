@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 470
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -210,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Crane Cockpit crane arms and industry lamps_6
+      name: Crane_RopeThinn
       rect:
         serializedVersion: 2
         x: 178
@@ -319,7 +319,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2302
-        y: 1829
+        y: 1833
         width: 556
         height: 493
       alignment: 0
@@ -402,9 +402,9 @@ TextureImporter:
       name: Crane Cockpit crane arms and industry lamps_24
       rect:
         serializedVersion: 2
-        x: 305
+        x: 350
         y: 131
-        width: 3293
+        width: 3249
         height: 294
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -415,6 +415,48 @@ TextureImporter:
       bones: []
       spriteID: 3bdb50ffdf7b0b74f99097319de0534d
       internalID: -1354963328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LampStick
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 2355
+        width: 54
+        height: 485
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c0bf95ea0c7754d91b6d1bcdeae086
+      internalID: -787004254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LampStickExtender
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 2544
+        width: 32
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbbfd56bdf638eb4ebc410a31b15902c
+      internalID: -316549223
       vertices: []
       indices: 
       edges: []
@@ -436,21 +478,22 @@ TextureImporter:
       Crane Cockpit crane arms and industry lamps_16: -316310653
       Crane Cockpit crane arms and industry lamps_4: 577502139
       Crane_Cab_NoRope: 680667896
+      LampStick: 286155439
       Crane_Cab: 329358595
       Crane Cockpit crane arms and industry lamps_20: 44472046
+      Crane_RopeThinn: -1462776220
       Crane Cockpit crane arms and industry lamps_21: 1747449005
       Crane Cockpit crane arms and industry lamps_15: 1299683033
       Crane Cockpit crane arms and industry lamps_17: 64051324
+      LampStickExtender: -316549223
       Crane_mast: -1277348673
       Crane Cockpit crane arms and industry lamps_12: -311003407
       Crane Cockpit crane arms and industry lamps_2: -328415903
       IndustrialLamp1: -2001848961
       IndustrialLamp2: -1122838999
       Crane Cockpit crane arms and industry lamps_13: 107885172
-      Crane Cockpit crane arms and industry lamps_6: -1462776220
       Crane Cockpit crane arms and industry lamps_24: -1354963328
       Crane Cockpit crane arms and industry lamps_18: 1285185557
-      Crane Cockpit crane arms and industry lamps_0: 286155439
       Crane Cockpit crane arms and industry lamps_14: -1597601551
       Crane Cockpit crane arms and industry lamps_19: -417707955
       Crane Cockpit crane arms and industry lamps_7: 621250927
