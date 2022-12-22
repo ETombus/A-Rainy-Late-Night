@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "X4l1K8GqkYk",
+	"hash": "yzjmcehrUAg",
 	"spine": "4.1.17",
 	"x": -485.76,
 	"y": 8.45,
@@ -107,6 +107,16 @@
 				}
 			},
 			"Head": {
+				"DeadHead": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 12.61, -256.42, -100.13, 112.75, 271.9, 226.37, 384.64, -142.8 ],
+					"hull": 4,
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 386,
+					"height": 389
+				},
 				"Head": {
 					"type": "mesh",
 					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
@@ -228,8 +238,11 @@
 	}
 ],
 "events": {
+	"Damage": {},
+	"Death": {},
 	"Driving": {},
 	"Driving fast": {},
+	"Ground Hit": {},
 	"Hammer strike": {},
 	"Mechanical sounds": {},
 	"Swoosh": {}
@@ -325,6 +338,382 @@
 		],
 		"events": [
 			{ "name": "Driving fast" }
+		]
+	},
+	"Damage": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Core": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Vest": {
+				"rotate": [
+					{},
+					{ "time": 0.0667, "value": 15.18 },
+					{ "time": 0.2667, "value": -0.66 },
+					{ "time": 0.4333, "value": -8.15 },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Upper arm R": {
+				"rotate": [
+					{ "value": 2.71, "curve": "stepped" },
+					{ "time": 1, "value": 2.71 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Forearm R": {
+				"rotate": [
+					{ "value": 12.58, "curve": "stepped" },
+					{ "time": 1, "value": 12.58 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Palm R": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Upper arm L": {
+				"rotate": [
+					{ "value": -3.68, "curve": "stepped" },
+					{ "time": 1, "value": -3.68 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Forearm L": {
+				"rotate": [
+					{ "value": -7.07, "curve": "stepped" },
+					{ "time": 1, "value": -7.07 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Palm L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Neck": {
+				"rotate": [
+					{},
+					{ "time": 0.0667, "value": -15.62 },
+					{ "time": 0.2667, "value": 26.82 },
+					{ "time": 0.4333, "value": 21.46 },
+					{ "time": 0.6333, "value": -4.21 },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Head": {
+				"rotate": [
+					{},
+					{ "time": 0.2667, "value": 13.16 },
+					{ "time": 0.6333, "value": -10.81 },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Hat": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Calf L": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Wrist R IK": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 1 }
+				]
+			},
+			"Wrist L IK": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 1 }
+				],
+				"translate": [
+					{ "x": 8.29, "y": 12.9 },
+					{ "time": 0.0667, "x": -35.2, "y": 59.84 },
+					{ "time": 0.1667, "x": -9.9, "y": 27.23 },
+					{ "time": 1, "x": 8.29, "y": 12.9 }
+				]
+			}
+		},
+		"events": [
+			{ "name": "Damage" }
+		]
+	},
+	"Death": {
+		"slots": {
+			"Head": {
+				"attachment": [
+					{ "name": "Head Red" },
+					{ "time": 1.0333, "name": "DeadHead" }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Core": {
+				"rotate": [
+					{},
+					{ "time": 0.2667, "value": -9.63 },
+					{ "time": 0.5 },
+					{ "time": 0.7333, "value": 38.66 },
+					{ "time": 0.8667, "value": 78.57 },
+					{ "time": 1, "value": 110.16 },
+					{ "time": 1.1, "value": 94.68 },
+					{ "time": 1.1667, "value": 107.29 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.1667, "x": 228.83 },
+					{ "time": 0.2667, "x": 404.8, "y": -29.33 },
+					{ "time": 0.5 },
+					{ "time": 0.5333, "x": -114.37, "y": -10.75 },
+					{ "time": 0.5667, "x": -228.74, "y": -10.28 },
+					{ "time": 0.6, "x": -335.47, "y": -20.49 },
+					{ "time": 0.6667, "x": -554.03, "y": -58 },
+					{ "time": 0.7, "x": -619.72, "y": -91.07 },
+					{ "time": 0.7333, "x": -743.43, "y": -124.15 },
+					{ "time": 0.8667, "x": -486.78, "y": -525.85 },
+					{ "time": 1, "x": -727.57, "y": -889.4 },
+					{ "time": 1.1, "x": -733.76, "y": -716.84 },
+					{ "time": 1.1667, "x": -746.14, "y": -861.23 }
+				]
+			},
+			"Vest": {
+				"rotate": [
+					{},
+					{ "time": 0.0667, "value": 17.74 },
+					{ "time": 0.2667, "value": 7.46 },
+					{ "time": 0.3667, "value": -20.54 },
+					{ "time": 0.5, "value": -25.14 },
+					{ "time": 0.6, "value": 22.1 },
+					{ "time": 0.7667, "value": -1.71 },
+					{ "time": 0.8667, "value": -9.55 },
+					{ "time": 1, "value": -32.36 },
+					{ "time": 1.1, "value": -9.55 },
+					{ "time": 1.1667, "value": -22.95 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Upper arm R": {
+				"rotate": [
+					{ "value": 2.71 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Forearm R": {
+				"rotate": [
+					{ "value": 12.58 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Palm R": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Upper arm L": {
+				"rotate": [
+					{ "value": -3.68 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Forearm L": {
+				"rotate": [
+					{ "value": -7.07 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Palm L": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Neck": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.3 },
+					{ "time": 0.4, "value": -15.06 },
+					{ "time": 0.5, "value": -19.25 },
+					{ "time": 0.6, "value": 0.52, "curve": "stepped" },
+					{ "time": 0.7667, "value": 0.52 },
+					{ "time": 0.8667, "value": -24.28 },
+					{ "time": 1, "value": -28.22 },
+					{ "time": 1.1, "value": 3.14 },
+					{ "time": 1.1667, "value": -21.08 },
+					{ "time": 1.2667, "value": 38.88 },
+					{ "time": 1.3333, "value": 51.38 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Head": {
+				"rotate": [
+					{ "curve": "stepped" },
+					{ "time": 0.3667 },
+					{ "time": 0.5, "value": -16.26 },
+					{ "time": 0.6, "value": 11.15 },
+					{ "time": 0.6667, "value": 24.04, "curve": "stepped" },
+					{ "time": 0.8, "value": 24.04 },
+					{ "time": 0.9333, "value": 3.03 },
+					{ "time": 1, "value": 10.4 },
+					{ "time": 1.1, "value": 23.82 },
+					{ "time": 1.1667, "value": 2.64 },
+					{ "time": 1.2667, "value": -18.62 },
+					{ "time": 1.3333, "value": -14.51 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Hat": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Calf L": {
+				"rotate": [
+					{},
+					{ "time": 0.3, "value": -49.26 },
+					{ "time": 0.5 },
+					{ "time": 0.7667, "value": 18.26 },
+					{ "time": 0.8333, "value": -21.39 },
+					{ "time": 0.9667, "value": -59.08 }
+				],
+				"translate": [
+					{}
+				]
+			},
+			"Wrist R IK": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.3333 },
+					{ "time": 0.5333, "x": 373.88, "y": 68.37 },
+					{ "time": 0.7667, "x": -39.74, "y": 46.81 },
+					{ "time": 1, "x": -385.79, "y": -248.35 },
+					{ "time": 1.1333, "x": -255.08, "y": -738.52 },
+					{ "time": 1.2, "x": -275.32, "y": -536.07 },
+					{ "time": 1.3333, "x": -247.28, "y": -771.2 }
+				]
+			},
+			"Wrist L IK": {
+				"rotate": [
+					{}
+				],
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.3333 },
+					{ "time": 0.5333, "x": 179.46, "y": 106.82 },
+					{ "time": 0.7667, "x": -426.61, "y": 455.19 },
+					{ "time": 1, "x": -1024.56, "y": -68.97 },
+					{ "time": 1.1333, "x": -785.76, "y": -604.39 },
+					{ "time": 1.2, "x": -773.19, "y": -355.53 },
+					{ "time": 1.3333, "x": -749.46, "y": -586.35 }
+				]
+			}
+		},
+		"events": [
+			{ "name": "Death" },
+			{ "time": 1, "name": "Ground Hit" }
 		]
 	},
 	"Idle": {
