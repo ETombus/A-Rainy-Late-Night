@@ -9,15 +9,19 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject youSurePanel;
     [SerializeField] GameObject tutorialPanel;
+    [SerializeField] GameObject checkpointsPanel;
 
     PlayerInputs playerControls;
     private InputAction escape;
 
     [SerializeField] GameObject player;
 
+    CheckpointManager checkpoints;
+
     private void Awake()
     {
         playerControls = new PlayerInputs();
+        checkpoints = GameObject.Find("GameManager").GetComponent<CheckpointManager>();
     }
 
     private void OnEnable()
@@ -80,8 +84,30 @@ public class PauseManager : MonoBehaviour
         tutorialPanel.SetActive(true);
     }
 
+    public void OpenCheckpoints()
+    {
+        checkpointsPanel.SetActive(true);
+    }
+
+    public void CloseCheckpoints()
+    {
+        checkpointsPanel.SetActive(false);
+    }
+
     public void TutorialClose()
     {
         tutorialPanel.SetActive(false);
+    }
+
+    public void LoadCheckpoint(int checkpointToLoad)
+    {
+        checkpoints.SetPlayerPosition(player, checkpointToLoad);
+        checkpointsPanel.SetActive(false);
+        UnpauseGame();
+    }
+
+    public void ResetCheckpoints()
+    {
+        PlayerPrefs.DeleteKey("CheckpointReached");
     }
 }
