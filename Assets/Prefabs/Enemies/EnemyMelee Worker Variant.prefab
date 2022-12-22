@@ -125,6 +125,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   bloodParticles: {fileID: 6746497761879769038, guid: 839e5ab9da5e3f84d87bd412418a67c7, type: 3}
+  hookPoint: {fileID: 5808359138192935554}
+  marker: {fileID: 4203422338019973082}
 --- !u!114 &5608297007403927159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,6 +679,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
   m_PrefabInstance: {fileID: 1244463093231893395}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4203422338019973082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3103181145625652297, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+  m_PrefabInstance: {fileID: 1244463093231893395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8182579356570692408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,6 +741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}
+--- !u!1 &5808359138192935554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2383867991641383354, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}
+  m_PrefabInstance: {fileID: 8182579356570692408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5808359138192935612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2383867991641383300, guid: 41f969bfbdc1aa6449bf35b39154c226, type: 3}

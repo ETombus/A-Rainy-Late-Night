@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class HealthHandler : MonoBehaviour
@@ -12,6 +14,8 @@ public class HealthHandler : MonoBehaviour
     public UnityEvent damageTrigger, deathTrigger;
 
     [SerializeField] GameObject bloodParticles;
+    [SerializeField] GameObject hookPoint;
+    [SerializeField] GameObject marker;
 
     private void Start()
     {
@@ -44,6 +48,11 @@ public class HealthHandler : MonoBehaviour
     void Death()
     {
         //Add code for death
+        if (marker != null)
+            marker.SetActive(false);
+
+        if (hookPoint != null)
+            hookPoint.SetActive(false);
 
         if (bloodParticles != null)
             Instantiate(bloodParticles, transform.position, transform.rotation);
