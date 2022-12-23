@@ -1,41 +1,56 @@
 using Spine;
 using Spine.Unity;
 using System.Collections;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static PlayerStateHandler;
 using static UmbrellaStateHandler;
 
 public class PlayerSpineController : MonoBehaviour
 {
+    [Header("Animations")]
     [SerializeField] EventDataReferenceAsset attack, footStep;
     public AnimationReferenceAsset run, idle, jump, ascend, descend, landing, damage;
     public AnimationReferenceAsset UmbrellaUp, UmbrellaDown, Slashing, Grappling, Shooting;
     private bool umbrellaAnimLooping = false;
 
-    public AnimationReferenceAsset GrappleAim, ShootingAim;
+    public AnimationReferenceAsset aimShooting, aimGrappling;
 
 
     private SkeletonAnimation skeletonAnimation;
     private Slice sliceAction;
 
     private Rigidbody2D rbody;
+
     private PlayerStateHandler playerState;
-    private UmbrellaStateHandler umbrellaState;
     MovementStates previusPlayerState;
     bool previusFallingState;
+
+    private UmbrellaStateHandler umbrellaState;
     UmbrellaState previusUmbrellaState;
     bool previusIdleUmbrellaState;
 
     float animSpeed;
 
+    [Header("Aim variables")]
+    [SpineBone(dataField: "skeletonAnimation")]
+    public string boneName;
+
+    public float aimOffset = 1;
+    public float attackAnimTimeOffset = 0.5f;
+    public float aimStartHeight = 1.8f;
+
+    private Bone aimBone;
+    Vector3 startPos;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         playerState = GetComponentInParent<PlayerStateHandler>();
         umbrellaState = transform.parent.gameObject.GetComponentInChildren<UmbrellaStateHandler>();
-
-        //Time.timeScale = 0.1f;
 
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         sliceAction = GetComponentInParent<Slice>();
@@ -43,6 +58,9 @@ public class PlayerSpineController : MonoBehaviour
         if (playerState == null) Debug.LogError("Can't find playerStateHandler");
 
         skeletonAnimation.AnimationState.Event += HandleAnimationState;
+
+        aimBone = skeletonAnimation.Skeleton.FindBone(boneName);
+        startPos = aimBone.GetLocalPosition();
     }
 
     void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
@@ -85,6 +103,7 @@ public class PlayerSpineController : MonoBehaviour
 
         previusIdleUmbrellaState = umbrellaState.umbrellaUp;
         previusUmbrellaState = umbrellaState.currentState;
+
     }
 
     void PlayNewMovementAnimationState()
@@ -98,7 +117,7 @@ public class PlayerSpineController : MonoBehaviour
             nextAnimation = jump; // Jumping animation
             //Debug.Log("Is jumping");
             animSpeed = 1;
-            
+
         }
         else if (newAnimationState == MovementStates.Idle)
         {
@@ -113,7 +132,7 @@ public class PlayerSpineController : MonoBehaviour
             //Debug.Log("Is running");
             animSpeed = 1;
         }
-        else if(newAnimationState == MovementStates.Knockback)
+        else if (newAnimationState == MovementStates.Knockback)
         {
             nextAnimation = damage;
             Debug.Log("Is running");
@@ -138,38 +157,67 @@ public class PlayerSpineController : MonoBehaviour
         var newUmbrellaAnimationState = umbrellaState.currentState;
         Spine.Animation nextUmbrellaAnimation;
 
-        if (newUmbrellaAnimationState == UmbrellaState.Idle)
+        switch (newUmbrellaAnimationState)
         {
-            if (umbrellaState.umbrellaUp)
-            {
-                umbrellaAnimLooping = true;
-                nextUmbrellaAnimation = UmbrellaUp;
-            }
-            else
-            {
-                umbrellaAnimLooping = true;
-                nextUmbrellaAnimation = UmbrellaDown;
-            }
-            animSpeed = 1;
-        }
-        else if (newUmbrellaAnimationState == UmbrellaState.Slash)
-        {
-            umbrellaAnimLooping = false;
-            nextUmbrellaAnimation = Slashing;
-            animSpeed = 1;
-
-        }
-        else if (newUmbrellaAnimationState == UmbrellaState.Shoot)
-        {
-            umbrellaAnimLooping = true;
-            nextUmbrellaAnimation = UmbrellaDown;
-            animSpeed = 1;
-        }
-        else
-        {
-            umbrellaAnimLooping = true;
-            nextUmbrellaAnimation = UmbrellaDown;
-            animSpeed = 1;
+            case UmbrellaState.Idle:
+                {
+                    if (umbrellaState.umbrellaUp)
+                    {
+                        umbrellaAnimLooping = true;
+                        nextUmbrellaAnimation = UmbrellaUp;
+                    }
+                    else
+                    {
+                        umbrellaAnimLooping = true;
+                        nextUmbrellaAnimation = UmbrellaDown;
+                    }
+                    StopPlayingAim();
+                    animSpeed = 1;
+                }
+                break;
+            case UmbrellaState.Aiming:
+                {
+                    SetAimBone(true);
+                    umbrellaAnimLooping = true;
+                    nextUmbrellaAnimation = aimShooting;
+                    //PlayAim(aimShooting);
+                    animSpeed = 1;
+                }
+                break;
+            case UmbrellaState.Shoot:
+                {
+                    SetAimBone(true);
+                    umbrellaAnimLooping = true;
+                    StopPlayingAim();
+                    nextUmbrellaAnimation = UmbrellaDown;
+                    animSpeed = 1;
+                }
+                break;
+            case UmbrellaState.Grapple:
+                {
+                    SetAimBone(false);
+                    umbrellaAnimLooping = true;
+                    StopPlayingAim();
+                    nextUmbrellaAnimation = aimGrappling;
+                    animSpeed = 1;
+                }
+                break;
+            case UmbrellaState.Slash:
+                {
+                    umbrellaAnimLooping = false;
+                    StopPlayingAim();
+                    nextUmbrellaAnimation = Slashing;
+                    animSpeed = 1;
+                }
+                break;
+            default:
+                {
+                    umbrellaAnimLooping = true;
+                    StopPlayingAim();
+                    nextUmbrellaAnimation = UmbrellaDown;
+                    animSpeed = 1;
+                }
+                break;
         }
 
         var umbrellaTrack = skeletonAnimation.AnimationState.SetAnimation(1, nextUmbrellaAnimation, umbrellaAnimLooping);
@@ -179,10 +227,46 @@ public class PlayerSpineController : MonoBehaviour
 
     }
 
+    Vector3 skeletonSpacePoint;
+    Vector3 worldMousePosition;
+
+    // vvvvv AIM BONE STUFF vvvvv
+    void SetAimBone(bool shooting)
+    {
+        if (!shooting)
+        {
+            skeletonSpacePoint = skeletonAnimation.transform.InverseTransformPoint(umbrellaState.hookTarget);
+        }
+        else
+        {
+            worldMousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            skeletonSpacePoint = skeletonAnimation.transform.InverseTransformPoint(worldMousePosition);
+        }
+
+
+        skeletonSpacePoint.x *= skeletonAnimation.Skeleton.ScaleX;
+        skeletonSpacePoint.y *= skeletonAnimation.Skeleton.ScaleY;
+        aimBone.SetLocalPosition(skeletonSpacePoint);
+    }
+    void PlayAim(AnimationReferenceAsset aimAnimation)
+    {
+        var aimTrack = skeletonAnimation.AnimationState.SetAnimation(3, aimAnimation, true);
+        aimTrack.AttachmentThreshold = 1f;
+        aimTrack.MixDuration = 0f;
+    }
+    public void StopPlayingAim()
+    {
+        skeletonAnimation.state.AddEmptyAnimation(3, 0.5f, 0.1f);
+    }
+
     void Turn(bool facingLeft)
     {
         skeletonAnimation.Skeleton.ScaleX = facingLeft ? -1f : 1f;
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(worldMousePosition, 0.3f);
+    }
 }

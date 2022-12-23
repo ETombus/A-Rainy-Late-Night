@@ -123,6 +123,9 @@ public class GrappleInput : MonoBehaviour
 
         if (distanceToMouse <= maxMouseDistance && distanceToPlayer >= minHookDistance && RayHitPlayer(targetPoint) && canGrapple)
         {
+            umbrella.hookTarget = targetPoint.transform.position;
+
+
             GetComponent<PlayerStateHandler>().Grapple();
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             canGrapple = false;
