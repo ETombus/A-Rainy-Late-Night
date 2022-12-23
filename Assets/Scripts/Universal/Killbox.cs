@@ -8,7 +8,7 @@ public class Killbox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.position = new(0, 2.2f);
+            collision.gameObject.GetComponent<Healthbar>().PlayerDeath();
         }
     }
 }

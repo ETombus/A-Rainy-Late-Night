@@ -101,6 +101,11 @@ public class PlayerSpineController : MonoBehaviour
             PlayUmbrellaStates();
         }
 
+        if (currentPlayerState == MovementStates.Grappling)
+            SetAimBone(false);
+        else
+            SetAimBone(true);
+
         previusIdleUmbrellaState = umbrellaState.umbrellaUp;
         previusUmbrellaState = umbrellaState.currentState;
 
@@ -111,49 +116,58 @@ public class PlayerSpineController : MonoBehaviour
         var newAnimationState = playerState.currentMoveState;
         Spine.Animation nextAnimation;
 
+        switch (newAnimationState)
+        {
+            case MovementStates.GroundMoving:
+                {
+                    nextAnimation = run;
+                    //Debug.Log("Is running");
+                    animSpeed = 1;
+                }
+                break;
+            case MovementStates.Idle:
+                {
+                    nextAnimation = idle;
+                    //Debug.Log("Is idle");
+                    animSpeed = 1;
 
-        if (newAnimationState == MovementStates.Jumping)
-        {
-            nextAnimation = jump; // Jumping animation
-            //Debug.Log("Is jumping");
-            animSpeed = 1;
+                }
+                break;
+            case MovementStates.Knockback:
+                {
+                    nextAnimation = damage;
+                    Debug.Log("Is running");
+                    animSpeed = 1;
+                }
+                break;
+            case MovementStates.Jumping:
+                {
+                    nextAnimation = jump; // Jumping animation
+                                          //Debug.Log("Is jumping");
+                    animSpeed = 1;
+                }
+                break;
+            default:
+                {
+                    if (playerState.falling)
+                        nextAnimation = descend; // Falling animation
+                    else
+                        nextAnimation = ascend;
 
-        }
-        else if (newAnimationState == MovementStates.Idle)
-        {
-            nextAnimation = idle;
-            //Debug.Log("Is idle");
-            animSpeed = 1;
-
-        }
-        else if (newAnimationState == MovementStates.GroundMoving)
-        {
-            nextAnimation = run;
-            //Debug.Log("Is running");
-            animSpeed = 1;
-        }
-        else if (newAnimationState == MovementStates.Knockback)
-        {
-            nextAnimation = damage;
-            Debug.Log("Is running");
-            animSpeed = 1;
-        }
-        else
-        {
-            if (playerState.falling)
-                nextAnimation = descend; // Falling animation
-            else
-                nextAnimation = ascend;
-
-            animSpeed = 1;
+                    animSpeed = 1;
+                }
+                break;
         }
 
         skeletonAnimation.AnimationState.SetAnimation(0, nextAnimation, true);
         skeletonAnimation.AnimationState.SetAnimation(0, nextAnimation, true).TimeScale = animSpeed;
     }
 
+    
     void PlayUmbrellaStates()
     {
+
+
         var newUmbrellaAnimationState = umbrellaState.currentState;
         Spine.Animation nextUmbrellaAnimation;
 
@@ -186,7 +200,6 @@ public class PlayerSpineController : MonoBehaviour
                 break;
             case UmbrellaState.Shoot:
                 {
-                    SetAimBone(true);
                     umbrellaAnimLooping = true;
                     StopPlayingAim();
                     nextUmbrellaAnimation = UmbrellaDown;
@@ -248,12 +261,12 @@ public class PlayerSpineController : MonoBehaviour
         skeletonSpacePoint.y *= skeletonAnimation.Skeleton.ScaleY;
         aimBone.SetLocalPosition(skeletonSpacePoint);
     }
-    void PlayAim(AnimationReferenceAsset aimAnimation)
-    {
-        var aimTrack = skeletonAnimation.AnimationState.SetAnimation(3, aimAnimation, true);
-        aimTrack.AttachmentThreshold = 1f;
-        aimTrack.MixDuration = 0f;
-    }
+    //void PlayAim(AnimationReferenceAsset aimAnimation)
+    //{
+    //    var aimTrack = skeletonAnimation.AnimationState.SetAnimation(3, aimAnimation, true);
+    //    aimTrack.AttachmentThreshold = 1f;
+    //    aimTrack.MixDuration = 0f;
+    //}
     public void StopPlayingAim()
     {
         skeletonAnimation.state.AddEmptyAnimation(3, 0.5f, 0.1f);

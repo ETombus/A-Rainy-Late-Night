@@ -53,7 +53,7 @@ public class Healthbar : HealthHandler
             healthBar.value = health;
     }
 
-    void PlayerDeath()
+    public void PlayerDeath()
     {
         gameOver.PlayerDeath();
         health = maxHealth;

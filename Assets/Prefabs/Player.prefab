@@ -15268,7 +15268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24136076581838000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.267, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15478,6 +15478,7 @@ MonoBehaviour:
   rainDamageInterval: 0.05
   rainDamage: 0.2
   slashDelay: 0.35
+  hookTarget: {x: 0, y: 0, z: 0}
   soundHandler: {fileID: 0}
   clips:
   - {fileID: 8300000, guid: ff5f39d60646fbc4b94fae02de855c3b, type: 3}
@@ -15822,7 +15823,7 @@ MonoBehaviour:
   hookPoints: []
   hookMaxReach: 10.9
   maxMouseDistance: 15
-  minHookDistance: 20
+  minHookDistance: 1
   hookSpeed: 40
   playerSpeed: 45
   playerAcceleration: 2.5
@@ -16333,9 +16334,13 @@ MonoBehaviour:
   UmbrellaDown: {fileID: 11400000, guid: 9ccbb33835238294095073835cdc3381, type: 2}
   Slashing: {fileID: 11400000, guid: 469ca6816954b2b42adf33c1e1cdd2f3, type: 2}
   Grappling: {fileID: 0}
-  Shooting: {fileID: 0}
-  GrappleAim: {fileID: 0}
-  ShootingAim: {fileID: 0}
+  Shooting: {fileID: 11400000, guid: 63044f82db6add14b9d4e633c0b01bbf, type: 2}
+  aimShooting: {fileID: 11400000, guid: bc47f1d8eba27ad4387455534deecbfe, type: 2}
+  aimGrappling: {fileID: 11400000, guid: 873dcf90b2a39894b88ce03ea4029c05, type: 2}
+  boneName: AIM TARGET
+  aimOffset: 1
+  attackAnimTimeOffset: 0.5
+  aimStartHeight: 1.8
 --- !u!33 &5990824859732837804
 MeshFilter:
   m_ObjectHideFlags: 0
