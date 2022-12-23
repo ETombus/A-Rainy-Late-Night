@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 
 public class SettingsHandler : MonoBehaviour
 {
@@ -12,14 +13,19 @@ public class SettingsHandler : MonoBehaviour
     [Header("Sliders")]
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider soundSlider;
+    [SerializeField] Slider enviromentSlider;
 
     [Header("Toggles")]
     [SerializeField] Toggle muteMusicToggle;
     [SerializeField] Toggle muteSoundToggle;
+    [SerializeField] Toggle showHintsToggle;
 
     [Header("SoundTest")]
     [SerializeField] AudioClip[] clips;
     AudioSource audSource;
+
+    [Header("Dropdown")]
+    [SerializeField] TMP_Dropdown windowDropdown;
 
     private void Start()
     {
@@ -40,12 +46,21 @@ public class SettingsHandler : MonoBehaviour
             muteSoundToggle.isOn = true;
             MuteSound(true);
         }
+
+        PlayerPrefs.GetInt("ShowHints", 1);
+
+        if (PlayerPrefs.GetInt("ShowHints") == 1) { showHintsToggle.isOn = true; }
+        else { showHintsToggle.isOn = false; }
+
+        windowDropdown.value = PlayerPrefs.GetInt("CurrentWindowType", 0);
+        SetWindowType(PlayerPrefs.GetInt("CurrentWindowType"));
     }
 
     void SetSliderValues()
     {
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
         soundSlider.value = PlayerPrefs.GetFloat("SoundVolume", 0.75f);
+        enviromentSlider.value = PlayerPrefs.GetFloat("EnviromentVolume", 0.40f);
     }
 
     public void SetMusicVolume(float sliderValue)
@@ -59,6 +74,12 @@ public class SettingsHandler : MonoBehaviour
     {
         mixer.SetFloat("SoundVol", ConvertLog(sliderValue));
         PlayerPrefs.SetFloat("SoundVolume", sliderValue);
+    }
+
+    public void SetEnviromentVolume(float sliderValue)
+    {
+        mixer.SetFloat("EnviromentVol", ConvertLog(sliderValue));
+        PlayerPrefs.SetFloat("EnviromentVolume", sliderValue);
     }
 
     public void MuteMusic(bool isMuted)
@@ -86,14 +107,19 @@ public class SettingsHandler : MonoBehaviour
         if (isMuted)
         {
             soundSlider.interactable = false;
+            enviromentSlider.interactable = false;
             mixer.SetFloat("SoundVol", -80);
+            mixer.SetFloat("EnviromentVol", -80);
             PlayerPrefs.SetFloat("SoundMuted", 1);
         }
         else
         {
             soundSlider.interactable = true;
+            enviromentSlider.interactable = true;
             mixer.SetFloat("SoundVol", ConvertLog(soundSlider.value));
+            mixer.SetFloat("EnviromentVol", ConvertLog(enviromentSlider.value));
             PlayerPrefs.SetFloat("SoundVolume", soundSlider.value);
+            PlayerPrefs.SetFloat("EnviromentVolume", soundSlider.value);
             PlayerPrefs.SetFloat("SoundMuted", 0);
         }
     }
@@ -108,5 +134,38 @@ public class SettingsHandler : MonoBehaviour
     {
         audSource.pitch = Random.Range(0.8f, 1.2f);
         audSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+    }
+
+    public void SetWindowType(int windowTypeIndex)
+    {
+        switch (windowTypeIndex)
+        {
+            case 0:
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                break;
+            case 1:
+                Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+                break;
+            case 2:
+                Screen.SetResolution(1920, 1080, false);
+                break;
+            default:
+                Debug.LogError("Invalid window type in " + gameObject.name);
+                break;
+        }
+
+        PlayerPrefs.SetInt("CurrentWindowType", windowTypeIndex);
+    }
+
+    public void TurnOffHints(bool toggle)
+    {
+        if (toggle)
+        {
+            PlayerPrefs.SetInt("ShowHints", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("ShowHints", 0);
+        }
     }
 }
