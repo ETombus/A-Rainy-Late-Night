@@ -29,6 +29,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private float rainDamageInterval;
     [SerializeField] private float rainDamage;
     [SerializeField] private float slashDelay;
+    public Vector3 hookTarget;
 
     [Header("Audio")]
     public PlayerSoundHandler soundHandler;
@@ -182,7 +183,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     public void Slash()
     {
-        if (currentState == UmbrellaState.Idle && !grapplingHook.targetLocked || currentState == UmbrellaState.Grapple)
+        if (currentState == UmbrellaState.Idle || currentState == UmbrellaState.Grapple)
         {
             currentState = UmbrellaState.Slash;
             GetComponentInParent<Slice>().StandardSlice();

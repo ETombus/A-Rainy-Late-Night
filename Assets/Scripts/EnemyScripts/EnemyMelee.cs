@@ -6,7 +6,9 @@ public class EnemyMelee : MonoBehaviour
 {
     EnemyHandler handler;
 
-    [SerializeField] float punchingDistance = 0.5f;
+    [SerializeField] float stopMovingRange = 2f;
+    [SerializeField] float punchingDistance = 5f;
+    [SerializeField] float hitReach = 2f;
 
     [SerializeField] float punchingCooldown = 0.6f;
     float punchingTimer;
@@ -25,11 +27,13 @@ public class EnemyMelee : MonoBehaviour
     {
         if (handler.currentMode == EnemyHandler.Mode.Aggression)
         {
-            if (XDist() > punchingDistance)
+            if (XDist() > stopMovingRange)
                 handler.movement.MoveEnemy(handler.playerTrans.position);
-            else if (YDist() <= punchingDistance)
-            {
+            else
                 handler.movement.StopEnemy();
+
+            if (XDist() <= punchingDistance && YDist() <= punchingDistance)
+            {
                 punchingTimer += Time.deltaTime;
 
                 if (punchingTimer >= punchingCooldown)
@@ -43,11 +47,11 @@ public class EnemyMelee : MonoBehaviour
     }
 
     private float XDist() { return Mathf.Abs(handler.playerTrans.position.x - transform.position.x); }
-    private float YDist() { return Mathf.Abs(handler.playerTrans.position.x - transform.position.x); }
+    private float YDist() { return Mathf.Abs(handler.playerTrans.position.y - transform.position.y); }
 
     public void Attack()
     {
-        if (XDist() <= punchingDistance && YDist() <= punchingDistance)
+        if (XDist() <= hitReach && YDist() <= hitReach)
         {
             handler.playerHealth.ReduceHealth(10, false);
             handler.player.GetComponent<Walking>().Knockback(10, transform.position);

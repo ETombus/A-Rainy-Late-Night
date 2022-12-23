@@ -24,7 +24,7 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerInputs();
-        checkpoints = GameObject.Find("GameManager").GetComponent<CheckpointManager>();
+        checkpoints = GetComponent<CheckpointManager>();
     }
 
     private void OnEnable()

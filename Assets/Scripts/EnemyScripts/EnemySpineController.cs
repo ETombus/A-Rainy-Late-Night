@@ -222,6 +222,12 @@ public class EnemySpineController : MonoBehaviour
         var shootTrack = skelAnimation.AnimationState.SetAnimation(1, Attack, false);
         shootTrack.AttachmentThreshold = 1f;
         shootTrack.MixDuration = 0;
+        if (meleeer != null)
+        {
+            shootTrack.TimeScale = 2f;
+        }
+        else
+            shootTrack.TimeScale = 1f;
         skelAnimation.state.AddEmptyAnimation(1, 0.1f, attackAnimTimeOffset);
     }
 
@@ -229,7 +235,7 @@ public class EnemySpineController : MonoBehaviour
     {
         if (e.Data == attack.EventData)
         {
-             handler.melee.Attack();
+            handler.melee.Attack();
         }
         /*else if(e.Data == (footStep.EventData))
             play Footstep sound*/

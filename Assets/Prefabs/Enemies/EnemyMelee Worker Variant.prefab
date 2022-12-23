@@ -291,7 +291,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5cd5bf3189054f8ce0d91ef325446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchingDistance: 2
+  stopMovingRange: 1
+  punchingDistance: 5
+  hitReach: 2
   punchingCooldown: 1.5
   damage: 50
 --- !u!1 &5608297007801350114
@@ -509,7 +511,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4956277708784558731
 MonoBehaviour:

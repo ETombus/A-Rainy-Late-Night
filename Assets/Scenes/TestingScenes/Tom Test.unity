@@ -1947,6 +1947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa02e5c28bdbc346a1746f3c0a6c402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removeChildren: 0
   bufferPeriod: 0
   buffertime: 0.2
   buffertimer: 0
@@ -8451,6 +8452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa02e5c28bdbc346a1746f3c0a6c402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removeChildren: 0
   bufferPeriod: 0
   buffertime: 0.2
   buffertimer: 0
@@ -18789,6 +18791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa02e5c28bdbc346a1746f3c0a6c402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removeChildren: 0
   bufferPeriod: 0
   buffertime: 0.2
   buffertimer: 0
@@ -23639,6 +23642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa02e5c28bdbc346a1746f3c0a6c402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removeChildren: 0
   bufferPeriod: 0
   buffertime: 0.2
   buffertimer: 0
@@ -31622,6 +31626,7 @@ GameObject:
   - component: {fileID: 1834123902}
   - component: {fileID: 1834123903}
   - component: {fileID: 1834123904}
+  - component: {fileID: 1834123905}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -31742,8 +31747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473808d6fbc944543998683d9e1d87ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportObject: {fileID: 150286518}
-  spawnObject: {fileID: 747271748184530479, guid: 6646c00e9f0542b489e6159722482ede, type: 3}
 --- !u!114 &1834123904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31761,6 +31764,40 @@ MonoBehaviour:
   tutorialPanel: {fileID: 1255742766}
   checkpointsPanel: {fileID: 0}
   player: {fileID: 150286518}
+  skipDeathToggle: {fileID: 0}
+--- !u!114 &1834123905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834123898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1843132146
 GameObject:
   m_ObjectHideFlags: 0
@@ -35135,6 +35172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa02e5c28bdbc346a1746f3c0a6c402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removeChildren: 0
   bufferPeriod: 0
   buffertime: 0.2
   buffertimer: 0
@@ -37026,6 +37064,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   bloodParticles: {fileID: 0}
+  hookPoint: {fileID: 0}
+  marker: {fileID: 0}
 --- !u!4 &3215649499019769613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3591839901884759837, guid: 17b5c4cd4b9620548993d27896e68e1f, type: 3}
