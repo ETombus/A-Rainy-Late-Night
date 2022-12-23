@@ -45,13 +45,27 @@ public class CameraEvent : MonoBehaviour
     {
         if (thisEventType == CameraEvent.EventType.size || thisEventType == CameraEvent.EventType.sizeAndPos)
         {
-            if (isInField && vCam.m_Lens.OrthographicSize < newCamSize)
+            if (thisNewCamSize > originalCamSize)
             {
-                vCam.m_Lens.OrthographicSize += Time.deltaTime * transitionSpeed;
+                if (isInField && vCam.m_Lens.OrthographicSize < newCamSize)
+                {
+                    vCam.m_Lens.OrthographicSize += Time.deltaTime * transitionSpeed;
+                }
+                else if (!isInField && vCam.m_Lens.OrthographicSize > originalCamSize)
+                {
+                    vCam.m_Lens.OrthographicSize -= Time.deltaTime * (transitionSpeed / 4);
+                }
             }
-            else if (!isInField && vCam.m_Lens.OrthographicSize > originalCamSize)
+            else if (thisNewCamSize < originalCamSize)
             {
-                vCam.m_Lens.OrthographicSize -= Time.deltaTime * (transitionSpeed / 4);
+                if (isInField && vCam.m_Lens.OrthographicSize > newCamSize)
+                {
+                    vCam.m_Lens.OrthographicSize -= Time.deltaTime * transitionSpeed;
+                }
+                else if (!isInField && vCam.m_Lens.OrthographicSize < originalCamSize)
+                {
+                    vCam.m_Lens.OrthographicSize += Time.deltaTime * (transitionSpeed / 4);
+                }
             }
         }
 
@@ -130,7 +144,7 @@ public class CameraEvent : MonoBehaviour
         if (cameraPos != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(cameraPos.position, new Vector3(newCamSize * 2, newCamSize * 2, 1));
+            Gizmos.DrawWireCube(cameraPos.position, new Vector3(newCamSize * 3.6f, newCamSize * 2, 1));
         }
     }
 }
