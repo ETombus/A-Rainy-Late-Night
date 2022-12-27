@@ -62,20 +62,31 @@ public class EnemyDetect : MonoBehaviour
         //RaycastHit2D boxHit = Physics2D.BoxCast(transform.position,
         //    new(detectionDistance, detectionDistance), 0f, transform.right, detectionDistance, detectableLayers);
 
-        if (hit || hitUp || hitDown)
+
+        if (hit)
         {
-            if (hit.collider.gameObject.CompareTag("Ground") && hitUp.collider.gameObject.CompareTag("Ground") && hitDown.collider.gameObject.CompareTag("Ground"))
-            {
-                detectedPlayer = false;
-            }
-            else if (hit.collider.gameObject.CompareTag("Player") || hitUp.collider.gameObject.CompareTag("Player") || hitDown.collider.gameObject.CompareTag("Player"))
-            {
-                detectedPlayer = true;
-                seesPlayer = true;
-                handler.currentMode = EnemyHandler.Mode.Aggression;
-            }
+            if (hit.collider.gameObject.CompareTag("Player")) { DetectPlayer(); }
+            else { detectedPlayer = false; }
+        }
+        if (hitUp)
+        {
+            if (hitUp.collider.gameObject.CompareTag("Player")) { DetectPlayer(); }
+            else { detectedPlayer = false; }
+
+        }
+        if (hitDown)
+        {
+            if (hitDown.collider.gameObject.CompareTag("Player")) { DetectPlayer(); }
+            else { detectedPlayer = false; }
         }
         else { detectedPlayer = false; }
+    }
+
+    void DetectPlayer()
+    {
+        detectedPlayer = true;
+        seesPlayer = true;
+        handler.currentMode = EnemyHandler.Mode.Aggression;
     }
     void SearchForPlayerWithinRange()
     {
