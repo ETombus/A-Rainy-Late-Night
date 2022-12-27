@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c9467a22757553c4aac5300650a90f87
+guid: f4f0858a73942564aab140e3cee3b936
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,10 +44,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 420
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Br0kenP0ips_0
+      name: Waterdropp_0
       rect:
         serializedVersion: 2
-        x: 91
-        y: 4371
-        width: 3017
-        height: 1810
+        x: 45
+        y: 185
+        width: 18
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e271367a51781b330800000000000000
-      internalID: 3724906893884462894
+      spriteID: 108578a377091114faf25d03d6d27269
+      internalID: -942990700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Br0kenP0ips_1
+      name: Waterdropp_1
       rect:
         serializedVersion: 2
-        x: 3366
-        y: 4371
-        width: 3014
-        height: 1810
+        x: 0
+        y: 0
+        width: 109
+        height: 109
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,71 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb338f9334fd12942aca9d18d67aaa9e
-      internalID: -225742969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Br0kenP0ips_2
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 2206
-        width: 3017
-        height: 1810
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 704780caf444f42418f1dc265cecb30a
-      internalID: -658280188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Br0kenP0ips_3
-      rect:
-        serializedVersion: 2
-        x: 3366
-        y: 2206
-        width: 2966
-        height: 1723
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c01b8063d77bc10479084de917d2d150
-      internalID: 308071491
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Br0kenP0ips_4
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 129
-        width: 2966
-        height: 1723
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62b0e7272f855c547b475fbbaa014bf9
-      internalID: 1058082613
+      spriteID: 23ad62e3610f18f4487418112dd37581
+      internalID: -249748070
       vertices: []
       indices: 
       edges: []
@@ -212,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c5e1834b89abc89448980f9fbe549860
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -220,11 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Br0kenP0ips_0: 3724906893884462894
-      Br0kenP0ips_2: -658280188
-      Br0kenP0ips_1: -225742969
-      Br0kenP0ips_3: 308071491
-      Br0kenP0ips_4: 1058082613
+      Waterdropp_1: -249748070
+      Waterdropp_0: -942990700
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
