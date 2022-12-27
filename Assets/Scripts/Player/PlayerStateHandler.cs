@@ -135,6 +135,10 @@ public class PlayerStateHandler : MonoBehaviour
             {
                 gravityMultiplier = 3;
             }
+            else if (grappleGravity)
+            {
+                gravityMultiplier = 0.5f;
+            }
             else
             {
                 gravityMultiplier = 1;
@@ -142,12 +146,13 @@ public class PlayerStateHandler : MonoBehaviour
 
             gravityCurveTransitionTime += Time.deltaTime;
             currentGravity = Mathf.Lerp(gravityUpwards, downwardGravity, jumpGravityTransitionSpeed.Evaluate(gravityCurveTransitionTime));
+
         }
 
         rbody.gravityScale = currentGravity * gravityMultiplier;
     }
 
-    void DisableGrappleGravity() { grappleGravity = false;}
+    void DisableGrappleGravity() { grappleGravity = false; }
 
     void ManageMovingStates()
     {
