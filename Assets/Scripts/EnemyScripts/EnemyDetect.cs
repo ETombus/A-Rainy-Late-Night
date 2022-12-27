@@ -55,14 +55,20 @@ public class EnemyDetect : MonoBehaviour
     {
         markerRenderer.sprite = null;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, detectionDistance, detectableLayers);
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position, transform.right + (transform.up / 2), detectionDistance, detectableLayers);
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, transform.right + (-transform.up / 2), detectionDistance, detectableLayers);
 
-        if (hit)
+
+        //RaycastHit2D boxHit = Physics2D.BoxCast(transform.position,
+        //    new(detectionDistance, detectionDistance), 0f, transform.right, detectionDistance, detectableLayers);
+
+        if (hit || hitUp || hitDown)
         {
-            if (hit.collider.gameObject.CompareTag("Ground"))
+            if (hit.collider.gameObject.CompareTag("Ground") && hitUp.collider.gameObject.CompareTag("Ground") && hitDown.collider.gameObject.CompareTag("Ground"))
             {
                 detectedPlayer = false;
             }
-            else if (hit.collider.gameObject.CompareTag("Player"))
+            else if (hit.collider.gameObject.CompareTag("Player") || hitUp.collider.gameObject.CompareTag("Player") || hitDown.collider.gameObject.CompareTag("Player"))
             {
                 detectedPlayer = true;
                 seesPlayer = true;
@@ -71,7 +77,6 @@ public class EnemyDetect : MonoBehaviour
         }
         else { detectedPlayer = false; }
     }
-
     void SearchForPlayerWithinRange()
     {
         markerRenderer.sprite = markers[2];
@@ -115,5 +120,12 @@ public class EnemyDetect : MonoBehaviour
             handler.FlipRotation();
             searchTimer = 0;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, transform.right * detectionDistance);
+        Gizmos.DrawRay(transform.position, (transform.right + (transform.up / 2)) * detectionDistance);
+        Gizmos.DrawRay(transform.position, (transform.right + (-transform.up / 2)) * detectionDistance);
     }
 }
