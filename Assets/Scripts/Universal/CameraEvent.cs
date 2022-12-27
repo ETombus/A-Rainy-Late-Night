@@ -8,6 +8,10 @@ public class CameraEvent : MonoBehaviour
     private enum EventType { sizeAndPos, size, position }
     [SerializeField] private EventType thisEventType;
 
+    private enum FollowType { DontFollow, FollowDown }
+    [SerializeField] private FollowType thisFollowType;
+    Vector2 startPos;
+
     [Header("Player Variables")]
     [SerializeField] static bool isInField = false;
     [SerializeField] bool bufferPeriod;
@@ -26,6 +30,7 @@ public class CameraEvent : MonoBehaviour
 
     [Header("Non-Required")]
     [SerializeField] GameObject[] imgsToShow;
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +43,11 @@ public class CameraEvent : MonoBehaviour
         if (thisEventType != CameraEvent.EventType.size)
         {
             cameraPos = this.gameObject.transform.GetChild(0);
+        }
+
+        if(thisFollowType == FollowType.FollowDown)
+        {
+            startPos = cameraPos.position;
         }
     }
 
@@ -69,6 +79,14 @@ public class CameraEvent : MonoBehaviour
             }
         }
 
+        if(thisFollowType == FollowType.FollowDown && player != null)
+        {
+            if(player.transform.position.y <= startPos.y)
+            {
+                cameraPos.transform.position = new(cameraPos.transform.position.x, player.transform.position.y);
+            }
+        }
+
         if (bufferPeriod)
         {
             buffertimer += Time.deltaTime;
@@ -82,6 +100,7 @@ public class CameraEvent : MonoBehaviour
         {
             bufferPeriod = false;
             buffertimer = 0;
+            player = collision.gameObject;
 
             isInField = true;
 
