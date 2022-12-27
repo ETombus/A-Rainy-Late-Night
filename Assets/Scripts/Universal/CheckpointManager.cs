@@ -12,9 +12,12 @@ public class CheckpointManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < checkPoints.Length; i++)
+        if (checkPoints.Length > 0)
         {
-            checkPoints[i].index = i + 1;
+            for (int i = 0; i < checkPoints.Length; i++)
+            {
+                checkPoints[i].index = i + 1;
+            }
         }
     }
 
