@@ -12,13 +12,13 @@ public class TutorialPanels : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (thisType == Type.Newspaper && digitalPanel != null) //if  it still doenst show up, make sure DigitalPanels parentobject is active!
+        //if (thisType == Type.Newspaper && digitalPanel != null) //if  it still doenst show up, make sure DigitalPanels parentobject is active!
             digitalPanel.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (thisType == Type.Digital)
-            gameObject.SetActive(false);
+        //if (thisType == Type.Digital)
+            digitalPanel.SetActive(false);
     }
 }

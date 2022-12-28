@@ -116,6 +116,7 @@ public class MenuHandler : MonoBehaviour
     public void ResetCheckpoints()
     {
         PlayerPrefs.DeleteKey("CheckpointReached");
+        PlayerPrefs.SetInt("PlayIntroCutscene", 1);
     }
 
     public void PregameBack()
