@@ -26,6 +26,11 @@ public class ButtonColorChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        ResetColor();
+    }
+
+    public void ResetColor()
+    {
         text.color = idleColor;
         if (this.transform.childCount > 1)
             this.transform.GetChild(1).gameObject.SetActive(false);
