@@ -42,7 +42,9 @@ public class DetectedByCamera : MonoBehaviour
     [Header("Image")]
     [SerializeField] bool shouldHaveImage;
 
+    [Header("Misc")]
     public bool showRadius = false;
+    [SerializeField] bool disableUponFinish = false;
 
     private Image uiImage;
     private TextMeshProUGUI uiText;
@@ -112,7 +114,9 @@ public class DetectedByCamera : MonoBehaviour
             DisableMarker();
 
             if (shouldHaveImage)
+            {
                 uiImage.gameObject.SetActive(false);
+            }
         }
 
         if (isAHookPoint)
@@ -177,7 +181,6 @@ public class DetectedByCamera : MonoBehaviour
         lookingAtIt = false;
         animator.SetBool("MarkerVisable", false);
 
-
         if (ShouldHaveText)
         {
             if (characterIndex > 0)
@@ -212,6 +215,13 @@ public class DetectedByCamera : MonoBehaviour
             if (characterIndex >= textToWrite.Length)
             {
                 writingText = false;
+                if (disableUponFinish)
+                {
+                    IntroCutsceneManager cutsceneManager = GameObject.Find("GameManager").GetComponent<IntroCutsceneManager>();
+                    cutsceneManager.IntroCutsceneDone();
+                    PlayerPrefs.SetInt("PlayIntroCutscene", 0);
+                    this.gameObject.SetActive(false);
+                } //TODO maybe change this to a fadeoutAnimation
             }
         }
     }
