@@ -109,7 +109,7 @@ public class MenuHandler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("HighestLevelReached", 1));
         PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
     }
 
