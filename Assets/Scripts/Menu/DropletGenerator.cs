@@ -5,7 +5,10 @@ using UnityEngine;
 public class DropletGenerator : MonoBehaviour
 {
     [SerializeField] GameObject[] droplets;
-    [SerializeField] List<float> dropletTimers;
+    List<float> dropletTimers;
+
+    [SerializeField] float minTime = .2f;
+    [SerializeField] float maxTime = 1f;
 
     [SerializeField] GameObject dropletObject;
 
@@ -19,7 +22,7 @@ public class DropletGenerator : MonoBehaviour
 
         for (int i = 0; i < dropletTimers.Count; i++)
         {
-            dropletTimers[i] = Random.Range(1f, 3f);
+            dropletTimers[i] = Random.Range(minTime, maxTime);
         }
     }
 
@@ -31,7 +34,7 @@ public class DropletGenerator : MonoBehaviour
             if(dropletTimers[i] <= 0)
             {
                 droplets[i].SetActive(true);
-                dropletTimers[i] = dropletTimers[i] = Random.Range(1f, 3f);
+                dropletTimers[i] = dropletTimers[i] = Random.Range(minTime, maxTime);
             }
         }
     }
