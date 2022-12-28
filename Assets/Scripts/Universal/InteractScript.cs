@@ -23,6 +23,7 @@ public class InteractScript : MonoBehaviour
     [Header("Input")]
     private PlayerInputs playerControls;
     private InputAction interact;
+    public bool onPlayerEnter = false;
 
     [Header("Values")]
     [Tooltip("Only needed if isInteractable")]
@@ -76,6 +77,15 @@ public class InteractScript : MonoBehaviour
     {
         if (!isInteractable)
             ActivateFunction();
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (onPlayerEnter && collision.transform.CompareTag("Player"))
+        {
+            interactTrigger = false;
+            ActivateFunction();
+        }
     }
 
     private void ActivateFunction()
