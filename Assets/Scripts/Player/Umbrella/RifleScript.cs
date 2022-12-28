@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using static UmbrellaStateHandler;
+using UnityEngine.UI;
 
 public class RifleScript : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RifleScript : MonoBehaviour
     [SerializeField] public LineRenderer aimLaser;
     [SerializeField] UmbrellaStateHandler umbrellaHandler;
     [HideInInspector] public LineRenderer bulletTrail;
+    [SerializeField] UnityEngine.UI.Slider ammoSlider;
 
     private SlowMotionHandler slowMo;
     private PlayerSoundHandler soundHandler;
@@ -40,6 +42,7 @@ public class RifleScript : MonoBehaviour
         slowMo = GetComponentInParent<SlowMotionHandler>();
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
         bulletTrail.enabled = false;
+        ammoSlider.value = ammoCount;
     }
 
     public IEnumerator Aim()
@@ -97,6 +100,8 @@ public class RifleScript : MonoBehaviour
 
             aimLaser.enabled = false;
             ammoCount--;
+
+            ammoSlider.value = ammoCount;
 
             mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             origin = transform.position;
