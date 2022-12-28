@@ -9,18 +9,24 @@ public class ButtonColorChanger : MonoBehaviour, IPointerEnterHandler, IPointerE
 {
     [SerializeField] Color idleColor;
     [SerializeField] Color selectColor;
-    [SerializeField] bool invertColor;
+    TextMeshProUGUI text;
+
+    private void Start()
+    {
+        text = GetComponentInChildren<TextMeshProUGUI>();
+        idleColor = text.color;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.GetComponentInChildren<TextMeshProUGUI>().color = selectColor;
+        text.color = selectColor;
         if (this.transform.childCount > 1)
             this.transform.GetChild(1).gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        this.GetComponentInChildren<TextMeshProUGUI>().color = idleColor;
+        text.color = idleColor;
         if (this.transform.childCount > 1)
             this.transform.GetChild(1).gameObject.SetActive(false);
     }
