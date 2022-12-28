@@ -8,4 +8,9 @@ public class Deactivator : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public void DestroyObject()
+    {
+        Destroy(this.gameObject);
+    }
 }

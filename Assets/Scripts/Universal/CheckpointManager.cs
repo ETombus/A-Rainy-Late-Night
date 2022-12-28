@@ -6,6 +6,8 @@ public class CheckpointManager : MonoBehaviour
 {
     public Checkpoint[] checkPoints; //must currently be dragged in manually!
 
+    [SerializeField] static int highestLevelReached = 1;
+
     [SerializeField] int furthestCheckpointReached;
 
     Vector2 startPos;
@@ -50,5 +52,12 @@ public class CheckpointManager : MonoBehaviour
     public void SetPlayerPosition(GameObject player, int checkpointToLoad)
     {
         player.transform.position = checkPoints[checkpointToLoad].respawnPos;
+    }
+
+    public void NextLevelReached(int levelReached)
+    {
+        if (levelReached > highestLevelReached) { highestLevelReached = levelReached; }
+        PlayerPrefs.SetInt("HighestLevelReached", highestLevelReached);
+        PlayerPrefs.SetInt("CheckpointReached", 0);
     }
 }
