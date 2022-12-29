@@ -14,7 +14,7 @@ public class IntroCutsceneManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("PlayIntroCutscene", 1) == 1)
+        if (PlayerPrefs.GetInt("PlayIntroCutscene", 1) == 1 && introCutsceneMarker.activeSelf == true)
         {
             for (int i = 0; i < healthbar.Length; i++) { healthbar[i].SetActive(false); }
 
@@ -22,7 +22,7 @@ public class IntroCutsceneManager : MonoBehaviour
             player.GetComponent<PlayerInputHandler>().enabled = false;
             firstMarker.SetActive(false);
         }
-        else if(PlayerPrefs.GetInt("PlayIntroCutscene") == 0)
+        else if (PlayerPrefs.GetInt("PlayIntroCutscene") == 0)
         {
             introCutsceneMarker.SetActive(false);
         }
@@ -34,6 +34,8 @@ public class IntroCutsceneManager : MonoBehaviour
 
         //player.SetActive(false);
         player.GetComponent<PlayerInputHandler>().enabled = true;
-        firstMarker.SetActive(true);
+
+        if (PlayerPrefs.GetInt("ShowHints") == 1)
+            firstMarker.SetActive(true);
     }
 }
