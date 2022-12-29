@@ -17,6 +17,11 @@ public class Healthbar : HealthHandler
     [Header("Components")]
     [SerializeField] ParticleSystem damageSpark;
 
+    [Header("Color")]
+    [SerializeField] Color fullHealthColor;
+    [SerializeField] Color halfHealthColor;
+    [SerializeField] Color lowHealthColor;
+
     GameOverManager gameOver;
 
     private void Start()
@@ -31,7 +36,7 @@ public class Healthbar : HealthHandler
 
     public void ReduceHealth(float reduceValue, bool rainDamage)
     {
-        if(!rainDamage)
+        if (!rainDamage)
             damageSpark.Play();
 
         if (health - reduceValue > 0)
@@ -42,6 +47,10 @@ public class Healthbar : HealthHandler
 
             if (clips.Length > 0)
                 soundHandler.PlaySound(clips[Random.Range(0, clips.Length)], 0.2f);
+
+            if (health >= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = fullHealthColor; }
+            else if (health <= maxHealth / 5) { healthBar.GetComponentInChildren<Image>().color = lowHealthColor; }
+            else if (health <= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = halfHealthColor; }
         }
         else { PlayerDeath(); }
 
