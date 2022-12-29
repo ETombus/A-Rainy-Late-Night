@@ -109,7 +109,7 @@ public class PlayerStateHandler : MonoBehaviour
             justGrappled = true;
         }
 
-        falling = rbody.velocity.y > 0 ? false : true;
+        falling = rbody.velocity.y > 0.1f ? false : true;
     }
 
     void ManageGravity()
