@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using static UmbrellaStateHandler;
 
 public class RifleScript : MonoBehaviour
@@ -11,6 +10,7 @@ public class RifleScript : MonoBehaviour
     [SerializeField] public LineRenderer aimLaser;
     [SerializeField] UmbrellaStateHandler umbrellaHandler;
     [HideInInspector] public LineRenderer bulletTrail;
+    [SerializeField] UnityEngine.UI.Slider ammoSlider;
 
     private SlowMotionHandler slowMo;
     private PlayerSoundHandler soundHandler;
@@ -28,6 +28,7 @@ public class RifleScript : MonoBehaviour
     [SerializeField] float maxTimeSlowdown;
     [SerializeField] int maxAmmo;
     [SerializeField] int ammoCount;
+    private int numPoints;
 
     [Header("Vectors")]
     private Vector2 origin;
@@ -40,6 +41,9 @@ public class RifleScript : MonoBehaviour
         slowMo = GetComponentInParent<SlowMotionHandler>();
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
         bulletTrail.enabled = false;
+        ammoSlider.value = ammoCount;
+        aimLaser.enabled = false;
+        numPoints = aimLaser.positionCount;
     }
 
     public IEnumerator Aim()
@@ -66,12 +70,19 @@ public class RifleScript : MonoBehaviour
 
             if (aimRay.collider != null)
             {
-                aimLaser.SetPosition(1, aimRay.point);
+                aimLaser.SetPosition(numPoints - 1, aimRay.point);
             }
             else
             {
-                aimLaser.SetPosition(1, aimStart + (mousePos - aimStart).normalized * aimLaserLength);
+                aimLaser.SetPosition(numPoints - 1, aimStart + (mousePos - aimStart).normalized * aimLaserLength);
             }
+
+            for (int i = 1; i < numPoints - 1; i++)
+            {
+                Vector2 point = Vector2.Lerp(aimStart, aimLaser.GetPosition(numPoints - 1), (float)i / (numPoints - 1));
+                aimLaser.SetPosition(i, point);
+            }
+
             yield return null;
         }
     }
@@ -86,6 +97,9 @@ public class RifleScript : MonoBehaviour
     {
         if (ammoCount > 0)
         {
+            ammoCount--;
+            aimLaser.enabled = false;
+
             soundHandler.PlaySound(rifleSounds[Random.Range(0, rifleSounds.Length - 1)]);
             soundHandler.QueueSound(reloadSounds[Random.Range(0, reloadSounds.Length - 1)]);
 
@@ -98,6 +112,7 @@ public class RifleScript : MonoBehaviour
             aimLaser.enabled = false;
             ammoCount--;
 
+            ammoSlider.value = ammoCount;
             mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             origin = transform.position;
 

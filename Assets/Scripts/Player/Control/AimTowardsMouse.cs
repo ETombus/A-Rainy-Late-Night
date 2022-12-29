@@ -6,14 +6,17 @@ using UnityEngine.InputSystem;
 
 public class AimTowardsMouse : MonoBehaviour
 {
+    LineRenderer aimLaser;
     Vector2 mousePos;
     float angle;
+    float delay;
 
     FlipPlayer flipX;
     Slice slice;
 
     private void Start()
     {
+        aimLaser = GetComponent<LineRenderer>();
         slice = GetComponentInParent<Slice>();
         flipX = FindObjectOfType<FlipPlayer>();
     }
@@ -44,6 +47,19 @@ public class AimTowardsMouse : MonoBehaviour
         if (slice.canAttack)
         {
             transform.rotation = Quaternion.Euler(new(0, 0, angle));
+        }
+
+        if (aimLaser.enabled)
+        {
+            delay += Time.deltaTime;
+            //Random.Range(0.05f, 0.15f)
+            if (delay >= 0.1f)
+            {
+
+
+                delay = 0;
+
+            }
         }
     }
 }

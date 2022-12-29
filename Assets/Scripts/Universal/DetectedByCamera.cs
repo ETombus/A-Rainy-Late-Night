@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class DetectedByCamera : MonoBehaviour
 {
     Animator animator;
     private AudioSource audSource;
 
+    [Header("Sound")]
     public AudioClip[] writingSound;
     public AudioClip erasingSound;
+    [SerializeField] bool playSound;
 
     bool lookingAtIt = false;
     bool disabled = false;
@@ -36,8 +39,14 @@ public class DetectedByCamera : MonoBehaviour
     public float timePerCharacter = 0.2f;
     public float timePerRemoval = 0.05f;
 
-    public bool showRadius = false;
+    [Header("Image")]
+    [SerializeField] bool shouldHaveImage;
 
+    [Header("Misc")]
+    public bool showRadius = false;
+    [SerializeField] bool disableUponFinish = false;
+
+    private Image uiImage;
     private TextMeshProUGUI uiText;
     public GameObject canvas;
 
@@ -59,7 +68,6 @@ public class DetectedByCamera : MonoBehaviour
         {
             if (canvas != null)
             {
-
                 canvas.SetActive(true);
                 uiText = GetComponentInChildren<TextMeshProUGUI>();
                 uiText.text = "";
@@ -67,15 +75,19 @@ public class DetectedByCamera : MonoBehaviour
             else
                 Debug.LogError(gameObject.name + " is missing a canvas for text writing, disable ShouldHaveText to ignore problem");
         }
-        else
+        if (shouldHaveImage)
+        {
+            canvas.SetActive(true);
+            uiImage = GetComponentInChildren<Image>();
+            uiImage.gameObject.SetActive(false);
+        }
+        else if (!shouldHaveImage && !ShouldHaveText)
         {
             if (canvas != null)
             {
                 canvas.SetActive(false);
             }
-
         }
-
     }
 
     bool toggleSound;
@@ -93,10 +105,18 @@ public class DetectedByCamera : MonoBehaviour
         if (CloseEnoughToPlayer(true) && !lookingAtIt && !disabled)
         {
             ActivateMarker();
+
+            if (shouldHaveImage)
+                uiImage.gameObject.SetActive(true);
         }
         else if ((!CloseEnoughToPlayer(true) && lookingAtIt) || disabled)
         {
             DisableMarker();
+
+            if (shouldHaveImage)
+            {
+                uiImage.gameObject.SetActive(false);
+            }
         }
 
         if (isAHookPoint)
@@ -112,7 +132,6 @@ public class DetectedByCamera : MonoBehaviour
         //    audSource.Play();
         //    toggleSound = false;
         //}
-
 
         if (writingText)
             WriteText();
@@ -162,7 +181,6 @@ public class DetectedByCamera : MonoBehaviour
         lookingAtIt = false;
         animator.SetBool("MarkerVisable", false);
 
-
         if (ShouldHaveText)
         {
             if (characterIndex > 0)
@@ -197,6 +215,13 @@ public class DetectedByCamera : MonoBehaviour
             if (characterIndex >= textToWrite.Length)
             {
                 writingText = false;
+                if (disableUponFinish)
+                {
+                    IntroCutsceneManager cutsceneManager = GameObject.Find("GameManager").GetComponent<IntroCutsceneManager>();
+                    cutsceneManager.IntroCutsceneDone();
+                    PlayerPrefs.SetInt("PlayIntroCutscene", 0);
+                    this.gameObject.SetActive(false);
+                } //TODO maybe change this to a fadeoutAnimation
             }
         }
     }
