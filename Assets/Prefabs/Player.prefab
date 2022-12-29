@@ -15914,6 +15914,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 60982ea948974624aa807c6cf9e4eecc, type: 3}
   - {fileID: 8300000, guid: 9ade7f455c1e01b47be688c42c42fca0, type: 3}
   damageSpark: {fileID: 266887359}
+  fullHealthColor: {r: 0.20000002, g: 0.8588236, b: 0.7176471, a: 1}
+  halfHealthColor: {r: 0.85882354, g: 0.6588104, b: 0.2, a: 1}
+  lowHealthColor: {r: 0.85882354, g: 0.2, b: 0.21227454, a: 1}
 --- !u!82 &150286546
 AudioSource:
   m_ObjectHideFlags: 0

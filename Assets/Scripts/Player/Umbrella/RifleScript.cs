@@ -109,9 +109,6 @@ public class RifleScript : MonoBehaviour
             StartCoroutine(umbrellaHandler.Timer(reloadTime, TimerFillAmount.empty));
             slowMo.NormalSpeed();
 
-            aimLaser.enabled = false;
-            ammoCount--;
-
             ammoSlider.value = ammoCount;
             mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             origin = transform.position;
