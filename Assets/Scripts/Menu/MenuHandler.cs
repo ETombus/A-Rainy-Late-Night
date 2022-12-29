@@ -19,6 +19,9 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] GameObject fadeIn;
     [SerializeField] GameObject introMarker;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip pageTurn;
+    AudioSource audSource;
 
     PlayerInputs playerControls;
     InputAction cancel;
@@ -31,6 +34,8 @@ public class MenuHandler : MonoBehaviour
             fadeIn.SetActive(false);
             introMarker.SetActive(false);
         }
+
+        audSource = GetComponent<AudioSource>();
     }
     private void OnEnable()
     {
@@ -94,6 +99,8 @@ public class MenuHandler : MonoBehaviour
             panels[i].SetActive(false);
         }
         panels[index].SetActive(true);
+
+        PlaySoundEffect();
     }
 
     public void ButtonBack(InputAction.CallbackContext context)
@@ -122,5 +129,11 @@ public class MenuHandler : MonoBehaviour
     public void PregameBack()
     {
         preGamePanel.SetActive(false);
+    }
+
+    void PlaySoundEffect()
+    {
+        audSource.pitch = Random.Range(0.8f, 1.2f);
+        audSource.PlayOneShot(pageTurn);
     }
 }

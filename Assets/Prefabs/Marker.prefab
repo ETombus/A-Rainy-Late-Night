@@ -369,11 +369,14 @@ MonoBehaviour:
   isAHookPoint: 0
   isSelected: 0
   ShouldHaveText: 1
-  textToWrite: 'Systen ERROR: Rebooting         Move With [A] and [D]'
+  textToWrite: Move With [A] and [D]
   timePerCharacter: 0.05
-  timePerRemoval: 0.05
-  shouldHaveImage: 0
+  timePerRemoval: 0.01
+  shouldHaveImage: 1
   showRadius: 0
+  disableUponFinish: 0
+  timeBeforeDisappearing: 2
+  disappearingTimer: 0
   canvas: {fileID: 1377397216}
 --- !u!82 &9217410140792468628
 AudioSource:

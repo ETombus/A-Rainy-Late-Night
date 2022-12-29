@@ -12,6 +12,8 @@ public class CheckpointManager : MonoBehaviour
 
     Vector2 startPos;
 
+    GameObject player;
+
     private void Start()
     {
         if (checkPoints.Length > 0)
@@ -20,6 +22,13 @@ public class CheckpointManager : MonoBehaviour
             {
                 checkPoints[i].index = i + 1;
             }
+        }
+
+        player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            SetStartPos(player);
+            SetPlayerPosition(player);
         }
     }
 
