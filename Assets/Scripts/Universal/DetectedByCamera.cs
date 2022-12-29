@@ -46,6 +46,10 @@ public class DetectedByCamera : MonoBehaviour
     public bool showRadius = false;
     [SerializeField] bool disableUponFinish = false;
 
+    [Header("Disabling")]
+    [SerializeField] float timeBeforeDisappearing = 2f;
+    [SerializeField] float disappearingTimer;
+
     private Image uiImage;
     private TextMeshProUGUI uiText;
     public GameObject canvas;
@@ -109,7 +113,9 @@ public class DetectedByCamera : MonoBehaviour
             if (shouldHaveImage)
                 uiImage.gameObject.SetActive(true);
         }
-        else if ((!CloseEnoughToPlayer(true) && lookingAtIt) || disabled)
+
+        if (disappearingTimer > 0) { disappearingTimer -= Time.deltaTime; }
+        else if (disappearingTimer < 0 && !writingText)
         {
             DisableMarker();
 
@@ -118,6 +124,16 @@ public class DetectedByCamera : MonoBehaviour
                 uiImage.gameObject.SetActive(false);
             }
         }
+
+        //else if ((!CloseEnoughToPlayer(true) && lookingAtIt) || disabled)
+        //{
+        //    DisableMarker();
+
+        //    if (shouldHaveImage)
+        //    {
+        //        uiImage.gameObject.SetActive(false);
+        //    }
+        //}
 
         if (isAHookPoint)
         {
@@ -215,6 +231,7 @@ public class DetectedByCamera : MonoBehaviour
             if (characterIndex >= textToWrite.Length)
             {
                 writingText = false;
+                disappearingTimer = timeBeforeDisappearing;
                 if (disableUponFinish)
                 {
                     IntroCutsceneManager cutsceneManager = GameObject.Find("GameManager").GetComponent<IntroCutsceneManager>();
