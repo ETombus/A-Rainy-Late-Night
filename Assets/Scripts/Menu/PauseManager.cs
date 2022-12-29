@@ -15,28 +15,41 @@ public class PauseManager : MonoBehaviour
     PlayerInputs playerControls;
     private InputAction escape;
 
-    [SerializeField] GameObject player;
+    GameObject player;
 
     CheckpointManager checkpoints;
 
     [SerializeField] Toggle skipDeathToggle;
 
+    bool isPaused;
+
     private void Awake()
     {
         playerControls = new PlayerInputs();
+
         checkpoints = GetComponent<CheckpointManager>();
+        if (checkpoints == null) { checkpoints = GameObject.Find("GameManager").GetComponent<CheckpointManager>(); }
+
+        player = GameObject.FindWithTag("Player");
     }
 
     private void OnEnable()
     {
         escape = playerControls.UI.Escape;
         escape.Enable();
-        escape.performed += PauseGame;
+        escape.performed += EscapePressed;
     }
 
     private void OnDisable() { escape.Disable(); }
 
-    private void PauseGame(InputAction.CallbackContext context)
+    private void EscapePressed(InputAction.CallbackContext context)
+    {
+        if (!isPaused) { PauseGame(); }
+        else if(isPaused && tutorialPanel.activeSelf == false) { UnpauseGame(); }
+        else if(isPaused && tutorialPanel.activeSelf == true) { TutorialClose(); }
+    }
+
+    private void PauseGame()
     {
         EnablePlayerActions(false);
 
@@ -45,6 +58,7 @@ public class PauseManager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("SkipDeathScene") == 0) { skipDeathToggle.isOn = false; }
         else { skipDeathToggle.isOn = true; }
+        isPaused = true;
     }
 
     public void UnpauseGame()
@@ -53,6 +67,7 @@ public class PauseManager : MonoBehaviour
 
         Time.timeScale = 1;
         pausePanel.SetActive(false);
+        isPaused = false;
     }
 
     public void ReturnToMenu()
@@ -81,8 +96,9 @@ public class PauseManager : MonoBehaviour
 
     private void EnablePlayerActions(bool setTo)
     {
-        player.GetComponent<Slice>().enabled = setTo;
-        player.GetComponentInChildren<AimTowardsMouse>().enabled = setTo;
+        player.GetComponent<PlayerInputHandler>().enabled = setTo;
+        //player.GetComponent<Slice>().enabled = setTo;
+        //player.GetComponentInChildren<AimTowardsMouse>().enabled = setTo;
     }
 
     public void TutorialOpen()
