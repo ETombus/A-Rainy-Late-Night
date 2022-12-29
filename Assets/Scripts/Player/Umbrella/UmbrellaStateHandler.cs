@@ -1,8 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -134,7 +130,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         {
             rifleCS.ShootRifle();
 
-            soundHandler.PlaySound(clips[2]);
+            soundHandler.PlaySound(clips[1]);
         }
     }
 
@@ -189,7 +185,7 @@ public class UmbrellaStateHandler : MonoBehaviour
             GetComponentInParent<Slice>().StandardSlice();
             Invoke(nameof(Idle), slashDelay);
 
-            soundHandler.PlaySound(clips[0]);
+            soundHandler.PlaySound(clips[Random.Range(2,5)]);
         }
     }
 

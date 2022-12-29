@@ -149,7 +149,7 @@ public class GrappleInput : MonoBehaviour
                 targetPoint.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
 
-            umbrella.soundHandler.PlaySound(umbrella.clips[1]);
+            umbrella.soundHandler.PlaySound(umbrella.clips[0]);
         }
         else
         {

@@ -9782,6 +9782,7 @@ MonoBehaviour:
   aimLaser: {fileID: 2097947645}
   umbrellaHandler: {fileID: 850067010036326724}
   bulletTrail: {fileID: 0}
+  ammoSlider: {fileID: 0}
   rifleSounds:
   - {fileID: 8300000, guid: d7e9e4da3513708449a4b6e3e6f11f42, type: 3}
   - {fileID: 8300000, guid: 799cf7671331fc4499f238787403cee9, type: 3}
@@ -15242,6 +15243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 35
+  umbrella: {fileID: 850067010036326724}
 --- !u!1 &24136076581838000
 GameObject:
   m_ObjectHideFlags: 0
@@ -15481,9 +15483,14 @@ MonoBehaviour:
   hookTarget: {x: 0, y: 0, z: 0}
   soundHandler: {fileID: 0}
   clips:
-  - {fileID: 8300000, guid: ff5f39d60646fbc4b94fae02de855c3b, type: 3}
-  - {fileID: 8300000, guid: c5d74bbfcfaa7e24c92cef6cc5cef551, type: 3}
+  - {fileID: 8300000, guid: 1303c6ffa0de5e1428b27a620cd81d96, type: 3}
   - {fileID: 8300000, guid: 91f168f2f8e5d2d47b4eff25a6b65ff4, type: 3}
+  - {fileID: 8300000, guid: 1fb432ba97b69ca498d96d399cd82250, type: 3}
+  - {fileID: 8300000, guid: fcae88f61914105428f6b5ef7f6cc253, type: 3}
+  - {fileID: 8300000, guid: 10e01dc8a9957674081994e1777299a9, type: 3}
+  - {fileID: 8300000, guid: 7220ed2a0ede2f04eb3e0dbd7aa2a7fa, type: 3}
+  - {fileID: 8300000, guid: ec6ec0c05bc673746be9720e914f6670, type: 3}
+  - {fileID: 8300000, guid: 3ae4aa1616f063842a12050d1b1aad0c, type: 3}
   roof: 0
   timerOn: 0
   inRain: 0
@@ -15541,7 +15548,6 @@ GameObject:
   - component: {fileID: 1593669584389441935}
   - component: {fileID: 150286536}
   - component: {fileID: 150286520}
-  - component: {fileID: 4225370552404129275}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -15686,7 +15692,7 @@ MonoBehaviour:
   walkableSlope: 1
   slopeDirection: {x: 0, y: 0}
   gravityUpwards: 6
-  downwardGravity: 10
+  downwardGravity: 8
   jumpGravityTransitionSpeed:
     serializedVersion: 2
     m_Curve:
@@ -15821,7 +15827,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 776
   hookPoints: []
-  hookMaxReach: 10.9
+  hookMaxReach: 13.2
   maxMouseDistance: 15
   minHookDistance: 1
   hookSpeed: 40
@@ -16228,21 +16234,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c518d3305cd10c47a2cfac38150817d, type: 3}
   footsplash: {fileID: 651696777}
   soundHandler: {fileID: 150286547}
---- !u!114 &4225370552404129275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450338445620509171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f83023d429a5004683afbcc898d51fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slice: 0
-  shoot: 0
-  grapple: 0
 --- !u!1 &2633669397770518439
 GameObject:
   m_ObjectHideFlags: 0
