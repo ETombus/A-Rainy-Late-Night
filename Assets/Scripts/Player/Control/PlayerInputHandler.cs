@@ -99,22 +99,18 @@ public class PlayerInputHandler : MonoBehaviour
         stateHandler.inputX = move.ReadValue<float>();
     }
 
-    public void ActivateFall(InputAction.CallbackContext context) { fallDown = true; }
+    public void ActivateFall(InputAction.CallbackContext context) 
+    { 
+        stateHandler.FallThroughPlatforms();
+    }
     public void DisableFall(InputAction.CallbackContext context)
     {
-        fallDown = false;
         stateHandler.StopFallThroughPlatforms();
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!fallDown)
             stateHandler.JumpPressed();
-        else
-        {
-            stateHandler.FallThroughPlatforms();
-        }
-
     }
 
 
