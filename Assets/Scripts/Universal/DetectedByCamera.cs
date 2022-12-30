@@ -113,6 +113,10 @@ public class DetectedByCamera : MonoBehaviour
             if (shouldHaveImage)
                 uiImage.gameObject.SetActive(true);
         }
+        else if ((!CloseEnoughToPlayer(true) && lookingAtIt) || disabled)
+        {
+            animator.SetBool("MarkerVisable", false);
+        }
 
         if (disappearingTimer > 0) { disappearingTimer -= Time.deltaTime; }
         else if (disappearingTimer <= 0 && !writingText)
@@ -125,15 +129,6 @@ public class DetectedByCamera : MonoBehaviour
             }
         }
 
-        //else if ((!CloseEnoughToPlayer(true) && lookingAtIt) || disabled)
-        //{
-        //    DisableMarker();
-
-        //    if (shouldHaveImage)
-        //    {
-        //        uiImage.gameObject.SetActive(false);
-        //    }
-        //}
 
         if (isAHookPoint)
         {
@@ -179,6 +174,7 @@ public class DetectedByCamera : MonoBehaviour
         lookingAtIt = true;
         animator.SetBool("MarkerVisable", true);
 
+
         if (ShouldHaveText)
         {
             writingText = true;
@@ -195,7 +191,6 @@ public class DetectedByCamera : MonoBehaviour
     void DisableMarker()
     {
         lookingAtIt = false;
-        animator.SetBool("MarkerVisable", false);
 
         if (ShouldHaveText)
         {
