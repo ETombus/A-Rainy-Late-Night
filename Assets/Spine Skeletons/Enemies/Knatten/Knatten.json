@@ -1,11 +1,11 @@
 {
 "skeleton": {
-	"hash": "FobTwNo8Puw",
+	"hash": "LGfKzo/3y38",
 	"spine": "4.1.17",
-	"x": -344.85,
+	"x": -320.32,
 	"y": -8,
-	"width": 2339.68,
-	"height": 2285.98,
+	"width": 2277.36,
+	"height": 2401.69,
 	"images": "../RigReady/Knatten/",
 	"audio": "C:/Users/Malte/OneDrive/Dokument/Min Rainy mapp/RigReady/Knatten"
 },
@@ -15,12 +15,9 @@
 	{ "name": "Torso", "parent": "hips", "length": 631.92, "rotation": 90.34, "x": 3.43, "y": 33.15 },
 	{ "name": "Torso2", "parent": "Torso", "length": 211.51, "rotation": 1.9, "x": 573.05, "y": 5.62 },
 	{ "name": "Head", "parent": "Torso2", "length": 256.44, "rotation": -11.35, "x": 209.54, "y": -4.81 },
-	{ "name": "Aim", "parent": "root", "x": 278.04, "y": 437.87 },
-	{ "name": "Aim IK", "parent": "Aim", "rotation": -110.43, "x": -13.72, "y": 65.01, "color": "ff3f00ff" },
-	{ "name": "Upper Arm R", "parent": "Torso", "length": 1268.18, "rotation": -88, "x": 560.11, "y": 103.87 },
 	{ "name": "Upper Arm L", "parent": "Torso", "length": 356.44, "rotation": -173.65, "x": 516.06, "y": -95.9 },
 	{ "name": "Lower Arm L", "parent": "Upper Arm L", "length": 353.24, "rotation": 1.49, "x": 288.27, "y": 0.29 },
-	{ "name": "Hand L", "parent": "Lower Arm L", "length": 253.76, "rotation": 0.67, "x": 305.7, "y": 3.72 },
+	{ "name": "Hand L", "parent": "Lower Arm L", "length": 253.76, "rotation": 8.36, "x": 305.7, "y": 3.72 },
 	{ "name": "Thumb L", "parent": "Hand L", "length": 164.19, "rotation": 20.97, "x": 18.97, "y": 13.41 },
 	{ "name": "Leg R", "parent": "hips", "length": 495.34, "rotation": -92.29, "x": -61.66, "y": -32.26 },
 	{ "name": "Lower Leg R", "parent": "Leg R", "length": 636.71, "rotation": -5.42, "x": 477.73, "y": 23.91 },
@@ -32,8 +29,26 @@
 	{ "name": "Toe R", "parent": "Heel R", "length": 109.22, "rotation": 11.26, "x": 191.73, "y": 3.38 },
 	{ "name": "Ankle R", "parent": "root", "rotation": 116.55, "x": -181.8, "y": 63.03, "color": "ff3f00ff" },
 	{ "name": "Ankle L", "parent": "root", "rotation": -18, "x": 49.04, "y": 145.46, "color": "ff3f00ff" },
-	{ "name": "Wrist L", "parent": "root", "rotation": -19.11, "x": 146.02, "y": 1112.35, "color": "ff3f00ff" },
-	{ "name": "Arm IK", "parent": "Aim", "x": -20.54, "y": 77.37, "color": "ff3f00ff" }
+	{ "name": "bone", "parent": "hips" },
+	{
+		"name": "Rotation Limit",
+		"parent": "bone",
+		"length": 225.73,
+		"rotation": 17.22,
+		"x": 306.99,
+		"y": 263.5,
+		"color": "abe323ff"
+	},
+	{ "name": "Puffra", "parent": "Rotation Limit", "length": 691.04, "rotation": -9.32, "x": 101.48, "y": 139.16 },
+	{ "name": "Hand L IK", "parent": "Puffra", "rotation": -1.46, "x": 464.29, "y": -16.95, "color": "ff3f00ff" },
+	{ "name": "Wrist L", "parent": "Hand L IK", "rotation": 110.23, "x": -225.47, "y": -75.27, "color": "ff3f00ff" },
+	{ "name": "Upper Arm R", "parent": "Torso", "length": 372.82, "rotation": 156.64, "x": 498.19, "y": 154.47 },
+	{ "name": "Lower Arm R", "parent": "Upper Arm R", "length": 331.05, "rotation": 109.18, "x": 333.41, "y": 18.39 },
+	{ "name": "Hand R", "parent": "Lower Arm R", "length": 275.25, "rotation": 1.06, "x": 302.27, "y": -1.84 },
+	{ "name": "Hand R IK", "parent": "Puffra", "rotation": -1.46, "x": 50.73, "y": -111.16, "color": "ff3f00ff" },
+	{ "name": "Wrist R", "parent": "Hand R IK", "rotation": -32.63, "x": -234.06, "y": 8.7, "color": "ff3f00ff" },
+	{ "name": "Aim", "parent": "root", "x": 1532.5, "y": 1910.57 },
+	{ "name": "Target IK", "parent": "Aim", "x": -157.5, "y": -22.02, "color": "ff3f00ff" }
 ],
 "slots": [
 	{ "name": "Hand L", "bone": "Hand L", "attachment": "Hand L" },
@@ -51,114 +66,160 @@
 	{ "name": "Leg R", "bone": "Leg R", "attachment": "Leg R" },
 	{ "name": "Neck", "bone": "Torso2", "attachment": "Neck" },
 	{ "name": "Torso", "bone": "Torso", "attachment": "Torso" },
-	{ "name": "Thumb R", "bone": "Upper Arm R", "attachment": "Thumb R" },
 	{ "name": "Head", "bone": "Head", "attachment": "Head" },
-	{ "name": "Revolver", "bone": "Upper Arm R", "attachment": "Revolver" },
-	{ "name": "Hand R", "bone": "Upper Arm R", "attachment": "Hand R" },
+	{ "name": "Thumb R", "bone": "Hand R", "attachment": "Thumb R" },
+	{ "name": "Puffra", "bone": "Puffra", "attachment": "Puffra" },
 	{ "name": "Upper Arm R", "bone": "Upper Arm R", "attachment": "Upper Arm R" },
-	{ "name": "Lower Arm R", "bone": "Upper Arm R", "attachment": "Lower Arm R" },
-	{ "name": "Flash 1", "bone": "Upper Arm R", "attachment": "Flash 1" },
-	{ "name": "Flash  2", "bone": "Upper Arm R", "attachment": "Flash  2" },
-	{ "name": "Flash 3", "bone": "Upper Arm R", "attachment": "Flash 3" },
-	{ "name": "Flash 4", "bone": "Upper Arm R", "attachment": "Flash 4" },
-	{ "name": "Aim", "bone": "Aim" }
+	{ "name": "Hand R2", "bone": "Hand R", "attachment": "Hand R" },
+	{ "name": "Hand R", "bone": "Hand R" },
+	{ "name": "Lower Arm R", "bone": "Lower Arm R", "attachment": "Lower Arm R" },
+	{ "name": "Flash 1", "bone": "Target IK" },
+	{ "name": "Flash  2", "bone": "Target IK" },
+	{ "name": "Flash 3", "bone": "Target IK" },
+	{ "name": "Flash 4", "bone": "Target IK" },
+	{ "name": "Aim", "bone": "root" },
+	{ "name": "Flash 2", "bone": "Puffra", "attachment": "Flash 1" },
+	{ "name": "Flash  3", "bone": "Puffra", "attachment": "Flash  2" },
+	{ "name": "Flash 5", "bone": "Puffra", "attachment": "Flash 3" },
+	{ "name": "Flash 6", "bone": "Puffra", "attachment": "Flash 4" }
 ],
 "ik": [
 	{
-		"name": "Aim IK",
-		"bones": [ "Arm IK" ],
-		"target": "Aim IK"
-	},
-	{
 		"name": "Ankle L",
-		"order": 1,
 		"bones": [ "Leg L", "Lower Leg L" ],
 		"target": "Ankle L",
 		"bendPositive": false
 	},
 	{
-		"name": "Arm R",
+		"name": "Hand L IK",
+		"order": 9,
+		"bones": [ "Hand L" ],
+		"target": "Hand L IK"
+	},
+	{
+		"name": "Hand R",
+		"order": 8,
+		"bones": [ "Hand R" ],
+		"target": "Hand R IK"
+	},
+	{
+		"name": "Rotation Limit Ik",
 		"order": 2,
-		"bones": [ "Upper Arm R" ],
-		"target": "Arm IK"
+		"bones": [ "Rotation Limit" ],
+		"target": "Target IK"
 	},
 	{
 		"name": "target",
-		"order": 3,
+		"order": 1,
 		"bones": [ "Leg R", "Lower Leg R" ],
 		"target": "Ankle R",
 		"bendPositive": false
 	},
 	{
+		"name": "Target IK",
+		"order": 3,
+		"bones": [ "Puffra" ],
+		"target": "Target IK"
+	},
+	{
 		"name": "Wrist L",
-		"order": 4,
+		"order": 6,
 		"bones": [ "Upper Arm L", "Lower Arm L" ],
 		"target": "Wrist L"
+	},
+	{
+		"name": "Wrist R",
+		"order": 7,
+		"bones": [ "Upper Arm R", "Lower Arm R" ],
+		"target": "Wrist R"
+	}
+],
+"transform": [
+	{
+		"name": "Head Rotation",
+		"order": 11,
+		"bones": [ "Head" ],
+		"target": "Rotation Limit",
+		"rotation": 53.28,
+		"x": -27.83,
+		"y": 664.38,
+		"mixRotate": 0.4336,
+		"mixX": 0,
+		"mixScaleX": 0,
+		"mixShearY": 0
+	},
+	{
+		"name": "Neck Rotation",
+		"order": 10,
+		"bones": [ "Torso2" ],
+		"target": "Rotation Limit",
+		"rotation": 64.64,
+		"x": -121.93,
+		"y": 477.1,
+		"mixRotate": 0.7483,
+		"mixX": 0,
+		"mixScaleX": 0,
+		"mixShearY": 0
+	},
+	{
+		"name": "Rifle Movement",
+		"order": 4,
+		"bones": [ "Puffra" ],
+		"target": "Target IK",
+		"rotation": 5.42,
+		"x": -887.88,
+		"y": -84.18,
+		"mixRotate": 0,
+		"mixX": 0.1792,
+		"mixY": 0,
+		"mixScaleX": 0,
+		"mixShearY": 0
+	},
+	{
+		"name": "Torso Rotation",
+		"order": 5,
+		"bones": [ "Torso" ],
+		"target": "Rotation Limit",
+		"rotation": 69.1,
+		"x": -322.15,
+		"y": -129.35,
+		"mixRotate": 0.704,
+		"mixX": 0,
+		"mixScaleX": 0,
+		"mixShearY": 0
 	}
 ],
 "skins": [
 	{
 		"name": "default",
 		"attachments": {
-			"Aim": {
-				"Aim": {
-					"type": "mesh",
-					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
-					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ -37.64, 38.91, 44.36, 38.36, 43.85, -37.64, -38.15, -37.09 ],
-					"hull": 4,
-					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
-					"width": 82,
-					"height": 76
-				}
-			},
-			"Flash 1": {
+			"Flash 2": {
 				"Flash 1": {
-					"type": "mesh",
-					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
-					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 1510.7, 938.88, 1454.6, 367.63, 987.85, 413.46, 1043.95, 984.71 ],
-					"hull": 4,
-					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"x": 1104.91,
+					"y": 25.34,
+					"scaleX": 1.6245,
+					"scaleY": 1.6245,
+					"rotation": -1.33,
 					"width": 574,
 					"height": 469
 				}
 			},
-			"Flash  2": {
+			"Flash  3": {
 				"Flash  2": {
-					"type": "mesh",
-					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
-					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 1475.82, 1381.26, 1422.66, 839.86, 992.73, 882.08, 1045.89, 1423.48 ],
-					"hull": 4,
-					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"x": 1031.36,
+					"y": 10.78,
+					"scaleX": 1.4384,
+					"scaleY": 1.4384,
+					"rotation": -0.28,
 					"width": 544,
 					"height": 432
 				}
 			},
-			"Flash 3": {
-				"Flash 3": {
-					"type": "mesh",
-					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
-					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 1631.24, 1723.44, 1593.42, 1338.3, 1200.31, 1376.9, 1238.13, 1762.05 ],
-					"hull": 4,
-					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
-					"width": 387,
-					"height": 395
-				}
+			"Flash 5": {
+				"Flash 3": { "x": 875.76, "y": 54.78, "rotation": -1.9, "width": 387, "height": 395 }
 			},
-			"Flash 4": {
-				"Flash 4": {
-					"type": "mesh",
-					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
-					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 1261.97, 1698.37, 1237.05, 1444.59, 917.58, 1475.97, 942.5, 1729.75 ],
-					"hull": 4,
-					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
-					"width": 255,
-					"height": 321
-				}
+			"Flash 6": {
+				"Flash 4": { "x": 893.7, "y": 70.69, "rotation": 29.33, "width": 255, "height": 321 }
 			},
 			"Hand L": {
 				"Hand L": {
@@ -172,12 +233,12 @@
 					"height": 276
 				}
 			},
-			"Hand R": {
+			"Hand R2": {
 				"Hand R": {
 					"type": "mesh",
 					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
 					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 903.29, -17.74, 922.19, -164.52, 628.62, -202.33, 609.72, -55.54 ],
+					"vertices": [ 273.38, 98.61, 292.8, -48.11, -0.64, -86.95, -20.06, 59.77 ],
 					"hull": 4,
 					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
 					"width": 148,
@@ -273,7 +334,7 @@
 					"type": "mesh",
 					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
 					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 678.88, -0.8, 728.2, -205.95, 286.78, -312.07, 237.46, -106.91 ],
+					"vertices": [ 342.17, 114.58, 371.62, -94.36, -77.94, -157.71, -107.38, 51.23 ],
 					"hull": 4,
 					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
 					"width": 211,
@@ -316,16 +377,16 @@
 					"height": 359
 				}
 			},
-			"Revolver": {
-				"Revolver": {
+			"Puffra": {
+				"Puffra": {
 					"type": "mesh",
 					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
 					"triangles": [ 1, 2, 3, 1, 3, 0 ],
-					"vertices": [ 1269.78, -193.74, 660.78, -196.25, 659.72, 62.75, 1268.71, 65.26 ],
+					"vertices": [ 692.44, -264.61, -260.46, -250.88, -255.96, 61.09, 696.94, 47.35 ],
 					"hull": 4,
 					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
-					"width": 609,
-					"height": 259
+					"width": 953,
+					"height": 312
 				}
 			},
 			"Thumb L": {
@@ -345,7 +406,7 @@
 					"type": "mesh",
 					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
 					"triangles": [ 1, 2, 3, 0, 1, 3 ],
-					"vertices": [ 858.42, -5.2, 866.97, -71.65, 695.39, -93.75, 686.83, -27.29 ],
+					"vertices": [ 238.77, 102.23, 249.19, 36.05, 78.29, 9.14, 67.87, 75.32 ],
 					"hull": 4,
 					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
 					"width": 67,
@@ -405,7 +466,7 @@
 					"type": "mesh",
 					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
 					"triangles": [ 1, 2, 3, 0, 1, 3 ],
-					"vertices": [ 421.2, -21.82, 378.69, -220.32, -61.33, -126.07, -18.82, 72.42 ],
+					"vertices": [ 358.53, 151.01, 396.4, -48.42, -45.7, -132.38, -83.57, 67.06 ],
 					"hull": 4,
 					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
 					"width": 203,
@@ -422,36 +483,28 @@
 "animations": {
 	"Aim": {
 		"slots": {
-			"Flash 1": {
+			"Flash 2": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash  2": {
+			"Flash  3": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 3": {
+			"Flash 5": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 4": {
+			"Flash 6": {
 				"attachment": [
 					{}
 				]
 			}
 		},
 		"bones": {
-			"Aim IK": {
-				"rotate": [
-					{ "value": -24.83 }
-				],
-				"translate": [
-					{ "x": -120.88, "y": -9.73 }
-				]
-			},
 			"Torso2": {
 				"rotate": [
 					{ "value": -9.41 }
@@ -461,32 +514,27 @@
 				"rotate": [
 					{ "value": 8.67 }
 				]
-			},
-			"Aim": {
-				"translate": [
-					{ "x": 1375.76, "y": 1457.35 }
-				]
 			}
 		}
 	},
-	"Idle": {
+	"Damage": {
 		"slots": {
-			"Flash 1": {
+			"Flash 2": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash  2": {
+			"Flash  3": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 3": {
+			"Flash 5": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 4": {
+			"Flash 6": {
 				"attachment": [
 					{}
 				]
@@ -496,23 +544,120 @@
 			"Torso": {
 				"rotate": [
 					{},
-					{ "time": 0.7333, "value": 2.83 },
+					{ "time": 0.1333, "value": -56.81 },
+					{ "time": 0.2333, "value": -48.61 },
+					{ "time": 0.4 }
+				]
+			},
+			"Torso2": {
+				"rotate": [
+					{},
+					{ "time": 0.1333, "value": -111.61 }
+				]
+			},
+			"Head": {
+				"rotate": [
+					{},
+					{ "time": 0.1333, "value": -20.39 },
+					{ "time": 0.2333, "value": -37.8 }
+				]
+			},
+			"Upper Arm L": {
+				"rotate": [
+					{ "value": 34.34 }
+				]
+			},
+			"Lower Arm L": {
+				"rotate": [
+					{ "value": 58.81 }
+				]
+			},
+			"Hand L": {
+				"rotate": [
+					{ "value": 7.34 }
+				]
+			},
+			"Leg R": {
+				"rotate": [
+					{ "value": 5.62 }
+				]
+			},
+			"Lower Leg R": {
+				"rotate": [
+					{ "value": -11.09 }
+				]
+			},
+			"Leg L": {
+				"rotate": [
+					{ "value": 2.35 }
+				]
+			},
+			"Lower Leg L": {
+				"rotate": [
+					{ "value": -0.89 }
+				]
+			},
+			"Rotation Limit": {
+				"rotate": [
+					{ "value": 4.43 }
+				]
+			},
+			"Puffra": {
+				"rotate": [
+					{ "value": 1.95 }
+				]
+			},
+			"Upper Arm R": {
+				"rotate": [
+					{ "value": 30.55 }
+				]
+			},
+			"Lower Arm R": {
+				"rotate": [
+					{ "value": -11.24 }
+				]
+			},
+			"Hand R": {
+				"rotate": [
+					{ "value": -5.17 }
+				]
+			}
+		}
+	},
+	"Idle": {
+		"slots": {
+			"Flash 2": {
+				"attachment": [
+					{}
+				]
+			},
+			"Flash  3": {
+				"attachment": [
+					{}
+				]
+			},
+			"Flash 5": {
+				"attachment": [
+					{}
+				]
+			},
+			"Flash 6": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"Torso": {
+				"rotate": [
+					{},
+					{ "time": 0.7333, "value": 9.97 },
 					{ "time": 1.3333 }
 				],
 				"translate": [
 					{},
-					{ "time": 0.6667, "x": 2.3, "y": 9.21 },
+					{ "time": 0.6667, "x": 2.49, "y": 25.09 },
 					{ "time": 1.3333 }
-				]
-			},
-			"Aim IK": {
-				"rotate": [
-					{ "value": -24.83 }
-				],
-				"translate": [
-					{ "x": 43.71, "y": -74.03 },
-					{ "time": 0.6667, "x": -7.77, "y": -123.18 },
-					{ "time": 1.3333, "x": 43.71, "y": -74.03 }
 				]
 			},
 			"Wrist L": {
@@ -524,38 +669,67 @@
 			},
 			"Torso2": {
 				"rotate": [
-					{ "value": -9.41 }
+					{ "value": -9.41 },
+					{ "time": 0.7333, "value": -48.07 },
+					{ "time": 1.3333, "value": -9.41 }
+				]
+			},
+			"hips": {
+				"rotate": [
+					{},
+					{ "time": 0.6667, "value": 0.25 }
+				]
+			},
+			"Leg R": {
+				"rotate": [
+					{ "time": 0.6667, "value": 5.37 }
+				],
+				"translate": [
+					{ "time": 0.6667, "x": -0.14, "y": 0.27 }
+				]
+			},
+			"Leg L": {
+				"rotate": [
+					{ "time": 0.6667, "value": 2.1 }
+				],
+				"translate": [
+					{ "time": 0.6667, "x": -0.14, "y": -0.35 }
+				]
+			},
+			"bone": {
+				"rotate": [
+					{ "time": 0.6667, "value": -0.25 }
 				]
 			},
 			"Head": {
 				"rotate": [
-					{ "value": 8.67 }
+					{ "value": 14.22 }
 				]
 			}
 		}
 	},
 	"Recoil": {
 		"slots": {
-			"Flash 1": {
+			"Flash 2": {
 				"attachment": [
 					{ "time": 0.0333 }
 				]
 			},
-			"Flash  2": {
+			"Flash  3": {
 				"attachment": [
 					{},
 					{ "time": 0.0333, "name": "Flash  2" },
 					{ "time": 0.0667 }
 				]
 			},
-			"Flash 3": {
+			"Flash 5": {
 				"attachment": [
 					{},
 					{ "time": 0.0667, "name": "Flash 3" },
 					{ "time": 0.1 }
 				]
 			},
-			"Flash 4": {
+			"Flash 6": {
 				"attachment": [
 					{},
 					{ "time": 0.1, "name": "Flash 4" },
@@ -564,15 +738,6 @@
 			}
 		},
 		"bones": {
-			"Aim IK": {
-				"rotate": [
-					{ "value": -24.83 }
-				],
-				"translate": [
-					{ "x": 0.68, "y": -0.09 },
-					{ "time": 0.2667, "x": -0.35, "y": 1.19 }
-				]
-			},
 			"Wrist L": {
 				"translate": [
 					{ "x": -53.42, "y": -24.65 }
@@ -588,106 +753,20 @@
 					{ "value": 8.67 }
 				]
 			},
-			"Aim": {
+			"Puffra": {
+				"rotate": [
+					{ "time": 0.2667, "value": 1.95 }
+				],
 				"translate": [
-					{ "x": 325.31, "y": 25.05 },
-					{ "time": 0.2667, "x": 343.22, "y": 1.26 }
+					{ "x": -149.06, "y": -6.04 },
+					{ "time": 0.2667 }
 				]
-			}
-		},
-		"attachments": {
-			"default": {
-				"Flash 1": {
-					"Flash 1": {
-						"deform": [
-							{
-								"vertices": [ 225.58008, -527.896, -227.12012, -222.35315, 22.5293, 147.5351, 475.22864, -158.00635 ]
-							}
-						]
-					}
-				},
-				"Flash  2": {
-					"Flash  2": {
-						"deform": [
-							{
-								"time": 0.0333,
-								"vertices": [ 231.73462, -1090.7136, -224.33618, -740.6664, 53.64209, -378.49176, 509.71375, -728.53906 ]
-							}
-						]
-					}
-				},
-				"Flash 3": {
-					"Flash 3": {
-						"deform": [
-							{
-								"time": 0.0667,
-								"vertices": [ -36.17065, -1485.8733, -376.79187, -1181.6536, -66.28247, -833.9899, 274.33875, -1138.2112 ]
-							}
-						]
-					}
-				},
-				"Flash 4": {
-					"Flash 4": {
-						"deform": [
-							{
-								"time": 0.1,
-								"vertices": [ 267.0924, -1248.178, 267.0924, -1248.178, 267.0924, -1248.178, 267.0924, -1248.178 ]
-							}
-						]
-					}
-				},
-				"Hand R": {
-					"Hand R": {
-						"deform": [
-							{
-								"vertices": [ -63.75916, 165.6128, -20.49768, 178.08855, 4.45313, 91.56748, -38.80762, 79.09182 ]
-							},
-							{
-								"time": 0.2667,
-								"vertices": [ -1.3927, 11.76263, -1.3927, 11.76263, -1.3927, 11.76263, -1.3927, 11.76263 ]
-							}
-						]
-					}
-				},
-				"Lower Arm R": {
-					"Lower Arm R": {
-						"deform": [
-							{
-								"vertices": [ -58.46838, 97.35525, 0.93433, 121.67667, 53.26636, -6.13778, -6.13672, -30.45911 ]
-							},
-							{
-								"time": 0.2667,
-								"vertices": [ -1.3927, 11.76263, -1.3927, 11.76263, -1.3927, 11.76263, -1.3927, 11.76263 ]
-							}
-						]
-					}
-				},
-				"Revolver": {
-					"Revolver": {
-						"deform": [
-							{
-								"vertices": [ -28.22656, 374.18076, 51.90881, 74.71507, -75.45056, 40.63441, -155.58484, 340.1007 ]
-							},
-							{
-								"time": 0.2667,
-								"vertices": [ 4.7002, 27.35418, 5.60706, -3.44524, -7.49243, -3.83089, -8.39795, 26.96873 ]
-							}
-						]
-					}
-				},
-				"Thumb R": {
-					"Thumb R": {
-						"deform": [
-							{
-								"vertices": [ -65.45142, 151.53946, -45.86731, 157.18695, -31.28418, 106.61906, -50.86902, 100.97155 ]
-							},
-							{
-								"time": 0.2667,
-								"vertices": [ -1.3927, 11.76263, -1.3927, 11.76263, -1.3927, 11.76263, -1.3927, 11.76263 ]
-							}
-						]
-					}
-				}
+			},
+			"Target IK": {
+				"translate": [
+					{ "x": -146, "y": -12.09 },
+					{ "time": 0.2667 }
+				]
 			}
 		},
 		"events": [
@@ -696,22 +775,22 @@
 	},
 	"Run": {
 		"slots": {
-			"Flash 1": {
+			"Flash 2": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash  2": {
+			"Flash  3": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 3": {
+			"Flash 5": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 4": {
+			"Flash 6": {
 				"attachment": [
 					{}
 				]
@@ -755,33 +834,20 @@
 			},
 			"Torso2": {
 				"rotate": [
-					{ "value": -11.15 }
+					{ "value": -29.75 }
 				]
 			},
 			"Head": {
 				"rotate": [
-					{ "value": 12.02 }
+					{ "value": 17.88 }
+				],
+				"translate": [
+					{ "x": -2 }
 				]
 			},
 			"Wrist L": {
 				"rotate": [
 					{ "value": -38.39 }
-				],
-				"translate": [
-					{ "x": -417.62, "y": -10.35 },
-					{ "time": 0.1333, "x": -282.24, "y": -192.27 },
-					{ "time": 0.2667, "x": 55.63, "y": -89.28 },
-					{ "time": 0.4, "x": 127.38, "y": -42.22 },
-					{ "time": 0.6, "x": 310.03, "y": -72.25 },
-					{ "time": 0.8, "x": -60.18, "y": -153.48 },
-					{ "time": 1.0667, "x": -417.62, "y": -10.35 }
-				]
-			},
-			"Aim IK": {
-				"translate": [
-					{ "x": 0.98, "y": -0.31 },
-					{ "time": 0.6, "x": 78.83, "y": -193.7 },
-					{ "time": 1.0667, "x": 0.98, "y": -0.31 }
 				]
 			},
 			"Heel R": {
@@ -813,7 +879,7 @@
 			},
 			"Torso": {
 				"rotate": [
-					{ "value": -7.74 }
+					{ "value": -34.05 }
 				]
 			},
 			"hips": {
@@ -835,13 +901,6 @@
 					{ "time": 0.9333, "value": 24.03 },
 					{ "time": 1.0667 }
 				]
-			},
-			"Aim": {
-				"translate": [
-					{ "x": 577.17, "y": 13.99 },
-					{ "time": 0.5, "x": 231.18, "y": -168.03 },
-					{ "time": 1.0667, "x": 577.17, "y": 13.99 }
-				]
 			}
 		},
 		"events": [
@@ -851,22 +910,22 @@
 	},
 	"Walk": {
 		"slots": {
-			"Flash 1": {
+			"Flash 2": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash  2": {
+			"Flash  3": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 3": {
+			"Flash 5": {
 				"attachment": [
 					{}
 				]
 			},
-			"Flash 4": {
+			"Flash 6": {
 				"attachment": [
 					{}
 				]
@@ -876,23 +935,6 @@
 			"Torso": {
 				"rotate": [
 					{ "value": -1.08 }
-				]
-			},
-			"Aim IK": {
-				"rotate": [
-					{ "value": -24.83 }
-				],
-				"translate": [
-					{ "x": 0.82, "y": -0.74 },
-					{ "time": 0.6667, "x": -251.14, "y": -69.2 },
-					{ "time": 1.3333, "x": 0.82, "y": -0.74 }
-				]
-			},
-			"Wrist L": {
-				"translate": [
-					{ "x": -216.84, "y": 14.42 },
-					{ "time": 0.6667, "x": -8.33, "y": -6.49 },
-					{ "time": 1.3333, "x": -216.84, "y": 14.42 }
 				]
 			},
 			"Torso2": {
@@ -962,7 +1004,7 @@
 			},
 			"hips": {
 				"translate": [
-					{ "y": -8.72 },
+					{ "y": -4.74 },
 					{ "time": 0.1667, "y": -19.25 },
 					{ "time": 0.3333, "y": -3.55 },
 					{ "time": 0.5, "y": 8.26 },
@@ -1001,11 +1043,6 @@
 					{ "time": 0.5, "value": 19.22 },
 					{ "time": 0.6667, "value": 18.9 },
 					{ "time": 1, "value": 6.52 }
-				]
-			},
-			"Aim": {
-				"translate": [
-					{ "x": 64.51, "y": -30.43 }
 				]
 			}
 		},
