@@ -115,7 +115,7 @@ public class DetectedByCamera : MonoBehaviour
         }
 
         if (disappearingTimer > 0) { disappearingTimer -= Time.deltaTime; }
-        else if (disappearingTimer < 0 && !writingText)
+        else if (disappearingTimer <= 0 && !writingText)
         {
             DisableMarker();
 

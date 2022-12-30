@@ -47,10 +47,9 @@ public class SettingsHandler : MonoBehaviour
             MuteSound(true);
         }
 
-        PlayerPrefs.GetInt("ShowHints", 1);
-
-        if (PlayerPrefs.GetInt("ShowHints") == 1) { showHintsToggle.isOn = true; }
+        if (PlayerPrefs.GetInt("ShowHints", 1) == 1) { showHintsToggle.isOn = true; }
         else { showHintsToggle.isOn = false; }
+        Debug.Log(PlayerPrefs.HasKey("ShowHints"));
 
         windowDropdown.value = PlayerPrefs.GetInt("CurrentWindowType", 0);
         SetWindowType(PlayerPrefs.GetInt("CurrentWindowType"));
@@ -159,13 +158,7 @@ public class SettingsHandler : MonoBehaviour
 
     public void TurnOffHints(bool toggle)
     {
-        if (toggle)
-        {
-            PlayerPrefs.SetInt("ShowHints", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("ShowHints", 0);
-        }
+        if (toggle) { PlayerPrefs.SetInt("ShowHints", 1); }
+        else { PlayerPrefs.SetInt("ShowHints", 0); }
     }
 }
