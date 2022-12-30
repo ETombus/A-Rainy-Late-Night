@@ -44,18 +44,17 @@ public class EnemyShooting : MonoBehaviour
             else
                 handler.movement.StopEnemy();
 
-            StartCoroutine(Shoot());
+            spineController.PlayAttackAnimation();
         }
     }
 
-    private IEnumerator Shoot()
+    public IEnumerator Shoot()
     {
         firing = true;
 
         for (int i = magSize; i > 0; i--)
         {
-            handler.PlaySound(handler.thisType);
-            spineController.PlayAttackAnimation();
+            spineController.PlayAttackSound();
 
             GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
             bulletInstance.GetComponent<BulletScript>().damage = damage;

@@ -23,6 +23,8 @@ public class EnemyDetect : MonoBehaviour
 
     EnemyHandler handler;
 
+    [SerializeField] AudioClip detectSound;
+
     private void Start()
     {
         handler = GetComponent<EnemyHandler>();
@@ -87,6 +89,9 @@ public class EnemyDetect : MonoBehaviour
         detectedPlayer = true;
         seesPlayer = true;
         handler.currentMode = EnemyHandler.Mode.Aggression;
+
+        if(detectSound!= null) 
+            GetComponent<AudioSource>().PlayOneShot(detectSound);
     }
     void SearchForPlayerWithinRange()
     {

@@ -120,7 +120,19 @@ MonoBehaviour:
   maxHealth: 100
   damageTrigger:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4956277708784558731}
+        m_TargetAssemblyTypeName: EnemySpineController, Assembly-CSharp
+        m_MethodName: PlayDamageAnim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   deathTrigger:
     m_PersistentCalls:
       m_Calls: []
@@ -183,6 +195,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5947c551c74a73448b20fda31185745f, type: 3}
   - {fileID: 21300000, guid: 0e0b15a07eac5ed468abf4f1d969f9fe, type: 3}
   - {fileID: 21300000, guid: 6735bc8be1be89648b507ec8fada2e0f, type: 3}
+  detectSound: {fileID: 0}
 --- !u!82 &6199010981000626863
 AudioSource:
   m_ObjectHideFlags: 0
@@ -530,11 +543,15 @@ MonoBehaviour:
   walk: {fileID: 11400000, guid: 2020ea0d26546d64c8f44b3f7d2ac0d0, type: 2}
   Aim: {fileID: 11400000, guid: c8f9d5aad1ec88e469d844bc4fdb39c5, type: 2}
   Attack: {fileID: 11400000, guid: 641ce1f90702c7748b9e870891bb178f, type: 2}
-  damage: {fileID: 0}
-  dead: {fileID: 0}
+  damage: {fileID: 11400000, guid: 6440f2947afae8345b6bdb4b83976cf7, type: 2}
+  dead: {fileID: 11400000, guid: 2cc0a02f9f1ef0049ac9088ced4e86c3, type: 2}
   working: {fileID: 0}
   attack: {fileID: 11400000, guid: 08281955f86cdaf4e819283e2883e7da, type: 2}
   footStep: {fileID: 0}
+  damageEvent: {fileID: 11400000, guid: c33e794f3bfd0c64db4ebc25ad1a5e9e, type: 2}
+  attackSound: {fileID: 8300000, guid: 10e01dc8a9957674081994e1777299a9, type: 3}
+  footstepSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: f13b1c28dc91de241a595003e984f19c, type: 3}
   boneName: 
   aimOffset: 1
   attackAnimTimeOffset: 2

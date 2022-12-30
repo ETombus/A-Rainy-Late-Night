@@ -8,8 +8,11 @@ using Unity.Burst.Intrinsics;
 public class EnemySpineController : MonoBehaviour
 {
     [SerializeField] AnimationReferenceAsset idle, run, walk, Aim, Attack, damage, dead, working;
-    [SerializeField] EventDataReferenceAsset attack, footStep;
+    [SerializeField] EventDataReferenceAsset attack, footStep, damageEvent;
     SkeletonAnimation skelAnimation;
+
+    [SerializeField] AudioClip attackSound, footstepSound, damageSound;
+    AudioSource audSource;
 
     EnemyHandler handler;
 
@@ -42,6 +45,8 @@ public class EnemySpineController : MonoBehaviour
         handler = GetComponentInParent<EnemyHandler>();
         skelAnimation = GetComponent<SkeletonAnimation>();
         previousState = Mode.Idle;
+
+        audSource = GetComponentInParent<AudioSource>();
 
         if (GetComponentInParent<EnemyMelee>() != null)
             meleeer = GetComponentInParent<EnemyMelee>();
@@ -233,12 +238,33 @@ public class EnemySpineController : MonoBehaviour
 
     void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
     {
+        Debug.Log("e" + e.Data.Name);
         if (e.Data == attack.EventData)
         {
-            handler.melee.Attack();
+            Debug.Log("dmg");
+            if (meleeer)
+                handler.melee.Attack();
+            else
+                shooter.StartCoroutine(shooter.Shoot());
         }
+        else if (e.Data == damageEvent.EventData)
+        {
+            PlaySound(damageSound);
+        }
+        else
+            Debug.LogWarning("No Matching Event");
         /*else if(e.Data == (footStep.EventData))
             play Footstep sound*/
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        audSource.PlayOneShot(clip);
+    }
+
+    public void PlayAttackSound()
+    {
+        PlaySound(attackSound);
     }
 
     public void PlayWorkingAnimation()
