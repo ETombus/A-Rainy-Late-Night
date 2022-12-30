@@ -54,12 +54,16 @@ public class EnemyShooting : MonoBehaviour
 
         for (int i = magSize; i > 0; i--)
         {
+            if (handler.currentMode == EnemyHandler.Mode.Dead)
+                break;
+
             spineController.PlayAttackSound();
 
             GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
             bulletInstance.GetComponent<BulletScript>().damage = damage;
             bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
             Destroy(bulletInstance, 2f);
+
 
             yield return new WaitForSeconds(shootCooldown);
         }
