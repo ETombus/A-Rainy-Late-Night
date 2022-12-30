@@ -14,11 +14,9 @@ public class InteractScript : MonoBehaviour
     [Header("Components")]
     [Tooltip("If true object will be interactable through input\nif false will be interactable through damage")]
     [SerializeField] private bool isInteractable;
-    [Tooltip("Only used with PlaySound() Method")]
-    [SerializeField] AudioClip[] clip;
+    AudioSource source;
     private CircleCollider2D interactCollider;
     private bool interactTrigger;
-    public Collider2D colliderTournOff;
 
     [Header("Input")]
     private PlayerInputs playerControls;
@@ -95,27 +93,20 @@ public class InteractScript : MonoBehaviour
     }
     public void DebugFunction() { Debug.Log("Interact"); }
     public void DisableScript() { enabled = false; }
-    public void DestroyObject() { Destroy(gameObject); }
     public void ParticleEffect(ParticleSystem particle) { particle.Play(); }
 
-    [Tooltip("Requires Audioclip component")]
-    public void PlaySound(AudioSource source)
+    public void DestroyObject() 
     {
-        source.pitch = Random.Range(0.8f, 1.2f);
-        source.PlayOneShot(clip[Random.Range(0, clip.Length - 1)]);
+        GetComponent<SpriteRenderer>().enabled = false;
+        ToggleCollider(GetComponent<Collider2D>());
+        DisableScript();
     }
-    [Tooltip("Requires Audioclip component")]
-    public void PlaySound()
+
+    public void ToggleCollider(Collider2D colliderTurnOff)
     {
-        AudioSource source = GetComponent<AudioSource>();
-        source.pitch = Random.Range(0.8f, 1.2f);
-        source.PlayOneShot(clip[Random.Range(0, clip.Length - 1)]);
-    }
-    public void ToggleCollider()
-    {
-        if (colliderTournOff.enabled)
-            colliderTournOff.enabled = false;
+        if (colliderTurnOff.enabled)
+            colliderTurnOff.enabled = false;
         else
-            colliderTournOff.enabled = true;
+            colliderTurnOff.enabled = true;
     }
 }
