@@ -14,6 +14,9 @@ public class DamageDealer : MonoBehaviour
 
         collision.transform.SendMessage(nameof(InteractScript.Hit), SendMessageOptions.DontRequireReceiver);
 
+        if(collision.CompareTag("Enemy"))
+            umbrella.soundHandler.PlaySound(umbrella.clips[6]);
+
         if (targetHealth == null) { return; }
 
         targetHealth.ReduceHealth(damage);

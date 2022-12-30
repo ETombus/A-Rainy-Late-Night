@@ -44,26 +44,23 @@ public class EnemyShooting : MonoBehaviour
             else
                 handler.movement.StopEnemy();
 
-            spineController.PlayAttackAnimation();
+            StartCoroutine(Shoot());
         }
     }
 
-    public IEnumerator Shoot()
+    private IEnumerator Shoot()
     {
         firing = true;
 
         for (int i = magSize; i > 0; i--)
         {
-            if (handler.currentMode == EnemyHandler.Mode.Dead)
-                break;
-
-            spineController.PlayAttackSound();
+            handler.PlaySound(handler.thisType);
+            spineController.PlayAttackAnimation();
 
             GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
             bulletInstance.GetComponent<BulletScript>().damage = damage;
             bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
             Destroy(bulletInstance, 2f);
-
 
             yield return new WaitForSeconds(shootCooldown);
         }
