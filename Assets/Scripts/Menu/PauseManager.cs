@@ -18,6 +18,7 @@ public class PauseManager : MonoBehaviour
     GameObject player;
 
     CheckpointManager checkpoints;
+    GameOverManager gameOver;
 
     [SerializeField] Toggle skipDeathToggle;
 
@@ -29,6 +30,7 @@ public class PauseManager : MonoBehaviour
 
         checkpoints = GetComponent<CheckpointManager>();
         if (checkpoints == null) { checkpoints = GameObject.Find("GameManager").GetComponent<CheckpointManager>(); }
+        gameOver = GameObject.Find("GameManager").GetComponent<GameOverManager>();
 
         player = GameObject.FindWithTag("Player");
     }
@@ -131,5 +133,10 @@ public class PauseManager : MonoBehaviour
     public void ResetCheckpoints()
     {
         PlayerPrefs.DeleteKey("CheckpointReached");
+    }
+
+    public void SkipDeathPanel(bool skip)
+    {
+        gameOver.SkipDeathScreen(skip);
     }
 }
