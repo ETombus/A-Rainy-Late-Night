@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyHandler : MonoBehaviour
 {
+    [SerializeField] EnemySpineController enemySpine;
+
     [Header("Player")]
     public GameObject player;
     public Healthbar playerHealth;
@@ -47,6 +49,7 @@ public class EnemyHandler : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerHealth = player.GetComponent<Healthbar>();
         playerTrans = player.GetComponent<Transform>();
+        enemySpine = GetComponentInChildren<EnemySpineController>();
 
         movement = GetComponent<EnemyMovement>();
         if (movement == null) { Debug.LogError(gameObject.name + " is missing Movement!"); }
@@ -93,6 +96,8 @@ public class EnemyHandler : MonoBehaviour
 
     public void EnemyDead()
     {
+        detection.markerRenderer.sprite = null;
+        audSource.PlayOneShot(enemySpine.damageSound);
         currentMode = Mode.Dead;
     }
 

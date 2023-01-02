@@ -28,7 +28,10 @@ public class HealthHandler : MonoBehaviour
         {
             health -= reducedHealth;
             if (bloodParticles != null)
-                Instantiate(bloodParticles, transform.position, transform.rotation);
+            {
+                var damageParticle = Instantiate(bloodParticles, transform.position, transform.rotation);
+                Destroy(damageParticle.gameObject, 1);
+            }
 
             //Only invokes if there is anything there
             damageTrigger.Invoke();
@@ -56,6 +59,9 @@ public class HealthHandler : MonoBehaviour
 
         if (bloodParticles != null)
             Instantiate(bloodParticles, transform.position, transform.rotation);
+
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
         if (gameObject != null && deathTrigger.GetPersistentEventCount() == 0)
         {

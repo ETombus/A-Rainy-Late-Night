@@ -19,7 +19,7 @@ public class EnemyDetect : MonoBehaviour
     float searchTimer;
 
     [SerializeField] Sprite[] markers; //0 = ?, 1 = !, 2 = anger
-    SpriteRenderer markerRenderer;
+    [HideInInspector] public SpriteRenderer markerRenderer;
 
     EnemyHandler handler;
 
