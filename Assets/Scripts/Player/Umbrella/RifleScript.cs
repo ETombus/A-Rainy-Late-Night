@@ -167,4 +167,18 @@ public class RifleScript : MonoBehaviour
         bulletTrail.colorGradient = gradientHolder;
         bulletTrail.enabled = false;
     }
+
+    public void AddAmmo(int ammoToAdd)
+    {
+        if (ammoCount + ammoToAdd <= maxAmmo)
+        {
+            ammoCount += ammoToAdd;
+        }
+        else if (ammoCount + ammoToAdd > maxAmmo)
+        {
+            ammoCount = maxAmmo;
+        }
+
+        ammoSlider.value = ammoCount;
+    }
 }
