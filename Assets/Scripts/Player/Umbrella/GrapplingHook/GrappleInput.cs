@@ -151,10 +151,6 @@ public class GrappleInput : MonoBehaviour
 
             umbrella.soundHandler.PlaySound(umbrella.clips[0]);
         }
-        else
-        {
-            GetComponentInChildren<UmbrellaStateHandler>().Slash();
-        }
     }
 
     private void OnDrawGizmos()
