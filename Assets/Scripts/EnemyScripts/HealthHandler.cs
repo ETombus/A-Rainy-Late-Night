@@ -45,7 +45,10 @@ public class HealthHandler : MonoBehaviour
 
     public void AddHealth(float addedHealth)
     {
-        health += addedHealth;
+        if (health + addedHealth <= 100)
+            health += addedHealth;
+        else if (health + addedHealth > 100)
+            health = 100;
     }
 
     void Death()
@@ -62,6 +65,8 @@ public class HealthHandler : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+
+        GameObject.FindWithTag("Player").GetComponentInChildren<RifleScript>().AddAmmo(1);
 
         if (gameObject != null && deathTrigger.GetPersistentEventCount() == 0)
         {
