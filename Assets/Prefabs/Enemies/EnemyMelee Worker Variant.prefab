@@ -135,8 +135,20 @@ MonoBehaviour:
         m_CallState: 2
   deathTrigger:
     m_PersistentCalls:
-      m_Calls: []
-  bloodParticles: {fileID: 6746497761879769038, guid: 839e5ab9da5e3f84d87bd412418a67c7, type: 3}
+      m_Calls:
+      - m_Target: {fileID: 5608297007403927159}
+        m_TargetAssemblyTypeName: EnemyHandler, Assembly-CSharp
+        m_MethodName: EnemyDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  bloodParticles: {fileID: 6889907175812154929, guid: 0f8a7b07563ba7747be26fc71fb6c570, type: 3}
   hookPoint: {fileID: 5808359138192935554}
   marker: {fileID: 4203422338019973082}
 --- !u!114 &5608297007403927159
@@ -151,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7c32b53541499429cd9401aac5d581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpine: {fileID: 0}
   player: {fileID: 0}
   playerHealth: {fileID: 0}
   playerTrans: {fileID: 0}
@@ -195,6 +208,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5947c551c74a73448b20fda31185745f, type: 3}
   - {fileID: 21300000, guid: 0e0b15a07eac5ed468abf4f1d969f9fe, type: 3}
   - {fileID: 21300000, guid: 6735bc8be1be89648b507ec8fada2e0f, type: 3}
+  markerRenderer: {fileID: 0}
   detectSound: {fileID: 0}
 --- !u!82 &6199010981000626863
 AudioSource:

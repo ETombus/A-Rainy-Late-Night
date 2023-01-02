@@ -121,7 +121,9 @@ public class UmbrellaStateHandler : MonoBehaviour
     private IEnumerator RainDamage()
     {
         sparkParticle.Play();
-        sparkSound.Play();
+        sparkSound.pitch = Random.Range(0.75f, 1.25f);
+        if(!sparkSound.isPlaying)
+            sparkSound.Play();
         while (inRain)
         {
             player.GetComponent<Healthbar>().ReduceHealth(rainDamage, true);
