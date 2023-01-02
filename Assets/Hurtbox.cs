@@ -20,7 +20,6 @@ public class Hurtbox : MonoBehaviour
 
             if (damageTimer >= damageFrequency)
             {
-                Debug.Log("Should Have reduced health");
                 health.ReduceHealth(damage, true);
                 damageTimer = 0;
             }
