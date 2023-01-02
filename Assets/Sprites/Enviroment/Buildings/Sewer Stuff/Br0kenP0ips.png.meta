@@ -113,7 +113,7 @@ TextureImporter:
         width: 3017
         height: 1810
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -130,11 +130,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3366
-        y: 4371
-        width: 3014
-        height: 1810
+        y: 4378
+        width: 3004
+        height: 1790
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,11 +151,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 91
-        y: 2206
-        width: 3017
-        height: 1810
+        y: 2215
+        width: 3008
+        height: 1793
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,7 +176,7 @@ TextureImporter:
         width: 2966
         height: 1723
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,7 +197,7 @@ TextureImporter:
         width: 2966
         height: 1723
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,6 +205,27 @@ TextureImporter:
       bones: []
       spriteID: 5a77c7143eae14a43bf6b4ee8ce43326
       internalID: 988966109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Br0kenP0ips_slice
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 128
+        width: 2658
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9539d6d6d41995141ae17becc5cb371e
+      internalID: -1756985687
       vertices: []
       indices: 
       edges: []
@@ -225,6 +246,7 @@ TextureImporter:
       Br0kenP0ips_1: -423515401
       Br0kenP0ips_3: 832661335
       Br0kenP0ips_4: 988966109
+      Br0kenP0ips_slice: -1756985687
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
