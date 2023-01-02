@@ -12,7 +12,7 @@ public class Healthbar : HealthHandler
 
     [Header("Sound")]
     [SerializeField] PlayerSoundHandler soundHandler;
-    [SerializeField] AudioClip[] clips;
+    [SerializeField] AudioClip rainDamageSound;
 
     [Header("Components")]
     [SerializeField] ParticleSystem damageSpark;
@@ -48,8 +48,11 @@ public class Healthbar : HealthHandler
             if (healthBar != null)
                 healthBar.value = healthShown.Evaluate(health / 100) * 100;
 
-            if (clips.Length > 0)
-                soundHandler.PlaySound(clips[Random.Range(0, clips.Length)], 0.2f);
+            if (rainDamageSound != null)
+            { 
+                soundHandler.PlaySound(rainDamageSound, 0.2f);
+                Debug.Log(soundHandler.audSource.clip.length);
+            }
 
             if (health >= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = fullHealthColor; }
             else if (health <= maxHealth / 5) { healthBar.GetComponentInChildren<Image>().color = lowHealthColor; }
