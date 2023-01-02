@@ -12,8 +12,7 @@ public class DetectedByCamera : MonoBehaviour
     private AudioSource audSource;
 
     [Header("Sound")]
-    public AudioClip[] writingSound;
-    public AudioClip erasingSound;
+    public AudioClip detectionSound;
     [SerializeField] bool playSound;
 
     bool lookingAtIt = false;
@@ -171,6 +170,9 @@ public class DetectedByCamera : MonoBehaviour
 
     void ActivateMarker()
     {
+        if (detectionSound != null)
+            audSource.PlayOneShot(detectionSound);
+
         lookingAtIt = true;
         animator.SetBool("MarkerVisable", true);
 
@@ -213,12 +215,6 @@ public class DetectedByCamera : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0 && characterIndex < textToWrite.Length)
         {
-            if (writingSound.Length > 0 && audSource.isPlaying == false)
-            {
-                //audSource.clip = writingSound[Random.Range(0, writingSound.Length)];
-                audSource.PlayOneShot(writingSound[Random.Range(0, writingSound.Length)]);
-            }
-
             timer += timePerCharacter;
             characterIndex++;
             uiText.text = textToWrite.Substring(0, characterIndex);
@@ -243,12 +239,6 @@ public class DetectedByCamera : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0 && characterIndex > 0)
         {
-            if (erasingSound != null)
-            {
-                audSource.clip = erasingSound;
-                audSource.Play();
-            }
-
             timer += timePerRemoval;
             characterIndex--;
             uiText.text = textToWrite.Substring(0, characterIndex);

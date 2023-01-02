@@ -23,6 +23,9 @@ public class Healthbar : HealthHandler
     [SerializeField] Color lowHealthColor;
 
     GameOverManager gameOver;
+    HookScript hook;
+    PlayerStateHandler state;
+    Rigidbody2D rbody;
 
     private void Start()
     {
@@ -64,7 +67,24 @@ public class Healthbar : HealthHandler
 
     public void PlayerDeath()
     {
+        try
+        {
+            hook = FindObjectOfType<HookScript>();
+            hook.ResetHook();
+        }
+        catch (System.Exception)
+        { throw; }
+
+        rbody = GetComponent<Rigidbody2D>();
+        rbody.constraints = RigidbodyConstraints2D.FreezeAll;
+
         gameOver.PlayerDeath();
         health = maxHealth;
+
+        rbody.velocity = Vector2.zero;
+        rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        state = GetComponent<PlayerStateHandler>();
+        state.currentMoveState = PlayerStateHandler.MovementStates.Idle;
     }
 }
