@@ -10,10 +10,12 @@ using static UmbrellaStateHandler;
 public class PlayerSpineController : MonoBehaviour
 {
     [Header("Animations")]
-    [SerializeField] EventDataReferenceAsset attack, footStep;
+    private bool umbrellaAnimLooping = false;
+    [SerializeField] EventDataReferenceAsset attackEvent, jumpEvent, landEvent, stepEvent;
+    SpineEventHandler eventHandler;
+
     public AnimationReferenceAsset run, idle, jump, ascend, descend, landing, damage;
     public AnimationReferenceAsset UmbrellaUp, UmbrellaDown, Slashing, Grappling, Shooting;
-    private bool umbrellaAnimLooping = false;
 
     public AnimationReferenceAsset aimShooting, aimGrappling;
 
@@ -48,9 +50,9 @@ public class PlayerSpineController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         playerState = GetComponentInParent<PlayerStateHandler>();
         umbrellaState = transform.parent.gameObject.GetComponentInChildren<UmbrellaStateHandler>();
+        eventHandler = GetComponentInParent<SpineEventHandler>();
 
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         sliceAction = GetComponentInParent<Slice>();
@@ -67,8 +69,14 @@ public class PlayerSpineController : MonoBehaviour
     {
         /*if(e.Data == (attack.EventData))
             handler.PlaySound(handler.thisType);*/
-        if (e.Data == (footStep.EventData))
-            GetComponentInParent<SpineEventHandler>().Footstep();
+        Debug.Log(e.Data.Name);
+
+        if(e.Data == (jumpEvent.EventData))
+            eventHandler.Jump();
+        else if(e.Data == (landEvent.EventData))
+            eventHandler.Land();
+        else if (e.Data == (stepEvent.EventData))
+            eventHandler.Step();
     }
 
     // Update is called once per frame
