@@ -117,7 +117,7 @@ public class DetectedByCamera : MonoBehaviour
             animator.SetBool("MarkerVisable", false);
         }
 
-        if (disappearingTimer > 0) { disappearingTimer -= Time.deltaTime; }
+        if (disappearingTimer > 0 && !CloseEnoughToPlayer(true)) { disappearingTimer -= Time.deltaTime; }
         else if (disappearingTimer <= 0 && !writingText)
         {
             DisableMarker();
@@ -227,8 +227,6 @@ public class DetectedByCamera : MonoBehaviour
                 {
                     IntroCutsceneManager cutsceneManager = GameObject.Find("GameManager").GetComponent<IntroCutsceneManager>();
                     cutsceneManager.IntroCutsceneDone();
-                    PlayerPrefs.SetInt("PlayIntroCutscene", 0);
-                    this.gameObject.SetActive(false);
                 } //TODO maybe change this to a fadeoutAnimation
             }
         }

@@ -9,8 +9,10 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] private GameObject rifle;
     [SerializeField] private GameObject rainColliderTag;
     [SerializeField] private LayerMask rayIgnore;
-    [SerializeField] public ParticleSystem sparks;
     [SerializeField] public Slider clockSlider;
+    [SerializeField] private GameObject sparks;
+    private ParticleSystem sparkParticle;
+    private AudioSource sparkSound;
 
     private EdgeCollider2D umbrellaCollider;
 
@@ -65,6 +67,9 @@ public class UmbrellaStateHandler : MonoBehaviour
         slowMo = player.GetComponent<SlowMotionHandler>();
         rifleCS = rifle.GetComponent<RifleScript>();
 
+        sparkParticle = sparks.GetComponent<ParticleSystem>();
+        sparkSound = sparks.GetComponent<AudioSource>();
+
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
         umbrellaCollider = GetComponent<EdgeCollider2D>();
 
@@ -115,13 +120,22 @@ public class UmbrellaStateHandler : MonoBehaviour
 
     private IEnumerator RainDamage()
     {
-        sparks.Play();
+        sparkParticle.Play();
+        sparkSound.pitch = Random.Range(0.75f, 1.25f);
+        if(!sparkSound.isPlaying)
+            sparkSound.Play();
         while (inRain)
         {
             player.GetComponent<Healthbar>().ReduceHealth(rainDamage, true);
             yield return new WaitForSeconds(rainDamageInterval);
         }
-        sparks.Stop();
+        TurnOffSparks();
+    }
+
+    public void TurnOffSparks()
+    {
+        sparkParticle.Stop();
+        sparkSound.Stop();
     }
 
     public void Shoot()

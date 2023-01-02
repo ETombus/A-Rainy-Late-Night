@@ -11,7 +11,7 @@ public class EnemySpineController : MonoBehaviour
     [SerializeField] EventDataReferenceAsset attack, footStep, damageEvent;
     SkeletonAnimation skelAnimation;
 
-    [SerializeField] AudioClip attackSound, footstepSound, damageSound;
+    public AudioClip attackSound, footstepSound, damageSound;
     AudioSource audSource;
 
     EnemyHandler handler;

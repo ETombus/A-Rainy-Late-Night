@@ -49,7 +49,6 @@ public class SettingsHandler : MonoBehaviour
 
         if (PlayerPrefs.GetInt("ShowHints", 1) == 1) { showHintsToggle.isOn = true; }
         else { showHintsToggle.isOn = false; }
-        Debug.Log(PlayerPrefs.HasKey("ShowHints"));
 
         windowDropdown.value = PlayerPrefs.GetInt("CurrentWindowType", 0);
         SetWindowType(PlayerPrefs.GetInt("CurrentWindowType"));

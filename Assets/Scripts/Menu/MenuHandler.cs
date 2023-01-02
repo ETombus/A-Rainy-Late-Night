@@ -19,15 +19,27 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] GameObject fadeIn;
     [SerializeField] GameObject introMarker;
 
+    [Header("IntroCutscene")]
+    [SerializeField] GameObject introCutscene;
+    public bool allowSceneLoad = false;
+    [HideInInspector] public float rainVolume = 1;
+    [SerializeField] AudioClip falling;
+    [SerializeField] AudioClip fallThump;
+
     [Header("Audio")]
     [SerializeField] AudioClip pageTurn;
-    AudioSource audSource;
+    [SerializeField] AudioSource[] audSource;
+    MusicManager music;
+    [SerializeField] float musicPitchSpeed = .3f; 
 
     PlayerInputs playerControls;
     InputAction cancel;
 
     private void Awake()
     {
+        rainVolume = 1;
+        music = GameObject.Find("Music").GetComponent<MusicManager>();
+
         playerControls = new PlayerInputs();
         if (PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
         {
@@ -35,8 +47,9 @@ public class MenuHandler : MonoBehaviour
             introMarker.SetActive(false);
         }
 
-        audSource = GetComponent<AudioSource>();
+        //audSource = GetComponent<AudioSource>();
     }
+
     private void OnEnable()
     {
         cancel = playerControls.UI.Cancel;
@@ -46,6 +59,11 @@ public class MenuHandler : MonoBehaviour
     }
 
     private void OnDisable() { cancel.Disable(); }
+
+    private void Update()
+    {
+        audSource[1].volume = rainVolume;
+    }
 
     public void ButtonStart()
     {
@@ -114,6 +132,61 @@ public class MenuHandler : MonoBehaviour
         panelIndex = 0;
     }
 
+    public void PlayIntroCutscene()
+    {
+        StartCoroutine(Loadscene());
+        introCutscene.SetActive(true);
+        audSource[0].loop = true;
+        audSource[0].clip = falling;
+        audSource[0].Play();
+    }
+
+    IEnumerator Loadscene()
+    {
+        yield return null;
+
+        //Begin loading scene
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(1);
+        //dont allow to finish loading
+        asyncOp.allowSceneActivation = false;
+        Debug.Log("started loading scene");
+
+        while (!asyncOp.isDone)
+        {
+            if (music.musicPitch >= 0.2f) { music.musicPitch -= Time.deltaTime * musicPitchSpeed; }
+
+            Debug.Log("Currently loading, Pro : " + asyncOp.progress);
+
+            if (asyncOp.progress >= 0.9f && allowSceneLoad)
+            {
+                //Debug.Log("progress is at: " + asyncOp.progress);
+                asyncOp.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+    }
+
+    public IEnumerator PlayThump()
+    {
+        yield return null;
+        music.gameObject.GetComponent<AudioSource>().Pause();
+
+        audSource[0].loop = false;
+        audSource[0].volume = 1.5f;
+        audSource[0].pitch = 1f;
+        audSource[0].clip = fallThump;
+        audSource[0].Play();
+
+        while (audSource[0].isPlaying)
+        {
+            yield return null;
+        }
+
+        if (!audSource[0].isPlaying)
+            allowSceneLoad = true;
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("HighestLevelReached", 1));
@@ -133,7 +206,7 @@ public class MenuHandler : MonoBehaviour
 
     void PlaySoundEffect()
     {
-        audSource.pitch = Random.Range(0.8f, 1.2f);
-        audSource.PlayOneShot(pageTurn);
+        audSource[0].pitch = Random.Range(0.8f, 1.2f);
+        audSource[0].PlayOneShot(pageTurn);
     }
 }

@@ -104,7 +104,7 @@ public class RifleScript : MonoBehaviour
             soundHandler.QueueSound(reloadSounds[Random.Range(0, reloadSounds.Length - 1)]);
 
             umbrellaHandler.StopAllCoroutines();
-            umbrellaHandler.sparks.Stop();
+            umbrellaHandler.TurnOffSparks();
 
             StartCoroutine(umbrellaHandler.Timer(reloadTime, TimerFillAmount.empty));
             slowMo.NormalSpeed();

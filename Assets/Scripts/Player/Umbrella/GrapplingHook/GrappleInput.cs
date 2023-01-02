@@ -151,6 +151,8 @@ public class GrappleInput : MonoBehaviour
 
             umbrella.soundHandler.PlaySound(umbrella.clips[0]);
         }
+        else
+            umbrella.Idle();
     }
 
     private void OnDrawGizmos()

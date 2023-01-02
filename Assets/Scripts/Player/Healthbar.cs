@@ -12,20 +12,21 @@ public class Healthbar : HealthHandler
 
     [Header("Sound")]
     [SerializeField] PlayerSoundHandler soundHandler;
-    [SerializeField] AudioClip[] clips;
+    [SerializeField] AudioClip rainDamageSound;
 
     [Header("Components")]
     [SerializeField] ParticleSystem damageSpark;
+    GameOverManager gameOver;
+    HookScript hook;
+    PlayerStateHandler state;
+    Rigidbody2D rbody;
 
     [Header("Color")]
     [SerializeField] Color fullHealthColor;
     [SerializeField] Color halfHealthColor;
     [SerializeField] Color lowHealthColor;
 
-    GameOverManager gameOver;
-    HookScript hook;
-    PlayerStateHandler state;
-    Rigidbody2D rbody;
+    float loopTimer;
 
     private void Start()
     {
@@ -47,9 +48,6 @@ public class Healthbar : HealthHandler
             health -= reduceValue;
             if (healthBar != null)
                 healthBar.value = healthShown.Evaluate(health / 100) * 100;
-
-            if (clips.Length > 0)
-                soundHandler.PlaySound(clips[Random.Range(0, clips.Length)], 0.2f);
 
             if (health >= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = fullHealthColor; }
             else if (health <= maxHealth / 5) { healthBar.GetComponentInChildren<Image>().color = lowHealthColor; }
@@ -73,7 +71,7 @@ public class Healthbar : HealthHandler
             hook.ResetHook();
         }
         catch (System.Exception)
-        { throw; }
+        {  }
 
         rbody = GetComponent<Rigidbody2D>();
         rbody.constraints = RigidbodyConstraints2D.FreezeAll;
