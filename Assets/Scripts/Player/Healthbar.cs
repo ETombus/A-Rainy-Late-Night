@@ -76,7 +76,7 @@ public class Healthbar : HealthHandler
             hook.ResetHook();
         }
         catch (System.Exception)
-        { throw; }
+        {  }
 
         rbody = GetComponent<Rigidbody2D>();
         rbody.constraints = RigidbodyConstraints2D.FreezeAll;
