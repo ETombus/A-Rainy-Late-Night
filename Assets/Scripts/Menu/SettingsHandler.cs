@@ -33,6 +33,20 @@ public class SettingsHandler : MonoBehaviour
 
         SetSliderValues();
 
+
+        if (PlayerPrefs.GetInt("ShowHints", 1) == 1) { showHintsToggle.isOn = true; }
+        else { showHintsToggle.isOn = false; }
+
+        windowDropdown.value = PlayerPrefs.GetInt("CurrentWindowType", 0);
+        SetWindowType(PlayerPrefs.GetInt("CurrentWindowType"));
+    }
+
+    public void SetSliderValues()
+    {
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+        soundSlider.value = PlayerPrefs.GetFloat("SoundVolume", 0.75f);
+        enviromentSlider.value = PlayerPrefs.GetFloat("EnviromentVolume", 0.40f);
+
         if (PlayerPrefs.GetFloat("MusicMuted") == 0) { muteMusicToggle.isOn = false; }
         else
         {
@@ -46,19 +60,6 @@ public class SettingsHandler : MonoBehaviour
             muteSoundToggle.isOn = true;
             MuteSound(true);
         }
-
-        if (PlayerPrefs.GetInt("ShowHints", 1) == 1) { showHintsToggle.isOn = true; }
-        else { showHintsToggle.isOn = false; }
-
-        windowDropdown.value = PlayerPrefs.GetInt("CurrentWindowType", 0);
-        SetWindowType(PlayerPrefs.GetInt("CurrentWindowType"));
-    }
-
-    void SetSliderValues()
-    {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
-        soundSlider.value = PlayerPrefs.GetFloat("SoundVolume", 0.75f);
-        enviromentSlider.value = PlayerPrefs.GetFloat("EnviromentVolume", 0.40f);
     }
 
     public void SetMusicVolume(float sliderValue)

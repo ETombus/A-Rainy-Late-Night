@@ -34,6 +34,7 @@ public class MenuHandler : MonoBehaviour
 
     PlayerInputs playerControls;
     InputAction cancel;
+    SettingsHandler settings;
 
     private void Awake()
     {
@@ -47,6 +48,7 @@ public class MenuHandler : MonoBehaviour
             introMarker.SetActive(false);
         }
 
+        settings = GetComponent<SettingsHandler>();
         //audSource = GetComponent<AudioSource>();
     }
 
@@ -74,6 +76,8 @@ public class MenuHandler : MonoBehaviour
     {
         SetActivePanel(1);
         panelIndex = 1;
+
+        settings.SetSliderValues();
     }
 
     public void ButtonTutorial()
