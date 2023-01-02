@@ -227,8 +227,6 @@ public class DetectedByCamera : MonoBehaviour
                 {
                     IntroCutsceneManager cutsceneManager = GameObject.Find("GameManager").GetComponent<IntroCutsceneManager>();
                     cutsceneManager.IntroCutsceneDone();
-                    PlayerPrefs.SetInt("PlayIntroCutscene", 0);
-                    this.gameObject.SetActive(false);
                 } //TODO maybe change this to a fadeoutAnimation
             }
         }
