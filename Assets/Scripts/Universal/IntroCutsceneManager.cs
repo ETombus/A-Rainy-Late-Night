@@ -21,6 +21,7 @@ public class IntroCutsceneManager : MonoBehaviour
 
     PlayerInputs playerControls;
     InputAction mouseClick;
+    MusicManager music;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class IntroCutsceneManager : MonoBehaviour
 
     private void Start()
     {
+        music = GameObject.Find("Music").GetComponent<MusicManager>();
 
         if (PlayerPrefs.GetInt("PlayIntroCutscene", 1) == 1 && introCutsceneMarker.activeSelf == true)
         {
@@ -65,8 +67,6 @@ public class IntroCutsceneManager : MonoBehaviour
     {
         if (cutsceneDone)
         {
-            Debug.Log("Cutscene should be done, cutsceneDone is " + cutsceneDone);
-
             for (int i = 0; i < healthbar.Length; i++) { healthbar[i].SetActive(true); }
 
             //player.SetActive(false);
@@ -78,13 +78,17 @@ public class IntroCutsceneManager : MonoBehaviour
 
             PlayerPrefs.SetInt("PlayIntroCutscene", 0);
             introCutsceneMarker.SetActive(false);
+
+            OnDisable();
         }
-        else { Debug.Log("Cutscene is not done, cutsceneDone is " + cutsceneDone); }
+        Debug.Log("Cutscene not done");
     }
 
     private void Update()
     {
-        MusicManager music = GameObject.Find("Music").GetComponent<MusicManager>();
+        if (!music.gameObject.GetComponent<AudioSource>().isPlaying)
+            music.gameObject.GetComponent<AudioSource>().Play();
+
         if (music != null && music.musicPitch < 1)
         {
             music.musicPitch += Time.deltaTime * musicPitchSpeed;

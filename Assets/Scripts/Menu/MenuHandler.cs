@@ -170,15 +170,16 @@ public class MenuHandler : MonoBehaviour
     public IEnumerator PlayThump()
     {
         yield return null;
+        music.gameObject.GetComponent<AudioSource>().Pause();
+
         audSource[0].loop = false;
+        audSource[0].volume = 1.5f;
+        audSource[0].pitch = 1f;
         audSource[0].clip = fallThump;
         audSource[0].Play();
 
         while (audSource[0].isPlaying)
         {
-            Debug.Log(audSource[0].isPlaying);
-
-
             yield return null;
         }
 
