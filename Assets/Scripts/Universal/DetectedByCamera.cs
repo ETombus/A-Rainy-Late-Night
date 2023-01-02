@@ -117,7 +117,7 @@ public class DetectedByCamera : MonoBehaviour
             animator.SetBool("MarkerVisable", false);
         }
 
-        if (disappearingTimer > 0) { disappearingTimer -= Time.deltaTime; }
+        if (disappearingTimer > 0 && !CloseEnoughToPlayer(true)) { disappearingTimer -= Time.deltaTime; }
         else if (disappearingTimer <= 0 && !writingText)
         {
             DisableMarker();
