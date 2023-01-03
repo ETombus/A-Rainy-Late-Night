@@ -1529,6 +1529,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 61271024}
+        m_TargetAssemblyTypeName: ButtonColorChanger, Assembly-CSharp
+        m_MethodName: ResetColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &61271026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1799,7 +1811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015258789, y: 20.824799}
+  m_AnchoredPosition: {x: -0, y: 20.825}
   m_SizeDelta: {x: 346, y: 67.969}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &74754351
@@ -1822,20 +1834,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Civilians have spotted humanoid robots around the city, blaming Evil Corp
-    Inc. Statement from the local police suggests that it is not robots at all, but
-    rather gang members of Street Gang. They urge all civilians that spot these gang
-    members to avoid contact at all
+  m_text: Djwjmjbot ibwf tqpuufe ivnbopje spcput bspvoe uif djuz, cmbnjoh Fwjm Dpsq
+    Jod. Tubufnfou gspn uif mpdbm qpmjdf tvhhftut uibu ju jt opu spcput bu bmm, cvu
+    sbuifs hboh nfncfst pg Tusffu Hboh. Uifz vshf bmm djwjmjbot uibu tqpu uiftf hboh
+    nfncfst up bwpje dpoubdu bu bmm
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 68e0dba8c9ac8374887644a27594db8e, type: 2}
-  m_sharedMaterial: {fileID: -5409064974432688096, guid: 68e0dba8c9ac8374887644a27594db8e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
+  m_sharedMaterial: {fileID: 7228817717220266608, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280166709
-  m_fontColor: {r: 0.20784315, g: 0.16078432, b: 0.11764707, a: 1}
+    rgba: 4289111718
+  m_fontColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6435,15 +6447,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: '"No robots has escaped our facilities"'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 91b82a038f0250e459118d3ea4c4c80b, type: 2}
-  m_sharedMaterial: {fileID: 677726346417798686, guid: 91b82a038f0250e459118d3ea4c4c80b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
+  m_sharedMaterial: {fileID: 7228817717220266608, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280166709
-  m_fontColor: {r: 0.20784315, g: 0.16078432, b: 0.11764707, a: 1}
+    rgba: 4279245091
+  m_fontColor: {r: 0.13725491, g: 0.098039225, b: 0.0627451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13346,6 +13358,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 622124921}
+        m_TargetAssemblyTypeName: ButtonColorChanger, Assembly-CSharp
+        m_MethodName: ResetColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &622124923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15165,7 +15189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &732800348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16324,6 +16348,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1827731414}
         m_TargetAssemblyTypeName: MenuHandler, Assembly-CSharp
         m_MethodName: ButtonBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 774785353}
+        m_TargetAssemblyTypeName: ButtonColorChanger, Assembly-CSharp
+        m_MethodName: ResetColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21147,7 +21183,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -8.63
+  m_lineSpacing: -19.79
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -21811,6 +21847,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1827731414}
         m_TargetAssemblyTypeName: MenuHandler, Assembly-CSharp
         m_MethodName: ButtonBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1091785522}
+        m_TargetAssemblyTypeName: ButtonColorChanger, Assembly-CSharp
+        m_MethodName: ResetColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25870,18 +25918,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Evil Corp Inc. representative Mr. Cheof says "We have incredible security
-    and no robots has escaped our facilities, the locals can be assured of that"
+  m_text: Efwjm Dpsq Jod. sfqsftfoubujwf Mr. Ovjm tbzt "Xf ibwf jodsfejcmf tfdvsjuz
+    boe op spcput ibt ftdbqfe pvs gbdjmjujft, uif mpdbmt dbo cf bttvsfe pg uibu"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 68e0dba8c9ac8374887644a27594db8e, type: 2}
-  m_sharedMaterial: {fileID: -5409064974432688096, guid: 68e0dba8c9ac8374887644a27594db8e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
+  m_sharedMaterial: {fileID: 7228817717220266608, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280101172
-  m_fontColor: {r: 0.20392159, g: 0.16078432, b: 0.1137255, a: 1}
+    rgba: 4289111718
+  m_fontColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -26715,8 +26763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -51.2186}
-  m_SizeDelta: {x: 395, y: 90.3063}
+  m_AnchoredPosition: {x: -0.0001, y: -54.1113}
+  m_SizeDelta: {x: 395, y: 108.2225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1326850602
 MonoBehaviour:
@@ -26738,21 +26786,23 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "pouring down and new research suggests even more dangerous chemicals can
-    be found in it, scientists are urging all civilians to stay clear of the rain
-    or to use heavy protection when stepping outside. \n\"It is unclear where the
-    rain came from\", says Dr. Scientist, \"but we are working tirelessly to reverse
-    it effects and to adapt to this new threat.\""
+  m_text: qpvsjoh epxo boe ofx sftfbsdi tvhhftut fwfo npsf ebohfspvt difnjdbmt dbo
+    cf gpvoe jo ju, tdjfoujtut bsf vshjoh bmm djwjmjbot up tubz dmfbs pg uif sbjo
+    ps up vtf ifbwz qspufdujpo xifo tufqqjoh pvutjef. "Ju jt vodmfbs xifsf uif sbjo
+    dbnf gspn", tbzt Es. Tdjfoujtu, "cvu xf bsf xpsljoh ujsfmfttmz up sfwfstf ju
+    fggfdut boe up bebqu up uijt ofx uisfbu". Djwjmjbot bspvoe uif djuz ibt fyqsfttfe
+    ejtusvtu upxbset uif ofx xbufs cpuumf cfjoh tpme bt b tpmvujpo up uijt qspcmfn,
+    cvu qpmjdf dbo'u gjoe fwjefodf upxbset ju
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 68e0dba8c9ac8374887644a27594db8e, type: 2}
-  m_sharedMaterial: {fileID: -5409064974432688096, guid: 68e0dba8c9ac8374887644a27594db8e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
+  m_sharedMaterial: {fileID: 7228817717220266608, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280166709
-  m_fontColor: {r: 0.20784315, g: 0.16078432, b: 0.11764707, a: 1}
+    rgba: 4289111718
+  m_fontColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -33968,7 +34018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1732633321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35497,7 +35547,7 @@ MonoBehaviour:
   allowSceneLoad: 0
   rainVolume: 1
   falling: {fileID: 8300000, guid: 51e9b1b1ea367484c883f32b1705c086, type: 3}
-  fallThump: {fileID: 8300000, guid: 2c4224509e41c5546ab7fb2e0209ae97, type: 3}
+  fallThump: {fileID: 8300000, guid: ae07be9559ca5834e892c0aeb1783e78, type: 3}
   pageTurn: {fileID: 8300000, guid: d83c49e3f67703241a3cd942208d9776, type: 3}
   audSource:
   - {fileID: 1827731418}
@@ -38038,7 +38088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1967432434
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38393,15 +38443,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exclusive With The Creators
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 91b82a038f0250e459118d3ea4c4c80b, type: 2}
-  m_sharedMaterial: {fileID: 677726346417798686, guid: 91b82a038f0250e459118d3ea4c4c80b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
+  m_sharedMaterial: {fileID: 7228817717220266608, guid: a64e9e8012f6e324c8fd8c8a36b1f763, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280101172
-  m_fontColor: {r: 0.20392159, g: 0.16078432, b: 0.1137255, a: 1}
+    rgba: 4280298036
+  m_fontColor: {r: 0.20392159, g: 0.16470589, b: 0.1254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
