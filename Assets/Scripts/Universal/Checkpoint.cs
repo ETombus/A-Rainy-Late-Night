@@ -24,6 +24,8 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !reached)
         {
+            collision.gameObject.GetComponent<Healthbar>().AddHealth(100);
+
             reached = true;
             manager.UpdateCheckpoints(index);
         }
