@@ -57,8 +57,10 @@ public class Healthbar : HealthHandler
 
     }
 
-    public void AddHealth()
+    public void AddHealth(float addedHealth, bool updateHealthbar)
     {
+        AddHealth(addedHealth);
+
         if (healthBar != null)
             healthBar.value = health;
     }
