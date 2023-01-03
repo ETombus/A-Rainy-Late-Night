@@ -108,7 +108,6 @@ public class DetectedByCamera : MonoBehaviour
         if (CloseEnoughToPlayer(true) && !lookingAtIt && !disabled)
         {
             ActivateMarker();
-
             if (shouldHaveImage)
                 uiImage.gameObject.SetActive(true);
         }
