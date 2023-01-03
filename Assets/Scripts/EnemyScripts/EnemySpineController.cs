@@ -240,7 +240,6 @@ public class EnemySpineController : MonoBehaviour
     {
         if (e.Data == attack.EventData)
         {
-            Debug.Log("dmg");
             if (meleeer)
                 handler.melee.Attack();
             else
