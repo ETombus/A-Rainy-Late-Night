@@ -1734,10 +1734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92f9e6051301ae4bbb0006d79051471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackEvent: {fileID: 0}
-  jumpEvent: {fileID: 0}
-  landEvent: {fileID: 0}
-  stepEvent: {fileID: 0}
+  attackEvent: {fileID: 11400000, guid: f272493fc5e475b418bbc7bd63d914c9, type: 2}
+  jumpEvent: {fileID: 11400000, guid: 4f296666541ec8b40afca8e822908e82, type: 2}
+  landEvent: {fileID: 11400000, guid: 56006ff541f1d784789e26281d7bfba6, type: 2}
+  stepEvent: {fileID: 11400000, guid: a9d9812ecfe7b634fb0eb23173efb9e4, type: 2}
   run: {fileID: 11400000, guid: 31b41f70b302e0141a8e8849671fd916, type: 2}
   idle: {fileID: 11400000, guid: 98458b8f7def7c84695f20749866cb70, type: 2}
   jump: {fileID: 11400000, guid: a68afd6596e88424282cfb9bcd5b5705, type: 2}
