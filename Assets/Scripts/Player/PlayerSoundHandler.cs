@@ -31,7 +31,7 @@ public class PlayerSoundHandler : MonoBehaviour
     public void PlaySound(AudioClip clip, float volume)
     {
         audSource.pitch = 1f;
-        audSource.volume = 1;
+        audSource.volume = volume;
         audSource.clip = clip;
         audSource.Play();
     }
