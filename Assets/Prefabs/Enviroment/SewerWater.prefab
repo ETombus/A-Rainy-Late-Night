@@ -9897,6 +9897,7 @@ GameObject:
   - component: {fileID: 4608774923583594739}
   - component: {fileID: 4608774923583594738}
   - component: {fileID: 4608774923583594749}
+  - component: {fileID: 19775865299061291}
   m_Layer: 0
   m_Name: SewerWater
   m_TagString: Untagged
@@ -14708,6 +14709,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &19775865299061291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4608774923583594748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce4717593be79249b2ec30cc9f1611c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToActivate: 37
 --- !u!1 &6218999713437238388
 GameObject:
   m_ObjectHideFlags: 0

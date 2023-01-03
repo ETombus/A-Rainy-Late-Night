@@ -9898,6 +9898,7 @@ GameObject:
   - component: {fileID: 8667345233406380109}
   - component: {fileID: 8667345233406380098}
   - component: {fileID: 3852379194015510312}
+  - component: {fileID: 288150456376783864}
   m_Layer: 4
   m_Name: DrippingWater
   m_TagString: Rain
@@ -14734,3 +14735,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75313616, y: 0.5713463}
   m_EdgeRadius: 0
+--- !u!114 &288150456376783864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667345233406380099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce4717593be79249b2ec30cc9f1611c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToActivate: 37
