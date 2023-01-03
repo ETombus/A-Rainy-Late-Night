@@ -31,6 +31,7 @@ public class IntroCutsceneManager : MonoBehaviour
     private void Start()
     {
         music = GameObject.Find("Music").GetComponent<MusicManager>();
+        music.UpdateClip(MusicManager.GameScene.Game, false);
 
         if (PlayerPrefs.GetInt("PlayIntroCutscene", 1) == 1 && introCutsceneMarker.activeSelf == true)
         {

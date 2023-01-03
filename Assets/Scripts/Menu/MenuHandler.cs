@@ -203,6 +203,11 @@ public class MenuHandler : MonoBehaviour
         PlayerPrefs.SetInt("PlayIntroCutscene", 1);
     }
 
+    public void SkipIntroCutscene()
+    {
+        PlayerPrefs.SetInt("PlayIntroCutscene", 0);
+    }
+
     public void PregameBack()
     {
         preGamePanel.SetActive(false);
