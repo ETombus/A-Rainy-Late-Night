@@ -95,7 +95,7 @@ public class InteractScript : MonoBehaviour
     public void DisableScript() { enabled = false; }
     public void ParticleEffect(ParticleSystem particle) 
     { 
-        var particleHolder = Instantiate(particle, transform.position, Quaternion.identity); 
+        var particleHolder = Instantiate(particle, transform.position, transform.rotation); 
         Destroy(particleHolder.gameObject, 5f);
     }
 
