@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,7 +103,427 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BoilerTop
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 3652
+        width: 3990
+        height: 2554
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b82386183aac91144a8009aa0f9cde2b
+      internalID: -1937349816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShelfSmall
+      rect:
+        serializedVersion: 2
+        x: 8364
+        y: 5300
+        width: 1866
+        height: 1161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 226a9d973b1d2514dbce4683377fae6c
+      internalID: -1638424357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloth
+      rect:
+        serializedVersion: 2
+        x: 10732
+        y: 5014
+        width: 434
+        height: 1419
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 160a98a168f7c1b4dba389a7de80845e
+      internalID: 705244231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TableShort
+      rect:
+        serializedVersion: 2
+        x: 5846
+        y: 4563
+        width: 2310
+        height: 936
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ab5bd75ba655c4d931afcb530b10f3
+      internalID: 1619643801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShelfBooks
+      rect:
+        serializedVersion: 2
+        x: 8301
+        y: 4381
+        width: 2400
+        height: 829
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39da7a69cbc510479b7b8a8612832c1
+      internalID: -1206545917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "M\xF6bler f\xE4rg 1_18"
+      rect:
+        serializedVersion: 2
+        x: 10742
+        y: 4859
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9caab6279c65e2458177c3693973cf9
+      internalID: 1791488715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmptyPainting
+      rect:
+        serializedVersion: 2
+        x: 11669
+        y: 3202
+        width: 1111
+        height: 1711
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 149, y: 176, z: 148, w: 151}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05e80585a00e59141ba3524877bb48c1
+      internalID: 1269502832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cabinet_Upper
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 2341
+        width: 2281
+        height: 1029
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6650904bba0e2ee48a2ba6b1f20679ff
+      internalID: -958242694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oven
+      rect:
+        serializedVersion: 2
+        x: 2516
+        y: 2251
+        width: 1350
+        height: 1193
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f22548992915b2f4f8dbc572d06bd0f6
+      internalID: -1645030137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fridge
+      rect:
+        serializedVersion: 2
+        x: 3936
+        y: 631
+        width: 1250
+        height: 2813
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 344c7568207c3854e9a94141b53d0c45
+      internalID: -524375448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sofa
+      rect:
+        serializedVersion: 2
+        x: 5443
+        y: 3017
+        width: 2946
+        height: 1516
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a5431e1306a0e24b86dde2ae4004879
+      internalID: 40467645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MiiTable
+      rect:
+        serializedVersion: 2
+        x: 8414
+        y: 3043
+        width: 1256
+        height: 1198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d9dd138157154943be18391ee7cc321
+      internalID: -500130013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Painting1
+      rect:
+        serializedVersion: 2
+        x: 9872
+        y: 3190
+        width: 1714
+        height: 1110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc4a18c48265294a8978a09965f88d0
+      internalID: -328056919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BookShelf
+      rect:
+        serializedVersion: 2
+        x: 5267
+        y: 41
+        width: 1696
+        height: 2901
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0457ed73a8bb31c448e70889baf0e80b
+      internalID: -1012342107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wardrobe
+      rect:
+        serializedVersion: 2
+        x: 7064
+        y: 41
+        width: 1708
+        height: 2907
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6254358702d0a69449000111dadae8d6
+      internalID: -401925417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChairSide
+      rect:
+        serializedVersion: 2
+        x: 8835
+        y: 1568
+        width: 1043
+        height: 1262
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e8af561651315459cad6a890ca692f
+      internalID: 1872541439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChairSemiSide
+      rect:
+        serializedVersion: 2
+        x: 10004
+        y: 1559
+        width: 1035
+        height: 1233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 055db0429e81f764bb58170f68d8baeb
+      internalID: -1836720512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cabinet_Water
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 451
+        width: 1614
+        height: 1795
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f6f4b9538361e049ad314e6aff65019
+      internalID: 1204783713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cabinet
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 451
+        width: 1615
+        height: 1230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d899dd7b238d147b54a05361ca5a97
+      internalID: 1033508671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TableLong
+      rect:
+        serializedVersion: 2
+        x: 8723
+        y: 15
+        width: 4126
+        height: 1133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cd13ab895e25004185b89aeefbf3b58
+      internalID: -1593115301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +534,41 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChairSide: 1872541439
+      ShelfSmall: -1638424357
+      Sofa: 40467645
+      Cloth: 705244231
+      ChairSemiSide: -1836720512
+      "M\xF6bler f\xE4rg 1_3": -1152202531
+      EmptyPainting: 1269502832
+      Cabinet_Water: 1204783713
+      "M\xF6bler f\xE4rg 1_6": -518052300
+      BookShelf: -1012342107
+      Oven: -1645030137
+      "M\xF6bler f\xE4rg 1_9": 1821460002
+      "M\xF6bler f\xE4rg 1_14": -485168955
+      "M\xF6bler f\xE4rg 1_15": -1604074225
+      "M\xF6bler f\xE4rg 1_7": -1580953300
+      "M\xF6bler f\xE4rg 1_18": 1791488715
+      TableLong: -1593115301
+      ShelfBooks: -1206545917
+      "M\xF6bler f\xE4rg 1_4": -345405953
+      "M\xF6bler f\xE4rg 1_10": 709435889
+      Cabinet_Upper: -958242694
+      "M\xF6bler f\xE4rg 1_30": 650581042
+      TableShort: 1619643801
+      Painting1: -328056919
+      "M\xF6bler f\xE4rg 1_8": 1173276835
+      "M\xF6bler f\xE4rg 1_13": 1173321393
+      Wardrobe: -401925417
+      BoilerTop: -1937349816
+      Cabinet: 1033508671
+      Fridge: -524375448
+      "M\xF6bler f\xE4rg 1_11": 784690569
+      "M\xF6bler f\xE4rg 1_5": -1691219747
+      MiiTable: -500130013
+      "M\xF6bler f\xE4rg 1_12": 487207466
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
