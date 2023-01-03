@@ -6,13 +6,13 @@ public class SpineEventHandler : MonoBehaviour
 {
     [Header("Audio")]
     [SerializeField] AudioClip[] attackClips;
-    [Tooltip("0 = no roof, 1 = roof")]
+    [Tooltip("0 = wet, 1 = dry")]
     [SerializeField] AudioClip[] jumpClips, landClips, stepClips;
 
     [Header("Particles")]
-    [Tooltip("0 = no roof, 1 = roof")]
+    [Tooltip("0 = wet, 1 = dry")]
     [SerializeField] ParticleSystem[] jumpParticles;
-    [Tooltip("0 = no roof, 1 = roof")]
+    [Tooltip("0 = wet, 1 = dry")]
     [SerializeField] ParticleSystem[] landParticles, stepParticles;
 
     [SerializeField] PlayerSoundHandler soundHandler;
@@ -26,10 +26,12 @@ public class SpineEventHandler : MonoBehaviour
         umbrellaHandler = GetComponentInChildren<UmbrellaStateHandler>();
     }
 
-    public void Attack()
-    {
-
-    }
+    //public void Attack()
+    //{
+    //    Debug.Log("attack");
+    //    if (attackClips != null)
+    //        soundHandler.PlaySound(attackClips[Random.Range(0,attackClips.Length)]);
+    //}
 
     public void Jump()
     {

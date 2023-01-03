@@ -67,15 +67,14 @@ public class PlayerSpineController : MonoBehaviour
 
     void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
     {
-        /*if(e.Data == (attack.EventData))
-            handler.PlaySound(handler.thisType);*/
-        Debug.Log(e.Data.Name);
+        //if (e.Data == attackEvent.EventData)
+        //    eventHandler.Attack();
 
-        if(e.Data == (jumpEvent.EventData))
+        if (e.Data == jumpEvent.EventData)
             eventHandler.Jump();
-        else if(e.Data == (landEvent.EventData))
+        else if (e.Data == landEvent.EventData)
             eventHandler.Land();
-        else if (e.Data == (stepEvent.EventData))
+        else if (e.Data == stepEvent.EventData)
             eventHandler.Step();
     }
 
