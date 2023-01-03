@@ -143,7 +143,6 @@ public class PlayerSpineController : MonoBehaviour
             case MovementStates.Knockback:
                 {
                     nextAnimation = damage;
-                    Debug.Log("Is running");
                     animSpeed = 1;
                 }
                 break;

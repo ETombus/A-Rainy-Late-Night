@@ -143,6 +143,7 @@ Transform:
   m_Children:
   - {fileID: 1591484311427720628}
   - {fileID: 1591484312676186318}
+  - {fileID: 5113290942423626417}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -255,7 +256,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.077892005, y: -0.10079759}
@@ -312,6 +313,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1591484312676186319}
         m_TargetAssemblyTypeName: InteractScript, Assembly-CSharp
+        m_MethodName: ToggleCollider
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1591484312676186316}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1591484312676186319}
+        m_TargetAssemblyTypeName: InteractScript, Assembly-CSharp
         m_MethodName: DisableScript
         m_Mode: 1
         m_Arguments:
@@ -323,5 +336,87 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   isInteractable: 0
-  onPlayerEnter: 0
+  onPlayerEnter: 1
   interactDistance: 2
+--- !u!1001 &7919221275549310597
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1591484311595899826}
+    m_Modifications:
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1069
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0268
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: showRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: textToWrite
+      value: Destructable Detected
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652277, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: maxDistanceFromPlayer
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652279, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_Size.x
+      value: 2.1419284
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652279, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6194772
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103181145625652297, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_Name
+      value: Marker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+--- !u!4 &5113290942423626417 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+  m_PrefabInstance: {fileID: 7919221275549310597}
+  m_PrefabAsset: {fileID: 0}

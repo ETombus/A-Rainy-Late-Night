@@ -13,14 +13,13 @@ public class Hurtbox : MonoBehaviour
 
     private void Update()
     {
+        if (damageTimer < damageFrequency) { damageTimer += Time.deltaTime; }
 
         if (isInWater)
         {
-            if (damageTimer < damageFrequency) { damageTimer += Time.deltaTime; }
-
             if (damageTimer >= damageFrequency)
             {
-                health.ReduceHealth(damage, true);
+                health.ReduceHealth(damage, false);
                 damageTimer = 0;
             }
         }

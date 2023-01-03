@@ -35,19 +35,16 @@ public class SpineEventHandler : MonoBehaviour
 
     public void Jump()
     {
-        Debug.Log("jump");
         WetDryCheck(jumpParticles, jumpClips, footPos);
     }
 
     public void Land()
     {
-        Debug.Log("land");
         WetDryCheck(landParticles, landClips, footPos);
     }
 
     public void Step()
     {
-        Debug.Log("step");
         if (!soundHandler.audSource.isPlaying)
         {
             WetDryCheck(stepParticles, stepClips, footPos);

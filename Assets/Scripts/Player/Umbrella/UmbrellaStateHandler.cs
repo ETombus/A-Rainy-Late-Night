@@ -12,7 +12,6 @@ public class UmbrellaStateHandler : MonoBehaviour
     [SerializeField] public Slider clockSlider;
     [SerializeField] private GameObject sparks;
     private ParticleSystem sparkParticle;
-    private AudioSource sparkSound;
 
     private EdgeCollider2D umbrellaCollider;
 
@@ -32,6 +31,8 @@ public class UmbrellaStateHandler : MonoBehaviour
     [Header("Audio")]
     public PlayerSoundHandler soundHandler;
     public AudioClip[] clips;
+    private AudioSource sparkSound;
+    private AudioSource umbrellaRain;
     //0 - slash, 1 - grapple, 2 - shoot
 
     [Header("Bools")]
@@ -69,6 +70,7 @@ public class UmbrellaStateHandler : MonoBehaviour
 
         sparkParticle = sparks.GetComponent<ParticleSystem>();
         sparkSound = sparks.GetComponent<AudioSource>();
+        umbrellaRain = GetComponent<AudioSource>();
 
         soundHandler = GetComponentInParent<PlayerSoundHandler>();
         umbrellaCollider = GetComponent<EdgeCollider2D>();
@@ -90,9 +92,13 @@ public class UmbrellaStateHandler : MonoBehaviour
 
                 umbrellaUp = true;
                 inRain = false;
+
+                if(!umbrellaRain.isPlaying)
+                    umbrellaRain.Play();
             }
             else if (!inRain)
             {
+                umbrellaRain.Stop();
                 umbrellaCollider.enabled = false;
 
                 inRain = true;
@@ -101,6 +107,7 @@ public class UmbrellaStateHandler : MonoBehaviour
         }
         else if (currentState == UmbrellaState.Idle)
         {
+            umbrellaRain.Stop();
             roof = true;
             umbrellaCollider.enabled = false;
             umbrellaUp = slowFalling ? true : false;
@@ -122,7 +129,7 @@ public class UmbrellaStateHandler : MonoBehaviour
     {
         sparkParticle.Play();
         sparkSound.pitch = Random.Range(0.75f, 1.25f);
-        if(!sparkSound.isPlaying)
+        if (!sparkSound.isPlaying)
             sparkSound.Play();
         while (inRain)
         {
@@ -199,7 +206,7 @@ public class UmbrellaStateHandler : MonoBehaviour
             GetComponentInParent<Slice>().StandardSlice();
             Invoke(nameof(Idle), slashDelay);
 
-            soundHandler.PlaySound(clips[Random.Range(2,5)]);
+            soundHandler.PlaySound(clips[Random.Range(2, 5)]);
         }
     }
 

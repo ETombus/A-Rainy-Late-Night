@@ -238,10 +238,8 @@ public class EnemySpineController : MonoBehaviour
 
     void HandleAnimationState(TrackEntry trackEntry, Spine.Event e)
     {
-        Debug.Log("e" + e.Data.Name);
         if (e.Data == attack.EventData)
         {
-            Debug.Log("dmg");
             if (meleeer)
                 handler.melee.Attack();
             else
