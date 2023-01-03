@@ -93,7 +93,11 @@ public class InteractScript : MonoBehaviour
     }
     public void DebugFunction() { Debug.Log("Interact"); }
     public void DisableScript() { enabled = false; }
-    public void ParticleEffect(ParticleSystem particle) { particle.Play(); }
+    public void ParticleEffect(ParticleSystem particle) 
+    { 
+        var particleHolder = Instantiate(particle, transform.position, Quaternion.identity); 
+        Destroy(particleHolder.gameObject, 5f);
+    }
 
     public void DestroyObject() 
     {
