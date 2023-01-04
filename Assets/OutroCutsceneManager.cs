@@ -27,7 +27,7 @@ public class OutroCutsceneManager : MonoBehaviour
         if (musicManager != null)
             music = musicManager.GetComponent<MusicManager>();
 
-        timeBeforeStopWalking = 1f;
+        timeBeforeStopWalking = 1.5f;
         cutsceneStarted = false;
     }
 

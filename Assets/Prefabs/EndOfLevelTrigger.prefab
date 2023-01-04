@@ -851,7 +851,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Complete
+  m_text: Level Complete                              Thanks for playing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b530a5cbda629e40a8deeac2813a4fb, type: 2}
   m_sharedMaterial: {fileID: 7943064019623508751, guid: 1b530a5cbda629e40a8deeac2813a4fb, type: 2}
@@ -860,7 +860,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -878,7 +878,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 55.45
   m_fontSizeBase: 78.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -952,5 +952,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b19371b43e6f584aae7c96d350e8df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToWrite: Level Complete
+  textToWrite: Level Complete                              Thanks for playing
   timePerCharacter: 0.1
