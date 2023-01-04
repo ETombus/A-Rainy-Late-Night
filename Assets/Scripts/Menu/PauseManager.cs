@@ -59,8 +59,12 @@ public class PauseManager : MonoBehaviour
     private void EscapePressed(InputAction.CallbackContext context)
     {
         if (!isPaused) { PauseGame(); }
-        else if (isPaused && tutorialPanel.activeSelf == false) { UnpauseGame(); }
+        else if (isPaused && tutorialPanel.activeSelf == false && settingsPanel.activeSelf == false
+            && youSurePanel.activeSelf == false)
+        { UnpauseGame(); }
         else if (isPaused && tutorialPanel.activeSelf == true) { TutorialClose(); }
+        else if (isPaused && settingsPanel.activeSelf == true) { ToggleSettings(false); }
+        else if (isPaused && youSurePanel.activeSelf == true) { ButtonYouSureBack(); }
     }
 
     private void PauseGame()
