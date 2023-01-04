@@ -14,6 +14,6 @@ public class IntroCutscene : MonoBehaviour
 
     private void Update()
     {
-        handler.rainVolume = volume;
+        handler.rainVolume = volume; //is built into the animation
     }
 }
