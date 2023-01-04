@@ -25,6 +25,8 @@ public class EnemyShooting : MonoBehaviour
     [Tooltip("read the name, you don't need a tooltip")]
     [SerializeField] float reloadTime = 1f;
     private bool firing = false;
+    [Tooltip("if can't shoot")]
+    [SerializeField] bool skillIsssue = false;
 
     private void Start()
     {
@@ -44,7 +46,10 @@ public class EnemyShooting : MonoBehaviour
             else
                 handler.movement.StopEnemy();
 
-            spineController.PlayAttackAnimation();
+            if (skillIsssue)
+                StartCoroutine(Shoot());
+            else
+                spineController.PlayAttackAnimation();
         }
     }
 
