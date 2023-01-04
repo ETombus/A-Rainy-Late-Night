@@ -15,6 +15,7 @@ public class OutroCutsceneManager : MonoBehaviour
     PlayerStateHandler playerHandler;
     Walking walking;
     MusicManager music;
+    PauseManager pauseManager;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class OutroCutsceneManager : MonoBehaviour
         playerRBody = player.GetComponent<Rigidbody2D>();
         playerHandler = player.GetComponent<PlayerStateHandler>();
         walking = player.GetComponent<Walking>();
+        pauseManager = GameObject.Find("PausePackage").GetComponent<PauseManager>();
 
         GameObject musicManager = GameObject.Find("Music");
         if (musicManager != null)
@@ -54,6 +56,8 @@ public class OutroCutsceneManager : MonoBehaviour
 
             if (music != null)
                 music.FadeClip(MusicManager.GameScene.Outro, true);
+
+            pauseManager.enabled = false;
 
             cutsceneStarted = true;
 
