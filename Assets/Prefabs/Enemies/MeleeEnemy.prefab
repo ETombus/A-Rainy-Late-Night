@@ -160,19 +160,27 @@ PrefabInstance:
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: run
       value: 
-      objectReference: {fileID: 11400000, guid: 0129ef425b2b1b347a86f57e29691b5f, type: 2}
+      objectReference: {fileID: 11400000, guid: 0ad15e1a53b692b42b7843306e9aeca4, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: dead
+      value: 
+      objectReference: {fileID: 11400000, guid: 50e33d7cf0531194c83782cae5c241fb, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: idle
       value: 
-      objectReference: {fileID: 11400000, guid: b119ff10026194642a45ee029f3dc362, type: 2}
+      objectReference: {fileID: 11400000, guid: 2f034b9a64a918b4f84784285a29a8b3, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: walk
       value: 
-      objectReference: {fileID: 11400000, guid: 20be4b6395b839e44903c04738f96ce0, type: 2}
+      objectReference: {fileID: 11400000, guid: 9806fc1d4fda7bb438730089b5d5d579, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: Attack
       value: 
-      objectReference: {fileID: 11400000, guid: 191854523b6e81247be2507faef18081, type: 2}
+      objectReference: {fileID: 11400000, guid: 1abb4fead616e7e488628f2392085701, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: damage
+      value: 
+      objectReference: {fileID: 11400000, guid: 487f25a04b3586846ba6dd38cbd520d1, type: 2}
     - target: {fileID: 8871184403424991047, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: marker
       value: 
@@ -181,6 +189,10 @@ PrefabInstance:
       propertyPath: hookPoint
       value: 
       objectReference: {fileID: 3906482919948123751}
+    - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -204,7 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5cd5bf3189054f8ce0d91ef325446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopMovingRange: 2
   punchingDistance: 1.5
+  hitReach: 2
   punchingCooldown: 0.6
   damage: 50
 --- !u!4 &7445323701956416543 stripped
