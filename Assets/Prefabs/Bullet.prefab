@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1468664371323212123}
   - component: {fileID: 1468664371323212124}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BulletSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3290271960280025502}
   - component: {fileID: 244465720978935336}
   - component: {fileID: -3670661785844231391}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,6 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4e70cc5f2446b4ea85ab073a5b4e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 776
+  handler: {fileID: 0}
   damage: 10
 --- !u!96 &-3670661785844231391
 TrailRenderer:

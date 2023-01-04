@@ -17,7 +17,7 @@ public class SpineEventHandler : MonoBehaviour
 
     [SerializeField] PlayerSoundHandler soundHandler;
     private UmbrellaStateHandler umbrellaHandler;
-    private Vector2 footPos;
+    [SerializeField] Transform footPos;
 
 
 
@@ -35,19 +35,19 @@ public class SpineEventHandler : MonoBehaviour
 
     public void Jump()
     {
-        WetDryCheck(jumpParticles, jumpClips, footPos);
+        WetDryCheck(jumpParticles, jumpClips, footPos.position);
     }
 
     public void Land()
     {
-        WetDryCheck(landParticles, landClips, footPos);
+        WetDryCheck(landParticles, landClips, footPos.position);
     }
 
     public void Step()
     {
         if (!soundHandler.audSource.isPlaying)
         {
-            WetDryCheck(stepParticles, stepClips, footPos);
+            WetDryCheck(stepParticles, stepClips, footPos.position);
         }
     }
 
