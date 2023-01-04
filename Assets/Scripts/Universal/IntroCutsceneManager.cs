@@ -22,6 +22,9 @@ public class IntroCutsceneManager : MonoBehaviour
     PlayerInputs playerControls;
     InputAction mouseClick;
     MusicManager music;
+    PauseManager pause;
+    [SerializeField] Animator imageAnimator;
+    [SerializeField] Animator textAnimator;
 
     private void Awake()
     {
@@ -32,6 +35,10 @@ public class IntroCutsceneManager : MonoBehaviour
     {
         music = GameObject.Find("Music").GetComponent<MusicManager>();
         music.UpdateClip(MusicManager.GameScene.Game, false);
+
+        pause = GameObject.Find("PausePackage").GetComponent<PauseManager>();
+        pause.enabled = false;
+
 
         if (PlayerPrefs.GetInt("PlayIntroCutscene", 1) == 1 && introCutsceneMarker.activeSelf == true)
         {
@@ -68,21 +75,29 @@ public class IntroCutsceneManager : MonoBehaviour
     {
         if (cutsceneDone)
         {
-            for (int i = 0; i < healthbar.Length; i++) { healthbar[i].SetActive(true); }
-
-            //player.SetActive(false);
-            player.GetComponent<PlayerInputHandler>().enabled = true;
-
-            if (PlayerPrefs.GetInt("ShowHints") == 1)
-                firstMarker.SetActive(true);
-
-
-            PlayerPrefs.SetInt("PlayIntroCutscene", 0);
-            introCutsceneMarker.SetActive(false);
-
-            OnDisable();
+            clickToContinueText.SetActive(false);
+            imageAnimator.SetTrigger("fadeOut");
+            textAnimator.SetTrigger("fadeOut");
         }
-        Debug.Log("Cutscene not done");
+    }
+
+    public void BeginGame()
+    {
+        for (int i = 0; i < healthbar.Length; i++) { healthbar[i].SetActive(true); }
+
+        //player.SetActive(false);
+        player.GetComponent<PlayerInputHandler>().enabled = true;
+
+        if (PlayerPrefs.GetInt("ShowHints") == 1)
+            firstMarker.SetActive(true);
+
+
+        PlayerPrefs.SetInt("PlayIntroCutscene", 0);
+        introCutsceneMarker.SetActive(false);
+
+        pause.enabled = true;
+
+        OnDisable();
     }
 
     private void Update()
