@@ -57,6 +57,8 @@ public class OutroCutsceneManager : MonoBehaviour
             if (music != null)
                 music.FadeClip(MusicManager.GameScene.Outro, true);
 
+            PlayerPrefs.SetInt("PlayIntroAnimation", 0); //1 = false, 0 = true
+
             pauseManager.enabled = false;
 
             cutsceneStarted = true;
