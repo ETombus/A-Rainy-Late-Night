@@ -39,7 +39,7 @@ public class EnemyShooting : MonoBehaviour
             Vector2 direction = transform.position - handler.playerTrans.position;
             float targetPos = handler.playerTrans.position.x + direction.normalized.x * minDistanceToPlayer;
 
-            if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) < minDistanceToPlayer)
+            if (Mathf.Abs(handler.playerTrans.position.x - transform.position.x) < minDistanceToPlayer && !handler.edgeDetection.DetectEdges())
                 handler.movement.MoveEnemy(new(targetPos, transform.position.y));
             else
                 handler.movement.StopEnemy();

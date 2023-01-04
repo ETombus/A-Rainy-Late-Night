@@ -197,6 +197,10 @@ PrefabInstance:
       propertyPath: damageSound
       value: 
       objectReference: {fileID: 8300000, guid: 3ae4aa1616f063842a12050d1b1aad0c, type: 3}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: attackAnimTimeOffset
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8871184403424991047, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: marker
       value: 
@@ -323,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopMovingRange: 1
-  punchingDistance: 1.5
+  punchingDistance: 5
   hitReach: 2
   punchingCooldown: 1
   damage: 30
