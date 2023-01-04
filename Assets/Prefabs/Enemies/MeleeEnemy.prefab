@@ -178,9 +178,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1abb4fead616e7e488628f2392085701, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ead533475082f844ac9d3c7b34215fb, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: damage
       value: 
       objectReference: {fileID: 11400000, guid: 487f25a04b3586846ba6dd38cbd520d1, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: footStep
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d6bbc05541cfd1429e0e64d5daff58a, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fb432ba97b69ca498d96d399cd82250, type: 3}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: damageEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 385fa6efa165a6b4393ae90b02e00d8d, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: damageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ec6ec0c05bc673746be9720e914f6670, type: 3}
     - target: {fileID: 8871184403424991047, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: marker
       value: 
@@ -189,6 +209,14 @@ PrefabInstance:
       propertyPath: hookPoint
       value: 
       objectReference: {fileID: 3906482919948123751}
+    - target: {fileID: 8871184404417359565, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 71114ade5569f6944b9268670ca1e418, type: 3}
+    - target: {fileID: 8871184404417359565, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5cfc6465b65d88a4bb7507419ffbea04, type: 3}
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_SortingOrder
       value: 8
@@ -216,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5cd5bf3189054f8ce0d91ef325446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopMovingRange: 2
+  stopMovingRange: 1
   punchingDistance: 1.5
   hitReach: 2
   punchingCooldown: 0.6

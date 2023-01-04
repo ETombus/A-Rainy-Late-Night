@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: dead
       value: 
-      objectReference: {fileID: 11400000, guid: 5d3ac6aebb0894048856b38528278854, type: 2}
+      objectReference: {fileID: 11400000, guid: c29ddea5f0ed31646ba7af331655fd15, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: idle
       value: 
@@ -171,6 +171,10 @@ PrefabInstance:
       value: Aim
       objectReference: {fileID: 0}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: footStep
+      value: 
+      objectReference: {fileID: 11400000, guid: 99f3fb57c6e30be4597361b14d28740d, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: aimOffset
       value: 2
       objectReference: {fileID: 0}
@@ -178,6 +182,10 @@ PrefabInstance:
       propertyPath: attackSound
       value: 
       objectReference: {fileID: 8300000, guid: bc11df7d9b409aa44a534e0cf8c41c7f, type: 3}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: damageEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d14cfcb80b7de448a4122b2e15680d2, type: 2}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: damageSound
       value: 
@@ -266,6 +274,14 @@ PrefabInstance:
       propertyPath: thisType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8871184404417359565, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 71114ade5569f6944b9268670ca1e418, type: 3}
+    - target: {fileID: 8871184404417359565, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: clips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5cfc6465b65d88a4bb7507419ffbea04, type: 3}
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_SortingOrder
       value: 8
