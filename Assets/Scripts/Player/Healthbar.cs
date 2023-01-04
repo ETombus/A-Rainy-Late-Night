@@ -48,11 +48,11 @@ public class Healthbar : HealthHandler
         {
             health -= reduceValue;
             if (healthBar != null)
+            {
                 healthBar.value = healthShown.Evaluate(health / 100) * 100;
+                UpdateHealthbarColor();
+            }
 
-            if (health >= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = fullHealthColor; }
-            else if (health <= maxHealth / 5) { healthBar.GetComponentInChildren<Image>().color = lowHealthColor; }
-            else if (health <= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = halfHealthColor; }
         }
         else { PlayerDeath(); }
 
@@ -63,7 +63,17 @@ public class Healthbar : HealthHandler
         AddHealth(addedHealth);
 
         if (healthBar != null)
+        {
+            UpdateHealthbarColor();
             healthBar.value = health;
+        }
+    }
+
+    void UpdateHealthbarColor()
+    {
+        if (health >= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = fullHealthColor; }
+        else if (health <= maxHealth / 5) { healthBar.GetComponentInChildren<Image>().color = lowHealthColor; }
+        else if (health <= maxHealth / 2) { healthBar.GetComponentInChildren<Image>().color = halfHealthColor; }
     }
 
     public void PlayerDeath()
@@ -74,7 +84,7 @@ public class Healthbar : HealthHandler
             hook.ResetHook();
         }
         catch (System.Exception)
-        {  }
+        { }
 
         rbody = GetComponent<Rigidbody2D>();
         rbody.constraints = RigidbodyConstraints2D.FreezeAll;

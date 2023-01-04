@@ -51,6 +51,7 @@ public class IntroCutsceneManager : MonoBehaviour
         else if (PlayerPrefs.GetInt("PlayIntroCutscene") == 0)
         {
             introCutsceneMarker.SetActive(false);
+            pause.enabled = true;
             rainVolume = 1;
         }
     }

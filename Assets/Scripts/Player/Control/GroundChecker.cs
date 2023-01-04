@@ -21,6 +21,7 @@ public class GroundChecker : MonoBehaviour
     public PhysicsMaterial2D noFrictionMaterial;
 
     private PlayerStateHandler stateManager;
+    SpineEventHandler eventHandler;
 
 
     [Header("Slope Check")]
@@ -48,13 +49,17 @@ public class GroundChecker : MonoBehaviour
         circleCollider = GetComponent<CircleCollider2D>();
         stateManager = GetComponent<PlayerStateHandler>();
         rbody = GetComponent<Rigidbody2D>();
+        eventHandler = GetComponent<SpineEventHandler>();
     }
 
 
     private void Update()
     {
         if (stateManager.isGrounded != hitGround)
+        {
             stateManager.isGrounded = hitGround;
+            eventHandler.Land();
+        }
 
         if (stateManager.onSlope != isOnSlope)
             stateManager.onSlope = isOnSlope;

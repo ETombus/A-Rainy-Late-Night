@@ -20,8 +20,7 @@ public class BulletScript : MonoBehaviour
             {
                 Debug.Log("Player got no healthScript");
             }
-
-            Destroy(this.gameObject);
         }
+        Destroy(this.gameObject);
     }
 }
