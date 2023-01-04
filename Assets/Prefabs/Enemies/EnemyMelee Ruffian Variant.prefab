@@ -190,6 +190,10 @@ PrefabInstance:
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1acb75ee3f16ae74fa4254dd6b1df8a6, type: 2}
@@ -212,7 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c5cd5bf3189054f8ce0d91ef325446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopMovingRange: 2
   punchingDistance: 1.5
+  hitReach: 2
   punchingCooldown: 1
   damage: 30
 --- !u!4 &5863311955445273214 stripped

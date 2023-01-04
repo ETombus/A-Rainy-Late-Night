@@ -251,6 +251,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: maxWalkingSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871184403751803247, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: movePoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -261,6 +265,10 @@ PrefabInstance:
     - target: {fileID: 8871184404417359565, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: thisType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_Materials.Array.data[0]
