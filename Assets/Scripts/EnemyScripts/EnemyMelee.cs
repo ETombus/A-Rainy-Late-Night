@@ -57,9 +57,5 @@ public class EnemyMelee : MonoBehaviour
             handler.player.GetComponent<Walking>().Knockback(10, transform.position);
             handler.PlaySound(handler.thisType);
         }
-        else
-        {
-            //whiff sound effect
-        }
     }
 }
