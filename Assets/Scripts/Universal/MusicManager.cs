@@ -12,7 +12,14 @@ public class MusicManager : MonoBehaviour
     [SerializeField] AudioClip gameIntro;
     [SerializeField] AudioClip gameBody;
 
-    public enum GameScene { Menu, Game }
+    [Header("Outro")]
+    [SerializeField] AudioClip outroClip;
+
+    [SerializeField] float fadeTime = .5f;
+    [SerializeField] bool isFading;
+    bool fadeBackIn;
+
+    public enum GameScene { Menu, Game, Outro }
     public GameScene currentScene;
 
     AudioSource source;
@@ -38,9 +45,25 @@ public class MusicManager : MonoBehaviour
         {
             UpdateClip(GameScene.Menu, true);
         }
-        if(source.clip == gameIntro && source.isPlaying == false)
+        if (source.clip == gameIntro && source.isPlaying == false)
         {
             UpdateClip(GameScene.Game, true);
+        }
+
+        if (isFading)
+        {
+            source.volume -= Time.deltaTime * fadeTime;
+
+            if (source.volume <= 0.1f)
+            {
+                UpdateClip(currentScene, true);
+                if (fadeBackIn) isFading = false;
+            }
+        }
+        else if (!isFading)
+        {
+            source.volume += Time.deltaTime * (fadeTime / 2);
+            source.playOnAwake = false;
         }
     }
 
@@ -78,8 +101,27 @@ public class MusicManager : MonoBehaviour
                     source.Play();
                 }
                 break;
+            case GameScene.Outro:
+                source.clip = outroClip;
+                source.loop = false;
+                source.Play();
+                break;
             default:
                 break;
         }
+    }
+
+    public void FadeClip(GameScene scene, bool fadeBack)
+    {
+        isFading = true;
+        currentScene = scene;
+        fadeBackIn = fadeBack;
+    }
+
+    public void ResetValues()
+    {
+        musicPitch = 1;
+        isFading = false;
+        source.volume = 1;
     }
 }
