@@ -66,7 +66,6 @@ public class SettingsHandler : MonoBehaviour
     {
         mixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
         PlayerPrefs.SetFloat("MusicVolume", sliderValue);
-        //Debug.Log("sliderValue = " + sliderValue);
     }
 
     public void SetSoundVolume(float sliderValue)

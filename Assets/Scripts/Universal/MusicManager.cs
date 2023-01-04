@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour
     AudioSource source;
 
     [HideInInspector] public float musicPitch = 1;
-
+    [HideInInspector] public float musicVolume = 1;
     private void Awake()
     {
         currentScene = GameScene.Menu;
@@ -40,6 +40,9 @@ public class MusicManager : MonoBehaviour
     private void Update()
     {
         source.pitch = musicPitch;
+
+        if (!isFading)
+            source.volume = musicVolume;
 
         if (source.clip == menuIntro && source.isPlaying == false)
         {
@@ -122,6 +125,7 @@ public class MusicManager : MonoBehaviour
     {
         musicPitch = 1;
         isFading = false;
+        musicVolume = 1;
         source.volume = 1;
     }
 }
