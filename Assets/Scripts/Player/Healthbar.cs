@@ -26,7 +26,6 @@ public class Healthbar : HealthHandler
     [SerializeField] Color halfHealthColor;
     [SerializeField] Color lowHealthColor;
 
-    float loopTimer;
 
     private void Start()
     {
@@ -41,7 +40,9 @@ public class Healthbar : HealthHandler
     public void ReduceHealth(float reduceValue, bool rainDamage)
     {
         if (!rainDamage)
+        {
             damageSpark.Play();
+        }
 
         if (health - reduceValue > 0)
         {

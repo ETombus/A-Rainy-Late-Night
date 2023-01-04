@@ -61,9 +61,9 @@ public class EnemyShooting : MonoBehaviour
 
             GameObject bulletInstance = Instantiate(bullet, gunTrans.position, transform.rotation);
             bulletInstance.GetComponent<BulletScript>().damage = damage;
+            bulletInstance.GetComponent<BulletScript>().handler = handler;
             bulletInstance.GetComponent<Rigidbody2D>().velocity = GetShootVector().normalized * bulletSpeed;
             Destroy(bulletInstance, 2f);
-
 
             yield return new WaitForSeconds(shootCooldown);
         }

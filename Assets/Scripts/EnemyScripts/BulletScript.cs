@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    public EnemyHandler handler;
     public int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -12,6 +13,7 @@ public class BulletScript : MonoBehaviour
         {
             try
             {
+                handler.PlaySound(handler.thisType);
                 collision.gameObject.GetComponent<Healthbar>().ReduceHealth(damage, false);
             }
             catch
