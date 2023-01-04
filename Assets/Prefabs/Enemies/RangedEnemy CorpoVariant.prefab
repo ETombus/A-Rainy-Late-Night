@@ -233,6 +233,10 @@ PrefabInstance:
       value: Aim
       objectReference: {fileID: 0}
     - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: footStep
+      value: 
+      objectReference: {fileID: 11400000, guid: 340e10a9f54497948b18279fe3784813, type: 2}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: aimOffset
       value: 2
       objectReference: {fileID: 0}
@@ -248,6 +252,10 @@ PrefabInstance:
       propertyPath: damageSound
       value: 
       objectReference: {fileID: 8300000, guid: ec6ec0c05bc673746be9720e914f6670, type: 3}
+    - target: {fileID: 8214661436944730673, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: attackAnimTimeOffset
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8871184403424991047, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: marker
       value: 
@@ -378,6 +386,7 @@ MonoBehaviour:
   bulletSpeed: 40
   shootCooldown: 0.5
   reloadTime: 1
+  skillIsssue: 1
 --- !u!4 &973452818824765964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
