@@ -9,7 +9,7 @@ public class PlayerStateHandler : MonoBehaviour
 {
     [Header("Jump variables")]
     public bool isGrounded;
-    private bool grappleGravity;
+    [SerializeField]private bool grappleGravity;
 
 
     [SerializeField] private bool pressingJump = false;
@@ -152,7 +152,7 @@ public class PlayerStateHandler : MonoBehaviour
         rbody.gravityScale = currentGravity * gravityMultiplier;
     }
 
-    void DisableGrappleGravity() { grappleGravity = false; }
+    public void DisableGrappleGravity() { grappleGravity = false; }
 
     void ManageMovingStates()
     {
@@ -225,6 +225,7 @@ public class PlayerStateHandler : MonoBehaviour
             midJump = true;
             coyoteTimer = 0;
 
+            DisableGrappleGravity();
             gravityCurveTransitionTime = 0;
             currentMoveState = MovementStates.Jumping;
             Invoke(nameof(EndJump), maxJumpDuration);

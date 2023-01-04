@@ -63,7 +63,9 @@ public class HookScript : MonoBehaviour
         if (target != null)
             target.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
 
+        
         player.GetComponentInChildren<UmbrellaStateHandler>().Idle();
+        player.GetComponent<PlayerStateHandler>().DisableGrappleGravity();
         player.GetComponent<GrappleInput>().canGrapple = true;
         Destroy(gameObject);
     }

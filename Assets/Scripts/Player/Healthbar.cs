@@ -85,6 +85,7 @@ public class Healthbar : HealthHandler
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         state = GetComponent<PlayerStateHandler>();
+        GetComponentInChildren<RifleScript>().AddAmmo(10);
         state.currentMoveState = PlayerStateHandler.MovementStates.Idle;
     }
 }

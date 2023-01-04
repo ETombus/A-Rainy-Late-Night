@@ -30,7 +30,7 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] AudioClip pageTurn;
     [SerializeField] AudioSource[] audSource;
     MusicManager music;
-    [SerializeField] float musicPitchSpeed = .3f; 
+    [SerializeField] float musicPitchSpeed = .3f;
 
     PlayerInputs playerControls;
     InputAction cancel;
@@ -40,6 +40,9 @@ public class MenuHandler : MonoBehaviour
     {
         rainVolume = 1;
         music = GameObject.Find("Music").GetComponent<MusicManager>();
+        music.UpdateClip(MusicManager.GameScene.Menu, false);
+        music.ResetValues();
+
 
         playerControls = new PlayerInputs();
         if (PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
@@ -122,7 +125,7 @@ public class MenuHandler : MonoBehaviour
         }
         panels[index].SetActive(true);
 
-        PlaySoundEffect();
+        PlayPageSoundEffect();
     }
 
     public void ButtonBack(InputAction.CallbackContext context)
@@ -153,17 +156,13 @@ public class MenuHandler : MonoBehaviour
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(1);
         //dont allow to finish loading
         asyncOp.allowSceneActivation = false;
-        Debug.Log("started loading scene");
 
         while (!asyncOp.isDone)
         {
             if (music.musicPitch >= 0.2f) { music.musicPitch -= Time.deltaTime * musicPitchSpeed; }
 
-            Debug.Log("Currently loading, Pro : " + asyncOp.progress);
-
             if (asyncOp.progress >= 0.9f && allowSceneLoad)
             {
-                //Debug.Log("progress is at: " + asyncOp.progress);
                 asyncOp.allowSceneActivation = true;
             }
 
@@ -213,7 +212,7 @@ public class MenuHandler : MonoBehaviour
         preGamePanel.SetActive(false);
     }
 
-    void PlaySoundEffect()
+    void PlayPageSoundEffect()
     {
         audSource[0].pitch = Random.Range(0.8f, 1.2f);
         audSource[0].PlayOneShot(pageTurn);
