@@ -80,12 +80,12 @@ public class Healthbar : HealthHandler
 
         gameOver.PlayerDeath();
         health = maxHealth;
+        GetComponentInChildren<RifleScript>().AddAmmo(10);
 
         rbody.velocity = Vector2.zero;
         rbody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         state = GetComponent<PlayerStateHandler>();
-        GetComponentInChildren<RifleScript>().AddAmmo(10);
         state.currentMoveState = PlayerStateHandler.MovementStates.Idle;
     }
 }
