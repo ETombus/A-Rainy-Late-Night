@@ -270,6 +270,10 @@ PrefabInstance:
       propertyPath: clips.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 5cfc6465b65d88a4bb7507419ffbea04, type: 3}
+    - target: {fileID: 8871184404842028888, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9120917555891880563, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
       propertyPath: m_SortingOrder
       value: 8
@@ -310,6 +314,7 @@ MonoBehaviour:
   bulletSpeed: 40
   shootCooldown: 0.5
   reloadTime: 1
+  skillIsssue: 0
 --- !u!4 &2872456105144996407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 509095876351793063, guid: 2dbfcf6d3a2ccf64589a2d806238c776, type: 3}
