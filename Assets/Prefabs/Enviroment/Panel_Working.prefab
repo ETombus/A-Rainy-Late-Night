@@ -357,17 +357,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1591484311595899826}
     m_Modifications:
+    - target: {fileID: 1377397216, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057278138, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.018
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057278138, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.433
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057278139, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_fontSize
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057278139, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.53
+      objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1069
+      value: -0.107
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0268
+      value: 0.119
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652276, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_LocalPosition.z
@@ -415,11 +435,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652279, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_Size.x
-      value: 1.4166666
+      value: 6.499745
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652279, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_Size.y
-      value: 1.38
+      value: 4.4181614
       objectReference: {fileID: 0}
     - target: {fileID: 3103181145625652297, guid: a457249df2bef1b40b2915dbcf646c60, type: 3}
       propertyPath: m_Name
