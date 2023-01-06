@@ -53,7 +53,7 @@ public class EnemyMelee : MonoBehaviour
     {
         if (XDist() <= hitReach && YDist() <= hitReach)
         {
-            handler.playerHealth.ReduceHealth(10, false);
+            handler.playerHealth.ReduceHealth(damage, false);
             handler.player.GetComponent<Walking>().Knockback(10, transform.position);
             handler.PlaySound(handler.thisType);
         }
