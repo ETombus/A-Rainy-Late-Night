@@ -53,7 +53,9 @@ public class CheckpointManager : MonoBehaviour
     public void SetPlayerPosition(GameObject player)
     {
         if (PlayerPrefs.GetInt("CheckpointReached") > 0)
-            player.transform.position = checkPoints[PlayerPrefs.GetInt("CheckpointReached") - 1].respawnPos;
+        {
+            player.transform.position = checkPoints[PlayerPrefs.GetInt("CheckpointReached") -1].respawnPos;
+        }
         else
             player.transform.position = startPos;
     }

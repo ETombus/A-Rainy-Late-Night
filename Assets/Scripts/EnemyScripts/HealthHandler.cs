@@ -58,7 +58,7 @@ public class HealthHandler : MonoBehaviour
             marker.SetActive(false);
 
         if (hookPoint != null)
-            hookPoint.SetActive(false);
+            Destroy(hookPoint);
 
         if (bloodParticles != null)
             Instantiate(bloodParticles, transform.position, transform.rotation);

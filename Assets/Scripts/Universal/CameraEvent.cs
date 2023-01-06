@@ -8,9 +8,12 @@ public class CameraEvent : MonoBehaviour
     private enum EventType { sizeAndPos, size, position }
     [SerializeField] private EventType thisEventType;
 
-    private enum FollowType { DontFollow, FollowDown }
+    private enum FollowType { DontFollow, FollowDown, FollowRight, FollowUp }
     [SerializeField] private FollowType thisFollowType;
     Vector2 startPos;
+
+    private enum SizeType { Bigger, Smaller }
+    [SerializeField] private SizeType thisSizeType;
 
     [Header("Player Variables")]
     [SerializeField] static bool isInField = false;
@@ -45,7 +48,7 @@ public class CameraEvent : MonoBehaviour
             cameraPos = this.gameObject.transform.GetChild(0);
         }
 
-        if(thisFollowType == FollowType.FollowDown)
+        if (thisFollowType != FollowType.DontFollow)
         {
             startPos = cameraPos.position;
         }
@@ -55,33 +58,53 @@ public class CameraEvent : MonoBehaviour
     {
         if (thisEventType == CameraEvent.EventType.size || thisEventType == CameraEvent.EventType.sizeAndPos)
         {
-            if (thisNewCamSize > originalCamSize)
+            if (thisNewCamSize > originalCamSize && thisSizeType == SizeType.Bigger)
             {
                 if (isInField && vCam.m_Lens.OrthographicSize < newCamSize)
                 {
                     vCam.m_Lens.OrthographicSize += Time.deltaTime * transitionSpeed;
                 }
+                else if (isInField && vCam.m_Lens.OrthographicSize >= newCamSize) { vCam.m_Lens.OrthographicSize = newCamSize; }
                 else if (!isInField && vCam.m_Lens.OrthographicSize > originalCamSize)
                 {
                     vCam.m_Lens.OrthographicSize -= Time.deltaTime * (transitionSpeed / 4);
                 }
             }
-            else if (thisNewCamSize < originalCamSize)
+            else if (thisNewCamSize < originalCamSize && thisSizeType == SizeType.Smaller)
             {
                 if (isInField && vCam.m_Lens.OrthographicSize > newCamSize)
                 {
                     vCam.m_Lens.OrthographicSize -= Time.deltaTime * transitionSpeed;
                 }
+                else if (isInField && vCam.m_Lens.OrthographicSize <= newCamSize) { vCam.m_Lens.OrthographicSize = newCamSize; }
                 else if (!isInField && vCam.m_Lens.OrthographicSize < originalCamSize)
                 {
                     vCam.m_Lens.OrthographicSize += Time.deltaTime * (transitionSpeed / 4);
                 }
             }
+            else if (thisNewCamSize > originalCamSize && thisSizeType == SizeType.Smaller && thisEventType != EventType.position)
+            { Debug.LogError(gameObject.name + " is marked as Smaller but has a larger newCamSize, is it incorrectly marked or is camsize incorrect?"); }
+            else if (thisNewCamSize < originalCamSize && thisSizeType == SizeType.Bigger && thisEventType != EventType.position)
+            { Debug.LogError(gameObject.name + " is marked as Bigger but has a smaller newCamSize, is it incorrectly marked or is camsize incorrect?"); }
         }
 
-        if(thisFollowType == FollowType.FollowDown && player != null)
+        if (thisFollowType == FollowType.FollowDown && player != null)
         {
-            if(player.transform.position.y <= startPos.y)
+            if (player.transform.position.y <= startPos.y)
+            {
+                cameraPos.transform.position = new(cameraPos.transform.position.x, player.transform.position.y);
+            }
+        }
+        else if (thisFollowType == FollowType.FollowRight && player != null)
+        {
+            if (player.transform.position.x >= startPos.x)
+            {
+                cameraPos.transform.position = new(player.transform.position.x, cameraPos.transform.position.y);
+            }
+        }
+        else if (thisFollowType == FollowType.FollowUp && player != null)
+        {
+            if (player.transform.position.y >= startPos.y)
             {
                 cameraPos.transform.position = new(cameraPos.transform.position.x, player.transform.position.y);
             }
