@@ -181,6 +181,12 @@ public class CameraEvent : MonoBehaviour
         }
     }
 
+    public void ResetCamPos()
+    {
+        if (startPos != null)
+            cameraPos.position = startPos;
+    }
+
     private void OnDrawGizmos()
     {
         if (cameraPos != null)

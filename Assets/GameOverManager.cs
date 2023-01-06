@@ -14,6 +14,8 @@ public class GameOverManager : MonoBehaviour
 
     [SerializeField] Toggle skipDeathToggle;
 
+    [SerializeField] CameraEvent[] camEvents;
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -40,6 +42,10 @@ public class GameOverManager : MonoBehaviour
         Time.timeScale = 1;
         gameOverPanel.SetActive(false);
 
+        for (int i = 0; i < camEvents.Length; i++)
+        {
+            camEvents[i].ResetCamPos();
+        }
         checkPoints.SetPlayerPosition(player);
     }
 

@@ -24,9 +24,12 @@ public class CheckpointManager : MonoBehaviour
             }
         }
 
+        UpdateCheckpoints(PlayerPrefs.GetInt("CheckpointReached"));
+
         player = GameObject.FindWithTag("Player");
         if (player != null)
         {
+            Debug.Log("Setting starting position at " + player.transform.position);
             SetStartPos(player);
             SetPlayerPosition(player);
         }
@@ -54,7 +57,8 @@ public class CheckpointManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("CheckpointReached") > 0)
         {
-            player.transform.position = checkPoints[PlayerPrefs.GetInt("CheckpointReached") -1].respawnPos;
+            player.transform.position = checkPoints[PlayerPrefs.GetInt("CheckpointReached") - 1].respawnPos;
+            Debug.Log("Setting player at checkpoint " + PlayerPrefs.GetInt("CheckpointReached") + " and position " + (PlayerPrefs.GetInt("CheckpointReached") - 1));
         }
         else
             player.transform.position = startPos;
