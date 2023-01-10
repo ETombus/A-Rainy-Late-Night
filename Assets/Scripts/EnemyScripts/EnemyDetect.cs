@@ -5,101 +5,143 @@ using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
-    public LayerMask detectableLayers;
+    [SerializeField] float detectionDistance = 10;
 
-    public float detectTime = 1;
+    public Vector2 lastSeenPlayerLocation;
 
-    [SerializeField]
-    private float timer = 0;
+    public bool seesPlayer;
+    [SerializeField] bool detectedPlayer;
 
-    [SerializeField]
-    private bool playerVisable = false;
+    [SerializeField] LayerMask detectableLayers;
+    [SerializeField] LayerMask groundLayers;
 
-    [SerializeField]
-    private GameObject player;
+    [SerializeField] float seachDuration = 3f;
+    float searchTimer;
 
-    private bool playerInViewRange = false;
+    [SerializeField] Sprite[] markers; //0 = ?, 1 = !, 2 = anger
+    [HideInInspector] public SpriteRenderer markerRenderer;
 
-    private int colliderIndex;
+    EnemyHandler handler;
 
-    [SerializeField] Sprite[] indicators; // 0 = ?, 1 = !
-    [SerializeField] SpriteRenderer indicatorRenderer;
+    [SerializeField] AudioClip detectSound;
 
     private void Start()
     {
-        indicatorRenderer.gameObject.SetActive(false);
+        handler = GetComponent<EnemyHandler>();
+        markerRenderer = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
+        markerRenderer.sprite = null;
     }
 
     private void Update()
     {
-        if (playerInViewRange)
+        switch (handler.currentMode)
         {
-            CheckIfBlockedByTerrain();
+            case EnemyHandler.Mode.Patrol:
+                SendDetectionRay();
+                break;
+            case EnemyHandler.Mode.Aggression:
+                SearchForPlayerWithinRange();
+                break;
+            case EnemyHandler.Mode.Search:
+                SearchForPlayerOutofRange();
+                break;
+            case EnemyHandler.Mode.Idle:
+                SendDetectionRay();
+                break;
+            default:
+                break;
         }
+    }
 
-        if (playerVisable)
+    private void SendDetectionRay()
+    {
+        markerRenderer.sprite = null;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, detectionDistance, detectableLayers);
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position, transform.right + (transform.up / 2), detectionDistance, detectableLayers);
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, transform.right + (-transform.up / 2), detectionDistance, detectableLayers);
+
+
+        //RaycastHit2D boxHit = Physics2D.BoxCast(transform.position,
+        //    new(detectionDistance, detectionDistance), 0f, transform.right, detectionDistance, detectableLayers);
+
+
+        if (hit)
         {
-            indicatorRenderer.gameObject.SetActive(true);
-            indicatorRenderer.sprite = indicators[0];
+            if (hit.collider.gameObject.CompareTag("Player")) { DetectPlayer(); }
+            else { detectedPlayer = false; }
+        }
+        if (hitUp)
+        {
+            if (hitUp.collider.gameObject.CompareTag("Player")) { DetectPlayer(); }
+            else { detectedPlayer = false; }
 
-            timer += Time.deltaTime;
+        }
+        if (hitDown)
+        {
+            if (hitDown.collider.gameObject.CompareTag("Player")) { DetectPlayer(); }
+            else { detectedPlayer = false; }
+        }
+        else { detectedPlayer = false; }
+    }
 
-            if (timer >= detectTime)
+    void DetectPlayer()
+    {
+        detectedPlayer = true;
+        seesPlayer = true;
+        handler.currentMode = EnemyHandler.Mode.Aggression;
+
+        if(detectSound!= null) 
+            GetComponent<AudioSource>().PlayOneShot(detectSound);
+    }
+    void SearchForPlayerWithinRange()
+    {
+        markerRenderer.sprite = markers[2];
+        handler.FlipRotation(handler.playerTrans.position.x - transform.position.x);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, handler.playerTrans.position - transform.position,
+            Vector2.Distance(transform.position, handler.playerTrans.position), detectableLayers);
+        if (hit.collider != null)
+        {
+            Debug.DrawLine(transform.position, hit.point);
+
+            if (Vector2.Distance(transform.position, handler.playerTrans.position) > detectionDistance
+               || ((1 << hit.collider.gameObject.layer) & groundLayers) != 0) //compare the objects layer with the layermask
             {
-                indicatorRenderer.sprite = indicators[1];
-                //Debug.Log("Fire at player!");
-                //Insert Agression mode here
+                seesPlayer = false;
+                handler.currentMode = EnemyHandler.Mode.Search;
+                lastSeenPlayerLocation = handler.playerTrans.position;
             }
         }
+    }
 
-        if (!playerVisable && timer > 0)
+    void SearchForPlayerOutofRange()
+    {
+        searchTimer += Time.deltaTime;
+        markerRenderer.sprite = markers[0];
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, handler.playerTrans.position - transform.position,
+            Vector2.Distance(transform.position, handler.playerTrans.position), groundLayers);
+
+        Debug.DrawLine(transform.position, handler.playerTrans.position, Color.blue);
+
+        if (Vector2.Distance(transform.position, handler.playerTrans.position) < detectionDistance
+            && hit.collider == null)
         {
-            Debug.Log("Alert");
-            timer -= Time.deltaTime;
-            if (timer < 0)
-                timer = 0;
+            handler.currentMode = EnemyHandler.Mode.Aggression;
+        }
 
-            // Change to Alert mode then possibly search mode
+        if (searchTimer >= seachDuration)
+        {
+            handler.currentMode = EnemyHandler.Mode.Patrol;
+            handler.FlipRotation();
+            searchTimer = 0;
         }
     }
 
-    void CheckIfBlockedByTerrain()
+    private void OnDrawGizmos()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 20, detectableLayers);
-        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.red);
-
-        if (hit.collider.gameObject.layer == 3) // Terrain Layer
-        {
-            playerVisable = false;
-        }
-        else
-        {
-            playerVisable = true;
-        }
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            playerInViewRange = true;
-            player = collision.gameObject;
-            colliderIndex++;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            colliderIndex--;
-            if (colliderIndex == 0)
-            {
-                playerInViewRange = false;
-                playerVisable = false;
-                player = null;
-            }
-        }
+        Gizmos.DrawRay(transform.position, transform.right * detectionDistance);
+        Gizmos.DrawRay(transform.position, (transform.right + (transform.up / 2)) * detectionDistance);
+        Gizmos.DrawRay(transform.position, (transform.right + (-transform.up / 2)) * detectionDistance);
     }
 }

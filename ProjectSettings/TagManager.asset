@@ -7,6 +7,11 @@ TagManager:
   - Ground
   - CameraEvent
   - Enemy
+  - HookPoint
+  - Rain
+  - Slice
+  - Checkpoint
+  - DontHit
   layers:
   - Default
   - TransparentFX
@@ -17,9 +22,9 @@ TagManager:
   - Enemy
   - One-Way
   - Ground
-  - 
-  - 
-  - 
+  - Player
+  - Umbrella
+  - Bullet
   - 
   - 
   - 
@@ -43,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Unlit
+    uniqueID: 58396065
     locked: 0

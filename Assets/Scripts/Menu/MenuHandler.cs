@@ -2,102 +2,219 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MenuHandler : MonoBehaviour
 {
     [Header("Panels")]
+    [SerializeField] GameObject[] panels; //0 = main panel, 1 = settingspanel, 2 = tutorial, 3 = credits
+    [SerializeField] int panelIndex = 0;
     [SerializeField] GameObject mainPanel;
+    [SerializeField] GameObject settingsPanel;
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject creditsPanel;
-    [SerializeField] GameObject settingsPanel;
+    [SerializeField] GameObject preGamePanel;
 
-    [Header("Variables")]
-    [SerializeField] float speed = 50;
-
+    [Header("Intro")]
     [SerializeField] GameObject fadeIn;
     [SerializeField] GameObject introMarker;
 
-    bool moveCameraUp;
-    bool showSettings;
+    [Header("IntroCutscene")]
+    [SerializeField] GameObject introCutscene;
+    public bool allowSceneLoad = false;
+    [HideInInspector] public float rainVolume = 1;
+    [SerializeField] AudioClip falling;
+    [SerializeField] AudioClip fallThump;
 
-    Vector3 offset = new(0, 0, -10);
+    [Header("Audio")]
+    [SerializeField] AudioClip pageTurn;
+    [SerializeField] AudioSource[] audSource;
+    MusicManager music;
+    [SerializeField] float musicPitchSpeed = .3f;
 
-    bool playIntroAnimation = true;
+    PlayerInputs playerControls;
+    InputAction cancel;
+    SettingsHandler settings;
 
-    private void Start()
+    private void Awake()
     {
-        if(PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
+        rainVolume = 1;
+        music = GameObject.Find("Music").GetComponent<MusicManager>();
+        music.UpdateClip(MusicManager.GameScene.Menu, false);
+        music.ResetValues();
+
+
+        playerControls = new PlayerInputs();
+        if (PlayerPrefs.GetInt("PlayIntroAnimation") == 1)
         {
             fadeIn.SetActive(false);
             introMarker.SetActive(false);
         }
+
+        settings = GetComponent<SettingsHandler>();
+        //audSource = GetComponent<AudioSource>();
     }
+
+    private void OnEnable()
+    {
+        cancel = playerControls.UI.Cancel;
+        cancel.Enable();
+
+        cancel.performed += ButtonBack;
+    }
+
+    private void OnDisable() { cancel.Disable(); }
 
     private void Update()
     {
-        if (moveCameraUp)
-        {
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, tutorialPanel.transform.position + offset, speed * Time.deltaTime);
-        }
-        else
-        {
-            Camera.main.transform.position = Vector3.MoveTowards(Camera.main.transform.position, Vector3.zero + offset, speed * Time.deltaTime);
-        }
-
-        if (showSettings)
-        {
-            mainPanel.transform.position = Vector3.MoveTowards(mainPanel.transform.position, new(5, 0, 0), speed * Time.deltaTime);
-        }
-        else
-        {
-            mainPanel.transform.position = Vector3.MoveTowards(mainPanel.transform.position, Vector3.zero, speed * Time.deltaTime);
-        }
+        audSource[1].volume = rainVolume;
     }
 
     public void ButtonStart()
     {
-        Debug.Log("Game Started");
-        SceneManager.LoadScene(1); 
-        PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
-    }
-
-    public void ButtonTutorial()
-    {
-        //tutorialPanel.SetActive(true);
-        moveCameraUp = true;
-    }
-
-    public void ButtonCredits()
-    {
-        creditsPanel.SetActive(true);
+        preGamePanel.SetActive(true);
     }
 
     public void ButtonSettings()
     {
-        showSettings = true;
-        settingsPanel.SetActive(true);
+        SetActivePanel(1);
+        panelIndex = 1;
+
+        settings.SetSliderValues();
+    }
+
+    public void ButtonTutorial()
+    {
+        SetActivePanel(2);
+        panelIndex = 2;
+    }
+
+    public void ButtonCredits()
+    {
+        SetActivePanel(3);
+        panelIndex = 3;
     }
 
     public void ButtonExit()
     {
-        Debug.Log("Exited Game");
         Application.Quit();
         PlayerPrefs.DeleteKey("PlayIntroAnimation"); //1 = false, 0 = true
     }
 
-    public void BackTutorial()
+    public void ButtonLeft()
     {
-        moveCameraUp = false;
+        if (panelIndex > 0)
+            panelIndex--;
+
+        SetActivePanel(panelIndex);
     }
 
-    public void BackCredits()
+    public void ButtonRight()
     {
-        creditsPanel.SetActive(false);
+        if (panelIndex < panels.Length - 1)
+            panelIndex++;
+
+        SetActivePanel(panelIndex);
     }
 
-    public void BackSettings()
+    void SetActivePanel(int index)
     {
-        showSettings = false;
-        settingsPanel.SetActive(false);
+        for (int i = 0; i < panels.Length; i++)
+        {
+            panels[i].SetActive(false);
+        }
+        panels[index].SetActive(true);
+
+        PlayPageSoundEffect();
+    }
+
+    public void ButtonBack(InputAction.CallbackContext context)
+    {
+        SetActivePanel(0);
+        panelIndex = 0;
+    }
+    public void ButtonBack()
+    {
+        SetActivePanel(0);
+        panelIndex = 0;
+    }
+
+    public void PlayIntroCutscene()
+    {
+        StartCoroutine(Loadscene());
+        introCutscene.SetActive(true);
+        audSource[0].loop = true;
+        audSource[0].clip = falling;
+        audSource[0].Play();
+    }
+
+    IEnumerator Loadscene()
+    {
+        yield return null;
+
+        //Begin loading scene
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(1);
+        //dont allow to finish loading
+        asyncOp.allowSceneActivation = false;
+
+        while (!asyncOp.isDone)
+        {
+            if (music.musicPitch >= 0.2f) { music.musicPitch -= Time.deltaTime * musicPitchSpeed; }
+
+            if (asyncOp.progress >= 0.9f && allowSceneLoad)
+            {
+                asyncOp.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+    }
+
+    public IEnumerator PlayThump()
+    {
+        yield return null;
+        music.gameObject.GetComponent<AudioSource>().Pause();
+
+        audSource[0].loop = false;
+        audSource[0].volume = 1.5f;
+        audSource[0].pitch = 1f;
+        audSource[0].clip = fallThump;
+        audSource[0].Play();
+
+        while (audSource[0].isPlaying)
+        {
+            yield return null;
+        }
+
+        if (!audSource[0].isPlaying)
+            allowSceneLoad = true;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetInt("HighestLevelReached", 1));
+        PlayerPrefs.SetInt("PlayIntroAnimation", 1); //1 = false, 0 = true
+    }
+
+    public void ResetCheckpoints()
+    {
+        PlayerPrefs.DeleteKey("CheckpointReached");
+        PlayerPrefs.SetInt("PlayIntroCutscene", 1);
+    }
+
+    public void SkipIntroCutscene()
+    {
+        PlayerPrefs.SetInt("PlayIntroCutscene", 0);
+    }
+
+    public void PregameBack()
+    {
+        preGamePanel.SetActive(false);
+    }
+
+    void PlayPageSoundEffect()
+    {
+        audSource[0].pitch = Random.Range(0.8f, 1.2f);
+        audSource[0].PlayOneShot(pageTurn);
     }
 }

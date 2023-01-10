@@ -7,19 +7,27 @@ public class EnemyMovement : MonoBehaviour
     public Vector2[] movePoints;
 
     public float acceleration;
-    public float maxSpeed;
     public float decceleration;
+    public float maxWalkingSpeed = 3;
+    public float maxRunningSpeed = 5;
 
+    private float maxSpeed;
     public float waitTime;
 
     public float targetOffsetAmmount = 1;
 
-    private Rigidbody2D rigBody;
-    private int moveIndex = 0;
+    [HideInInspector] public Rigidbody2D rigBody;
+    public int moveIndex = 0;
+
+    EnemyHandler handler;
 
     private void Start()
     {
         rigBody = GetComponent<Rigidbody2D>();
+        handler = GetComponent<EnemyHandler>();
+
+        maxSpeed = maxWalkingSpeed;
+
         for (int i = 0; i < movePoints.Length; i++)
         {
             movePoints[i] += (Vector2)transform.position;
@@ -28,7 +36,34 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PatrolMode();
+        handler.isMoving = rigBody.velocity.x != 0 ? true : false;
+
+        if (!handler.edgeDetection.DetectEdges())
+            StopEnemy();
+
+        switch (handler.currentMode)
+        {
+            case EnemyHandler.Mode.Patrol:
+                PatrolMode();
+                maxSpeed = maxWalkingSpeed;
+                break;
+            case EnemyHandler.Mode.Aggression:
+                maxSpeed = maxRunningSpeed;
+                break;
+            case EnemyHandler.Mode.Search:
+                maxSpeed = maxRunningSpeed;
+                SearchForPlayer();
+                break;
+            case EnemyHandler.Mode.Idle:
+                maxSpeed = maxWalkingSpeed;
+                PatrolMode();
+                break;
+            case EnemyHandler.Mode.Dead:
+                StopEnemy();
+                break;
+            default:
+                break;
+        }
     }
 
     bool idle = false;
@@ -36,28 +71,43 @@ public class EnemyMovement : MonoBehaviour
     {
         if (transform.position.x - movePoints[moveIndex].x < targetOffsetAmmount && transform.position.x - movePoints[moveIndex].x > -targetOffsetAmmount && !idle)
         {
+            handler.currentMode = EnemyHandler.Mode.Idle;
             idle = true;
-            StartCoroutine(waitBetweenPatrol(1));
+            StartCoroutine(WaitBetweenPatrol(1));
         }
         else if (idle)
         {
-            rigBody.velocity *= decceleration;
+            StopEnemy();
         }
         else
         {
-            moveEnemy(movePoints[moveIndex]);
+            handler.currentMode = EnemyHandler.Mode.Patrol;
+            MoveEnemy(movePoints[moveIndex]);
         }
     }
 
-    void moveEnemy(Vector2 targetPos)
+   public void SearchForPlayer()
     {
+        if (handler.edgeDetection.DetectEdges())
+            MoveEnemy(handler.detection.lastSeenPlayerLocation);
+    }
+
+    public void MoveEnemy(Vector2 targetPos)
+    {
+        if (!handler.edgeDetection.DetectEdges()) { return; }
+
         rigBody.AddForce(new Vector2(targetPos.x - transform.position.x, 0).normalized * acceleration);
 
         if (rigBody.velocity.magnitude > maxSpeed)
             rigBody.velocity = Vector2.ClampMagnitude(rigBody.velocity, maxSpeed);
     }
 
-    IEnumerator waitBetweenPatrol(float idleTime)
+    public void StopEnemy()
+    {
+        rigBody.velocity *= decceleration;
+    }
+
+    IEnumerator WaitBetweenPatrol(float idleTime)
     {
         yield return new WaitForSeconds(idleTime);
 
@@ -65,18 +115,10 @@ public class EnemyMovement : MonoBehaviour
             moveIndex = 0;
         else
             moveIndex++;
-        FlipRotation(movePoints[moveIndex].x - transform.position.x);
 
+        handler.FlipRotation(movePoints[moveIndex].x - transform.position.x);
 
         idle = false;
-    }
-
-    void FlipRotation(float direction)
-    {
-        if (direction < 0)
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
-        else
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
     }
 
     private void OnDrawGizmos()
@@ -99,8 +141,5 @@ public class EnemyMovement : MonoBehaviour
                 Gizmos.DrawWireSphere(movePoints[x], 0.5f);
             }
         }
-
-
     }
-
 }
